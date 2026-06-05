@@ -28,8 +28,8 @@ export function useStaggerReveal(containerRef: RefObject<HTMLElement | null>, ch
     )
 
     return () => {
+      anim.scrollTrigger?.kill()
       anim.kill()
-      ScrollTrigger.getAll().forEach(t => t.kill())
     }
   }, [containerRef, childSelector])
 }

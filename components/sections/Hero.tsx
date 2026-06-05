@@ -41,8 +41,8 @@ export default function Hero() {
 
     return () => {
       fadeAnim.kill()
+      parallaxAnim.scrollTrigger?.kill()
       parallaxAnim.kill()
-      ScrollTrigger.getAll().forEach(t => t.kill())
     }
   }, [])
 
