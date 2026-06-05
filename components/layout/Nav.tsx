@@ -9,6 +9,7 @@ export default function Nav() {
   const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
     // Ocultar nav al scroll hacia abajo, mostrar al scroll hacia arriba
     let lastY = 0
     ScrollTrigger.create({

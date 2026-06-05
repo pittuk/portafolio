@@ -36,7 +36,8 @@ export default function CustomCursor() {
     const onLeaveLink = () => gsap.to(ring, { scale: 1, duration: 0.3, ease: 'power2.out' })
 
     document.addEventListener('mousemove', onMouseMove)
-    document.querySelectorAll('a, button').forEach(el => {
+    const interactiveEls = Array.from(document.querySelectorAll<HTMLElement>('a, button'))
+    interactiveEls.forEach(el => {
       el.addEventListener('mouseenter', onEnterLink)
       el.addEventListener('mouseleave', onLeaveLink)
     })
@@ -45,6 +46,10 @@ export default function CustomCursor() {
     return () => {
       document.removeEventListener('mousemove', onMouseMove)
       cancelAnimationFrame(rafId)
+      interactiveEls.forEach(el => {
+        el.removeEventListener('mouseenter', onEnterLink)
+        el.removeEventListener('mouseleave', onLeaveLink)
+      })
     }
   }, [])
 
