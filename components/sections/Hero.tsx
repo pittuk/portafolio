@@ -17,18 +17,18 @@ export default function Hero() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    // Título con Splitting.js — dynamic import to avoid SSR errors
-    animateTitle('.hero-title', gsap)
+    // Título con Splitting.js
+    animateTitle('.hero-title', gsap).catch(console.error)
 
     // Fade-up para descriptor y CTA
-    gsap.fromTo(
+    const fadeAnim = gsap.fromTo(
       [eyebrowRef.current, descRef.current, ctaRef.current],
       { opacity: 0, y: 24 },
       { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, delay: 0.8, ease: 'power3.out' }
     )
 
     // Parallax en la palabra de fondo
-    gsap.to(bgWordRef.current, {
+    const parallaxAnim = gsap.to(bgWordRef.current, {
       y: -120,
       ease: 'none',
       scrollTrigger: {
@@ -38,6 +38,12 @@ export default function Hero() {
         scrub: 1,
       },
     })
+
+    return () => {
+      fadeAnim.kill()
+      parallaxAnim.kill()
+      ScrollTrigger.getAll().forEach(t => t.kill())
+    }
   }, [])
 
   return (
