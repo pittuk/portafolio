@@ -5,9 +5,9 @@ import DoubleBezelCard from '@/components/ui/DoubleBezelCard'
 import { useStaggerReveal } from '@/lib/animations/useScrollReveal'
 
 const SERVICES = [
-  { num: '01', name: 'Diseño & Desarrollo WordPress', desc: 'Sitios personalizados con Elementor & Divi. Velocidad, SEO y conversión desde el primer pixel.', tags: ['Elementor', 'Divi', 'PHP'] },
+  { num: '01', name: 'Diseño & Desarrollo Web', desc: 'Sitios personalizados con las mejores tecnologías. Velocidad, SEO y conversión desde el primer pixel.', tags: ['WordPress', 'Elementor', 'React', 'PHP'] },
   { num: '02', name: 'E-Commerce WooCommerce', desc: 'Tiendas completas, integradas con pasarelas de pago, gestión de stock y optimizadas para vender.', tags: ['WooCommerce', 'Stripe'] },
-  { num: '03', name: 'UI/UX Design en Figma', desc: 'Wireframes, prototipos y sistemas de diseño centrados en la experiencia del usuario real.', tags: ['Figma', 'Prototyping'] },
+  { num: '03', name: 'UI/UX Design', desc: 'Wireframes, prototipos interactivos y sistemas de diseño centrados en la experiencia del usuario real.', tags: ['Prototyping', 'User Research'] },
   { num: '04', name: 'SEO Técnico', desc: 'Optimización on-page, velocidad de carga, Core Web Vitals y estructura para posicionar mejor.', tags: ['Core Web Vitals', 'Schema'] },
   { num: '05', name: 'Hosting & Administración', desc: 'Gestión de servidores, cPanel, emails, backups y mantenimiento mensual sin preocupaciones.', tags: ['cPanel', 'VPS', 'DNS'] },
   { num: '06', name: 'Diseño Gráfico & Branding', desc: 'Identidad visual, banners, flyers, brochures y materiales de comunicación para tu marca.', tags: ['Photoshop', 'Illustrator'] },

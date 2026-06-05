@@ -20,6 +20,10 @@ export interface Project {
   order: number
   sliceImages: SanityImage[]
   coverImage?: SanityImage
+  coverUrl?: string
+  sliceUrls?: string[]
+  stackedImages?: boolean
+  descriptionText?: string
 }
 
 export interface Settings {

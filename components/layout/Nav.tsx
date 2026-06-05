@@ -34,8 +34,8 @@ export default function Nav() {
         display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
       }}
     >
-      <Link href="/" style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 15, color: 'var(--white)', textDecoration: 'none' }}>
-        LC<span style={{ color: 'var(--teal)' }}>.</span>
+      <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+        <img src="/images/logo/logo letra blanca.png" alt="Luis Cruz" style={{ display: 'block', maxWidth: 130, height: 'auto' }} />
       </Link>
 
       <nav style={{

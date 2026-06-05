@@ -1,23 +1,71 @@
-// components/sections/About.tsx
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
+import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import DoubleBezelCard from '@/components/ui/DoubleBezelCard'
 
-const SKILLS = ['WordPress', 'Elementor', 'Figma', 'HTML/CSS', 'JavaScript', 'WooCommerce', 'MySQL', 'cPanel', 'Photoshop']
+const SKILLS = ['WordPress', 'Elementor', 'Divi', 'HTML/CSS', 'JavaScript', 'WooCommerce', 'MySQL', 'cPanel', 'Photoshop', 'Illustrator', 'SQL']
 const STATS = [{ num: 10, suffix: '+', label: 'Años exp.' }, { num: 50, suffix: '+', label: 'Proyectos' }, { num: 100, suffix: '%', label: 'Compromiso' }]
 
 export default function About() {
   const statsRefs = useRef<(HTMLSpanElement | null)[]>([])
   const photoRef = useRef<HTMLDivElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const hoverRef = useRef(false)
+  const rafRef = useRef(0)
+
+  const drawNoise = useCallback(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const w = canvas.width
+    const h = canvas.height
+    const imageData = ctx.createImageData(w, h)
+    const data = imageData.data
+
+    for (let i = 0; i < data.length; i += 4) {
+      const v = Math.random() * 255
+      data[i] = v
+      data[i + 1] = v
+      data[i + 2] = v
+      data[i + 3] = 30 + Math.random() * 40
+    }
+
+    ctx.putImageData(imageData, 0, 0)
+
+    if (hoverRef.current) {
+      rafRef.current = requestAnimationFrame(drawNoise)
+    }
+  }, [])
+
+  const startNoise = () => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const parent = canvas.parentElement
+    if (!parent) return
+    canvas.width = parent.offsetWidth
+    canvas.height = parent.offsetHeight
+    hoverRef.current = true
+    rafRef.current = requestAnimationFrame(drawNoise)
+
+    gsap.to(canvas, { opacity: 1, duration: 0.2 })
+  }
+
+  const stopNoise = () => {
+    hoverRef.current = false
+    cancelAnimationFrame(rafRef.current)
+
+    gsap.to(canvasRef.current, { opacity: 0, duration: 0.3 })
+  }
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
     const tweens: gsap.core.Tween[] = []
 
-    // Counter-up animation — gsap.to un objeto proxy, onUpdate lee el valor
     statsRefs.current.forEach((el, i) => {
       if (!el) return
       const proxy = { val: 0 }
@@ -33,7 +81,6 @@ export default function About() {
       tweens.push(t)
     })
 
-    // Foto clip-path reveal
     const photoAnim = gsap.fromTo(
       photoRef.current,
       { clipPath: 'inset(100% 0 0 0)' },
@@ -50,8 +97,9 @@ export default function About() {
       })
       photoAnim.scrollTrigger?.kill()
       photoAnim.kill()
+      cancelAnimationFrame(rafRef.current)
     }
-  }, [])
+  }, [drawNoise])
 
   return (
     <section id="sobre-mi" style={{ padding: '100px 40px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
@@ -60,7 +108,7 @@ export default function About() {
           Luis<br />Cruz<span style={{ color: 'var(--teal)' }}>.</span>
         </h2>
         <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 2, marginBottom: 32 }}>
-          Diseñador y desarrollador web con más de 10 años creando sitios que generan resultados reales. Mi formación en diseño gráfico + competencias técnicas en HTML, CSS, JS y WordPress me permiten construir soluciones completas, bonitas y funcionales.
+          Mi trayectoria comenzó como diseñador gráfico, donde adquirí una base sólida en comunicación visual y creatividad. Luego migré al mundo digital especializándome en maquetación web con HTML y CSS, hasta llegar a WordPress, donde hoy construyo sitios completos con Elementor y Divi. Combino diseño estratégico, experiencia de usuario y desarrollo técnico para crear soluciones digitales eficientes y escalables que aportan crecimiento real a cada proyecto.
         </p>
         <div style={{ display: 'flex', gap: 32, marginBottom: 32, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           {STATS.map((stat, i) => (
@@ -83,10 +131,36 @@ export default function About() {
 
       <div ref={photoRef} style={{ position: 'relative' }}>
         <DoubleBezelCard>
-          <div style={{ background: 'linear-gradient(145deg, #0c2a20, #062015)', borderRadius: 22, height: 360, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,194,168,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,194,168,0.04) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-            <span style={{ fontFamily: 'var(--heading)', fontSize: 80, fontWeight: 800, color: 'rgba(0,194,168,0.15)', letterSpacing: -4, position: 'relative', zIndex: 1 }}>LC</span>
-            <p style={{ position: 'absolute', bottom: 16, left: 0, right: 0, textAlign: 'center', fontSize: 9, color: 'rgba(0,194,168,0.3)', letterSpacing: 2, textTransform: 'uppercase' }}>Foto aquí</p>
+          <div
+            style={{ borderRadius: 22, height: 480, position: 'relative', overflow: 'hidden', cursor: 'none' }}
+            onMouseEnter={startNoise}
+            onMouseLeave={stopNoise}
+          >
+            <Image
+              src="/images/Luis Cruz.png"
+              alt="Luis Cruz"
+              fill
+              style={{ objectFit: 'cover', objectPosition: 'top' }}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(180deg, rgba(0,194,168,0.25) 0%, transparent 35%, rgba(4,12,10,0.6) 100%)',
+              mixBlendMode: 'overlay',
+            }} />
+            <div style={{
+              position: 'absolute', inset: 0,
+              backgroundImage: 'linear-gradient(rgba(0,194,168,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,194,168,0.1) 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
+            }} />
+            <canvas
+              ref={canvasRef}
+              style={{
+                position: 'absolute', inset: 0, width: '100%', height: '100%',
+                opacity: 0, pointerEvents: 'none',
+                mixBlendMode: 'screen',
+              }}
+            />
           </div>
         </DoubleBezelCard>
       </div>

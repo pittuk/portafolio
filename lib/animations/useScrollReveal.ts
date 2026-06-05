@@ -1,4 +1,3 @@
-// lib/animations/useScrollReveal.ts
 import { useEffect, RefObject } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -9,6 +8,7 @@ export function useStaggerReveal(containerRef: RefObject<HTMLElement | null>, ch
     if (!containerRef.current) return
 
     const children = containerRef.current.querySelectorAll(childSelector)
+    if (!children.length) return
 
     const anim = gsap.fromTo(
       children,

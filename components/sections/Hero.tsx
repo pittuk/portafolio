@@ -9,13 +9,15 @@ import { animateTitle } from '@/lib/animations/splitText'
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
-  const bgWordRef = useRef<HTMLDivElement>(null)
+  const bgWordsRef = useRef<HTMLDivElement[]>([])
   const descRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
   const eyebrowRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
+
+    const words = bgWordsRef.current
 
     // Título con Splitting.js
     animateTitle('.hero-title', gsap).catch(console.error)
@@ -27,22 +29,27 @@ export default function Hero() {
       { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, delay: 0.8, ease: 'power3.out' }
     )
 
-    // Parallax en la palabra de fondo
-    const parallaxAnim = gsap.to(bgWordRef.current, {
-      y: -120,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1,
-      },
-    })
+    // Parallax en las palabras de fondo — cada una se mueve distinto
+    const scrollMovements = [-140, -60, 40, 100]
+    const parallaxAnims = words.map((el, i) =>
+      gsap.to(el, {
+        y: scrollMovements[i] ?? -80,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      })
+    )
 
     return () => {
       fadeAnim.kill()
-      parallaxAnim.scrollTrigger?.kill()
-      parallaxAnim.kill()
+      parallaxAnims.forEach(a => {
+        a.scrollTrigger?.kill()
+        a.kill()
+      })
     }
   }, [])
 
@@ -79,20 +86,44 @@ export default function Hero() {
         opacity: 0.4,
       }} />
 
-      {/* Palabra de fondo */}
+      {/* Palabras de fondo — apiladas en columna izquierda + WEB a la derecha */}
+      <div style={{
+        position: 'absolute', top: '6%', left: -20,
+        display: 'flex', flexDirection: 'column', gap: '2vw',
+        pointerEvents: 'none', zIndex: 1,
+      }}>
+        {[
+          { text: 'DISEÑO', fs: 'clamp(90px,18vw,280px)', ls: -8, opacity: 0.035 },
+          { text: 'DESARROLLO', fs: 'clamp(64px,12vw,180px)', ls: -6, opacity: 0.025 },
+          { text: 'CREATIVIDAD', fs: 'clamp(52px,10vw,150px)', ls: -5, opacity: 0.02 },
+        ].map((w, i) => (
+          <div
+            key={w.text}
+            ref={el => { if (el) bgWordsRef.current[i] = el }}
+            style={{
+              fontFamily: 'var(--heading)', fontWeight: 800,
+              fontSize: w.fs, lineHeight: 1, letterSpacing: w.ls,
+              color: `rgba(0,194,168,${w.opacity})`,
+              whiteSpace: 'nowrap', userSelect: 'none',
+            }}
+          >
+            {w.text}
+          </div>
+        ))}
+      </div>
       <div
-        ref={bgWordRef}
+        ref={el => { if (el) bgWordsRef.current[3] = el }}
         style={{
-          position: 'absolute', bottom: -20, left: -10,
+          position: 'absolute', bottom: '5%', right: -20,
           fontFamily: 'var(--heading)', fontWeight: 800,
-          fontSize: 'clamp(120px, 22vw, 300px)',
-          color: 'rgba(0,194,168,0.025)',
+          fontSize: 'clamp(48px, 9vw, 140px)',
+          color: 'rgba(0,194,168,0.02)',
           lineHeight: 1, letterSpacing: -8,
           pointerEvents: 'none', whiteSpace: 'nowrap',
           userSelect: 'none', zIndex: 1,
         }}
       >
-        DISEÑADOR
+        WEB
       </div>
 
       {/* Contenido */}
@@ -137,13 +168,13 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <div style={{
-        position: 'absolute', bottom: 40, right: 40, zIndex: 2,
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
+        position: 'absolute', bottom: 60, right: 40, zIndex: 2,
+        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
       }}>
-        <div style={{ width: 1, height: 48, background: 'linear-gradient(180deg, transparent, var(--teal))' }} />
+        <div style={{ width: 1, height: 40, background: 'linear-gradient(180deg, transparent, var(--teal))', opacity: 0.8 }} />
         <span style={{
           fontSize: 8, letterSpacing: 3, textTransform: 'uppercase',
-          color: 'var(--muted)', writingMode: 'vertical-lr',
+          color: 'rgba(0,194,168,0.6)', writingMode: 'vertical-lr',
         }}>scroll</span>
       </div>
     </section>

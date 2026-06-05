@@ -48,9 +48,10 @@ export default function ProjectCard({ project, style }: ProjectCardProps) {
     }
   }, [])
 
-  const imageUrl = project.coverImage
-    ? urlFor(project.coverImage).width(800).height(500).url()
-    : null
+  const imageUrl = project.coverUrl
+    ?? (project.coverImage
+      ? urlFor(project.coverImage).width(800).height(500).url()
+      : null)
 
   return (
     <Link href={`/proyectos/${project.slug.current}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
@@ -74,6 +75,7 @@ export default function ProjectCard({ project, style }: ProjectCardProps) {
             src={imageUrl}
             alt={project.title}
             fill
+            unoptimized={!!project.coverUrl}
             sizes="(max-width: 768px) 100vw, 50vw"
             style={{ objectFit: 'cover' }}
           />

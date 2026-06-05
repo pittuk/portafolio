@@ -33,11 +33,12 @@ export default function Portfolio({ projects }: PortfolioProps) {
         </Link>
       </div>
 
-      {/* Bento grid — 12 cols */}
+      {/* Bento grid — 12 cols, alternating */}
       <div
         ref={gridRef}
         style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 12 }}
       >
+        {/* Row 1: grande izquierda | 2 pequeños derecha (stacked) */}
         {feat && (
           <div className="bento-item" style={{ gridColumn: 'span 8', opacity: 0 }}>
             <ProjectCard project={feat} style={{ minHeight: 340 }} />
@@ -50,14 +51,18 @@ export default function Portfolio({ projects }: PortfolioProps) {
             </div>
           ))}
         </div>
-        {smItems.slice(2, 4).map(p => (
-          <div key={p._id} className="bento-item" style={{ gridColumn: 'span 4', opacity: 0 }}>
-            <ProjectCard project={p} />
-          </div>
-        ))}
+
+        {/* Row 2: invertido — 2 pequeños izquierda (stacked) | grande derecha */}
+        <div style={{ gridColumn: 'span 4', display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {smItems.slice(2, 4).map(p => (
+            <div key={p._id} className="bento-item" style={{ flex: 1, opacity: 0 }}>
+              <ProjectCard project={p} />
+            </div>
+          ))}
+        </div>
         {wide && (
           <div className="bento-item" style={{ gridColumn: 'span 8', opacity: 0 }}>
-            <ProjectCard project={wide} style={{ minHeight: 160 }} />
+            <ProjectCard project={wide} style={{ minHeight: 340 }} />
           </div>
         )}
       </div>
