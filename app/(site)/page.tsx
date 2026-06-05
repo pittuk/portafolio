@@ -1,14 +1,10 @@
-// app/(site)/page.tsx (temporary test — will be replaced in later tasks)
-import { getProjects } from '@/lib/sanity/queries'
+// app/(site)/page.tsx
+import Hero from '@/components/sections/Hero'
 
-export default async function Home() {
-  const projects = await getProjects()
+export default function Home() {
   return (
-    <div style={{ color: 'white', padding: 40 }}>
-      <p>Projects fetched: {projects.length}</p>
-      <pre style={{ fontSize: 12, overflow: 'auto' }}>
-        {JSON.stringify(projects.slice(0, 1), null, 2)}
-      </pre>
-    </div>
+    <>
+      <Hero />
+    </>
   )
 }
