@@ -8,6 +8,6 @@
   --muted: rgba(240, 237, 232, 0.45);
   --card-surface: rgba(10, 20, 16, 0.9);
   --hairline: rgba(255, 255, 255, 0.06);
-  --heading: 'Syne', sans-serif;
-  --body: 'Space Grotesk', sans-serif;
+  --heading: var(--font-syne), sans-serif;
+  --body: var(--font-space), sans-serif;
 }
