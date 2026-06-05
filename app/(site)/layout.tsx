@@ -1,4 +1,15 @@
-// app/(site)/layout.tsx (stub for now)
+// app/(site)/layout.tsx
+import Nav from '@/components/layout/Nav'
+import Footer from '@/components/layout/Footer'
+import CustomCursor from '@/components/layout/CustomCursor'
+
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
+  return (
+    <>
+      <CustomCursor />
+      <Nav />
+      <main>{children}</main>
+      <Footer />
+    </>
+  )
 }
