@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diseño — Luis Cruz Portfolio</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#111; color:#fff; font-family: system-ui, sans-serif; }
+
+  .page-wrap { display:flex; gap:24px; padding:24px; min-height:100vh; }
+
+  /* Left: full page scroll map */
+  .page-map { width:260px; flex-shrink:0; }
+  .page-map h2 { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#00c2a8; margin-bottom:16px; }
+
+  .section-block { border-left:3px solid; padding:10px 12px; margin-bottom:4px; position:relative; }
+  .section-block .tag { font-size:8px; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; opacity:0.7; }
+  .section-block .name { font-size:12px; font-weight:700; }
+  .section-block .desc { font-size:10px; opacity:0.6; margin-top:3px; line-height:1.4; }
+  .section-block .anim { font-size:8px; color:#00c2a8; margin-top:4px; font-style:italic; }
+
+  .s-hero { border-color:#00c2a8; background:rgba(0,194,168,0.08); }
+  .s-services { border-color:#4a9eff; background:rgba(74,158,255,0.06); }
+  .s-portfolio { border-color:#a78bfa; background:rgba(167,139,250,0.06); }
+  .s-process { border-color:#f59e0b; background:rgba(245,158,11,0.06); }
+  .s-about { border-color:#34d399; background:rgba(52,211,153,0.06); }
+  .s-contact { border-color:#00c2a8; background:rgba(0,194,168,0.08); }
+
+  .connector { width:3px; height:8px; background:rgba(255,255,255,0.1); margin-left:12px; }
+
+  /* Right: detailed mockup panels */
+  .detail-panels { flex:1; display:flex; flex-direction:column; gap:16px; }
+  .panel { border:1px solid rgba(255,255,255,0.08); border-radius:8px; overflow:hidden; }
+  .panel-header { background:rgba(255,255,255,0.05); padding:8px 16px; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#00c2a8; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; }
+  .panel-header span { color:#666; font-size:9px; letter-spacing:0; text-transform:none; }
+
+  /* HERO mockup */
+  .hero-mock { background:#0a1a24; min-height:280px; position:relative; overflow:hidden; display:flex; flex-direction:column; }
+  .hero-nav { padding:16px 28px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .hero-nav .logo { font-size:14px; font-weight:900; color:#fff; }
+  .hero-nav .logo span { color:#00c2a8; }
+  .hero-nav .nav-links { display:flex; gap:20px; }
+  .hero-nav .nav-links a { font-size:10px; color:#aaa; letter-spacing:1px; text-decoration:none; }
+  .hero-nav .nav-links a.cta { background:#00c2a8; color:#0a1a24; padding:5px 12px; font-weight:700; font-size:9px; letter-spacing:2px; }
+
+  .hero-body { flex:1; position:relative; display:flex; align-items:flex-end; padding:28px; }
+  .hero-bg-word { position:absolute; top:10px; left:-8px; font-size:120px; font-weight:900; color:rgba(0,194,168,0.04); line-height:1; white-space:nowrap; pointer-events:none; letter-spacing:-4px; }
+  .hero-bg-circle { position:absolute; right:-40px; top:20px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(0,194,168,0.12) 0%, transparent 70%); }
+  .hero-content { position:relative; z-index:2; }
+  .hero-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#00c2a8; margin-bottom:8px; }
+  .hero-title { font-size:52px; font-weight:900; line-height:0.95; color:#fff; margin-bottom:12px; }
+  .hero-title em { color:#00c2a8; font-style:normal; }
+  .hero-sub { font-size:11px; color:#aaa; line-height:1.7; max-width:340px; margin-bottom:20px; }
+  .hero-ctas { display:flex; gap:12px; align-items:center; }
+  .btn-primary { background:#00c2a8; color:#0a1a24; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:10px 20px; }
+  .btn-secondary { font-size:9px; color:#aaa; letter-spacing:1px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:2px; }
+  .hero-scroll { position:absolute; bottom:16px; right:28px; font-size:8px; color:#aaa; letter-spacing:3px; text-transform:uppercase; display:flex; align-items:center; gap:6px; }
+  .hero-scroll::before { content:''; display:block; width:1px; height:30px; background:linear-gradient(180deg,transparent,#00c2a8); }
+  .hero-anim-tags { position:absolute; top:16px; right:20px; display:flex; flex-direction:column; gap:4px; }
+  .anim-tag { font-size:7px; background:rgba(0,194,168,0.1); border:1px solid rgba(0,194,168,0.2); color:#00c2a8; padding:2px 6px; letter-spacing:1px; text-align:right; }
+
+  /* SERVICES mockup */
+  .services-mock { background:#0d1f2d; padding:28px; }
+  .section-label { font-size:8px; letter-spacing:4px; text-transform:uppercase; color:#00c2a8; margin-bottom:8px; }
+  .section-title-big { font-size:28px; font-weight:900; color:#fff; margin-bottom:20px; line-height:1.1; }
+  .section-title-big em { color:#00c2a8; font-style:normal; }
+  .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .service-card { border:1px solid rgba(255,255,255,0.08); padding:16px; position:relative; overflow:hidden; }
+  .service-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#00c2a8,transparent); }
+  .service-icon { font-size:18px; margin-bottom:8px; }
+  .service-name { font-size:11px; font-weight:700; color:#fff; margin-bottom:4px; }
+  .service-desc { font-size:9px; color:#aaa; line-height:1.6; }
+
+  /* PORTFOLIO mockup */
+  .portfolio-mock { background:#0a151e; padding:28px; }
+  .portfolio-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:20px; }
+  .project-card { aspect-ratio:16/10; background:#1a2a36; position:relative; overflow:hidden; cursor:pointer; }
+  .project-card .overlay { position:absolute; inset:0; background:linear-gradient(180deg,transparent 40%,rgba(10,21,30,0.95) 100%); display:flex; align-items:flex-end; padding:10px; opacity:0; transition:opacity 0.3s; }
+  .project-card:hover .overlay { opacity:1; }
+  .project-card .p-name { font-size:9px; font-weight:700; color:#fff; }
+  .project-card .p-tag { font-size:7px; color:#00c2a8; }
+  .proj-1 { background:linear-gradient(135deg,#1a3a4a,#0d2535); }
+  .proj-2 { background:linear-gradient(135deg,#2a1a3a,#1a0d2a); }
+  .proj-3 { background:linear-gradient(135deg,#1a2a1a,#0d1a0d); }
+  .proj-4 { background:linear-gradient(135deg,#3a2a1a,#2a1a0d); }
+  .proj-5 { background:linear-gradient(135deg,#1a1a3a,#0d0d2a); }
+  .proj-6 { background:linear-gradient(135deg,#2a3a1a,#1a2a0d); }
+  .proj-label { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:8px; color:rgba(255,255,255,0.2); letter-spacing:2px; text-transform:uppercase; }
+  .portfolio-cta { margin-top:16px; text-align:center; }
+  .portfolio-cta a { font-size:9px; letter-spacing:2px; color:#00c2a8; text-transform:uppercase; border-bottom:1px solid rgba(0,194,168,0.3); padding-bottom:2px; }
+
+  /* PROCESS mockup */
+  .process-mock { background:#0d1f2d; padding:28px; }
+  .process-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:20px; }
+  .step { position:relative; padding:16px 12px; border:1px solid rgba(255,255,255,0.06); }
+  .step-num { font-size:32px; font-weight:900; color:rgba(0,194,168,0.15); line-height:1; margin-bottom:8px; }
+  .step-name { font-size:10px; font-weight:700; color:#fff; margin-bottom:4px; }
+  .step-desc { font-size:8px; color:#aaa; line-height:1.6; }
+  .step-line { position:absolute; top:50%; right:-7px; width:14px; height:1px; background:rgba(0,194,168,0.3); z-index:1; }
+
+  /* ABOUT mockup */
+  .about-mock { background:#0a151e; padding:28px; display:flex; gap:24px; align-items:center; }
+  .about-photo { width:100px; height:120px; background:linear-gradient(135deg,#1c3a4a,#0a2030); flex-shrink:0; display:flex; align-items:center; justify-content:center; border:2px solid rgba(0,194,168,0.3); position:relative; }
+  .about-photo span { font-size:28px; font-weight:900; color:rgba(0,194,168,0.5); }
+  .about-photo::after { content:''; position:absolute; bottom:-8px; right:-8px; width:100%; height:100%; border:1px solid rgba(0,194,168,0.2); z-index:-1; }
+  .about-text { flex:1; }
+  .about-title { font-size:22px; font-weight:900; color:#fff; line-height:1.1; margin-bottom:10px; }
+  .about-bio { font-size:10px; color:#aaa; line-height:1.8; margin-bottom:12px; }
+  .skills-row { display:flex; flex-wrap:wrap; gap:6px; }
+  .skill-chip { font-size:8px; border:1px solid rgba(0,194,168,0.4); color:#00c2a8; padding:3px 8px; letter-spacing:1px; }
+
+  /* CONTACT mockup */
+  .contact-mock { background:#0d1f2d; padding:28px; display:flex; gap:28px; }
+  .contact-left { flex:1; }
+  .contact-big { font-size:36px; font-weight:900; line-height:1; margin-bottom:12px; }
+  .contact-big em { color:#00c2a8; font-style:normal; display:block; }
+  .contact-info { display:flex; flex-direction:column; gap:8px; margin-top:16px; }
+  .contact-item { display:flex; align-items:center; gap:8px; font-size:10px; color:#aaa; }
+  .contact-item span { color:#00c2a8; font-size:12px; }
+  .contact-right { flex:1; display:flex; flex-direction:column; gap:8px; }
+  .form-field { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:10px 12px; font-size:10px; color:#fff; }
+  .form-field.tall { height:60px; }
+  .form-submit { background:#00c2a8; color:#0a1a24; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:12px; text-align:center; margin-top:4px; }
+
+  /* global cursor indicator */
+  .cursor-demo { position:fixed; bottom:16px; right:16px; background:rgba(0,194,168,0.1); border:1px solid rgba(0,194,168,0.3); padding:8px 12px; font-size:9px; color:#00c2a8; letter-spacing:1px; border-radius:4px; }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- LEFT: Section map -->
+  <div class="page-map">
+    <h2>Estructura del sitio</h2>
+
+    <div class="section-block s-hero">
+      <div class="tag">01 — Hero</div>
+      <div class="name">Presentación editorial</div>
+      <div class="desc">Título enorme bottom-aligned, nav fija arriba, palabra gigante de fondo semitransparente</div>
+      <div class="anim">↳ SplitText reveal + parallax bg word</div>
+    </div>
+    <div class="connector"></div>
+
+    <div class="section-block s-services">
+      <div class="tag">02 — Servicios</div>
+      <div class="name">Lo que hago</div>
+      <div class="desc">Grid 3 col de servicios: WordPress, UI/UX, e-Commerce, Diseño gráfico</div>
+      <div class="anim">↳ Cards slide-in desde abajo al scroll</div>
+    </div>
+    <div class="connector"></div>
+
+    <div class="section-block s-portfolio">
+      <div class="tag">03 — Portafolio</div>
+      <div class="name">Proyectos destacados</div>
+      <div class="desc">Grid 3 col, 12 proyectos. Hover muestra preview + nombre. Click → página de detalle</div>
+      <div class="anim">↳ Stagger reveal + magnetic hover</div>
+    </div>
+    <div class="connector"></div>
+
+    <div class="section-block s-process">
+      <div class="tag">04 — Proceso</div>
+      <div class="name">Cómo trabajo</div>
+      <div class="desc">4 pasos: Briefing → Diseño → Desarrollo → Entrega. Línea conectora animada</div>
+      <div class="anim">↳ Steps revelan uno a uno con línea dibujándose</div>
+    </div>
+    <div class="connector"></div>
+
+    <div class="section-block s-about">
+      <div class="tag">05 — Sobre mí</div>
+      <div class="name">Luis Cruz</div>
+      <div class="desc">Foto + bio + stack de herramientas como chips. Años de experiencia como número animado</div>
+      <div class="anim">↳ Foto con offset shadow + counter-up numbers</div>
+    </div>
+    <div class="connector"></div>
+
+    <div class="section-block s-contact">
+      <div class="tag">06 — Contacto</div>
+      <div class="name">Hablemos</div>
+      <div class="desc">Título enorme + formulario. Links a Behance, LinkedIn, WhatsApp</div>
+      <div class="anim">↳ Título con split reveal + form fade-in</div>
+    </div>
+
+    <div style="margin-top:20px;padding:12px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.3);">
+      <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#4a9eff;margin-bottom:8px;">Páginas adicionales</div>
+      <div style="font-size:9px;color:#aaa;line-height:2;">
+        /proyectos/[slug] — detalle<br/>
+        /blog — listado<br/>
+        /blog/[slug] — artículo<br/>
+        /studio — Sanity CMS
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Visual mockups -->
+  <div class="detail-panels">
+
+    <!-- HERO -->
+    <div class="panel">
+      <div class="panel-header">01 — HERO <span>Pantalla completa · 100vh</span></div>
+      <div class="hero-mock">
+        <div class="hero-anim-tags">
+          <div class="anim-tag">SplitText reveal</div>
+          <div class="anim-tag">Parallax bg</div>
+          <div class="anim-tag">Custom cursor</div>
+        </div>
+        <div class="hero-nav">
+          <div class="logo">LC<span>.</span></div>
+          <div class="nav-links">
+            <a href="#">Trabajo</a>
+            <a href="#">Servicios</a>
+            <a href="#">Blog</a>
+            <a href="#">Sobre mí</a>
+            <a href="#" class="cta">HABLEMOS</a>
+          </div>
+        </div>
+        <div class="hero-bg-word">DISEÑADOR</div>
+        <div class="hero-bg-circle"></div>
+        <div class="hero-body">
+          <div class="hero-content">
+            <div class="hero-eyebrow">Diseñador web & Desarrollador WordPress</div>
+            <div class="hero-title">Luis<br/>Cruz<em>.</em></div>
+            <div class="hero-sub">Creo sitios web que convierten visitas en clientes reales. WordPress, UI/UX y desarrollo a medida desde Talca, Chile.</div>
+            <div class="hero-ctas">
+              <div class="btn-primary">VER PROYECTOS</div>
+              <div class="btn-secondary">Cuéntame tu proyecto →</div>
+            </div>
+          </div>
+          <div class="hero-scroll">SCROLL</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="panel">
+      <div class="panel-header">02 — SERVICIOS <span>Scroll reveal · stagger</span></div>
+      <div class="services-mock">
+        <div class="section-label">Lo que hago</div>
+        <div class="section-title-big">Soluciones web<br/>que <em>funcionan.</em></div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">⚡</div>
+            <div class="service-name">Diseño WordPress</div>
+            <div class="service-desc">Sitios personalizados con Elementor & Divi. Velocidad, SEO y conversión.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🛒</div>
+            <div class="service-name">E-Commerce</div>
+            <div class="service-desc">Tiendas WooCommerce completas, integradas y listas para vender.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <div class="service-name">UI/UX Design</div>
+            <div class="service-desc">Diseño de interfaces en Figma centradas en experiencia del usuario.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">📱</div>
+            <div class="service-name">Diseño Responsive</div>
+            <div class="service-desc">Adaptación perfecta a todos los dispositivos y tamaños de pantalla.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🔍</div>
+            <div class="service-name">SEO Técnico</div>
+            <div class="service-desc">Optimización on-page, velocidad y estructura para posicionar mejor.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🖌️</div>
+            <div class="service-name">Diseño Gráfico</div>
+            <div class="service-desc">Identidad visual, banners, flyers y materiales de comunicación.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <div class="panel">
+      <div class="panel-header">03 — PORTAFOLIO <span>12 proyectos · hover preview · magnetic</span></div>
+      <div class="portfolio-mock">
+        <div class="section-label">Proyectos destacados</div>
+        <div class="section-title-big">Trabajo que<br/><em>habla solo.</em></div>
+        <div class="portfolio-grid">
+          <div class="project-card proj-1"><div class="proj-label">Proyecto 01</div><div class="overlay"><div><div class="p-tag">WordPress · E-Commerce</div><div class="p-name">Multitel Cable</div></div></div></div>
+          <div class="project-card proj-2"><div class="proj-label">Proyecto 02</div><div class="overlay"><div><div class="p-tag">UI/UX · Elementor</div><div class="p-name">Proyecto B</div></div></div></div>
+          <div class="project-card proj-3"><div class="proj-label">Proyecto 03</div><div class="overlay"><div><div class="p-tag">WooCommerce</div><div class="p-name">Proyecto C</div></div></div></div>
+          <div class="project-card proj-4"><div class="proj-label">Proyecto 04</div><div class="overlay"><div><div class="p-tag">WordPress · Divi</div><div class="p-name">Proyecto D</div></div></div></div>
+          <div class="project-card proj-5"><div class="proj-label">Proyecto 05</div><div class="overlay"><div><div class="p-tag">Diseño Gráfico</div><div class="p-name">Proyecto E</div></div></div></div>
+          <div class="project-card proj-6"><div class="proj-label">Proyecto 06</div><div class="overlay"><div><div class="p-tag">WordPress · SEO</div><div class="p-name">Proyecto F</div></div></div></div>
+        </div>
+        <div class="portfolio-cta"><a href="#">Ver todos los proyectos (12) →</a></div>
+      </div>
+    </div>
+
+    <!-- PROCESS -->
+    <div class="panel">
+      <div class="panel-header">04 — PROCESO <span>Pasos con línea animada</span></div>
+      <div class="process-mock">
+        <div class="section-label">Cómo trabajo</div>
+        <div class="section-title-big">Un proceso<br/><em>sin sorpresas.</em></div>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-name">Briefing</div>
+            <div class="step-desc">Entiendo tu negocio, objetivos y público objetivo.</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-name">Diseño</div>
+            <div class="step-desc">Wireframes y mockups en Figma para validar antes de codear.</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-name">Desarrollo</div>
+            <div class="step-desc">Construcción del sitio con las tecnologías adecuadas al proyecto.</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div class="step-name">Entrega</div>
+            <div class="step-desc">Testing, deploy y traspaso con documentación incluida.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="panel">
+      <div class="panel-header">05 — SOBRE MÍ <span>Foto + stats animados</span></div>
+      <div class="about-mock">
+        <div class="about-photo"><span>LC</span></div>
+        <div class="about-text">
+          <div class="about-title">Luis Cruz<em style="color:#00c2a8;font-style:normal;">.</em></div>
+          <div class="about-bio">Diseñador y desarrollador web con más de 10 años de experiencia creando sitios que generan resultados reales. Especializado en WordPress, UI/UX y e-commerce desde Talca, Chile.</div>
+          <div style="display:flex;gap:20px;margin-bottom:12px;">
+            <div style="text-align:center;"><div style="font-size:22px;font-weight:900;color:#00c2a8;">10+</div><div style="font-size:8px;color:#aaa;letter-spacing:1px;">Años exp.</div></div>
+            <div style="text-align:center;"><div style="font-size:22px;font-weight:900;color:#00c2a8;">50+</div><div style="font-size:8px;color:#aaa;letter-spacing:1px;">Proyectos</div></div>
+            <div style="text-align:center;"><div style="font-size:22px;font-weight:900;color:#00c2a8;">12</div><div style="font-size:8px;color:#aaa;letter-spacing:1px;">En portafolio</div></div>
+          </div>
+          <div class="skills-row">
+            <span class="skill-chip">WordPress</span><span class="skill-chip">Elementor</span><span class="skill-chip">Divi</span><span class="skill-chip">Figma</span><span class="skill-chip">HTML/CSS</span><span class="skill-chip">JavaScript</span><span class="skill-chip">WooCommerce</span><span class="skill-chip">MySQL</span><span class="skill-chip">cPanel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="panel">
+      <div class="panel-header">06 — CONTACTO <span>Formulario + links directos</span></div>
+      <div class="contact-mock">
+        <div class="contact-left">
+          <div class="section-label">Hablemos</div>
+          <div class="contact-big">¿Tienes un<br/>proyecto?<em>Escríbeme.</em></div>
+          <div class="contact-info">
+            <div class="contact-item"><span>✉</span> pittuk@gmail.com</div>
+            <div class="contact-item"><span>📱</span> +56 990 54 85 54</div>
+            <div class="contact-item"><span>📍</span> Talca, Chile</div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:16px;">
+            <div style="width:28px;height:28px;border:1px solid rgba(0,194,168,0.4);display:flex;align-items:center;justify-content:center;font-size:11px;color:#00c2a8;">in</div>
+            <div style="width:28px;height:28px;border:1px solid rgba(0,194,168,0.4);display:flex;align-items:center;justify-content:center;font-size:11px;color:#00c2a8;">Be</div>
+            <div style="width:28px;height:28px;border:1px solid rgba(0,194,168,0.4);display:flex;align-items:center;justify-content:center;font-size:11px;color:#00c2a8;">WA</div>
+          </div>
+        </div>
+        <div class="contact-right">
+          <div class="form-field">Nombre</div>
+          <div class="form-field">Email</div>
+          <div class="form-field">Asunto / Tipo de proyecto</div>
+          <div class="form-field tall">Cuéntame sobre tu proyecto...</div>
+          <div class="form-submit">ENVIAR MENSAJE →</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="cursor-demo">● Cursor personalizado activo en toda la página</div>
+
+</body>
+</html>

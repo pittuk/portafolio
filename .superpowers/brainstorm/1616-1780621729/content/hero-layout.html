@@ -1,0 +1,91 @@
+<h2>¿Cómo debe verse el Hero — la primera pantalla que ve el visitante?</h2>
+<p class="subtitle">El hero es tu impresión número uno. ¿Qué disposición te representa mejor?</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="fullscreen-text" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0e1f2b;padding:0;min-height:220px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;">
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 70% 50%,rgba(0,194,168,0.12) 0%,transparent 60%);"></div>
+      <!-- animated lines decoration -->
+      <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,transparent,#00c2a8,transparent);"></div>
+      <div style="text-align:center;position:relative;padding:20px;">
+        <div style="color:#00c2a8;font-size:9px;letter-spacing:6px;text-transform:uppercase;margin-bottom:10px;">Diseñador & Desarrollador Web</div>
+        <div style="color:#fff;font-size:42px;font-weight:900;line-height:1;margin-bottom:6px;">LUIS<br/>CRUZ</div>
+        <div style="color:#aaa;font-size:11px;letter-spacing:2px;margin-top:10px;">↓ SCROLL</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Pantalla completa centrado</h3>
+      <p>Nombre gigante en el centro, fondo oscuro con efecto de luz teal. Máximo impacto. Animación de texto al entrar.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="split-photo" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0e1f2b;min-height:220px;overflow:hidden;display:flex;">
+      <!-- left side text -->
+      <div style="flex:1;padding:20px;display:flex;flex-direction:column;justify-content:center;">
+        <div style="color:#00c2a8;font-size:9px;letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;">Hola, soy</div>
+        <div style="color:#fff;font-size:28px;font-weight:900;line-height:1;margin-bottom:8px;">Luis<br/>Cruz</div>
+        <div style="color:#aaa;font-size:10px;line-height:1.6;margin-bottom:12px;">Diseñador web &<br/>Desarrollador WordPress</div>
+        <div style="display:inline-block;background:#00c2a8;color:#0e1f2b;font-size:9px;font-weight:700;padding:6px 12px;letter-spacing:2px;text-transform:uppercase;">Ver trabajos →</div>
+      </div>
+      <!-- right side photo placeholder -->
+      <div style="width:120px;background:#1c3a4a;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#1c3a4a,#0a2030);"></div>
+        <div style="position:relative;text-align:center;">
+          <div style="width:60px;height:60px;border-radius:50%;border:2px solid #00c2a8;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;color:#00c2a8;font-size:20px;">LC</div>
+          <div style="width:80px;height:1px;background:linear-gradient(90deg,transparent,#00c2a8,transparent);margin:0 auto;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Split — texto + foto</h3>
+      <p>Mitad izquierda texto, mitad derecha tu foto. Más personal, da cara al portafolio. Animación de slide desde los lados.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="big-title-scroll" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0e1f2b;min-height:220px;overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;">
+      <div style="position:absolute;top:10px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="color:#00c2a8;font-weight:900;font-size:13px;">LC</div>
+        <div style="display:flex;gap:12px;">
+          <span style="color:#aaa;font-size:9px;">Trabajo</span>
+          <span style="color:#aaa;font-size:9px;">Sobre mí</span>
+          <span style="color:#aaa;font-size:9px;">Contacto</span>
+        </div>
+      </div>
+      <!-- giant background letters -->
+      <div style="position:absolute;top:30px;left:-5px;right:-5px;color:rgba(0,194,168,0.05);font-size:90px;font-weight:900;line-height:1;overflow:hidden;white-space:nowrap;">DISEÑADOR</div>
+      <!-- main content bottom-aligned -->
+      <div style="position:relative;z-index:2;">
+        <div style="color:#aaa;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;">WordPress · JavaScript · UI/UX</div>
+        <div style="color:#fff;font-size:34px;font-weight:900;line-height:1;">Luis Cruz<span style="color:#00c2a8">.</span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Título enorme + nav arriba</h3>
+      <p>Nombre posicionado abajo, con una palabra gigante semitransparente de fondo. Muy editorial, muy 2025. Al hacer scroll, el texto se mueve en parallax.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="typed-effect" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0a1a24;min-height:220px;overflow:hidden;position:relative;display:flex;align-items:center;padding:24px;">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 30px,rgba(0,194,168,0.02) 30px,rgba(0,194,168,0.02) 31px),repeating-linear-gradient(90deg,transparent,transparent 30px,rgba(0,194,168,0.02) 30px,rgba(0,194,168,0.02) 31px);"></div>
+      <div style="position:relative;">
+        <div style="color:#00c2a8;font-size:11px;font-family:monospace;margin-bottom:6px;">// Hola mundo</div>
+        <div style="color:#fff;font-size:26px;font-weight:900;margin-bottom:6px;">Soy <span style="color:#00c2a8;border-right:2px solid #00c2a8;padding-right:3px;">Diseñador Web</span></div>
+        <div style="color:#aaa;font-size:11px;line-height:1.8;max-width:220px;">Creo sitios que <strong style="color:#fff">convierten visitas</strong> en clientes reales.</div>
+        <div style="margin-top:16px;display:flex;gap:8px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#00c2a8;"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:rgba(0,194,168,0.4);"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:rgba(0,194,168,0.2);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Efecto typewriter + grid</h3>
+      <p>Texto que se escribe solo ("Soy Diseñador Web / Developer / Creativo…"), fondo con grid sutil. Muy dinámico y moderno desde el primer segundo.</p>
+    </div>
+  </div>
+
+</div>

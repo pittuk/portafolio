@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luis Cruz — Portfolio v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg: #040c0a;
+  --teal: #00c2a8;
+  --teal-dim: rgba(0,194,168,0.08);
+  --teal-mid: rgba(0,194,168,0.15);
+  --white: #f0ede8;
+  --muted: rgba(240,237,232,0.45);
+  --heading: 'Syne', sans-serif;
+  --body: 'Space Grotesk', sans-serif;
+}
+html { background: var(--bg); }
+body { background: var(--bg); color: var(--white); font-family: var(--body); overflow-x: hidden; }
+
+/* ─── NOISE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+}
+
+/* ─── SECTION LABEL ─── */
+.section-note {
+  text-align: center;
+  padding: 10px 24px 4px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(0,194,168,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  background: rgba(0,194,168,0.03);
+}
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Teal bloom — bottom right */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -120px; right: -80px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,194,168,0.14) 0%, transparent 65%);
+  pointer-events: none;
+}
+/* Second bloom — top left, subtler */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px; left: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(0,194,168,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Floating island nav */
+.nav {
+  position: relative; z-index: 10;
+  padding: 28px 40px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.nav-logo {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+.nav-logo span { color: var(--teal); }
+
+/* Floating pill */
+.nav-pill {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
+  padding: 10px 20px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  backdrop-filter: blur(12px);
+}
+.nav-pill a {
+  font-family: var(--body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+}
+.nav-pill a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--teal);
+  color: var(--bg) !important;
+  font-weight: 700 !important;
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 10px !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase;
+}
+
+/* Hero main content */
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 40px 48px;
+  position: relative; z-index: 2;
+}
+
+/* Eyebrow pill */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,194,168,0.08);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 20px;
+  width: fit-content;
+}
+.eyebrow::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--teal);
+  border-radius: 50%;
+}
+
+/* MASSIVE headline */
+.hero-headline {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: clamp(72px, 12vw, 160px);
+  line-height: 0.9;
+  letter-spacing: -4px;
+  color: var(--white);
+  margin-bottom: 0;
+}
+/* The teal dot */
+.hero-headline .accent { color: var(--teal); }
+
+/* Thin subtext + CTA row */
+.hero-bottom {
+  margin-top: 28px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+.hero-descriptor {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 360px;
+  font-weight: 400;
+}
+.hero-descriptor strong { color: var(--white); font-weight: 600; }
+
+/* Magnetic CTA button - double bezel */
+.btn-shell {
+  background: rgba(0,194,168,0.06);
+  border: 1px solid rgba(0,194,168,0.15);
+  border-radius: 100px;
+  padding: 5px;
+  flex-shrink: 0;
+}
+.btn-inner {
+  background: var(--teal);
+  color: var(--bg);
+  border-radius: 100px;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn-icon {
+  width: 28px; height: 28px;
+  background: rgba(4,12,10,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  transition: transform 0.4s cubic-bezier(0.32,0.72,0,1);
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 40px; right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+}
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(180deg, transparent, var(--teal));
+}
+.scroll-text {
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  writing-mode: vertical-lr;
+}
+
+/* BG word behind headline */
+.hero-bg-word {
+  position: absolute;
+  bottom: -20px;
+  left: -10px;
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: clamp(120px, 22vw, 300px);
+  color: rgba(0,194,168,0.025);
+  line-height: 1;
+  letter-spacing: -8px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1;
+  user-select: none;
+}
+
+/* Thin teal vertical accent bar */
+.hero-bar {
+  position: absolute;
+  left: 0; top: 80px; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--teal) 40%, transparent);
+  opacity: 0.4;
+}
+
+/* ══════════════════════════════
+   SERVICES  — Z-Axis Cascade
+══════════════════════════════ */
+.services {
+  padding: 120px 40px 100px;
+  position: relative;
+  overflow: hidden;
+}
+.services::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,194,168,0.3), transparent);
+}
+
+.services-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 64px;
+}
+.services-title {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: clamp(36px, 5vw, 68px);
+  letter-spacing: -2px;
+  line-height: 1;
+  color: var(--white);
+}
+.services-title .teal { color: var(--teal); }
+.services-count {
+  font-family: var(--heading);
+  font-size: 80px;
+  font-weight: 800;
+  color: rgba(0,194,168,0.08);
+  letter-spacing: -3px;
+  line-height: 1;
+}
+
+/* Z-axis cascade: cards offset + slight rotation */
+.services-cascade {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  position: relative;
+}
+
+/* Double bezel card */
+.svc-shell {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 24px;
+  padding: 3px;
+  transition: transform 0.6s cubic-bezier(0.32,0.72,0,1);
+}
+.svc-shell:nth-child(2) { transform: translateY(24px); }
+.svc-shell:nth-child(3) { transform: translateY(-12px); }
+.svc-shell:nth-child(5) { transform: translateY(16px); }
+
+.svc-inner {
+  background: rgba(10,20,16,0.9);
+  border-radius: 22px;
+  padding: 28px 24px;
+  height: 100%;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+  position: relative;
+  overflow: hidden;
+}
+.svc-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.svc-shell:hover .svc-inner::before { opacity: 1; }
+
+.svc-number {
+  font-family: var(--heading);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  opacity: 0.6;
+}
+.svc-name {
+  font-family: var(--heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+.svc-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+  font-weight: 400;
+}
+.svc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+.svc-tag {
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: rgba(0,194,168,0.7);
+  background: rgba(0,194,168,0.06);
+  border: 1px solid rgba(0,194,168,0.12);
+  border-radius: 100px;
+  padding: 3px 10px;
+}
+
+/* ══════════════════════════════
+   PORTFOLIO — Bento Asymmetric
+══════════════════════════════ */
+.portfolio {
+  padding: 100px 40px;
+  position: relative;
+}
+.portfolio::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,194,168,0.3), transparent);
+}
+
+.portfolio-header {
+  margin-bottom: 48px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.portfolio-title {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: clamp(36px, 5vw, 68px);
+  letter-spacing: -2px;
+  line-height: 1;
+}
+.portfolio-title .teal { color: var(--teal); }
+.portfolio-link {
+  font-size: 11px;
+  color: var(--teal);
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,194,168,0.3);
+  padding-bottom: 2px;
+  white-space: nowrap;
+  margin-bottom: 8px;
+}
+
+/* Bento grid: 1 hero project + 2 small + 3 medium */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 12px;
+}
+
+.proj-shell {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Featured project — spans 8 cols */
+.proj-feat { grid-column: span 8; }
+.proj-sm-a { grid-column: span 4; }
+.proj-sm-b { grid-column: span 4; }
+.proj-sm-c { grid-column: span 4; }
+.proj-sm-d { grid-column: span 4; }
+.proj-wide { grid-column: span 8; }
+
+.proj-inner {
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  min-height: 200px;
+}
+.proj-feat .proj-inner { min-height: 340px; }
+
+/* Project image areas */
+.proj-image {
+  width: 100%; height: 100%;
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.proj-feat .proj-image {
+  background: linear-gradient(145deg, #0a2a20 0%, #041510 50%, #062018 100%);
+}
+.proj-sm-a .proj-image { background: linear-gradient(145deg, #1a1a3a, #0a0a20); }
+.proj-sm-b .proj-image { background: linear-gradient(145deg, #2a1a0a, #150d05); }
+.proj-sm-c .proj-image { background: linear-gradient(145deg, #0a1a2a, #050d15); }
+.proj-sm-d .proj-image { background: linear-gradient(145deg, #1a0a2a, #0d0515); }
+.proj-wide .proj-image { background: linear-gradient(145deg, #0a2a1a, #051510); }
+
+/* Grid lines inside images for "structure" feel */
+.proj-image::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,194,168,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,194,168,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.proj-placeholder {
+  font-family: var(--heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(0,194,168,0.2);
+  position: relative; z-index: 1;
+}
+
+/* Overlay on hover */
+.proj-overlay {
+  position: absolute;
+  inset: 0; z-index: 2;
+  background: linear-gradient(180deg, transparent 30%, rgba(4,12,10,0.97) 100%);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.proj-category {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.proj-name {
+  font-family: var(--heading);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.2px;
+}
+.proj-feat .proj-name { font-size: 22px; }
+
+/* Hover arrow badge */
+.proj-arrow {
+  position: absolute;
+  top: 16px; right: 16px; z-index: 3;
+  width: 36px; height: 36px;
+  background: rgba(0,194,168,0.1);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  color: var(--teal);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s cubic-bezier(0.32,0.72,0,1);
+}
+.proj-shell:hover .proj-arrow { opacity: 1; transform: scale(1); }
+
+/* ══════════════════════════════
+   PROCESS
+══════════════════════════════ */
+.process {
+  padding: 100px 40px;
+  position: relative;
+  background: rgba(0,194,168,0.02);
+  border-top: 1px solid rgba(0,194,168,0.08);
+  border-bottom: 1px solid rgba(0,194,168,0.08);
+}
+
+.process-header { margin-bottom: 64px; }
+.process-title {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: clamp(36px, 5vw, 68px);
+  letter-spacing: -2px;
+  line-height: 1;
+}
+.process-title .teal { color: var(--teal); }
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+/* Connecting line */
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 30px; left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,194,168,0.4) 20%, rgba(0,194,168,0.4) 80%, transparent);
+  pointer-events: none;
+}
+
+.step {
+  padding: 0 24px;
+  position: relative;
+}
+.step-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--teal);
+  margin-bottom: 24px;
+  position: relative; z-index: 1;
+}
+.step-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: rgba(0,194,168,0.12);
+}
+.step-num {
+  font-family: var(--heading);
+  font-size: 72px;
+  font-weight: 800;
+  color: rgba(0,194,168,0.06);
+  line-height: 1;
+  position: absolute;
+  top: -24px; right: 16px;
+  pointer-events: none;
+}
+.step-name {
+  font-family: var(--heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  letter-spacing: -0.2px;
+}
+.step-desc {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ══════════════════════════════
+   ABOUT
+══════════════════════════════ */
+.about {
+  padding: 100px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-left { position: relative; }
+.about-title {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 80px);
+  line-height: 0.95;
+  letter-spacing: -3px;
+  margin-bottom: 24px;
+}
+.about-title .teal { color: var(--teal); }
+.about-bio {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 2;
+  margin-bottom: 32px;
+}
+.about-stats {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.stat-num {
+  font-family: var(--heading);
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--teal);
+  letter-spacing: -2px;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* skills chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: rgba(0,194,168,0.06);
+  border: 1px solid rgba(0,194,168,0.15);
+  border-radius: 100px;
+  padding: 5px 12px;
+}
+
+/* Photo side — double bezel */
+.about-photo-shell {
+  background: rgba(0,194,168,0.04);
+  border: 1px solid rgba(0,194,168,0.1);
+  border-radius: 28px;
+  padding: 6px;
+  position: relative;
+}
+.about-photo-inner {
+  background: linear-gradient(145deg, #0c2a20, #062015);
+  border-radius: 24px;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+  position: relative;
+  overflow: hidden;
+}
+.about-photo-inner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,194,168,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,194,168,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.about-initials {
+  font-family: var(--heading);
+  font-size: 80px;
+  font-weight: 800;
+  color: rgba(0,194,168,0.15);
+  letter-spacing: -4px;
+  position: relative; z-index: 1;
+}
+/* offset decorative border */
+.about-photo-shell::after {
+  content: '';
+  position: absolute;
+  bottom: -12px; right: -12px;
+  left: 12px; top: 12px;
+  border: 1px solid rgba(0,194,168,0.1);
+  border-radius: 28px;
+  z-index: -1;
+}
+
+/* ══════════════════════════════
+   CONTACT
+══════════════════════════════ */
+.contact {
+  padding: 100px 40px 80px;
+  position: relative;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.contact::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,194,168,0.4), transparent);
+}
+.contact-title {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: clamp(48px, 9vw, 120px);
+  line-height: 0.95;
+  letter-spacing: -4px;
+  margin-bottom: 48px;
+}
+.contact-title .teal { color: var(--teal); }
+.contact-title .thin {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 60px;
+  align-items: start;
+}
+.contact-info { display: flex; flex-direction: column; gap: 20px; }
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.contact-item-dot {
+  width: 4px; height: 4px;
+  background: var(--teal);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.contact-socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+.social-pill {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.32,0.72,0,1);
+}
+
+/* Form — double bezel inputs */
+.form-shell {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 24px;
+  padding: 4px;
+}
+.form-inner {
+  background: rgba(10,20,16,0.8);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.input-shell {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 2px;
+}
+.input-inner {
+  background: rgba(4,12,10,0.6);
+  border-radius: 11px;
+  padding: 12px 16px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+}
+.input-inner input,
+.input-inner textarea {
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--body);
+  font-size: 12px;
+  color: var(--white);
+  width: 100%;
+  resize: none;
+}
+.input-inner input::placeholder,
+.input-inner textarea::placeholder {
+  color: rgba(240,237,232,0.25);
+}
+.input-inner textarea { height: 80px; }
+
+.submit-shell {
+  background: rgba(0,194,168,0.1);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-radius: 100px;
+  padding: 4px;
+}
+.submit-inner {
+  background: var(--teal);
+  color: var(--bg);
+  border-radius: 100px;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.submit-arrow {
+  width: 28px; height: 28px;
+  background: rgba(4,12,10,0.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+.footer {
+  padding: 24px 40px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-logo {
+  font-family: var(--heading);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--white);
+}
+.footer-logo span { color: var(--teal); }
+.footer-copy {
+  font-size: 10px;
+  color: rgba(240,237,232,0.2);
+  letter-spacing: 0.5px;
+}
+
+/* Scroll-spy labels */
+.anim-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 8px;
+  color: rgba(0,194,168,0.5);
+  letter-spacing: 1px;
+  background: rgba(0,194,168,0.04);
+  border: 1px solid rgba(0,194,168,0.1);
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ SECTION NOTES ════════════════ -->
+
+<!-- ── HERO ── -->
+<div class="section-note">① HERO — Título editorial enorme · Nav floating pill · SplitText reveal · Parallax bloom</div>
+<section class="hero">
+  <div class="hero-bar"></div>
+
+  <nav class="nav">
+    <div class="nav-logo">LC<span>.</span></div>
+    <div class="nav-pill">
+      <a href="#">Trabajo</a>
+      <a href="#">Servicios</a>
+      <a href="#">Blog</a>
+      <a href="#">Sobre mí</a>
+      <a href="#" class="nav-cta">Hablemos</a>
+    </div>
+  </nav>
+
+  <div class="hero-bg-word">DISEÑADOR</div>
+
+  <div class="hero-content">
+    <div class="eyebrow">WordPress · UI/UX · e-Commerce · Talca, Chile</div>
+
+    <h1 class="hero-headline">
+      Luis<br/>Cruz<span class="accent">.</span>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-descriptor">
+        Creo sitios web que <strong>convierten visitas en clientes reales</strong>.
+        Diseño estratégico + desarrollo técnico desde hace más de 10 años.
+      </p>
+      <div class="btn-shell">
+        <div class="btn-inner">
+          Ver proyectos
+          <div class="btn-icon">↗</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">scroll</div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<div class="section-note">② SERVICIOS — Z-axis cascade (cards offset) · Stagger scroll reveal · Double-bezel cards</div>
+<section class="services">
+  <div class="services-header">
+    <h2 class="services-title">Soluciones web<br/>que <span class="teal">funcionan.</span></h2>
+    <div class="services-count">06</div>
+  </div>
+
+  <div class="services-cascade">
+    <div class="svc-shell">
+      <div class="svc-inner">
+        <div class="svc-number">01</div>
+        <div class="svc-name">Diseño &amp; Desarrollo WordPress</div>
+        <div class="svc-desc">Sitios personalizados con Elementor &amp; Divi. Velocidad, SEO y conversión desde el primer pixel.</div>
+        <div class="svc-tags"><span class="svc-tag">Elementor</span><span class="svc-tag">Divi</span><span class="svc-tag">PHP</span></div>
+      </div>
+    </div>
+    <div class="svc-shell">
+      <div class="svc-inner">
+        <div class="svc-number">02</div>
+        <div class="svc-name">E-Commerce WooCommerce</div>
+        <div class="svc-desc">Tiendas completas, integradas con pasarelas de pago, gestión de stock y optimizadas para vender.</div>
+        <div class="svc-tags"><span class="svc-tag">WooCommerce</span><span class="svc-tag">Stripe</span></div>
+      </div>
+    </div>
+    <div class="svc-shell">
+      <div class="svc-inner">
+        <div class="svc-number">03</div>
+        <div class="svc-name">UI/UX Design en Figma</div>
+        <div class="svc-desc">Wireframes, prototipos y sistemas de diseño centrados en la experiencia del usuario real.</div>
+        <div class="svc-tags"><span class="svc-tag">Figma</span><span class="svc-tag">Prototyping</span></div>
+      </div>
+    </div>
+    <div class="svc-shell">
+      <div class="svc-inner">
+        <div class="svc-number">04</div>
+        <div class="svc-name">SEO Técnico</div>
+        <div class="svc-desc">Optimización on-page, velocidad de carga, Core Web Vitals y estructura para posicionar.</div>
+        <div class="svc-tags"><span class="svc-tag">Core Web Vitals</span><span class="svc-tag">Schema</span></div>
+      </div>
+    </div>
+    <div class="svc-shell">
+      <div class="svc-inner">
+        <div class="svc-number">05</div>
+        <div class="svc-name">Hosting &amp; Administración</div>
+        <div class="svc-desc">Gestión de servidores, cPanel, emails, backups y mantenimiento mensual sin preocupaciones.</div>
+        <div class="svc-tags"><span class="svc-tag">cPanel</span><span class="svc-tag">VPS</span><span class="svc-tag">DNS</span></div>
+      </div>
+    </div>
+    <div class="svc-shell">
+      <div class="svc-inner">
+        <div class="svc-number">06</div>
+        <div class="svc-name">Diseño Gráfico &amp; Branding</div>
+        <div class="svc-desc">Identidad visual, banners, flyers, brochures y materiales de comunicación para tu marca.</div>
+        <div class="svc-tags"><span class="svc-tag">Photoshop</span><span class="svc-tag">Illustrator</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PORTFOLIO ── -->
+<div class="section-note">③ PORTAFOLIO — Bento asimétrico · Proyecto featured 8 cols · Hover arrow badge · Magnetic effect</div>
+<section class="portfolio">
+  <div class="portfolio-header">
+    <h2 class="portfolio-title">Trabajo que<br/><span class="teal">habla solo.</span></h2>
+    <a href="#" class="portfolio-link">Ver todos los proyectos (12) →</a>
+  </div>
+
+  <div class="bento">
+    <!-- Featured -->
+    <div class="proj-shell proj-feat">
+      <div class="proj-inner">
+        <div class="proj-image"></div>
+        <div class="proj-overlay">
+          <div class="proj-category">WordPress · E-Commerce</div>
+          <div class="proj-name">Multitel Cable — Cableoperadora</div>
+        </div>
+        <div class="proj-arrow">↗</div>
+      </div>
+    </div>
+    <!-- Small stack right -->
+    <div class="proj-shell proj-sm-a">
+      <div class="proj-inner">
+        <div class="proj-image"></div>
+        <div class="proj-overlay">
+          <div class="proj-category">UI/UX · Elementor</div>
+          <div class="proj-name">Proyecto B</div>
+        </div>
+        <div class="proj-arrow">↗</div>
+      </div>
+    </div>
+    <div class="proj-shell proj-sm-b">
+      <div class="proj-inner">
+        <div class="proj-image"></div>
+        <div class="proj-overlay">
+          <div class="proj-category">WooCommerce</div>
+          <div class="proj-name">Proyecto C</div>
+        </div>
+        <div class="proj-arrow">↗</div>
+      </div>
+    </div>
+    <!-- Row 2 -->
+    <div class="proj-shell proj-sm-c">
+      <div class="proj-inner">
+        <div class="proj-image"></div>
+        <div class="proj-overlay">
+          <div class="proj-category">WordPress · Divi</div>
+          <div class="proj-name">Proyecto D</div>
+        </div>
+        <div class="proj-arrow">↗</div>
+      </div>
+    </div>
+    <div class="proj-shell proj-sm-d">
+      <div class="proj-inner">
+        <div class="proj-image"></div>
+        <div class="proj-overlay">
+          <div class="proj-category">Diseño Gráfico</div>
+          <div class="proj-name">Proyecto E</div>
+        </div>
+        <div class="proj-arrow">↗</div>
+      </div>
+    </div>
+    <div class="proj-shell proj-wide">
+      <div class="proj-inner" style="min-height:160px;">
+        <div class="proj-image"></div>
+        <div class="proj-overlay">
+          <div class="proj-category">Branding · Web</div>
+          <div class="proj-name">Proyecto F — Caso de estudio destacado</div>
+        </div>
+        <div class="proj-arrow">↗</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<div class="section-note">④ PROCESO — 4 pasos · Línea conectora animada · Números gigantes semitransparentes</div>
+<section class="process">
+  <div class="process-header">
+    <h2 class="process-title">Un proceso<br/><span class="teal">sin sorpresas.</span></h2>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-dot"></div>
+      <div class="step-num">01</div>
+      <div class="step-name">Briefing</div>
+      <div class="step-desc">Entiendo tu negocio, objetivos reales y el cliente que quieres atraer.</div>
+    </div>
+    <div class="step">
+      <div class="step-dot"></div>
+      <div class="step-num">02</div>
+      <div class="step-name">Diseño</div>
+      <div class="step-desc">Wireframes y mockups en Figma para validar la visión antes de escribir una línea de código.</div>
+    </div>
+    <div class="step">
+      <div class="step-dot"></div>
+      <div class="step-num">03</div>
+      <div class="step-name">Desarrollo</div>
+      <div class="step-desc">Construcción con las tecnologías adecuadas al proyecto, con foco en velocidad y SEO.</div>
+    </div>
+    <div class="step">
+      <div class="step-dot"></div>
+      <div class="step-num">04</div>
+      <div class="step-name">Entrega</div>
+      <div class="step-desc">Deploy, testing en dispositivos reales, capacitación y soporte post-lanzamiento.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<div class="section-note">⑤ SOBRE MÍ — Split layout · Foto con offset double-bezel · Counters animados · Chips de skills</div>
+<section class="about">
+  <div class="about-left">
+    <h2 class="about-title">Luis<br/>Cruz<span class="teal">.</span></h2>
+    <p class="about-bio">
+      Diseñador y desarrollador web con más de 10 años creando sitios que generan resultados reales.
+      Mi formación en diseño gráfico + competencias técnicas en HTML, CSS, JS y WordPress me permiten
+      construir soluciones completas, bonitas y funcionales.
+    </p>
+    <div class="about-stats">
+      <div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Años exp.</div>
+      </div>
+      <div>
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Proyectos</div>
+      </div>
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Compromiso</div>
+      </div>
+    </div>
+    <div class="chips">
+      <span class="chip">WordPress</span>
+      <span class="chip">Elementor</span>
+      <span class="chip">Figma</span>
+      <span class="chip">HTML/CSS</span>
+      <span class="chip">JavaScript</span>
+      <span class="chip">WooCommerce</span>
+      <span class="chip">MySQL</span>
+      <span class="chip">cPanel</span>
+      <span class="chip">Photoshop</span>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="about-photo-shell">
+      <div class="about-photo-inner">
+        <div class="about-initials">LC</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<div class="section-note">⑥ CONTACTO — Título enorme · Formulario double-bezel · Links directos Behance · LinkedIn · WhatsApp</div>
+<section class="contact">
+  <h2 class="contact-title">
+    ¿Tienes<br/>
+    <span class="thin">un proyecto?</span><br/>
+    <span class="teal">Hablemos.</span>
+  </h2>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item"><div class="contact-item-dot"></div> pittuk@gmail.com</div>
+      <div class="contact-item"><div class="contact-item-dot"></div> +56 990 54 85 54</div>
+      <div class="contact-item"><div class="contact-item-dot"></div> Talca, Chile</div>
+      <div class="contact-socials">
+        <div class="social-pill">LinkedIn</div>
+        <div class="social-pill">Behance</div>
+        <div class="social-pill">WhatsApp</div>
+      </div>
+    </div>
+
+    <div class="form-shell">
+      <div class="form-inner">
+        <div class="input-shell">
+          <div class="input-inner"><input type="text" placeholder="Tu nombre"></div>
+        </div>
+        <div class="input-shell">
+          <div class="input-inner"><input type="text" placeholder="Tu email"></div>
+        </div>
+        <div class="input-shell">
+          <div class="input-inner"><input type="text" placeholder="Tipo de proyecto"></div>
+        </div>
+        <div class="input-shell">
+          <div class="input-inner"><textarea placeholder="Cuéntame sobre tu proyecto..."></textarea></div>
+        </div>
+        <div class="submit-shell">
+          <div class="submit-inner">
+            Enviar mensaje
+            <div class="submit-arrow">↗</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-logo">LC<span>.</span></div>
+  <div class="footer-copy">© 2025 Luis Cruz · Diseñado &amp; desarrollado por mí mismo</div>
+</footer>
+
+</body>
+</html>

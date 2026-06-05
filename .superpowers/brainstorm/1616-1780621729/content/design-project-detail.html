@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyecto — Detalle</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg: #040c0a;
+  --teal: #00c2a8;
+  --white: #f0ede8;
+  --muted: rgba(240,237,232,0.45);
+  --heading: 'Syne', sans-serif;
+  --body: 'Space Grotesk', sans-serif;
+}
+html { background: var(--bg); scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--white); font-family: var(--body); overflow-x: hidden; }
+
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 28px; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+.nav-logo {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--white);
+}
+.nav-logo span { color: var(--teal); }
+.nav-pill {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
+  padding: 10px 20px;
+  display: flex; gap: 24px; align-items: center;
+  backdrop-filter: blur(12px);
+}
+.nav-pill a {
+  font-family: var(--body);
+  font-size: 11px; font-weight: 500;
+  color: var(--muted); text-decoration: none;
+}
+.back-link {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--teal);
+}
+.back-arrow {
+  width: 24px; height: 24px;
+  background: rgba(0,194,168,0.1);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+}
+
+/* ── PROJECT HERO ── */
+.proj-hero {
+  padding: 140px 40px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.proj-hero::after {
+  content: '';
+  position: absolute;
+  top: 60px; right: -60px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(0,194,168,0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.proj-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,194,168,0.08);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 20px;
+}
+.proj-eyebrow::before {
+  content: ''; width: 5px; height: 5px;
+  background: var(--teal); border-radius: 50%;
+}
+
+.proj-title {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: clamp(48px, 8vw, 110px);
+  line-height: 0.95;
+  letter-spacing: -3px;
+  color: var(--white);
+  margin-bottom: 40px;
+  max-width: 800px;
+  position: relative; z-index: 1;
+}
+.proj-title .teal { color: var(--teal); }
+
+/* Meta + desc grid */
+.proj-intro {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative; z-index: 1;
+}
+
+.proj-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 2;
+  font-weight: 400;
+}
+.proj-desc strong { color: var(--white); font-weight: 600; }
+
+/* Metadata card — double bezel */
+.meta-shell {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 3px;
+  align-self: start;
+}
+.meta-inner {
+  background: rgba(10,20,16,0.9);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.meta-row { display: flex; flex-direction: column; gap: 4px; }
+.meta-label {
+  font-size: 8px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(0,194,168,0.5);
+}
+.meta-value {
+  font-size: 12px; font-weight: 500;
+  color: var(--white);
+}
+.meta-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.05);
+}
+.meta-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.meta-tag {
+  font-size: 8px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--teal);
+  background: rgba(0,194,168,0.06);
+  border: 1px solid rgba(0,194,168,0.15);
+  border-radius: 100px;
+  padding: 3px 10px;
+}
+.meta-cta {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--teal);
+  padding-top: 4px;
+}
+.meta-cta-icon {
+  width: 22px; height: 22px;
+  background: rgba(0,194,168,0.1);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+}
+
+/* ── IMAGE SLICES — The Behance strip ── */
+.slices-section {
+  padding: 0;
+  position: relative;
+}
+
+.slices-label {
+  padding: 40px 40px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.slices-label-text {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted);
+}
+.slices-label-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+/* Each slice = full width image strip */
+.slice {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+/* Gap between slices — the teal hairline */
+.slice-gap {
+  height: 3px;
+  background: var(--bg);
+  position: relative;
+}
+.slice-gap::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 1px;
+  background: rgba(0,194,168,0.2);
+}
+
+/* Each slice has an inner image area with parallax feel */
+.slice-image {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Slice 1 — full website screenshot top (header, hero) */
+.slice-1 .slice-image {
+  height: 320px;
+  background: linear-gradient(180deg, #0a2a1a 0%, #062015 100%);
+}
+/* Slice 2 — middle section (services or about) */
+.slice-2 .slice-image {
+  height: 260px;
+  background: linear-gradient(180deg, #0d1a14 0%, #081510 100%);
+}
+/* Slice 3 — portfolio/gallery section */
+.slice-3 .slice-image {
+  height: 280px;
+  background: linear-gradient(180deg, #062015 0%, #0a2a1a 100%);
+}
+/* Slice 4 — footer / contact area */
+.slice-4 .slice-image {
+  height: 220px;
+  background: linear-gradient(180deg, #0a1a14 0%, #040c0a 100%);
+}
+/* Slice 5 — mobile view */
+.slice-5 .slice-image {
+  height: 240px;
+  background: linear-gradient(180deg, #0d2a1a 0%, #062015 100%);
+}
+
+/* Grid lines inside slices */
+.slice-image::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,194,168,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,194,168,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Slice label overlay */
+.slice-label-overlay {
+  position: absolute;
+  top: 16px; left: 24px;
+  font-size: 8px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(0,194,168,0.4);
+  background: rgba(4,12,10,0.6);
+  padding: 4px 10px;
+  border-radius: 100px;
+  backdrop-filter: blur(8px);
+}
+
+/* Screen wireframe inside slice 1 */
+.wireframe {
+  position: absolute; inset: 20px;
+  display: flex; flex-direction: column; gap: 0;
+}
+.wf-nav-bar {
+  height: 36px;
+  background: rgba(0,194,168,0.05);
+  border: 1px solid rgba(0,194,168,0.1);
+  border-radius: 6px 6px 0 0;
+  display: flex; align-items: center;
+  padding: 0 16px; gap: 8px;
+}
+.wf-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(0,194,168,0.2); }
+.wf-url { flex:1; height: 12px; background: rgba(255,255,255,0.04); border-radius: 4px; }
+.wf-body {
+  flex: 1;
+  background: rgba(0,194,168,0.02);
+  border: 1px solid rgba(0,194,168,0.06);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+  overflow: hidden;
+}
+.wf-hero-text {
+  height: 40px;
+  background: rgba(0,194,168,0.08);
+  border-radius: 4px;
+  width: 60%;
+}
+.wf-hero-sub {
+  height: 12px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 4px;
+  width: 40%;
+}
+.wf-hero-btn {
+  height: 20px; width: 100px;
+  background: rgba(0,194,168,0.15);
+  border-radius: 100px;
+}
+.wf-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
+  margin-top: auto;
+}
+.wf-card {
+  height: 60px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 6px;
+}
+
+/* Mobile slice */
+.mobile-pair {
+  position: absolute; inset: 20px;
+  display: flex; justify-content: center; gap: 24px; align-items: center;
+}
+.mobile-frame {
+  width: 90px; height: 180px;
+  background: rgba(255,255,255,0.03);
+  border: 2px solid rgba(0,194,168,0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.mobile-bar { height: 16px; background: rgba(0,194,168,0.08); flex-shrink: 0; }
+.mobile-body { flex: 1; padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+.mobile-line { height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; }
+.mobile-line.teal { background: rgba(0,194,168,0.15); width: 60%; }
+.mobile-line.short { width: 70%; }
+.mobile-img-block { flex: 1; background: rgba(0,194,168,0.05); border-radius: 4px; margin-top: 4px; }
+
+/* ── NEXT PROJECT ── */
+.next-project {
+  padding: 80px 40px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.next-project::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(0,194,168,0.02);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.32,0.72,0,1);
+}
+.next-label {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.next-name {
+  font-family: var(--heading);
+  font-weight: 800;
+  font-size: clamp(24px, 4vw, 52px);
+  letter-spacing: -2px;
+  line-height: 1;
+  color: var(--white);
+}
+.next-arrow-shell {
+  background: rgba(0,194,168,0.06);
+  border: 1px solid rgba(0,194,168,0.15);
+  border-radius: 100px;
+  padding: 5px;
+  flex-shrink: 0;
+}
+.next-arrow-inner {
+  background: var(--teal);
+  color: var(--bg);
+  border-radius: 100px;
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 700;
+}
+
+/* annotation notes */
+.annot {
+  position: absolute;
+  right: 40px;
+  background: rgba(0,194,168,0.06);
+  border: 1px solid rgba(0,194,168,0.15);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 9px;
+  color: rgba(0,194,168,0.7);
+  letter-spacing: 0.5px;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">LC<span>.</span></div>
+  <div class="nav-pill">
+    <a href="#" class="back-link">
+      <div class="back-arrow">←</div>
+      Volver a proyectos
+    </a>
+  </div>
+</nav>
+
+<!-- PROJECT HERO -->
+<section class="proj-hero">
+  <div class="proj-eyebrow">WordPress · E-Commerce · Diseño Web</div>
+  <h1 class="proj-title">Multitel<br/>Cable<span class="teal">.</span></h1>
+
+  <div class="proj-intro">
+    <!-- Left: description -->
+    <div>
+      <p class="proj-desc">
+        Diseño y desarrollo completo del sitio web corporativo para <strong>Multitel Cable</strong>,
+        cableoperadora regional. El proyecto contempló una arquitectura de información
+        renovada, diseño visual alineado con su identidad de marca y una plataforma
+        de pagos en línea integrada con su sistema de gestión de clientes.
+      </p>
+      <p class="proj-desc" style="margin-top:16px;">
+        El resultado fue un sitio <strong>rápido, responsive y orientado a la conversión</strong>,
+        con secciones diferenciadas por tipo de servicio y un área de clientes para
+        consulta de facturas y pagos.
+      </p>
+    </div>
+
+    <!-- Right: metadata card -->
+    <div class="meta-shell">
+      <div class="meta-inner">
+        <div class="meta-row">
+          <div class="meta-label">Cliente</div>
+          <div class="meta-value">Multitel Cable S.A.</div>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-row">
+          <div class="meta-label">Año</div>
+          <div class="meta-value">2023</div>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-row">
+          <div class="meta-label">Rol</div>
+          <div class="meta-value">Diseño UI + Desarrollo WordPress</div>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-row">
+          <div class="meta-label">Herramientas</div>
+          <div class="meta-tags">
+            <span class="meta-tag">WordPress</span>
+            <span class="meta-tag">Elementor</span>
+            <span class="meta-tag">WooCommerce</span>
+            <span class="meta-tag">Figma</span>
+            <span class="meta-tag">CSS</span>
+            <span class="meta-tag">cPanel</span>
+          </div>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-cta">
+          <div class="meta-cta-icon">↗</div>
+          Ver sitio en vivo
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE SLICES SECTION -->
+<section class="slices-section">
+
+  <div class="slices-label">
+    <div class="slices-label-line"></div>
+    <div class="slices-label-text">Vista del proyecto</div>
+    <div class="slices-label-line"></div>
+  </div>
+
+  <!-- SLICE 1 — Header / Hero del sitio -->
+  <div class="slice slice-1">
+    <div class="slice-image">
+      <div class="wireframe">
+        <div class="wf-nav-bar">
+          <div class="wf-dot"></div><div class="wf-dot"></div><div class="wf-dot"></div>
+          <div class="wf-url"></div>
+        </div>
+        <div class="wf-body">
+          <div class="wf-hero-text"></div>
+          <div class="wf-hero-sub"></div>
+          <div class="wf-hero-btn"></div>
+          <div class="wf-grid">
+            <div class="wf-card"></div>
+            <div class="wf-card"></div>
+            <div class="wf-card"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slice-label-overlay">Header + Hero — Sección 1/5</div>
+    <div class="annot" style="top:20px;">↑ Parallax al hacer scroll</div>
+  </div>
+
+  <div class="slice-gap"></div>
+
+  <!-- SLICE 2 — Servicios -->
+  <div class="slice slice-2">
+    <div class="slice-image">
+      <div style="position:absolute;inset:20px;display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:16px;align-items:flex-start;">
+          <div style="flex:1;">
+            <div style="height:8px;width:40%;background:rgba(0,194,168,0.1);border-radius:4px;margin-bottom:10px;"></div>
+            <div style="height:20px;width:70%;background:rgba(0,194,168,0.08);border-radius:4px;"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex:1;">
+          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(0,194,168,0.08);border-radius:8px;padding:12px;">
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(0,194,168,0.1);margin-bottom:8px;"></div>
+            <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:3px;margin-bottom:6px;"></div>
+            <div style="height:6px;background:rgba(255,255,255,0.03);border-radius:3px;"></div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(0,194,168,0.08);border-radius:8px;padding:12px;">
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(0,194,168,0.1);margin-bottom:8px;"></div>
+            <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:3px;margin-bottom:6px;"></div>
+            <div style="height:6px;background:rgba(255,255,255,0.03);border-radius:3px;"></div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(0,194,168,0.08);border-radius:8px;padding:12px;">
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(0,194,168,0.1);margin-bottom:8px;"></div>
+            <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:3px;margin-bottom:6px;"></div>
+            <div style="height:6px;background:rgba(255,255,255,0.03);border-radius:3px;"></div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(0,194,168,0.08);border-radius:8px;padding:12px;">
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(0,194,168,0.1);margin-bottom:8px;"></div>
+            <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:3px;margin-bottom:6px;"></div>
+            <div style="height:6px;background:rgba(255,255,255,0.03);border-radius:3px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slice-label-overlay">Sección servicios — 2/5</div>
+  </div>
+
+  <div class="slice-gap"></div>
+
+  <!-- SLICE 3 — Gallery / imagen de producto -->
+  <div class="slice slice-3">
+    <div class="slice-image">
+      <div style="position:absolute;inset:20px;display:grid;grid-template-columns:1.5fr 1fr;gap:12px;">
+        <div style="background:rgba(0,194,168,0.04);border:1px solid rgba(0,194,168,0.08);border-radius:8px;"></div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);border-radius:8px;"></div>
+          <div style="flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);border-radius:8px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="slice-label-overlay">Galería / imágenes — 3/5</div>
+  </div>
+
+  <div class="slice-gap"></div>
+
+  <!-- SLICE 4 — Página interior / producto -->
+  <div class="slice slice-4">
+    <div class="slice-image">
+      <div style="position:absolute;inset:20px;display:flex;gap:16px;">
+        <div style="width:200px;flex-shrink:0;background:rgba(0,194,168,0.04);border:1px solid rgba(0,194,168,0.08);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px;">
+          <div style="height:8px;width:60%;background:rgba(0,194,168,0.1);border-radius:4px;"></div>
+          <div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px;"></div>
+          <div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px;width:80%;"></div>
+          <div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px;width:70%;"></div>
+          <div style="margin-top:auto;height:24px;background:rgba(0,194,168,0.12);border-radius:100px;"></div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:10px;">
+          <div style="height:12px;width:40%;background:rgba(0,194,168,0.06);border-radius:4px;"></div>
+          <div style="height:8px;background:rgba(255,255,255,0.04);border-radius:3px;"></div>
+          <div style="height:8px;background:rgba(255,255,255,0.04);border-radius:3px;width:90%;"></div>
+          <div style="flex:1;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);border-radius:8px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="slice-label-overlay">Página interior — 4/5</div>
+  </div>
+
+  <div class="slice-gap"></div>
+
+  <!-- SLICE 5 — Mobile responsive -->
+  <div class="slice slice-5">
+    <div class="slice-image">
+      <div class="mobile-pair">
+        <div style="text-align:right;padding-right:20px;">
+          <div style="font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Responsive</div>
+          <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--white);line-height:1.1;">Optimizado<br/>para<br/><span style="color:var(--teal);">mobile.</span></div>
+        </div>
+        <div class="mobile-frame">
+          <div class="mobile-bar"></div>
+          <div class="mobile-body">
+            <div class="mobile-line teal"></div>
+            <div class="mobile-line"></div>
+            <div class="mobile-line short"></div>
+            <div class="mobile-img-block"></div>
+            <div class="mobile-line" style="width:50%;height:14px;background:rgba(0,194,168,0.1);border-radius:100px;margin-top:4px;"></div>
+          </div>
+        </div>
+        <div class="mobile-frame" style="transform:translateY(16px) scale(0.92); opacity: 0.6;">
+          <div class="mobile-bar"></div>
+          <div class="mobile-body">
+            <div class="mobile-img-block" style="height:60px;"></div>
+            <div class="mobile-line teal" style="margin-top:6px;"></div>
+            <div class="mobile-line"></div>
+            <div class="mobile-line short"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slice-label-overlay">Vista mobile — 5/5</div>
+    <div class="annot" style="bottom:20px;top:auto;">Cada slice = GSAP parallax independiente ↑</div>
+  </div>
+
+</section>
+
+<!-- NEXT PROJECT -->
+<section class="next-project">
+  <div>
+    <div class="next-label">Siguiente proyecto</div>
+    <div class="next-name">Proyecto B<span style="color:var(--teal);">.</span></div>
+  </div>
+  <div class="next-arrow-shell">
+    <div class="next-arrow-inner">→</div>
+  </div>
+</section>
+
+</body>
+</html>

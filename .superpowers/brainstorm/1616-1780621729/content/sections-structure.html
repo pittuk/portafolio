@@ -1,0 +1,86 @@
+<h2>¿Qué estructura de secciones quieres para el portafolio?</h2>
+<p class="subtitle">El orden y las secciones definen el "viaje" que hace el visitante. ¿Cuál fluye mejor para ti?</p>
+
+<style>
+.page-map { display:flex; flex-direction:column; gap:3px; width:100%; }
+.page-section { padding:5px 10px; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; border-left:3px solid; }
+.hero-s { background:rgba(0,194,168,0.2); border-color:#00c2a8; color:#00c2a8; }
+.about-s { background:rgba(255,255,255,0.05); border-color:#aaa; color:#ccc; }
+.skills-s { background:rgba(255,255,255,0.04); border-color:#888; color:#bbb; }
+.portfolio-s { background:rgba(0,194,168,0.1); border-color:#00c2a8; color:#00c2a8; }
+.services-s { background:rgba(255,255,255,0.04); border-color:#888; color:#bbb; }
+.process-s { background:rgba(255,255,255,0.03); border-color:#666; color:#aaa; }
+.testimonials-s { background:rgba(255,255,255,0.04); border-color:#888; color:#bbb; }
+.contact-s { background:rgba(0,194,168,0.15); border-color:#00c2a8; color:#00c2a8; }
+</style>
+
+<div class="cards">
+
+  <div class="card" data-choice="classic" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0e1f2b;padding:20px;min-height:200px;">
+      <div class="page-map">
+        <div class="page-section hero-s">🏠 Hero — Presentación</div>
+        <div class="page-section about-s">👤 Sobre mí</div>
+        <div class="page-section skills-s">⚙️ Habilidades & Tools</div>
+        <div class="page-section portfolio-s">💼 Portafolio / Proyectos</div>
+        <div class="page-section testimonials-s">💬 Testimonios</div>
+        <div class="page-section contact-s">📬 Contacto</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Clásico completo</h3>
+      <p>El flujo estándar de un portafolio profesional. Predecible pero efectivo. Visitantes saben exactamente dónde buscar qué.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="portfolio-first" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0e1f2b;padding:20px;min-height:200px;">
+      <div class="page-map">
+        <div class="page-section hero-s">🏠 Hero — Presentación</div>
+        <div class="page-section portfolio-s">💼 Proyectos destacados (primero!)</div>
+        <div class="page-section services-s">🛠️ Servicios / Qué ofrezco</div>
+        <div class="page-section about-s">👤 Sobre mí + experiencia</div>
+        <div class="page-section testimonials-s">💬 Testimonios</div>
+        <div class="page-section contact-s">📬 Contacto</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Portafolio primero</h3>
+      <p>El trabajo va antes que todo lo demás. Estrategia de conversión: el cliente ve resultados reales antes de leer sobre ti.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="story-driven" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0e1f2b;padding:20px;min-height:200px;">
+      <div class="page-map">
+        <div class="page-section hero-s">🏠 Hero — "¿Necesitas una web?"</div>
+        <div class="page-section services-s">🛠️ Lo que hago (servicios)</div>
+        <div class="page-section portfolio-s">💼 Casos de éxito</div>
+        <div class="page-section process-s">📋 Mi proceso de trabajo</div>
+        <div class="page-section about-s">👤 Quién soy</div>
+        <div class="page-section contact-s">📬 Hablemos</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Orientado al cliente</h3>
+      <p>Empieza con el problema del cliente, no contigo. Muy efectivo para conseguir proyectos. Fluye como una propuesta de venta.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="minimal-bold" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0e1f2b;padding:20px;min-height:200px;">
+      <div class="page-map">
+        <div class="page-section hero-s">🏠 Hero — Impacto total</div>
+        <div class="page-section portfolio-s">💼 Trabajo (galería amplia)</div>
+        <div class="page-section about-s">👤 Sobre mí + stack</div>
+        <div class="page-section contact-s">📬 Contacto directo</div>
+      </div>
+      <div style="margin-top:12px;color:rgba(0,194,168,0.6);font-size:9px;font-style:italic;text-align:center;">Solo 4 secciones — cada una con mucho espacio y peso visual</div>
+    </div>
+    <div class="card-body">
+      <h3>Minimal Bold — 4 secciones</h3>
+      <p>Menos es más. Cada sección tiene todo el espacio para respirar y hacer impacto. Muy difícil de ejecutar, pero muy poderoso.</p>
+    </div>
+  </div>
+
+</div>

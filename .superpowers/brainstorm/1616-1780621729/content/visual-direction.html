@@ -1,0 +1,72 @@
+<h2>¿Qué personalidad visual quieres para tu portafolio?</h2>
+<p class="subtitle">Cada dirección transmite algo diferente — elige la que más conecta con cómo quieres presentarte</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="dark-tech" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0a0a0f;padding:20px;min-height:200px;font-family:monospace;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,200,0.03) 2px,rgba(0,255,200,0.03) 4px);"></div>
+      <div style="color:#00ffc8;font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;">LUIS CRUZ — DEV</div>
+      <div style="color:#fff;font-size:28px;font-weight:900;line-height:1.1;margin-bottom:8px;">Diseñador<br/><span style="color:#00ffc8">& Desarrollador</span></div>
+      <div style="display:flex;gap:8px;margin-top:16px;">
+        <span style="background:rgba(0,255,200,0.1);border:1px solid #00ffc8;color:#00ffc8;padding:3px 8px;font-size:10px;border-radius:2px;">WordPress</span>
+        <span style="background:rgba(0,255,200,0.1);border:1px solid #00ffc8;color:#00ffc8;padding:3px 8px;font-size:10px;border-radius:2px;">JavaScript</span>
+        <span style="background:rgba(0,255,200,0.1);border:1px solid #00ffc8;color:#00ffc8;padding:3px 8px;font-size:10px;border-radius:2px;">UX/UI</span>
+      </div>
+      <div style="position:absolute;right:20px;bottom:20px;width:80px;height:80px;border:1px solid rgba(0,255,200,0.2);border-radius:50%;"></div>
+      <div style="position:absolute;right:30px;bottom:30px;width:60px;height:60px;border:1px solid rgba(0,255,200,0.3);border-radius:50%;"></div>
+    </div>
+    <div class="card-body">
+      <h3>Dark & Tech</h3>
+      <p>Fondo oscuro, acentos neón (cian/verde), estética de desarrollador. Muy popular entre devs. Screams "conozco el código".</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="bold-creative" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f5f0eb;padding:20px;min-height:200px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;background:#ff3c3c;border-radius:50%;opacity:0.9;"></div>
+      <div style="position:absolute;bottom:-10px;left:30px;width:80px;height:80px;background:#1a1a2e;border-radius:50%;"></div>
+      <div style="position:relative;z-index:2;">
+        <div style="color:#1a1a2e;font-size:11px;letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;font-weight:700;">Luis Cruz</div>
+        <div style="color:#1a1a2e;font-size:32px;font-weight:900;line-height:1;margin-bottom:4px;">Diseño<br/>que<br/><span style="color:#ff3c3c">impacta.</span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Bold & Creativo</h3>
+      <p>Tipografía enorme, formas orgánicas, colores fuertes. Destaca como diseñador gráfico. Perfecto si quieres destacar la creatividad.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="minimal-elegant" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fafafa;padding:24px;min-height:200px;position:relative;border-bottom:1px solid #eee;">
+      <div style="width:40px;height:2px;background:#1a1a2e;margin-bottom:20px;"></div>
+      <div style="color:#999;font-size:10px;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px;">Portfolio — 2025</div>
+      <div style="color:#1a1a2e;font-size:34px;font-weight:200;line-height:1.1;margin-bottom:6px;">Luis<br/><strong style="font-weight:900">Cruz</strong></div>
+      <div style="color:#666;font-size:12px;margin-top:12px;line-height:1.6;max-width:200px;">Web Designer &amp; Developer especializado en WordPress</div>
+      <div style="position:absolute;right:24px;bottom:24px;width:50px;height:50px;background:#1a1a2e;"></div>
+    </div>
+    <div class="card-body">
+      <h3>Minimal & Elegante</h3>
+      <p>Mucho espacio en blanco, tipografía refinada, colores neutros con un acento. Sofisticado, deja que el trabajo hable por sí solo.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="dark-bold-hybrid" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0d0d1a;padding:20px;min-height:200px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7c3aed,#ec4899,#f97316);"></div>
+      <div style="position:absolute;right:-30px;top:20px;width:150px;height:150px;background:radial-gradient(circle,rgba(124,58,237,0.3) 0%,transparent 70%);"></div>
+      <div style="color:#a78bfa;font-size:10px;letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;margin-top:8px;">Luis Cruz</div>
+      <div style="color:#fff;font-size:30px;font-weight:900;line-height:1.1;margin-bottom:8px;">Creo webs<br/><span style="background:linear-gradient(90deg,#7c3aed,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">que convierten.</span></div>
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#ec4899);"></div>
+        <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#ec4899,#f97316);"></div>
+        <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#f97316,#7c3aed);"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Dark + Gradients</h3>
+      <p>Fondo oscuro con gradientes vibrantes (violeta, rosa, naranja). Muy moderno y "agencia premium". Tendencia fuerte en 2025.</p>
+    </div>
+  </div>
+
+</div>
