@@ -1,0 +1,13 @@
+/* styles/tokens.css */
+:root {
+  --bg: #040c0a;
+  --teal: #00c2a8;
+  --teal-dim: rgba(0, 194, 168, 0.08);
+  --teal-mid: rgba(0, 194, 168, 0.15);
+  --white: #f0ede8;
+  --muted: rgba(240, 237, 232, 0.45);
+  --card-surface: rgba(10, 20, 16, 0.9);
+  --hairline: rgba(255, 255, 255, 0.06);
+  --heading: 'Syne', sans-serif;
+  --body: 'Space Grotesk', sans-serif;
+}

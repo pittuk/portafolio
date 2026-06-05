@@ -1,1 +1,44 @@
+/* app/globals.css */
 @import "tailwindcss";
+@import "../styles/tokens.css";
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--body);
+  overflow-x: hidden;
+  cursor: none; /* oculta cursor nativo — CustomCursor lo reemplaza */
+}
+
+/* En touch/mobile mostramos cursor nativo */
+@media (hover: none) {
+  body { cursor: auto; }
+}
+
+/* Grain overlay — fijo, no afecta scroll */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+}
+
+/* Animaciones de entrada — clase base */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(32px);
+}
