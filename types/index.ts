@@ -19,7 +19,7 @@ export interface Project {
   featured: boolean
   order: number
   sliceImages: SanityImage[]
-  coverImage: SanityImage
+  coverImage?: SanityImage
 }
 
 export interface Settings {

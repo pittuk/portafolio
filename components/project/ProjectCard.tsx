@@ -31,6 +31,7 @@ export default function ProjectCard({ project, style }: ProjectCardProps) {
       gsap.to(card, { x: 0, y: 0, duration: 0.5, ease: 'power3.out' })
     }
     const onMove = (e: MouseEvent) => {
+      if (!bounds) return
       const x = ((e.clientX - bounds.left) / bounds.width - 0.5) * 8
       const y = ((e.clientY - bounds.top) / bounds.height - 0.5) * 8
       gsap.to(card, { x, y, duration: 0.4, ease: 'power2.out' })
