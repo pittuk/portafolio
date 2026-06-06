@@ -1,7 +1,8 @@
 'use client'
-import { useRef, useEffect } from 'react'
-import Link from 'next/link'
+import { useRef, useEffect, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
 import gsap from 'gsap'
+
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ProjectCard from '@/components/project/ProjectCard'
 import type { Project } from '@/types'
@@ -14,6 +15,16 @@ export default function Portfolio({ projects }: PortfolioProps) {
   const sectionRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef<HTMLDivElement>(null)
+  const ctxRef = useRef<gsap.Context | null>(null)
+  const router = useRouter()
+
+  // Kill all ScrollTriggers before navigating to avoid pin-spacer conflicts
+  const goToProjects = useCallback((e: React.MouseEvent) => {
+    e.preventDefault()
+    ctxRef.current?.revert()
+    ScrollTrigger.killAll()
+    router.push('/proyectos')
+  }, [router])
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -64,7 +75,11 @@ export default function Portfolio({ projects }: PortfolioProps) {
       })
     }, section)
 
-    return () => ctx.revert()
+    ctxRef.current = ctx
+    return () => {
+      ctx.revert()
+      ctxRef.current = null
+    }
   }, [])
 
   const preview = projects.slice(0, 6)
@@ -100,13 +115,14 @@ export default function Portfolio({ projects }: PortfolioProps) {
         }}>
           Trabajo que<br /><span style={{ color: 'var(--teal)' }}>habla solo.</span>
         </h2>
-        <Link href="/proyectos" style={{
+        <button onClick={goToProjects} style={{
           fontSize: 11, color: 'var(--teal)', letterSpacing: 1,
-          textDecoration: 'none', borderBottom: '1px solid rgba(0,194,168,0.3)',
+          background: 'none', border: 'none', borderBottom: '1px solid rgba(0,194,168,0.3)',
           paddingBottom: 2, pointerEvents: 'all', whiteSpace: 'nowrap',
+          cursor: 'pointer',
         }}>
           Ver todos ({projects.length}) →
-        </Link>
+        </button>
       </div>
 
       {/* Horizontal track */}
@@ -135,22 +151,22 @@ export default function Portfolio({ projects }: PortfolioProps) {
         ))}
 
         {/* CTA card */}
-        <Link
-          href="/proyectos"
+        <button
+          onClick={goToProjects}
           className="h-card"
           style={{
             flex: '0 0 auto', width: 200,
             display: 'flex', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'center',
             border: '1px solid rgba(0,194,168,0.12)',
-            borderRadius: 20, textDecoration: 'none', gap: 12,
+            borderRadius: 20, gap: 12, cursor: 'pointer',
             color: 'var(--teal)', background: 'rgba(0,194,168,0.02)',
           }}
         >
           <span style={{ fontFamily: 'var(--heading)', fontSize: 40, fontWeight: 800, lineHeight: 1 }}>→</span>
           <span style={{ fontSize: 9, letterSpacing: 2, textTransform: 'uppercase' }}>Ver todos</span>
           <span style={{ fontSize: 9, letterSpacing: 1, opacity: 0.5 }}>{projects.length} proyectos</span>
-        </Link>
+        </button>
       </div>
 
       {/* Progress bar */}
