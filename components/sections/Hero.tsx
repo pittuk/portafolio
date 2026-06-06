@@ -8,7 +8,6 @@ import PrimaryButton from '@/components/ui/PrimaryButton'
 import { animateCinematicSlam } from '@/lib/animations/splitText'
 
 export default function Hero() {
-  const heroRef = useRef<HTMLElement>(null)
   const bgWordsRef = useRef<HTMLDivElement[]>([])
   const descRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
@@ -17,6 +16,7 @@ export default function Hero() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
+    let tl: any = null
 
     animateCinematicSlam({
       wordEls: bgWordsRef.current.filter(Boolean),
@@ -26,12 +26,15 @@ export default function Hero() {
       ctaEl: ctaRef.current,
       scrollEl: scrollIndicatorRef.current,
       gsapInstance: gsap,
-    }).catch(console.error)
+    }).then(t => { tl = t }).catch(console.error)
+
+    return () => {
+      tl?.kill()
+    }
   }, [])
 
   return (
     <section
-      ref={heroRef}
       id="inicio"
       style={{
         minHeight: '100vh',

@@ -62,7 +62,7 @@ export async function animateCinematicSlam(params: {
   ctaEl: HTMLElement | null
   scrollEl: HTMLElement | null
   gsapInstance: any
-}): Promise<void> {
+}): Promise<any> {
   const { wordEls, titleSelector, eyebrowEl, descEl, ctaEl, scrollEl, gsapInstance: g } = params
   const Splitting = (await import('splitting')).default
 
@@ -155,4 +155,6 @@ export async function animateCinematicSlam(params: {
   if (scrollEl) {
     tl.to(scrollEl, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '+=0.1')
   }
+
+  return tl
 }
