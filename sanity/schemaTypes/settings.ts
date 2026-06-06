@@ -8,9 +8,6 @@ export const settings = defineType({
   fields: [
     defineField({ name: 'siteTitle', type: 'string', initialValue: 'Luis Cruz' }),
     defineField({ name: 'siteDescription', type: 'text', rows: 3 }),
-    defineField({ name: 'email', type: 'string' }),
-    defineField({ name: 'phone', type: 'string' }),
-    defineField({ name: 'location', type: 'string', initialValue: 'Talca, Chile' }),
     defineField({
       name: 'socialLinks',
       title: 'Redes sociales',

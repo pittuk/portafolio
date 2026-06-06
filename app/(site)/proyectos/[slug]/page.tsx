@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getProjectBySlug } from '@/lib/sanity/queries'
+import { getProjectBySlug, getProjects } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
 import { MOCK_PROJECTS } from '@/lib/mock/projects'
 import Image from 'next/image'
@@ -26,13 +26,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+function getRelatedProjects(project: Project, all: Project[], count: number): Project[] {
+  const sameCategory = all.filter(p =>
+    p._id !== project._id &&
+    p.category?.some(c => project.category?.includes(c))
+  )
+  const others = all.filter(p =>
+    p._id !== project._id &&
+    !sameCategory.includes(p)
+  )
+  const pool = [...sameCategory, ...others]
+  return pool.slice(0, count)
+}
+
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params
   let project: Project | null = null
+  let allProjects: Project[] = []
   try {
     project = await getProjectBySlug(slug)
+    allProjects = await getProjects()
   } catch {
-    project = MOCK_PROJECTS.find(p => p.slug.current === slug) ?? null
+    const mock = MOCK_PROJECTS.find(p => p.slug.current === slug)
+    project = mock ?? null
+    allProjects = MOCK_PROJECTS
   }
 
   if (!project) {
@@ -47,6 +64,8 @@ export default async function ProjectPage({ params }: Props) {
       </section>
     )
   }
+
+  const related = getRelatedProjects(project, allProjects, 3)
 
   return (
     <section style={{ padding: '140px 40px 80px', minHeight: '100vh' }}>
@@ -171,6 +190,60 @@ export default async function ProjectPage({ params }: Props) {
             </>
           )}
         </div>
+      </div>
+
+      {related.length > 0 && (
+        <div style={{ marginTop: 100, borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 60 }}>
+          <h2 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(28px,4vw,48px)', letterSpacing: -2, lineHeight: 1, marginBottom: 40 }}>
+            Proyectos <span style={{ color: 'var(--teal)' }}>relacionados</span><span style={{ color: 'var(--orange)' }}>.</span>
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+            {related.map(r => {
+              const imgUrl = r.coverUrl ?? (r.coverImage ? urlFor(r.coverImage).width(600).height(400).url() : null)
+              return (
+                <Link
+                  key={r._id}
+                  href={`/proyectos/${r.slug.current}`}
+                  style={{ textDecoration: 'none', display: 'block' }}
+                >
+                  <div style={{
+                    background: 'rgba(255,255,255,0.02)',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    borderRadius: 20, overflow: 'hidden',
+                    transition: 'border-color 0.3s, transform 0.3s',
+                  }}>
+                    {imgUrl && (
+                      <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden' }}>
+                        <Image
+                          src={imgUrl}
+                          alt={r.title}
+                          fill
+                          unoptimized={!!r.coverUrl}
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </div>
+                    )}
+                    <div style={{ padding: 16 }}>
+                      <p style={{ fontSize: 8, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', color: 'var(--teal)', marginBottom: 4 }}>
+                        {r.category?.join(' · ')}
+                      </p>
+                      <h3 style={{ fontFamily: 'var(--heading)', fontSize: 14, fontWeight: 700, color: 'var(--white)', letterSpacing: -0.2, margin: 0 }}>
+                        {r.title}
+                      </h3>
+                    </div>
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      <div style={{ textAlign: 'center', marginTop: 60 }}>
+        <Link href="/proyectos" style={{ color: 'var(--teal)', fontSize: 11, letterSpacing: 1.5, textTransform: 'uppercase', textDecoration: 'none', borderBottom: '1px solid rgba(0,194,168,0.3)', paddingBottom: 2 }}>
+          ← Volver a todos los proyectos
+        </Link>
       </div>
     </section>
   )

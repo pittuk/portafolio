@@ -16,8 +16,14 @@ export default function Hero() {
     gsap.registerPlugin(ScrollTrigger)
     let tl: any = null
 
+    const wordElements = bgWordsRef.current.filter(Boolean)
+    const originalContents = new Map<HTMLElement, string>()
+    wordElements.forEach(el => originalContents.set(el, el.innerHTML))
+    const titleEl = document.querySelector('.hero-title') as HTMLElement | null
+    if (titleEl) originalContents.set(titleEl, titleEl.innerHTML)
+
     animateCinematicSlam({
-      wordEls: bgWordsRef.current.filter(Boolean),
+      wordEls: wordElements,
       titleSelector: '.hero-title',
       eyebrowEl: eyebrowRef.current,
       descEl: descRef.current,
@@ -28,6 +34,7 @@ export default function Hero() {
 
     return () => {
       tl?.kill()
+      originalContents.forEach((html, el) => { el.innerHTML = html })
     }
   }, [])
 
@@ -112,7 +119,7 @@ export default function Hero() {
         position: 'relative', zIndex: 2,
       }}>
         <div ref={eyebrowRef} style={{ opacity: 0 }}>
-          <EyebrowPill>WordPress · UI/UX · e-Commerce · Talca, Chile</EyebrowPill>
+          <EyebrowPill>WordPress · UI/UX · e-Commerce</EyebrowPill>
         </div>
 
         <h1

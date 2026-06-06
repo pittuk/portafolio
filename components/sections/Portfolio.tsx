@@ -19,11 +19,23 @@ export default function Portfolio({ projects }: PortfolioProps) {
   const router = useRouter()
 
   // Kill all ScrollTriggers before navigating to avoid pin-spacer conflicts
+  const safeNavigate = useCallback((href: string) => {
+    ctxRef.current?.revert()
+    router.push(href)
+  }, [router])
+
   const goToProjects = useCallback((e: React.MouseEvent) => {
     e.preventDefault()
-    ctxRef.current?.revert()
-    router.push('/proyectos')
-  }, [router])
+    safeNavigate('/proyectos')
+  }, [safeNavigate])
+
+  const handleTrackClick = useCallback((e: React.MouseEvent) => {
+    const link = (e.target as HTMLElement).closest('a')
+    if (!link) return
+    e.preventDefault()
+    const href = link.getAttribute('href')
+    if (href) safeNavigate(href)
+  }, [safeNavigate])
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -127,6 +139,7 @@ export default function Portfolio({ projects }: PortfolioProps) {
       {/* Horizontal track */}
       <div
         ref={trackRef}
+        onClick={handleTrackClick}
         style={{
           display: 'flex',
           alignItems: 'stretch',

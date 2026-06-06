@@ -106,22 +106,6 @@ export default function Contact() {
             <span style={{ fontWeight: 400, color: 'var(--muted)' }}>Hablemos<span style={{ color: 'var(--orange)' }}>.</span></span>
           </h2>
 
-          {([
-            { icon: 'mail', text: 'pittuk@gmail.com', href: 'mailto:pittuk@gmail.com' },
-            { icon: 'phone', text: '+56 990 54 85 54', href: 'https://wa.me/56990548554' },
-            { icon: 'pin', text: 'Talca, Chile', href: undefined },
-            { icon: 'globe', text: 'pittuk.net', href: 'https://pittuk.net' },
-          ] as const).map(({ icon, text, href }) => (
-            <div key={text} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 12, color: 'var(--muted)', marginBottom: 16 }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                {icon === 'mail' && <><path d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"/><path d="M4 6l8 6 8-6"/></>}
-                {icon === 'phone' && <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>}
-                {icon === 'pin' && <><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></>}
-                {icon === 'globe' && <><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></>}
-              </svg>
-              {href ? <a href={href} style={{ color: 'inherit', textDecoration: 'none' }}>{text}</a> : text}
-            </div>
-          ))}
           <div style={{ display: 'flex', gap: 10, marginTop: 24 }}>
             {SOCIALS.map((s, i) => (
               <a

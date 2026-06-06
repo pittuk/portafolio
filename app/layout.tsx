@@ -19,7 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
-  description: 'Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce. Talca, Chile.',
+  description: 'Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce.',
   icons: {
     icon: '/images/logo/favicon.png',
   },

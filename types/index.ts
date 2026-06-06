@@ -29,9 +29,6 @@ export interface Project {
 export interface Settings {
   siteTitle: string
   siteDescription: string
-  email: string
-  phone: string
-  location: string
   socialLinks: {
     linkedin?: string
     behance?: string
