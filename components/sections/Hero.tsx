@@ -5,7 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import EyebrowPill from '@/components/ui/EyebrowPill'
 import PrimaryButton from '@/components/ui/PrimaryButton'
-import { animateTitle } from '@/lib/animations/splitText'
+import { animateCinematicSlam } from '@/lib/animations/splitText'
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -13,44 +13,20 @@ export default function Hero() {
   const descRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
   const eyebrowRef = useRef<HTMLDivElement>(null)
+  const scrollIndicatorRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    const words = bgWordsRef.current
-
-    // Título con Splitting.js
-    animateTitle('.hero-title', gsap).catch(console.error)
-
-    // Fade-up para descriptor y CTA
-    const fadeAnim = gsap.fromTo(
-      [eyebrowRef.current, descRef.current, ctaRef.current],
-      { opacity: 0, y: 24 },
-      { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, delay: 0.8, ease: 'power3.out' }
-    )
-
-    // Parallax en las palabras de fondo — cada una se mueve distinto
-    const scrollMovements = [-140, -60, 40, 100]
-    const parallaxAnims = words.map((el, i) =>
-      gsap.to(el, {
-        y: scrollMovements[i] ?? -80,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1,
-        },
-      })
-    )
-
-    return () => {
-      fadeAnim.kill()
-      parallaxAnims.forEach(a => {
-        a.scrollTrigger?.kill()
-        a.kill()
-      })
-    }
+    animateCinematicSlam({
+      wordEls: bgWordsRef.current.filter(Boolean),
+      titleSelector: '.hero-title',
+      eyebrowEl: eyebrowRef.current,
+      descEl: descRef.current,
+      ctaEl: ctaRef.current,
+      scrollEl: scrollIndicatorRef.current,
+      gsapInstance: gsap,
+    }).catch(console.error)
   }, [])
 
   return (
@@ -93,9 +69,9 @@ export default function Hero() {
         pointerEvents: 'none', zIndex: 1,
       }}>
         {[
-          { text: 'DISEÑO', fs: 'clamp(90px,18vw,280px)', ls: -8, opacity: 0.035 },
-          { text: 'DESARROLLO', fs: 'clamp(64px,12vw,180px)', ls: -6, opacity: 0.025 },
-          { text: 'CREATIVIDAD', fs: 'clamp(52px,10vw,150px)', ls: -5, opacity: 0.02 },
+          { text: 'DISEÑO',      fs: 'clamp(90px,18vw,280px)', ls: -8 },
+          { text: 'DESARROLLO',  fs: 'clamp(64px,12vw,180px)', ls: -6 },
+          { text: 'CREATIVIDAD', fs: 'clamp(52px,10vw,150px)', ls: -5 },
         ].map((w, i) => (
           <div
             key={w.text}
@@ -103,8 +79,9 @@ export default function Hero() {
             style={{
               fontFamily: 'var(--heading)', fontWeight: 800,
               fontSize: w.fs, lineHeight: 1, letterSpacing: w.ls,
-              color: `rgba(0,194,168,${w.opacity})`,
+              color: 'rgba(0,194,168,0.9)',
               whiteSpace: 'nowrap', userSelect: 'none',
+              opacity: 0,
             }}
           >
             {w.text}
@@ -117,10 +94,11 @@ export default function Hero() {
           position: 'absolute', bottom: '5%', right: -20,
           fontFamily: 'var(--heading)', fontWeight: 800,
           fontSize: 'clamp(48px, 9vw, 140px)',
-          color: 'rgba(0,194,168,0.02)',
+          color: 'rgba(0,194,168,0.9)',
           lineHeight: 1, letterSpacing: -8,
           pointerEvents: 'none', whiteSpace: 'nowrap',
           userSelect: 'none', zIndex: 1,
+          opacity: 0,
         }}
       >
         WEB
@@ -144,6 +122,7 @@ export default function Hero() {
             lineHeight: 0.9, letterSpacing: -4,
             color: 'var(--white)', marginTop: 20,
             overflow: 'hidden',
+            opacity: 0,
           }}
         >
           Luis<br />Cruz<span style={{ color: 'var(--teal)' }}>.</span>
@@ -167,10 +146,14 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div style={{
-        position: 'absolute', bottom: 60, right: 40, zIndex: 2,
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
-      }}>
+      <div
+        ref={scrollIndicatorRef}
+        style={{
+          position: 'absolute', bottom: 60, right: 40, zIndex: 2,
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
+          opacity: 0,
+        }}
+      >
         <div style={{ width: 1, height: 40, background: 'linear-gradient(180deg, transparent, var(--teal))', opacity: 0.8 }} />
         <span style={{
           fontSize: 8, letterSpacing: 3, textTransform: 'uppercase',
