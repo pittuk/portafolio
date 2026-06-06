@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import FluidBackground from '@/components/ui/FluidBackground'
 
 const STEPS = [
   { num: '01', name: 'Briefing',    desc: 'Entiendo tu negocio, objetivos reales y el cliente que quieres atraer. Sin suposiciones — empezamos con preguntas.', tag: 'Estrategia' },
@@ -21,21 +22,6 @@ export default function Process() {
     gsap.registerPlugin(ScrollTrigger)
 
     const ctx = gsap.context(() => {
-
-      // ── Floating orbs ────────────────────────────────────────────────
-      const orbs = Array.from(
-        sectionRef.current?.querySelectorAll<HTMLElement>('.process-orb') ?? []
-      )
-      orbs.forEach((orb, i) => {
-        gsap.to(orb, {
-          x: (i % 2 === 0 ? 55 : -55),
-          y: (i % 3 === 0 ? 40 : -40),
-          duration: 9 + i * 2.5,
-          ease: 'sine.inOut',
-          repeat: -1,
-          yoyo: true,
-        })
-      })
 
       // ── Title entrance ───────────────────────────────────────────────
       gsap.fromTo('.process-title',
@@ -108,31 +94,8 @@ export default function Process() {
       id="proceso"
       style={{ padding: '140px 40px', position: 'relative' }}
     >
-      {/* Dot grid background */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-        backgroundImage: 'radial-gradient(circle, rgba(0,194,168,0.09) 1px, transparent 1px)',
-        backgroundSize: '44px 44px',
-        maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
-        WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
-      }} />
-
-      {/* Animated gradient orbs */}
-      <div className="process-orb" style={{
-        position: 'absolute', top: '10%', left: '8%', zIndex: 0,
-        width: 560, height: 560, borderRadius: '50%', pointerEvents: 'none',
-        background: 'radial-gradient(circle, rgba(0,194,168,0.07) 0%, transparent 70%)',
-      }} />
-      <div className="process-orb" style={{
-        position: 'absolute', top: '40%', right: '6%', zIndex: 0,
-        width: 480, height: 480, borderRadius: '50%', pointerEvents: 'none',
-        background: 'radial-gradient(circle, rgba(0,194,168,0.05) 0%, transparent 70%)',
-      }} />
-      <div className="process-orb" style={{
-        position: 'absolute', bottom: '10%', left: '25%', zIndex: 0,
-        width: 640, height: 640, borderRadius: '50%', pointerEvents: 'none',
-        background: 'radial-gradient(circle, rgba(0,194,168,0.04) 0%, transparent 65%)',
-      }} />
+      {/* WebGL fluid shader background */}
+      <FluidBackground />
 
       {/* Title */}
       <h2
