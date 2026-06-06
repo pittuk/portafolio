@@ -12,8 +12,6 @@ export default function Hero() {
   const descRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
   const eyebrowRef = useRef<HTMLDivElement>(null)
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
     let tl: any = null
@@ -24,7 +22,7 @@ export default function Hero() {
       eyebrowEl: eyebrowRef.current,
       descEl: descRef.current,
       ctaEl: ctaRef.current,
-      scrollEl: scrollIndicatorRef.current,
+      scrollEl: null,
       gsapInstance: gsap,
     }).then(t => { tl = t }).catch(console.error)
 
@@ -148,17 +146,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        ref={scrollIndicatorRef}
-        style={{
-          position: 'absolute', bottom: 40, left: 40, zIndex: 2,
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
-          opacity: 0,
-        }}
-      >
-        <div style={{ width: 1, height: 40, background: 'linear-gradient(180deg, transparent, var(--teal))', opacity: 0.8 }} />
-      </div>
     </section>
   )
 }
