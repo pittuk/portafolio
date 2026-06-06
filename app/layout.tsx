@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
-  description: 'Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce. Portafolio profesional en Talca, Chile.',
+  description: 'Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce. Portafolio profesional.',
   openGraph: {
     title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
     description: 'Portafolio profesional de diseño y desarrollo web. WordPress, UI/UX, E-commerce.',
