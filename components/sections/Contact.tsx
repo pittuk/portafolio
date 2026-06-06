@@ -57,7 +57,7 @@ export default function Contact() {
         <div>
           <h2 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(36px,5vw,68px)', lineHeight: 0.95, letterSpacing: -3, marginBottom: 32 }}>
             ¿Tienes un <span style={{ color: 'var(--teal)' }}>proyecto?</span><br />
-            <span style={{ fontWeight: 400, color: 'var(--muted)' }}>Hablemos.</span>
+            <span style={{ fontWeight: 400, color: 'var(--muted)' }}>Hablemos<span style={{ color: 'var(--orange)' }}>.</span></span>
           </h2>
 
           {([

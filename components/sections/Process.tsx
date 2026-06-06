@@ -107,7 +107,7 @@ export default function Process() {
           position: 'relative', zIndex: 1,
         }}
       >
-        Cómo <span style={{ color: 'var(--teal)' }}>trabajo.</span>
+        Cómo <span style={{ color: 'var(--teal)' }}>trabajo</span><span style={{ color: 'var(--orange)' }}>.</span>
       </h2>
 
       {/* Steps */}

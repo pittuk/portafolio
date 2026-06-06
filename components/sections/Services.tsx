@@ -63,7 +63,7 @@ export default function Services() {
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 64 }}>
         <h2 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(36px,5vw,68px)', letterSpacing: -2, lineHeight: 1 }}>
-          Soluciones web<br />que <span style={{ color: 'var(--teal)' }}>funcionan.</span>
+          Soluciones web<br />que <span style={{ color: 'var(--teal)' }}>funcionan</span><span style={{ color: 'var(--orange)' }}>.</span>
         </h2>
         <span style={{ fontFamily: 'var(--heading)', fontSize: 80, fontWeight: 800, color: 'rgba(0,194,168,0.08)', letterSpacing: -3, lineHeight: 1 }}>06</span>
       </div>

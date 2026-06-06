@@ -112,7 +112,7 @@ export default function Portfolio({ projects }: PortfolioProps) {
           fontFamily: 'var(--heading)', fontWeight: 800,
           fontSize: 'clamp(36px,5vw,68px)', letterSpacing: -2, lineHeight: 1,
         }}>
-          Trabajo que<br /><span style={{ color: 'var(--teal)' }}>habla solo.</span>
+          Trabajo que<br /><span style={{ color: 'var(--teal)' }}>habla solo</span><span style={{ color: 'var(--orange)' }}>.</span>
         </h2>
         <button onClick={goToProjects} style={{
           fontSize: 11, color: 'var(--teal)', letterSpacing: 1,

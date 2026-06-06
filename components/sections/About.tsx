@@ -105,7 +105,7 @@ export default function About() {
     <section id="sobre-mi" style={{ padding: '100px 40px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
       <div>
         <h2 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(40px,6vw,80px)', lineHeight: 0.95, letterSpacing: -3, marginBottom: 24 }}>
-          Luis<br />Cruz<span style={{ color: 'var(--teal)' }}>.</span>
+          Luis<br />Cruz<span style={{ color: 'var(--orange)' }}>.</span>
         </h2>
         <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 2, marginBottom: 32 }}>
           Mi trayectoria comenzó como diseñador gráfico, donde adquirí una base sólida en comunicación visual y creatividad. Luego migré al mundo digital especializándome en maquetación web con HTML y CSS, hasta llegar a WordPress, donde hoy construyo sitios completos con Elementor y Divi. Combino diseño estratégico, experiencia de usuario y desarrollo técnico para crear soluciones digitales eficientes y escalables que aportan crecimiento real a cada proyecto.
