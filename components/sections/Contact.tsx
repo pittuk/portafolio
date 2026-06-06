@@ -1,6 +1,47 @@
 // components/sections/Contact.tsx
 'use client'
 import { useState } from 'react'
+
+const SOCIALS = [
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/pittuk/',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Behance',
+    href: 'https://www.behance.net/PITTUK',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 1.202.515 1.879 1.749 1.879.334 0 .646-.068.878-.219.233-.15.491-.409.677-.631h4.452zm-8.999-5.73h4.755c-.025-1.141-.539-1.89-2.344-1.89-1.754 0-2.262.85-2.411 1.89zM5.452 8H3V16h2.452c1.547 0 2.855-.302 3.596-1.031.701-.69 1.065-1.625 1.065-2.789 0-1.164-.364-2.099-1.065-2.789-.741-.729-2.049-1.131-3.596-1.131z"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/p1ttuk/',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/pittuk',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+      </svg>
+    ),
+  },
+]
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -77,13 +118,38 @@ export default function Contact() {
             </div>
           ))}
           <div style={{ display: 'flex', gap: 10, marginTop: 24 }}>
-            {[
-              { label: 'LinkedIn', href: 'https://www.linkedin.com/in/pittuk/' },
-              { label: 'Behance', href: 'https://www.behance.net/PITTUK' },
-              { label: 'WhatsApp', href: 'https://wa.me/56990548554' },
-            ].map(s => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '100px', padding: '8px 16px', fontSize: 9, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase', color: 'var(--muted)', cursor: 'pointer', textDecoration: 'none' }}>
-                {s.label}
+            {SOCIALS.map((s, i) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                onMouseEnter={e => {
+                  const el = e.currentTarget
+                  el.style.color = 'var(--teal)'
+                  el.style.borderColor = 'rgba(0,194,168,0.35)'
+                  el.style.background = 'rgba(0,194,168,0.06)'
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget
+                  el.style.color = 'var(--muted)'
+                  el.style.borderColor = 'rgba(255,255,255,0.08)'
+                  el.style.background = 'rgba(255,255,255,0.03)'
+                }}
+                style={{
+                  width: 44, height: 44,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: 12,
+                  color: 'var(--muted)',
+                  textDecoration: 'none',
+                  transition: 'color 0.2s, border-color 0.2s, background 0.2s',
+                  flexShrink: 0,
+                }}
+              >
+                {s.icon}
               </a>
             ))}
           </div>
