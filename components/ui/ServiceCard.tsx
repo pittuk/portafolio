@@ -118,7 +118,7 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
             {/* Decorative number — inside overflow:hidden, clipped at the card edge */}
             <div style={{
               position: 'absolute',
-              top: isFeatured ? -70 : -58,
+              top: isFeatured ? -80 : -68,
               right: isFeatured ? -14 : -10,
               fontFamily: 'var(--heading)', fontWeight: 800,
               fontSize: isWide ? 240 : isFeatured ? 220 : 160,
