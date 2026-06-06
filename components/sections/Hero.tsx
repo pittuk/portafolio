@@ -158,10 +158,6 @@ export default function Hero() {
         }}
       >
         <div style={{ width: 1, height: 40, background: 'linear-gradient(180deg, transparent, var(--teal))', opacity: 0.8 }} />
-        <span style={{
-          fontSize: 8, letterSpacing: 3, textTransform: 'uppercase',
-          color: 'rgba(0,194,168,0.6)', writingMode: 'vertical-lr',
-        }}>scroll</span>
       </div>
     </section>
   )

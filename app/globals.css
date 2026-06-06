@@ -37,6 +37,11 @@ body::before {
   opacity: 0.03;
 }
 
+::selection {
+  background: var(--orange);
+  color: #fff;
+}
+
 /* Animaciones de entrada — clase base */
 .reveal-hidden {
   opacity: 0;
