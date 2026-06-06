@@ -12,7 +12,6 @@
 html {
   background: var(--bg);
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
