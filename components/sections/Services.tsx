@@ -73,23 +73,33 @@ export default function Services() {
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateRows: 'auto auto auto',
           gap: 16,
         }}
       >
-        {SERVICES.map(svc => (
-          <div
-            key={svc.num}
-            className="service-card"
-          >
-            <ServiceCard
-              num={svc.num}
-              name={svc.name}
-              desc={svc.desc}
-              tags={svc.tags}
-              style={{ height: '100%' }}
-            />
-          </div>
-        ))}
+        {SERVICES.map((svc, i) => {
+          const isFeatured = i === 0
+          const isWide = i === 5
+          return (
+            <div
+              key={svc.num}
+              className="service-card"
+              style={{
+                gridColumn: isFeatured ? '1 / 3' : isWide ? '1 / 4' : undefined,
+                minHeight: isWide ? 100 : 220,
+              }}
+            >
+              <ServiceCard
+                num={svc.num}
+                name={svc.name}
+                desc={svc.desc}
+                tags={svc.tags}
+                variant={isFeatured ? 'featured' : isWide ? 'wide' : undefined}
+                style={{ height: '100%' }}
+              />
+            </div>
+          )
+        })}
       </div>
     </section>
   )

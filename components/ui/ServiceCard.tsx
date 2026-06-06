@@ -7,10 +7,11 @@ interface ServiceCardProps {
   name: string
   desc: string
   tags: string[]
+  variant?: 'featured' | 'wide'
   style?: React.CSSProperties
 }
 
-export default function ServiceCard({ num, name, desc, tags, style }: ServiceCardProps) {
+export default function ServiceCard({ num, name, desc, tags, variant, style }: ServiceCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const borderRef = useRef<HTMLDivElement>(null)
   const gradientRef = useRef<HTMLDivElement>(null)
@@ -82,6 +83,9 @@ export default function ServiceCard({ num, name, desc, tags, style }: ServiceCar
     })
   }
 
+  const isFeatured = variant === 'featured'
+  const isWide = variant === 'wide'
+
   return (
     <div style={{ perspective: '800px', height: '100%', ...style }}>
       <div
@@ -119,69 +123,113 @@ export default function ServiceCard({ num, name, desc, tags, style }: ServiceCar
                 borderRadius: '22px',
                 opacity: 0,
                 pointerEvents: 'none',
-                background: 'radial-gradient(200px circle at var(--mx, 50%) var(--my, 50%), rgba(0,194,168,0.10) 0%, transparent 70%)',
+                background: 'radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(0,194,168,0.10) 0%, transparent 70%)',
                 zIndex: 0,
               } as React.CSSProperties}
             />
-            <div
-              style={{
-                padding: '28px 24px',
+
+            {/* Wide layout — horizontal */}
+            {isWide ? (
+              <div style={{
+                padding: '32px 40px',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 48,
+                position: 'relative',
+                zIndex: 1,
+              }}>
+                <div style={{ flex: '0 0 auto', minWidth: 220 }}>
+                  <p
+                    ref={numRef}
+                    style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', letterSpacing: 3, marginBottom: 12, opacity: 0.6, transformOrigin: 'left center' }}
+                  >
+                    {num}
+                  </p>
+                  <h3 style={{ fontFamily: 'var(--heading)', fontSize: 20, fontWeight: 700, color: 'var(--white)', letterSpacing: -0.3, lineHeight: 1.2, marginBottom: 16 }}>
+                    {name}
+                  </h3>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                    {tags.map(tag => (
+                      <span key={tag} style={{ fontSize: 8, letterSpacing: 1, color: 'rgba(0,194,168,0.7)', background: 'rgba(0,194,168,0.06)', border: '1px solid rgba(0,194,168,0.12)', borderRadius: '100px', padding: '3px 10px' }}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div style={{ width: 1, alignSelf: 'stretch', background: 'rgba(255,255,255,0.06)', margin: '8px 0' }} />
+                <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.9, flex: 1 }}>
+                  {desc}
+                </p>
+              </div>
+            ) : (
+              /* Featured & default — vertical */
+              <div style={{
+                padding: isFeatured ? '36px 32px' : '28px 24px',
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 position: 'relative',
                 zIndex: 1,
-              }}
-            >
-              <p
-                ref={numRef}
-                style={{
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: 'var(--teal)',
-                  letterSpacing: 3,
-                  marginBottom: 20,
-                  opacity: 0.6,
-                  transformOrigin: 'left center',
-                }}
-              >
-                {num}
-              </p>
-              <h3
-                style={{
-                  fontFamily: 'var(--heading)',
-                  fontSize: 18,
-                  fontWeight: 700,
-                  color: 'var(--white)',
-                  marginBottom: 10,
-                  letterSpacing: -0.3,
-                  lineHeight: 1.2,
-                }}
-              >
-                {name}
-              </h3>
-              <p style={{ fontSize: 12, color: 'var(--muted)', lineHeight: 1.8, flex: 1 }}>
-                {desc}
-              </p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 16 }}>
-                {tags.map(tag => (
-                  <span
-                    key={tag}
-                    style={{
-                      fontSize: 8,
-                      letterSpacing: 1,
-                      color: 'rgba(0,194,168,0.7)',
-                      background: 'rgba(0,194,168,0.06)',
-                      border: '1px solid rgba(0,194,168,0.12)',
-                      borderRadius: '100px',
-                      padding: '3px 10px',
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
+              }}>
+                {/* Decorative background number for featured card */}
+                {isFeatured && (
+                  <div style={{
+                    position: 'absolute', top: 16, right: 24,
+                    fontFamily: 'var(--heading)', fontSize: 110, fontWeight: 800,
+                    color: 'rgba(0,194,168,0.04)', lineHeight: 1, letterSpacing: -8,
+                    pointerEvents: 'none', userSelect: 'none', zIndex: 0,
+                  }}>
+                    {num}
+                  </div>
+                )}
+                <p
+                  ref={numRef}
+                  style={{
+                    fontSize: isFeatured ? 12 : 11,
+                    fontWeight: 700,
+                    color: 'var(--teal)',
+                    letterSpacing: 3,
+                    marginBottom: isFeatured ? 24 : 20,
+                    opacity: 0.6,
+                    transformOrigin: 'left center',
+                  }}
+                >
+                  {num}
+                </p>
+                <h3
+                  style={{
+                    fontFamily: 'var(--heading)',
+                    fontSize: isFeatured ? 28 : 18,
+                    fontWeight: 700,
+                    color: 'var(--white)',
+                    marginBottom: isFeatured ? 16 : 10,
+                    letterSpacing: isFeatured ? -0.8 : -0.3,
+                    lineHeight: 1.15,
+                  }}
+                >
+                  {name}
+                </h3>
+                <p style={{ fontSize: isFeatured ? 13 : 12, color: 'var(--muted)', lineHeight: 1.85, flex: 1 }}>
+                  {desc}
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 16 }}>
+                  {tags.map(tag => (
+                    <span
+                      key={tag}
+                      style={{
+                        fontSize: 8, letterSpacing: 1, color: 'rgba(0,194,168,0.7)',
+                        background: 'rgba(0,194,168,0.06)', border: '1px solid rgba(0,194,168,0.12)',
+                        borderRadius: '100px', padding: '3px 10px',
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
