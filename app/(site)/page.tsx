@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <>
       <section style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', opacity: 0 }}>
-        <h1>Luis Cruz — Diseñador Web y Desarrollador WordPress en Talca, Chile</h1>
+        <h1>Luis Cruz — Diseñador Web y Desarrollador WordPress</h1>
         <p>Especialista en WordPress, WooCommerce, UI/UX design y e-commerce. Más de 5 años de experiencia creando sitios web profesionales para empresas en Chile y Latinoamérica.</p>
       </section>
       <Hero />
