@@ -81,6 +81,13 @@ export default function Portfolio({ projects }: PortfolioProps) {
         background: 'linear-gradient(90deg, transparent, rgba(0,194,168,0.3), transparent)',
       }} />
 
+      {/* Gradient mask — hides cards sliding under the header */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: 220,
+        background: 'linear-gradient(180deg, var(--bg) 55%, transparent)',
+        zIndex: 2, pointerEvents: 'none',
+      }} />
+
       {/* Header — floats above the scrolling track */}
       <div style={{
         position: 'absolute', top: 40, left: 40, right: 40,
@@ -112,7 +119,7 @@ export default function Portfolio({ projects }: PortfolioProps) {
           height: '100%',
           paddingLeft: 40,
           paddingRight: 80,
-          paddingTop: 160,
+          paddingTop: 200,
           paddingBottom: 48,
           willChange: 'transform',
         }}

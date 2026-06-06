@@ -23,7 +23,7 @@ export default function ProjectFilter({ projects }: Props) {
 
   const filtered = active === 'all'
     ? projects
-    : projects.filter(p => p.category.includes(active))
+    : projects.filter(p => p.category?.includes(active))
 
   return (
     <>
