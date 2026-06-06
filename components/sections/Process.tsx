@@ -95,7 +95,7 @@ export default function Process() {
       ref={sectionRef}
       id="proceso"
       className="section-padding"
-      style={{ padding: isMobile ? '80px 20px' : '140px 40px', position: 'relative' }}
+      style={{ padding: isMobile ? '80px 20px' : '140px 40px', position: 'relative', overflow: 'hidden' }}
     >
       {/* WebGL fluid shader background */}
       <FluidBackground />
