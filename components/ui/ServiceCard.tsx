@@ -56,7 +56,7 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
     gsap.to(numRef.current, {
       scale: 1.3,
       opacity: 1,
-      textShadow: '0 0 12px rgba(0,194,168,0.5)',
+      textShadow: '0 0 12px rgba(243,146,0,0.6)',
       duration: 0.3,
       ease: 'power2.out',
       overwrite: 'auto',
@@ -158,7 +158,7 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
                 <div style={{ flex: '0 0 auto', minWidth: 220 }}>
                   <p
                     ref={numRef}
-                    style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', letterSpacing: 3, marginBottom: 12, opacity: 0.6, transformOrigin: 'left center' }}
+                    style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)', letterSpacing: 3, marginBottom: 12, opacity: 0.6, transformOrigin: 'left center' }}
                   >
                     {num}
                   </p>
@@ -193,7 +193,7 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
                   style={{
                     fontSize: isFeatured ? 12 : 11,
                     fontWeight: 700,
-                    color: 'var(--teal)',
+                    color: 'var(--orange)',
                     letterSpacing: 3,
                     marginBottom: isFeatured ? 24 : 20,
                     opacity: 0.6,
