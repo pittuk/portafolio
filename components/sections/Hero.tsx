@@ -94,7 +94,7 @@ export default function Hero() {
       }}>
         {[
           { text: 'DISEÑO',      fs: isMobile ? '100px' : 'clamp(90px,18vw,280px)', ls: isMobile ? -4 : -8, ml: isMobile ? -24 : 0 },
-          { text: 'DESARROLLO',  fs: isMobile ? '68px'  : 'clamp(64px,12vw,180px)', ls: isMobile ? -3 : -6, ml: isMobile ?  16 : 0 },
+          { text: 'DESARROLLO',  fs: isMobile ? '68px'  : 'clamp(64px,12vw,180px)', ls: isMobile ? -3 : -6, ml: isMobile ? -48 : 0 },
           { text: 'CREATIVIDAD', fs: isMobile ? '56px'  : 'clamp(52px,10vw,150px)', ls: isMobile ? -2 : -5, ml: isMobile ? -40 : 0 },
         ].map((w, i) => (
           <div
@@ -105,7 +105,7 @@ export default function Hero() {
               fontSize: w.fs, lineHeight: 1, letterSpacing: w.ls,
               color: 'rgba(0,194,168,0.9)',
               whiteSpace: 'nowrap', userSelect: 'none',
-              opacity: isMobile ? 0.18 : 0,
+              opacity: isMobile ? 0.11 : 0,
               marginLeft: w.ml,
             }}
           >
@@ -125,7 +125,7 @@ export default function Hero() {
           lineHeight: 1, letterSpacing: isMobile ? -4 : -8,
           pointerEvents: 'none', whiteSpace: 'nowrap',
           userSelect: 'none', zIndex: 1,
-          opacity: isMobile ? 0.18 : 0,
+          opacity: isMobile ? 0.11 : 0,
         }}
       >
         WEB
