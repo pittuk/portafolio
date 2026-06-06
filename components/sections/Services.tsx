@@ -64,11 +64,11 @@ export default function Services() {
         background: 'linear-gradient(90deg, transparent, rgba(0,194,168,0.3), transparent)',
       }} />
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 64 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: isMobile ? 40 : 64 }}>
         <h2 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(36px,5vw,68px)', letterSpacing: -2, lineHeight: 1 }}>
           Soluciones web<br />que <span style={{ color: 'var(--teal)' }}>funcionan</span><span style={{ color: 'var(--orange)' }}>.</span>
         </h2>
-        <span style={{ fontFamily: 'var(--heading)', fontSize: 80, fontWeight: 800, color: 'rgba(0,194,168,0.08)', letterSpacing: -3, lineHeight: 1 }}>06</span>
+        {!isMobile && <span style={{ fontFamily: 'var(--heading)', fontSize: 80, fontWeight: 800, color: 'rgba(0,194,168,0.08)', letterSpacing: -3, lineHeight: 1 }}>06</span>}
       </div>
 
       <div
@@ -88,7 +88,7 @@ export default function Services() {
               className="service-card"
               style={{
                 gridColumn: isMobile ? '1' : isFeatured ? '1 / 3' : isWide ? '1 / 4' : undefined,
-                minHeight: isWide ? (isMobile ? 'auto' : 100) : 220,
+                minHeight: isMobile ? 'auto' : isWide ? 100 : 220,
               }}
             >
               <ServiceCard
@@ -96,8 +96,8 @@ export default function Services() {
                 name={svc.name}
                 desc={svc.desc}
                 tags={svc.tags}
-                variant={isFeatured ? 'featured' : isWide ? 'wide' : undefined}
-                style={{ height: '100%' }}
+                variant={isMobile ? undefined : isFeatured ? 'featured' : isWide ? 'wide' : undefined}
+                style={{ height: isMobile ? 'auto' : '100%' }}
               />
             </div>
           )

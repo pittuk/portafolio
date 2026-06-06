@@ -40,6 +40,7 @@ export default function Portfolio({ projects }: PortfolioProps) {
 
   useEffect(() => {
     if (isMobile) return
+    if (typeof window !== 'undefined' && window.innerWidth <= 768) return
     gsap.registerPlugin(ScrollTrigger)
     const section = sectionRef.current
     const track = trackRef.current

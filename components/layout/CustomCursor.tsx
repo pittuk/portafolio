@@ -15,6 +15,10 @@ export default function CustomCursor() {
     const ring = ringRef.current!
     let mouseX = 0, mouseY = 0
     let ringX = 0, ringY = 0
+    let rafId: number
+
+    // Start hidden — cursor only visible over interactive elements
+    gsap.set([dot, ring], { opacity: 0 })
 
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX
@@ -22,8 +26,6 @@ export default function CustomCursor() {
       gsap.to(dot, { x: mouseX, y: mouseY, duration: 0.1, ease: 'none' })
     }
 
-    // Animación del ring con lerp
-    let rafId: number
     const animate = () => {
       ringX += (mouseX - ringX) * 0.12
       ringY += (mouseY - ringY) * 0.12
@@ -31,25 +33,31 @@ export default function CustomCursor() {
       rafId = requestAnimationFrame(animate)
     }
 
-    // Escalar en links/botones
-    const onEnterLink = () => gsap.to(ring, { scale: 2.5, duration: 0.3, ease: 'power2.out' })
-    const onLeaveLink = () => gsap.to(ring, { scale: 1, duration: 0.3, ease: 'power2.out' })
+    // Event delegation — fires once per element transition
+    const onMouseOver = (e: MouseEvent) => {
+      const target = e.target as Element
+      const isInteractive = !!target.closest('a, button, [role="button"]')
+
+      if (isInteractive) {
+        gsap.to([dot, ring], { opacity: 1, duration: 0.15, overwrite: 'auto' })
+        gsap.to(ring, { scale: 2.5, duration: 0.3, ease: 'power2.out', overwrite: 'auto' })
+        document.body.style.cursor = 'none'
+      } else {
+        gsap.to([dot, ring], { opacity: 0, duration: 0.15, overwrite: 'auto' })
+        gsap.to(ring, { scale: 1, duration: 0.3, ease: 'power2.out', overwrite: 'auto' })
+        document.body.style.cursor = ''
+      }
+    }
 
     document.addEventListener('mousemove', onMouseMove)
-    const interactiveEls = Array.from(document.querySelectorAll<HTMLElement>('a, button'))
-    interactiveEls.forEach(el => {
-      el.addEventListener('mouseenter', onEnterLink)
-      el.addEventListener('mouseleave', onLeaveLink)
-    })
+    document.addEventListener('mouseover', onMouseOver)
     rafId = requestAnimationFrame(animate)
 
     return () => {
       document.removeEventListener('mousemove', onMouseMove)
+      document.removeEventListener('mouseover', onMouseOver)
       cancelAnimationFrame(rafId)
-      interactiveEls.forEach(el => {
-        el.removeEventListener('mouseenter', onEnterLink)
-        el.removeEventListener('mouseleave', onLeaveLink)
-      })
+      document.body.style.cursor = ''
     }
   }, [])
 

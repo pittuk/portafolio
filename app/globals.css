@@ -19,12 +19,6 @@ body {
   color: var(--white);
   font-family: var(--body);
   overflow-x: hidden;
-  cursor: none; /* oculta cursor nativo — CustomCursor lo reemplaza */
-}
-
-/* En touch/mobile mostramos cursor nativo */
-@media (hover: none) {
-  body { cursor: auto; }
 }
 
 /* Grain overlay — fijo, no afecta scroll */

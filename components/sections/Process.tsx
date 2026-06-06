@@ -123,7 +123,9 @@ export default function Process() {
         <div
           className="process-path"
           style={{
-            position: 'absolute', top: 0, bottom: 0, left: isMobile ? 16 : '50%',
+            position: 'absolute', top: 0, bottom: 0,
+            left: isMobile ? 'auto' : '50%',
+            right: isMobile ? 11 : 'auto',
             width: 2,
             background: 'linear-gradient(180deg, transparent, rgba(243,146,0,0.6) 8%, rgba(243,146,0,0.6) 92%, transparent)',
             transform: isMobile ? 'none' : 'translateX(-50%)',
@@ -156,7 +158,7 @@ export default function Process() {
                 {/* Tag pill — direct child, outside any overflow:hidden */}
                 <span style={{
                   position: 'absolute', top: -13,
-                  left: isLeft ? 28 : 'auto', right: isLeft ? 'auto' : 28,
+                  left: (isMobile || isLeft) ? 28 : 'auto', right: (!isMobile && !isLeft) ? 28 : 'auto',
                   fontFamily: 'var(--heading)', fontSize: 9, fontWeight: 700,
                   letterSpacing: 2, textTransform: 'uppercase',
                   color: 'var(--teal)', background: 'var(--bg)',
@@ -187,7 +189,7 @@ export default function Process() {
                 </div>
 
                 {/* Content — padded, on top of clip layer */}
-                <div style={{ padding: '44px 48px', position: 'relative', zIndex: 1 }}>
+                <div style={{ padding: isMobile ? '28px 20px' : '44px 48px', position: 'relative', zIndex: 1 }}>
 
                   {/* Step counter line */}
                   <div style={{

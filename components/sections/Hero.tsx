@@ -16,15 +16,23 @@ export default function Hero() {
   const eyebrowRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
-    let tl: any = null
 
+    if (isMobile) {
+      // Force visibility — GSAP from a previous desktop render may have left opacity:0
+      const titleEl = document.querySelector('.hero-title') as HTMLElement | null
+      const els = [eyebrowRef.current, descRef.current, ctaRef.current, titleEl].filter(Boolean) as HTMLElement[]
+      gsap.set(els, { opacity: 1, clearProps: 'transform' })
+      return
+    }
+
+    let tl: any = null
     const wordElements = bgWordsRef.current.filter(Boolean)
     const originalContents = new Map<HTMLElement, string>()
     wordElements.forEach(el => originalContents.set(el, el.innerHTML))
     const titleEl = document.querySelector('.hero-title') as HTMLElement | null
     if (titleEl) originalContents.set(titleEl, titleEl.innerHTML)
 
-    if (!isMobile) {
+    if (typeof window !== 'undefined' && window.innerWidth > 768) {
       animateCinematicSlam({
         wordEls: wordElements,
         titleSelector: '.hero-title',
@@ -122,7 +130,7 @@ export default function Hero() {
         justifyContent: 'flex-end', padding: isMobile ? '100px 20px 32px' : '120px 40px 48px',
         position: 'relative', zIndex: 2,
       }}>
-        <div ref={eyebrowRef} style={{ opacity: 0 }}>
+        <div ref={eyebrowRef} style={{ opacity: isMobile ? 1 : 0 }}>
           <EyebrowPill>WordPress · UI/UX · e-Commerce</EyebrowPill>
         </div>
 
@@ -134,7 +142,7 @@ export default function Hero() {
             lineHeight: 0.9, letterSpacing: -4,
             color: 'var(--white)', marginTop: 20,
             overflow: 'hidden',
-            opacity: 0,
+            opacity: isMobile ? 1 : 0,
           }}
         >
           Luis<br />Cruz<span style={{ color: 'var(--orange)' }}>.</span>
@@ -145,13 +153,13 @@ export default function Hero() {
             ref={descRef}
             style={{
               fontSize: 13, color: 'var(--muted)', lineHeight: 1.8,
-              maxWidth: 360, fontWeight: 400, opacity: 0,
+              maxWidth: 360, fontWeight: 400, opacity: isMobile ? 1 : 0,
             }}
           >
             Creo sitios web que <strong style={{ color: 'var(--white)', fontWeight: 600 }}>convierten visitas en clientes reales</strong>.
             Diseño estratégico + desarrollo técnico desde hace más de 10 años.
           </p>
-          <div ref={ctaRef} style={{ opacity: 0, flexShrink: 0 }}>
+          <div ref={ctaRef} style={{ opacity: isMobile ? 1 : 0, flexShrink: 0 }}>
             <PrimaryButton href="#portfolio">Ver proyectos</PrimaryButton>
           </div>
         </div>
