@@ -24,20 +24,24 @@ export default function Services() {
     const wave1 = cards.slice(0, 3)
     const wave2 = cards.slice(3, 6)
     const from = { rotateX: 8, y: 60, opacity: 0 }
-    const to = {
+
+    gsap.set(cards, { opacity: 0 })
+
+    const makeTo = (extraDelay = 0) => ({
       rotateX: 0, y: 0, opacity: 1,
       duration: 0.8,
       stagger: 0.1,
       ease: 'power3.out',
+      delay: extraDelay,
       scrollTrigger: {
         trigger: gridRef.current,
         start: 'top 75%',
         once: true,
       },
-    }
+    })
 
-    const anim1 = gsap.fromTo(wave1, from, to)
-    const anim2 = gsap.fromTo(wave2, from, { ...to, delay: 0.12 })
+    const anim1 = gsap.fromTo(wave1, from, makeTo())
+    const anim2 = gsap.fromTo(wave2, from, makeTo(0.12))
 
     return () => {
       anim1.scrollTrigger?.kill()
@@ -70,14 +74,12 @@ export default function Services() {
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
           gap: 16,
-          perspective: '1200px',
         }}
       >
         {SERVICES.map(svc => (
           <div
             key={svc.num}
             className="service-card"
-            style={{ opacity: 0 }}
           >
             <ServiceCard
               num={svc.num}
