@@ -17,11 +17,36 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!project) return { title: 'Proyecto no encontrado — Luis Cruz' }
     return {
       title: `${project.title} — Luis Cruz`,
-      description: `Proyecto de ${project.client || 'Luis Cruz'}`,
+      description: project.descriptionText?.slice(0, 160) || `Proyecto de ${project.client || 'Luis Cruz'}`,
+      openGraph: {
+        title: `${project.title} — Luis Cruz`,
+        description: project.descriptionText?.slice(0, 160) || `Proyecto de diseño y desarrollo web`,
+        images: project.coverUrl ? [{ url: project.coverUrl }] : [],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: `${project.title} — Luis Cruz`,
+        description: project.descriptionText?.slice(0, 160) || `Proyecto de diseño y desarrollo web`,
+        images: project.coverUrl ? [project.coverUrl] : [],
+      },
     }
   } catch {
     const mock = MOCK_PROJECTS.find(p => p.slug.current === slug)
-    if (mock) return { title: `${mock.title} — Luis Cruz`, description: `Proyecto de ${mock.client || 'Luis Cruz'}` }
+    if (mock) return {
+      title: `${mock.title} — Luis Cruz`,
+      description: mock.descriptionText?.slice(0, 160) || `Proyecto de ${mock.client || 'Luis Cruz'}`,
+      openGraph: {
+        title: `${mock.title} — Luis Cruz`,
+        description: mock.descriptionText?.slice(0, 160) || `Proyecto de diseño y desarrollo web`,
+        images: mock.coverUrl ? [{ url: mock.coverUrl }] : [],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: `${mock.title} — Luis Cruz`,
+        description: mock.descriptionText?.slice(0, 160) || `Proyecto de diseño y desarrollo web`,
+        images: mock.coverUrl ? [mock.coverUrl] : [],
+      },
+    }
     return { title: 'Proyecto — Luis Cruz' }
   }
 }
@@ -67,8 +92,19 @@ export default async function ProjectPage({ params }: Props) {
 
   const related = getRelatedProjects(project, allProjects, 3)
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://pittuk.net/' },
+      { '@type': 'ListItem', position: 2, name: 'Proyectos', item: 'https://pittuk.net/proyectos' },
+      { '@type': 'ListItem', position: 3, name: project.title },
+    ],
+  }
+
   return (
     <section className="section-padding" style={{ padding: '100px 20px 60px', minHeight: '100vh' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <Link href="/proyectos" style={{ color: 'var(--muted)', fontSize: 11, letterSpacing: 1, textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', paddingBottom: 2, display: 'inline-block', marginBottom: 24 }}>
         ← Todos los proyectos
       </Link>
@@ -169,6 +205,7 @@ export default async function ProjectPage({ params }: Props) {
                           src={url}
                           alt={`${project.title} — pieza`}
                           fill
+                          loading="lazy"
                           unoptimized
                           sizes="(max-width: 768px) 100vw, 50vw"
                           style={{ objectFit: 'cover' }}
@@ -193,6 +230,7 @@ export default async function ProjectPage({ params }: Props) {
                     key={i}
                     src={url}
                     alt={`${project.title} — imagen ${i + 1}`}
+                    loading="lazy"
                     style={{ width: '100%', display: 'block', borderRadius }}
                   />
                 )
@@ -206,6 +244,7 @@ export default async function ProjectPage({ params }: Props) {
                     src={project.coverUrl ?? urlFor(project.coverImage!).width(800).height(500).url()}
                     alt={project.title}
                     fill
+                    priority
                     unoptimized={!!project.coverUrl}
                     sizes="(max-width: 768px) 100vw, 50vw"
                     style={{ objectFit: 'cover' }}
@@ -220,6 +259,7 @@ export default async function ProjectPage({ params }: Props) {
                         src={url}
                         alt={`${project.title} — imagen ${i + 1}`}
                         fill
+                        loading="lazy"
                         unoptimized
                         sizes="(max-width: 768px) 100vw, 50vw"
                         style={{ objectFit: 'cover' }}
@@ -259,6 +299,7 @@ export default async function ProjectPage({ params }: Props) {
                           src={imgUrl}
                           alt={r.title}
                           fill
+                          loading="lazy"
                           unoptimized={!!r.coverUrl}
                           sizes="(max-width: 768px) 100vw, 33vw"
                           style={{ objectFit: 'cover' }}

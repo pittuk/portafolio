@@ -1,4 +1,5 @@
 // components/layout/Footer.tsx
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Footer() {
@@ -9,7 +10,16 @@ export default function Footer() {
       display: 'flex', justifyContent: 'space-between', alignItems: 'center',
     }}>
       <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-        <img src="/images/logo/logo letra blanca.png" alt="Luis Cruz" style={{ display: 'block', maxWidth: 80, height: 'auto' }} />
+        <span style={{ position: 'relative', display: 'inline-block', width: 80, height: 21 }}>
+          <Image
+            src="/images/logo/logo letra blanca.png"
+            alt="Luis Cruz"
+            fill
+            loading="lazy"
+            sizes="80px"
+            style={{ objectFit: 'contain', objectPosition: 'left center' }}
+          />
+        </span>
       </Link>
       <p style={{ fontSize: 9, color: 'rgba(240,237,232,0.2)', letterSpacing: '0.5px', textAlign: 'right' }}>
         © {new Date().getFullYear()} Luis Cruz · Diseñado &amp; desarrollado por mí mismo

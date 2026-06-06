@@ -1,6 +1,7 @@
 // components/layout/Nav.tsx
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import gsap from 'gsap'
@@ -54,7 +55,16 @@ export default function Nav() {
       }}
     >
       <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-        <img src="/images/logo/logo letra blanca.png" alt="Luis Cruz" style={{ display: 'block', maxWidth: isMobile ? 100 : 130, height: 'auto' }} />
+        <span style={{ position: 'relative', display: 'inline-block', width: isMobile ? 100 : 130, height: isMobile ? 27 : 34 }}>
+          <Image
+            src="/images/logo/logo letra blanca.png"
+            alt="Luis Cruz"
+            fill
+            priority
+            sizes="130px"
+            style={{ objectFit: 'contain', objectPosition: 'left center' }}
+          />
+        </span>
       </Link>
 
       {isMobile ? (

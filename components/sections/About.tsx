@@ -142,6 +142,7 @@ export default function About() {
               src="/images/Luis Cruz.png"
               alt="Luis Cruz"
               fill
+              loading="lazy"
               style={{ objectFit: 'cover', objectPosition: 'top' }}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
