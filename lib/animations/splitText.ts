@@ -143,6 +143,21 @@ export async function animateCinematicSlam(params: {
     }, '-=0.3')
   }
 
+  // --- Phase 3b: Restore words as faint background (concurrent with title assembly) ---
+  // Chars drift back to natural position while title assembles
+  tl.to(allChars, {
+    x: 0, y: 0, rotation: 0, opacity: 1,
+    duration: 1.5,
+    stagger: { amount: 0.6, from: 'random' as const },
+    ease: 'power2.out',
+  }, '<')
+  // Parent word elements fade to original ambient opacity
+  tl.to(wordEls, {
+    opacity: 0.04,
+    duration: 1.2,
+    ease: 'power2.out',
+  }, '<')
+
   // --- Phase 5: Secondary elements ---
   tl.to([eyebrowEl, descEl, ctaEl].filter(Boolean), {
     opacity: 1,
