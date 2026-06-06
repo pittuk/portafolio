@@ -2,17 +2,23 @@
 'use client'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null)
+  const pathname = usePathname()
+
+  // Reset nav to visible on every page change
+  useEffect(() => {
+    gsap.set(navRef.current, { y: 0 })
+  }, [pathname])
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
-    // Ocultar nav al scroll hacia abajo, mostrar al scroll hacia arriba
     let lastY = 0
-    ScrollTrigger.create({
+    const st = ScrollTrigger.create({
       onUpdate: (self) => {
         const currentY = self.scroll()
         if (currentY > lastY && currentY > 100) {
@@ -23,6 +29,7 @@ export default function Nav() {
         lastY = currentY
       },
     })
+    return () => st.kill()
   }, [])
 
   return (

@@ -22,7 +22,6 @@ export default function Portfolio({ projects }: PortfolioProps) {
   const goToProjects = useCallback((e: React.MouseEvent) => {
     e.preventDefault()
     ctxRef.current?.revert()
-    ScrollTrigger.killAll()
     router.push('/proyectos')
   }, [router])
 
