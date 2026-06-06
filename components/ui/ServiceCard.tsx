@@ -90,11 +90,26 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
     <div style={{ perspective: '800px', height: '100%', ...style }}>
       <div
         ref={cardRef}
-        style={{ transformStyle: 'preserve-3d', willChange: 'transform', height: '100%' }}
+        style={{ transformStyle: 'preserve-3d', willChange: 'transform', height: '100%', position: 'relative' }}
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
+        {/* Decorative number — outside overflow:hidden, bleeds past the card edge */}
+        <div style={{
+          position: 'absolute',
+          top: isFeatured ? -40 : -28,
+          right: isFeatured ? -14 : -10,
+          fontFamily: 'var(--heading)', fontWeight: 800,
+          fontSize: isWide ? 240 : isFeatured ? 220 : 160,
+          color: 'rgba(0,194,168,0.07)', lineHeight: 1,
+          letterSpacing: -14,
+          pointerEvents: 'none', userSelect: 'none',
+          zIndex: 2,
+        }}>
+          {num}
+        </div>
+
         <div
           ref={borderRef}
           style={{
@@ -140,16 +155,6 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
                 position: 'relative',
                 zIndex: 1,
               }}>
-                {/* Decorative number bleeding off the right edge */}
-                <div style={{
-                  position: 'absolute', top: '50%', right: -10,
-                  transform: 'translateY(-50%)',
-                  fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 200,
-                  color: 'rgba(0,194,168,0.04)', lineHeight: 1, letterSpacing: -12,
-                  pointerEvents: 'none', userSelect: 'none', zIndex: 0,
-                }}>
-                  {num}
-                </div>
                 <div style={{ flex: '0 0 auto', minWidth: 220 }}>
                   <p
                     ref={numRef}
@@ -183,16 +188,6 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
                 position: 'relative',
                 zIndex: 1,
               }}>
-                {/* Decorative number — bleeds off the top-right edge, clipped by overflow:hidden */}
-                <div style={{
-                  position: 'absolute', top: isFeatured ? -24 : -18, right: isFeatured ? 16 : 12,
-                  fontFamily: 'var(--heading)', fontWeight: 800,
-                  fontSize: isFeatured ? 180 : 130,
-                  color: 'rgba(0,194,168,0.055)', lineHeight: 1, letterSpacing: -10,
-                  pointerEvents: 'none', userSelect: 'none', zIndex: 0,
-                }}>
-                  {num}
-                </div>
                 <p
                   ref={numRef}
                   style={{
