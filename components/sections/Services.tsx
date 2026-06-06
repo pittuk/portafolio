@@ -3,6 +3,7 @@ import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ServiceCard from '@/components/ui/ServiceCard'
+import { useMediaQuery } from '@/lib/useMediaQuery'
 
 const SERVICES = [
   { num: '01', name: 'Diseño & Desarrollo Web', desc: 'Sitios personalizados con las mejores tecnologías. Velocidad, SEO y conversión desde el primer pixel.', tags: ['WordPress', 'Elementor', 'React', 'PHP'] },
@@ -15,6 +16,7 @@ const SERVICES = [
 
 export default function Services() {
   const gridRef = useRef<HTMLDivElement>(null)
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -54,7 +56,8 @@ export default function Services() {
   return (
     <section
       id="servicios"
-      style={{ padding: '120px 40px 100px', position: 'relative', overflow: 'hidden' }}
+      className="section-padding"
+      style={{ padding: isMobile ? '80px 20px 60px' : '120px 40px 100px', position: 'relative', overflow: 'hidden' }}
     >
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: 1,
@@ -72,9 +75,8 @@ export default function Services() {
         ref={gridRef}
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gridTemplateRows: 'auto auto auto',
-          gap: 16,
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+          gap: isMobile ? 12 : 16,
         }}
       >
         {SERVICES.map((svc, i) => {
@@ -85,8 +87,8 @@ export default function Services() {
               key={svc.num}
               className="service-card"
               style={{
-                gridColumn: isFeatured ? '1 / 3' : isWide ? '1 / 4' : undefined,
-                minHeight: isWide ? 100 : 220,
+                gridColumn: isMobile ? '1' : isFeatured ? '1 / 3' : isWide ? '1 / 4' : undefined,
+                minHeight: isWide ? (isMobile ? 'auto' : 100) : 220,
               }}
             >
               <ServiceCard

@@ -6,6 +6,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ProjectCard from '@/components/project/ProjectCard'
 import type { Project } from '@/types'
+import { useMediaQuery } from '@/lib/useMediaQuery'
 
 interface PortfolioProps {
   projects: Project[]
@@ -17,8 +18,8 @@ export default function Portfolio({ projects }: PortfolioProps) {
   const progressRef = useRef<HTMLDivElement>(null)
   const ctxRef = useRef<gsap.Context | null>(null)
   const router = useRouter()
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
-  // Kill all ScrollTriggers before navigating to avoid pin-spacer conflicts
   const safeNavigate = useCallback((href: string) => {
     ctxRef.current?.revert()
     router.push(href)
@@ -38,6 +39,7 @@ export default function Portfolio({ projects }: PortfolioProps) {
   }, [safeNavigate])
 
   useEffect(() => {
+    if (isMobile) return
     gsap.registerPlugin(ScrollTrigger)
     const section = sectionRef.current
     const track = trackRef.current
@@ -65,7 +67,6 @@ export default function Portfolio({ projects }: PortfolioProps) {
         },
       })
 
-      // Per-card entrance as each slides into view
       const cards = Array.from(track.querySelectorAll<HTMLElement>('.h-card'))
       cards.forEach((card) => {
         gsap.fromTo(
@@ -91,9 +92,34 @@ export default function Portfolio({ projects }: PortfolioProps) {
       ctx.revert()
       ctxRef.current = null
     }
-  }, [])
+  }, [isMobile])
 
   const preview = projects.slice(0, 6)
+
+  if (isMobile) {
+    return (
+      <section id="portfolio" style={{ padding: '80px 20px 60px' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 32 }}>
+          <h2 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(28px,10vw,48px)', letterSpacing: -2, lineHeight: 1 }}>
+            Trabajo que<br /><span style={{ color: 'var(--teal)' }}>habla solo</span><span style={{ color: 'var(--orange)' }}>.</span>
+          </h2>
+          <button onClick={goToProjects} style={{ fontSize: 10, color: 'var(--teal)', letterSpacing: 1, background: 'none', border: 'none', borderBottom: '1px solid rgba(0,194,168,0.3)', paddingBottom: 2, whiteSpace: 'nowrap', cursor: 'pointer' }}>
+            Ver todos →
+          </button>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 12 }}>
+          {preview.map(project => (
+            <ProjectCard key={project._id} project={project} />
+          ))}
+          <button onClick={goToProjects} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(0,194,168,0.12)', borderRadius: 20, gap: 8, cursor: 'pointer', color: 'var(--teal)', background: 'rgba(0,194,168,0.02)', padding: '32px 20px' }}>
+            <span style={{ fontFamily: 'var(--heading)', fontSize: 32, fontWeight: 800, lineHeight: 1 }}>→</span>
+            <span style={{ fontSize: 9, letterSpacing: 2, textTransform: 'uppercase' }}>Ver todos</span>
+            <span style={{ fontSize: 9, letterSpacing: 1, opacity: 0.5 }}>{projects.length} proyectos</span>
+          </button>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section

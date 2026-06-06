@@ -4,6 +4,7 @@ import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import DoubleBezelCard from '@/components/ui/DoubleBezelCard'
+import { useMediaQuery } from '@/lib/useMediaQuery'
 
 const SKILLS = ['WordPress', 'Elementor', 'Divi', 'HTML/CSS', 'JavaScript', 'WooCommerce', 'MySQL', 'cPanel', 'Photoshop', 'Illustrator', 'SQL']
 const STATS = [{ num: 10, suffix: '+', label: 'Años exp.' }, { num: 50, suffix: '+', label: 'Proyectos' }, { num: 100, suffix: '%', label: 'Compromiso' }]
@@ -14,6 +15,7 @@ export default function About() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const hoverRef = useRef(false)
   const rafRef = useRef(0)
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   const drawNoise = useCallback(() => {
     const canvas = canvasRef.current
@@ -102,7 +104,7 @@ export default function About() {
   }, [drawNoise])
 
   return (
-    <section id="sobre-mi" style={{ padding: '100px 40px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
+    <section id="sobre-mi" className="about-grid section-padding" style={{ padding: isMobile ? '80px 20px' : '100px 40px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 32 : 60, alignItems: 'center' }}>
       <div>
         <h2 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(40px,6vw,80px)', lineHeight: 0.95, letterSpacing: -3, marginBottom: 24 }}>
           Luis<br />Cruz<span style={{ color: 'var(--orange)' }}>.</span>
@@ -132,7 +134,7 @@ export default function About() {
       <div ref={photoRef} style={{ position: 'relative' }}>
         <DoubleBezelCard>
           <div
-            style={{ borderRadius: 22, height: 480, position: 'relative', overflow: 'hidden', cursor: 'none' }}
+            style={{ borderRadius: 22, height: isMobile ? 320 : 480, position: 'relative', overflow: 'hidden', cursor: 'none' }}
             onMouseEnter={startNoise}
             onMouseLeave={stopNoise}
           >

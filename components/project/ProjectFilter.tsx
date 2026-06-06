@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import ProjectCard from './ProjectCard'
 import type { Project } from '@/types'
+import { useMediaQuery } from '@/lib/useMediaQuery'
 
 const CATEGORIES = [
   { key: 'all', label: 'Todos' },
@@ -19,6 +20,7 @@ interface Props {
 }
 
 export default function ProjectFilter({ projects }: Props) {
+  const isMobile = useMediaQuery('(max-width: 768px)')
   const [active, setActive] = useState('all')
 
   const filtered = active === 'all'
@@ -27,9 +29,9 @@ export default function ProjectFilter({ projects }: Props) {
 
   return (
     <>
-      <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 48 }}>
-        <h1 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(48px,7vw,96px)', letterSpacing: -3, lineHeight: 1 }}>
-          Todos los<br /><span style={{ color: 'var(--teal)' }}>proyectos.</span>
+      <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: isMobile ? 24 : 48 }}>
+        <h1 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(36px,10vw,96px)', letterSpacing: -3, lineHeight: 1 }}>
+          Todos los<br /><span style={{ color: 'var(--teal)' }}>proyectos</span><span style={{ color: 'var(--orange)' }}>.</span>
         </h1>
         <Link href="/" style={{ fontSize: 11, color: 'var(--muted)', letterSpacing: 1, textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', paddingBottom: 2, marginBottom: 8, whiteSpace: 'nowrap' }}>
           ← Volver
@@ -67,7 +69,7 @@ export default function ProjectFilter({ projects }: Props) {
           </p>
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 16 }}>
+        <div className="project-filter-grid" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(340px, 1fr))', gap: isMobile ? 12 : 16 }}>
           {filtered.map(p => (
             <ProjectCard key={p._id} project={p} />
           ))}

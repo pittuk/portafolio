@@ -23,6 +23,7 @@ export interface Project {
   coverUrl?: string
   sliceUrls?: string[]
   stackedImages?: boolean
+  mosaicLayout?: boolean
   descriptionText?: string
 }
 

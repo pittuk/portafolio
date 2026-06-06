@@ -1,6 +1,7 @@
 // components/sections/Contact.tsx
 'use client'
 import { useState } from 'react'
+import { useMediaQuery } from '@/lib/useMediaQuery'
 
 const SOCIALS = [
   {
@@ -64,6 +65,7 @@ type FormData = z.infer<typeof schema>
 const PROJECT_TYPES = ['Sitio WordPress', 'E-Commerce', 'UI/UX Design', 'Diseño Gráfico', 'Otro']
 
 export default function Contact() {
+  const isMobile = useMediaQuery('(max-width: 768px)')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -96,10 +98,10 @@ export default function Contact() {
   }
 
   return (
-    <section id="contacto" style={{ padding: '100px 40px 80px', position: 'relative', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+    <section id="contacto" className="section-padding" style={{ padding: isMobile ? '60px 20px' : '100px 40px 80px', position: 'relative', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
       <div style={{ position: 'absolute', top: -1, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(0,194,168,0.4), transparent)' }} />
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 60, alignItems: 'start' }}>
+      <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.4fr', gap: isMobile ? 32 : 60, alignItems: 'start' }}>
         <div>
           <h2 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(36px,5vw,68px)', lineHeight: 0.95, letterSpacing: -3, marginBottom: 32 }}>
             ¿Tienes un <span style={{ color: 'var(--teal)' }}>proyecto?</span><br />

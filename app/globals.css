@@ -1,6 +1,7 @@
 /* app/globals.css */
 @import "tailwindcss";
 @import "../styles/tokens.css";
+@import "../styles/responsive.css";
 
 *, *::before, *::after {
   margin: 0;

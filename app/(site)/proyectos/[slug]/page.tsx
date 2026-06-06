@@ -68,12 +68,12 @@ export default async function ProjectPage({ params }: Props) {
   const related = getRelatedProjects(project, allProjects, 3)
 
   return (
-    <section style={{ padding: '140px 40px 80px', minHeight: '100vh' }}>
-      <Link href="/proyectos" style={{ color: 'var(--muted)', fontSize: 11, letterSpacing: 1, textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', paddingBottom: 2, display: 'inline-block', marginBottom: 40 }}>
+    <section className="section-padding" style={{ padding: '100px 20px 60px', minHeight: '100vh' }}>
+      <Link href="/proyectos" style={{ color: 'var(--muted)', fontSize: 11, letterSpacing: 1, textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', paddingBottom: 2, display: 'inline-block', marginBottom: 24 }}>
         ← Todos los proyectos
       </Link>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'start' }}>
+      <div className="project-detail-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'start' }}>
         <div>
           <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', letterSpacing: 3, marginBottom: 12 }}>
             {project.category?.join(' · ')}
@@ -138,7 +138,48 @@ export default async function ProjectPage({ params }: Props) {
         </div>
 
         <div>
-          {project.stackedImages ? (
+          {project.mosaicLayout ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {(() => {
+                const images = project.sliceUrls ?? []
+                const rows: { type: 'full' | 'pair'; images: string[] }[] = []
+                let idx = 0
+                while (idx < images.length) {
+                  if (idx < 3) {
+                    rows.push({ type: 'full', images: [images[idx]] })
+                    idx++
+                  } else if (idx + 1 < images.length) {
+                    rows.push({ type: 'pair', images: [images[idx], images[idx + 1]] })
+                    idx += 2
+                  } else {
+                    rows.push({ type: 'full', images: [images[idx]] })
+                    idx++
+                  }
+                }
+                return rows.map((row, ri) => (
+                  <div key={ri} style={{ display: 'flex', gap: 12 }}>
+                    {row.images.map((url, ci) => (
+                      <div key={ci} style={{
+                        flex: row.type === 'full' ? '1 1 100%' : '1 1 50%',
+                        borderRadius: 16, overflow: 'hidden',
+                        position: 'relative',
+                        aspectRatio: row.type === 'full' ? '16/9' : '4/5',
+                      }}>
+                        <Image
+                          src={url}
+                          alt={`${project.title} — pieza`}
+                          fill
+                          unoptimized
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))
+              })()}
+            </div>
+          ) : project.stackedImages ? (
             <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 0 }}>
               {project.sliceUrls?.map((url, i) => {
                 const total = project.sliceUrls!.length
@@ -197,7 +238,7 @@ export default async function ProjectPage({ params }: Props) {
           <h2 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(28px,4vw,48px)', letterSpacing: -2, lineHeight: 1, marginBottom: 40 }}>
             Proyectos <span style={{ color: 'var(--teal)' }}>relacionados</span><span style={{ color: 'var(--orange)' }}>.</span>
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+          <div className="related-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
             {related.map(r => {
               const imgUrl = r.coverUrl ?? (r.coverImage ? urlFor(r.coverImage).width(600).height(400).url() : null)
               return (

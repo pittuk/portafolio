@@ -6,8 +6,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import EyebrowPill from '@/components/ui/EyebrowPill'
 import PrimaryButton from '@/components/ui/PrimaryButton'
 import { animateCinematicSlam } from '@/lib/animations/splitText'
+import { useMediaQuery } from '@/lib/useMediaQuery'
 
 export default function Hero() {
+  const isMobile = useMediaQuery('(max-width: 768px)')
   const bgWordsRef = useRef<HTMLDivElement[]>([])
   const descRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
@@ -22,21 +24,23 @@ export default function Hero() {
     const titleEl = document.querySelector('.hero-title') as HTMLElement | null
     if (titleEl) originalContents.set(titleEl, titleEl.innerHTML)
 
-    animateCinematicSlam({
-      wordEls: wordElements,
-      titleSelector: '.hero-title',
-      eyebrowEl: eyebrowRef.current,
-      descEl: descRef.current,
-      ctaEl: ctaRef.current,
-      scrollEl: null,
-      gsapInstance: gsap,
-    }).then(t => { tl = t }).catch(console.error)
+    if (!isMobile) {
+      animateCinematicSlam({
+        wordEls: wordElements,
+        titleSelector: '.hero-title',
+        eyebrowEl: eyebrowRef.current,
+        descEl: descRef.current,
+        ctaEl: ctaRef.current,
+        scrollEl: null,
+        gsapInstance: gsap,
+      }).then(t => { tl = t }).catch(console.error)
+    }
 
     return () => {
       tl?.kill()
       originalContents.forEach((html, el) => { el.innerHTML = html })
     }
-  }, [])
+  }, [isMobile])
 
   return (
     <section
@@ -71,7 +75,7 @@ export default function Hero() {
       }} />
 
       {/* Palabras de fondo — apiladas en columna izquierda + WEB a la derecha */}
-      <div style={{
+      {!isMobile && <div style={{
         position: 'absolute', top: '6%', left: -20,
         display: 'flex', flexDirection: 'column', gap: '2vw',
         pointerEvents: 'none', zIndex: 1,
@@ -95,8 +99,8 @@ export default function Hero() {
             {w.text}
           </div>
         ))}
-      </div>
-      <div
+      </div>}
+      {!isMobile && <div
         ref={el => { if (el) bgWordsRef.current[3] = el }}
         style={{
           position: 'absolute', bottom: '5%', right: -20,
@@ -110,12 +114,12 @@ export default function Hero() {
         }}
       >
         WEB
-      </div>
+      </div>}
 
       {/* Contenido */}
-      <div style={{
+      <div className="hero-content" style={{
         flex: 1, display: 'flex', flexDirection: 'column',
-        justifyContent: 'flex-end', padding: '120px 40px 48px',
+        justifyContent: 'flex-end', padding: isMobile ? '100px 20px 32px' : '120px 40px 48px',
         position: 'relative', zIndex: 2,
       }}>
         <div ref={eyebrowRef} style={{ opacity: 0 }}>
@@ -136,7 +140,7 @@ export default function Hero() {
           Luis<br />Cruz<span style={{ color: 'var(--orange)' }}>.</span>
         </h1>
 
-        <div style={{ marginTop: 28, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 40 }}>
+        <div className="hero-desc-cta" style={{ marginTop: 28, display: 'flex', alignItems: isMobile ? 'flex-start' : 'flex-end', justifyContent: 'space-between', gap: 40, flexDirection: isMobile ? 'column' : 'row' }}>
           <p
             ref={descRef}
             style={{

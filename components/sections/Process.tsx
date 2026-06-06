@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import FluidBackground from '@/components/ui/FluidBackground'
+import { useMediaQuery } from '@/lib/useMediaQuery'
 
 const STEPS = [
   { num: '01', name: 'Briefing',    desc: 'Entiendo tu negocio, objetivos reales y el cliente que quieres atraer. Sin suposiciones — empezamos con preguntas.', tag: 'Estrategia' },
@@ -17,6 +18,7 @@ export default function Process() {
   const bordersRef = useRef<HTMLDivElement[]>([])
   const ringsRef   = useRef<HTMLDivElement[]>([])
   const numsRef    = useRef<HTMLSpanElement[]>([])
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -92,7 +94,8 @@ export default function Process() {
     <section
       ref={sectionRef}
       id="proceso"
-      style={{ padding: '140px 40px', position: 'relative' }}
+      className="section-padding"
+      style={{ padding: isMobile ? '80px 20px' : '140px 40px', position: 'relative' }}
     >
       {/* WebGL fluid shader background */}
       <FluidBackground />
@@ -102,8 +105,8 @@ export default function Process() {
         className="process-title"
         style={{
           fontFamily: 'var(--heading)', fontWeight: 800,
-          fontSize: 'clamp(36px,5vw,68px)', letterSpacing: -2, lineHeight: 1,
-          marginBottom: 96, textAlign: 'center', opacity: 0,
+          fontSize: 'clamp(28px,7vw,68px)', letterSpacing: -2, lineHeight: 1,
+          marginBottom: isMobile ? 48 : 96, textAlign: 'center', opacity: 0,
           position: 'relative', zIndex: 1,
         }}
       >
@@ -120,10 +123,10 @@ export default function Process() {
         <div
           className="process-path"
           style={{
-            position: 'absolute', top: 0, bottom: 0, left: '50%',
+            position: 'absolute', top: 0, bottom: 0, left: isMobile ? 16 : '50%',
             width: 2,
             background: 'linear-gradient(180deg, transparent, rgba(243,146,0,0.6) 8%, rgba(243,146,0,0.6) 92%, transparent)',
-            transform: 'translateX(-50%)',
+            transform: isMobile ? 'none' : 'translateX(-50%)',
           }}
         />
 
@@ -134,9 +137,9 @@ export default function Process() {
               key={step.num}
               ref={el => { if (el) cardsRef.current[i] = el }}
               style={{
-                display: 'flex', alignItems: 'center', gap: 48,
-                marginBottom: i < STEPS.length - 1 ? 80 : 0,
-                flexDirection: isLeft ? 'row' : 'row-reverse',
+                display: 'flex', alignItems: 'center', gap: isMobile ? 16 : 48,
+                marginBottom: i < STEPS.length - 1 ? (isMobile ? 48 : 80) : 0,
+                flexDirection: isMobile ? 'row' : isLeft ? 'row' : 'row-reverse',
                 position: 'relative',
               }}
             >
@@ -237,8 +240,7 @@ export default function Process() {
                 }} />
               </div>
 
-              {/* Balance spacer */}
-              <div style={{ flex: 1 }} />
+              {!isMobile && <div style={{ flex: 1 }} />}
             </div>
           )
         })}

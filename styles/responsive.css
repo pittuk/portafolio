@@ -1,0 +1,139 @@
+/* Responsive overrides for inline-styled components */
+/* Target breakpoints: 768px (tablet), 480px (mobile) */
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .grid-3 > .service-card:first-child {
+    grid-column: 1 !important;
+  }
+  .grid-3 > .service-card:last-child {
+    grid-column: 1 !important;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .process-card {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  .process-card > :last-child {
+    display: none !important;
+  }
+
+  .process-line {
+    left: 16px !important;
+    transform: none !important;
+  }
+
+  .process-dot {
+    flex-shrink: 0;
+  }
+
+  .hero-content {
+    padding: 100px 20px 32px !important;
+  }
+
+  .hero-desc-cta {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 20px !important;
+  }
+
+  .footer-content {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-detail-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .related-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .project-filter-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  }
+
+  .hero-bg-words {
+    display: none !important;
+  }
+
+  .services-number {
+    font-size: 48px !important;
+  }
+
+  .services-grid-3 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .service-wide-inner {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  .service-wide-inner > div:first-child {
+    min-width: unset !important;
+  }
+
+  .service-wide-inner > div:nth-child(2) {
+    display: none !important;
+  }
+
+  .process-steps {
+    max-width: 100% !important;
+  }
+
+  .nav-desktop {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .related-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .section-padding {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .project-filter-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .services-grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .nav-mobile-toggle {
+    display: none !important;
+  }
+  .nav-mobile-menu {
+    display: none !important;
+  }
+}
