@@ -122,7 +122,7 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
               right: isFeatured ? -14 : -10,
               fontFamily: 'var(--heading)', fontWeight: 800,
               fontSize: isWide ? 240 : isFeatured ? 220 : 160,
-              color: 'rgba(0,194,168,0.07)', lineHeight: 1,
+              color: 'rgba(0,194,168,0.13)', lineHeight: 1,
               letterSpacing: -14,
               pointerEvents: 'none', userSelect: 'none',
               zIndex: 0,
