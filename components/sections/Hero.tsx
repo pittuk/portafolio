@@ -93,7 +93,7 @@ export default function Hero() {
         pointerEvents: 'none', zIndex: 1,
       }}>
         {[
-          { text: 'DISEÑO',      fs: isMobile ? '100px' : 'clamp(90px,18vw,280px)', ls: isMobile ? -4 : -8, ml: isMobile ? -120 : 0 },
+          { text: 'DISEÑO',      fs: isMobile ? '100px' : 'clamp(90px,18vw,280px)', ls: isMobile ? -4 : -8, ml: isMobile ? -100 : 0 },
           { text: 'DESARROLLO',  fs: isMobile ? '68px'  : 'clamp(64px,12vw,180px)', ls: isMobile ? -3 : -6, ml: isMobile ? -48 : 0 },
           { text: 'CREATIVIDAD', fs: isMobile ? '56px'  : 'clamp(52px,10vw,150px)', ls: isMobile ? -2 : -5, ml: isMobile ? -40 : 0 },
         ].map((w, i) => (
