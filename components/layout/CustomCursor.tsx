@@ -56,6 +56,7 @@ export default function CustomCursor() {
     <>
       <div
         ref={dotRef}
+        className="custom-cursor"
         style={{
           position: 'fixed', top: 0, left: 0, zIndex: 99998,
           width: 6, height: 6,
@@ -67,6 +68,7 @@ export default function CustomCursor() {
       />
       <div
         ref={ringRef}
+        className="custom-cursor"
         style={{
           position: 'fixed', top: 0, left: 0, zIndex: 99997,
           width: 32, height: 32,

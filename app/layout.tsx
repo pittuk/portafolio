@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Syne, Space_Grotesk } from 'next/font/google'
+import Script from 'next/script'
 import '@/app/globals.css'
 import GSAPProvider from '@/components/providers/GSAPProvider'
 
@@ -90,6 +91,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${syne.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <body>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-G5QHPP2V5W"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-G5QHPP2V5W');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

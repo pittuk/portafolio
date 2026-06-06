@@ -25,6 +25,7 @@ body {
 
 @media (hover: none) {
   body { cursor: auto; }
+  .custom-cursor { display: none !important; }
 }
 
 /* Grain overlay — fijo, no afecta scroll */

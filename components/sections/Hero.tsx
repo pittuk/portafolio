@@ -54,7 +54,7 @@ export default function Hero() {
     <section
       id="inicio"
       style={{
-        minHeight: '100vh',
+        minHeight: '100svh',
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -83,15 +83,19 @@ export default function Hero() {
       }} />
 
       {/* Palabras de fondo — apiladas en columna izquierda + WEB a la derecha */}
-      {!isMobile && <div style={{
-        position: 'absolute', top: '6%', left: -20,
-        display: 'flex', flexDirection: 'column', gap: '2vw',
+      {/* Mobile: visible como watermark estático. Desktop: animadas por GSAP desde opacity:0 */}
+      <div style={{
+        position: 'absolute',
+        top: isMobile ? '8%' : '6%',
+        left: isMobile ? -8 : -20,
+        display: 'flex', flexDirection: 'column',
+        gap: isMobile ? 8 : '2vw',
         pointerEvents: 'none', zIndex: 1,
       }}>
         {[
-          { text: 'DISEÑO',      fs: 'clamp(90px,18vw,280px)', ls: -8 },
-          { text: 'DESARROLLO',  fs: 'clamp(64px,12vw,180px)', ls: -6 },
-          { text: 'CREATIVIDAD', fs: 'clamp(52px,10vw,150px)', ls: -5 },
+          { text: 'DISEÑO',      fs: isMobile ? '100px' : 'clamp(90px,18vw,280px)', ls: isMobile ? -4 : -8 },
+          { text: 'DESARROLLO',  fs: isMobile ? '68px'  : 'clamp(64px,12vw,180px)', ls: isMobile ? -3 : -6 },
+          { text: 'CREATIVIDAD', fs: isMobile ? '56px'  : 'clamp(52px,10vw,150px)', ls: isMobile ? -2 : -5 },
         ].map((w, i) => (
           <div
             key={w.text}
@@ -101,33 +105,35 @@ export default function Hero() {
               fontSize: w.fs, lineHeight: 1, letterSpacing: w.ls,
               color: 'rgba(0,194,168,0.9)',
               whiteSpace: 'nowrap', userSelect: 'none',
-              opacity: 0,
+              opacity: isMobile ? 0.09 : 0,
             }}
           >
             {w.text}
           </div>
         ))}
-      </div>}
-      {!isMobile && <div
+      </div>
+      <div
         ref={el => { if (el) bgWordsRef.current[3] = el }}
         style={{
-          position: 'absolute', bottom: '5%', right: -20,
+          position: 'absolute',
+          bottom: isMobile ? '38%' : '5%',
+          right: isMobile ? -8 : -20,
           fontFamily: 'var(--heading)', fontWeight: 800,
-          fontSize: 'clamp(48px, 9vw, 140px)',
+          fontSize: isMobile ? 'clamp(64px,16vw,80px)' : 'clamp(48px, 9vw, 140px)',
           color: 'rgba(0,194,168,0.9)',
-          lineHeight: 1, letterSpacing: -8,
+          lineHeight: 1, letterSpacing: isMobile ? -4 : -8,
           pointerEvents: 'none', whiteSpace: 'nowrap',
           userSelect: 'none', zIndex: 1,
-          opacity: 0,
+          opacity: isMobile ? 0.09 : 0,
         }}
       >
         WEB
-      </div>}
+      </div>
 
       {/* Contenido */}
       <div className="hero-content" style={{
         flex: 1, display: 'flex', flexDirection: 'column',
-        justifyContent: 'flex-end', padding: isMobile ? '100px 20px 32px' : '120px 40px 48px',
+        justifyContent: 'flex-end', padding: isMobile ? '100px 20px 80px' : '120px 40px 48px',
         position: 'relative', zIndex: 2,
       }}>
         <div ref={eyebrowRef} style={{ opacity: isMobile ? 1 : 0 }}>
