@@ -19,6 +19,11 @@ body {
   color: var(--white);
   font-family: var(--body);
   overflow-x: hidden;
+  cursor: none;
+}
+
+@media (hover: none) {
+  body { cursor: auto; }
 }
 
 /* Grain overlay — fijo, no afecta scroll */

@@ -8,7 +8,6 @@ export default function CustomCursor() {
   const ringRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // No mostrar en touch devices
     if (window.matchMedia('(hover: none)').matches) return
 
     const dot = dotRef.current!
@@ -16,9 +15,6 @@ export default function CustomCursor() {
     let mouseX = 0, mouseY = 0
     let ringX = 0, ringY = 0
     let rafId: number
-
-    // Start hidden — cursor only visible over interactive elements
-    gsap.set([dot, ring], { opacity: 0 })
 
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX
@@ -33,20 +29,16 @@ export default function CustomCursor() {
       rafId = requestAnimationFrame(animate)
     }
 
-    // Event delegation — fires once per element transition
+    // Scale ring on interactive/hover-effect elements, back to default elsewhere
     const onMouseOver = (e: MouseEvent) => {
       const target = e.target as Element
-      const isInteractive = !!target.closest('a, button, [role="button"]')
-
-      if (isInteractive) {
-        gsap.to([dot, ring], { opacity: 1, duration: 0.15, overwrite: 'auto' })
-        gsap.to(ring, { scale: 2.5, duration: 0.3, ease: 'power2.out', overwrite: 'auto' })
-        document.body.style.cursor = 'none'
-      } else {
-        gsap.to([dot, ring], { opacity: 0, duration: 0.15, overwrite: 'auto' })
-        gsap.to(ring, { scale: 1, duration: 0.3, ease: 'power2.out', overwrite: 'auto' })
-        document.body.style.cursor = ''
-      }
+      const isInteractive = !!target.closest('a, button, [role="button"], [data-cursor]')
+      gsap.to(ring, {
+        scale: isInteractive ? 2.5 : 1,
+        duration: 0.3,
+        ease: 'power2.out',
+        overwrite: 'auto',
+      })
     }
 
     document.addEventListener('mousemove', onMouseMove)
@@ -57,13 +49,11 @@ export default function CustomCursor() {
       document.removeEventListener('mousemove', onMouseMove)
       document.removeEventListener('mouseover', onMouseOver)
       cancelAnimationFrame(rafId)
-      document.body.style.cursor = ''
     }
   }, [])
 
   return (
     <>
-      {/* Dot — sigue exacto */}
       <div
         ref={dotRef}
         style={{
@@ -75,7 +65,6 @@ export default function CustomCursor() {
           pointerEvents: 'none',
         }}
       />
-      {/* Ring — sigue con delay */}
       <div
         ref={ringRef}
         style={{

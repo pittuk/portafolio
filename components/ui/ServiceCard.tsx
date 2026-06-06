@@ -87,7 +87,7 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
   const isWide = variant === 'wide'
 
   return (
-    <div style={{ perspective: '800px', height: '100%', ...style }}>
+    <div data-cursor="true" style={{ perspective: '800px', height: '100%', ...style }}>
       <div
         ref={cardRef}
         style={{ transformStyle: 'preserve-3d', willChange: 'transform', height: '100%' }}
