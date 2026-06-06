@@ -90,26 +90,11 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
     <div style={{ perspective: '800px', height: '100%', ...style }}>
       <div
         ref={cardRef}
-        style={{ transformStyle: 'preserve-3d', willChange: 'transform', height: '100%', position: 'relative' }}
+        style={{ transformStyle: 'preserve-3d', willChange: 'transform', height: '100%' }}
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Decorative number — outside overflow:hidden, bleeds past the card edge */}
-        <div style={{
-          position: 'absolute',
-          top: isFeatured ? -40 : -28,
-          right: isFeatured ? -14 : -10,
-          fontFamily: 'var(--heading)', fontWeight: 800,
-          fontSize: isWide ? 240 : isFeatured ? 220 : 160,
-          color: 'rgba(0,194,168,0.07)', lineHeight: 1,
-          letterSpacing: -14,
-          pointerEvents: 'none', userSelect: 'none',
-          zIndex: 2,
-        }}>
-          {num}
-        </div>
-
         <div
           ref={borderRef}
           style={{
@@ -130,6 +115,21 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
               overflow: 'hidden',
             }}
           >
+            {/* Decorative number — inside overflow:hidden, clipped at the card edge */}
+            <div style={{
+              position: 'absolute',
+              top: isFeatured ? -70 : -58,
+              right: isFeatured ? -14 : -10,
+              fontFamily: 'var(--heading)', fontWeight: 800,
+              fontSize: isWide ? 240 : isFeatured ? 220 : 160,
+              color: 'rgba(0,194,168,0.07)', lineHeight: 1,
+              letterSpacing: -14,
+              pointerEvents: 'none', userSelect: 'none',
+              zIndex: 0,
+            }}>
+              {num}
+            </div>
+
             <div
               ref={gradientRef}
               style={{
