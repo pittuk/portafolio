@@ -176,7 +176,8 @@ export default function Portfolio({ projects }: PortfolioProps) {
         <div
           ref={progressRef}
           style={{
-            height: '100%', background: 'var(--teal)',
+            height: '100%',
+            background: 'linear-gradient(90deg, var(--teal), var(--orange))',
             transformOrigin: 'left center', transform: 'scaleX(0)',
           }}
         />

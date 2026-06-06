@@ -65,7 +65,7 @@ export default function Nav() {
         <Link
           href="/#contacto"
           style={{
-            background: 'var(--teal)', color: 'var(--bg)',
+            background: 'var(--orange)', color: '#fff',
             fontWeight: 700, borderRadius: '100px',
             padding: '6px 16px', fontSize: 10,
             letterSpacing: '1.5px', textTransform: 'uppercase',

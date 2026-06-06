@@ -128,7 +128,7 @@ export default function Hero() {
             opacity: 0,
           }}
         >
-          Luis<br />Cruz<span style={{ color: 'var(--teal)' }}>.</span>
+          Luis<br />Cruz<span style={{ color: 'var(--orange)' }}>.</span>
         </h1>
 
         <div style={{ marginTop: 28, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 40 }}>
@@ -152,7 +152,7 @@ export default function Hero() {
       <div
         ref={scrollIndicatorRef}
         style={{
-          position: 'absolute', bottom: 60, right: 40, zIndex: 2,
+          position: 'absolute', bottom: 40, left: 40, zIndex: 2,
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
           opacity: 0,
         }}

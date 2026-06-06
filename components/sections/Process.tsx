@@ -222,16 +222,18 @@ export default function Process() {
                   style={{
                     position: 'absolute', top: '50%', left: '50%',
                     width: 22, height: 22, borderRadius: '50%',
-                    border: '2px solid rgba(0,194,168,0.7)',
+                    border: `2px solid ${i === 3 ? 'rgba(243,146,0,0.7)' : 'rgba(0,194,168,0.7)'}`,
                     transform: 'translate(-50%,-50%)',
                     opacity: 0, pointerEvents: 'none',
                   }}
                 />
                 <div style={{
                   width: 22, height: 22, borderRadius: '50%',
-                  background: 'var(--teal)',
+                  background: i === 3 ? 'var(--orange)' : 'var(--teal)',
                   border: '4px solid var(--bg)',
-                  boxShadow: '0 0 0 2px rgba(0,194,168,0.3), 0 0 24px rgba(0,194,168,0.4)',
+                  boxShadow: i === 3
+                    ? '0 0 0 2px rgba(243,146,0,0.3), 0 0 24px rgba(243,146,0,0.4)'
+                    : '0 0 0 2px rgba(0,194,168,0.3), 0 0 24px rgba(0,194,168,0.4)',
                 }} />
               </div>
 
