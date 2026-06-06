@@ -122,7 +122,7 @@ export default function Process() {
           style={{
             position: 'absolute', top: 0, bottom: 0, left: '50%',
             width: 2,
-            background: 'linear-gradient(180deg, transparent, rgba(0,194,168,0.5) 8%, rgba(0,194,168,0.5) 92%, transparent)',
+            background: 'linear-gradient(180deg, transparent, rgba(243,146,0,0.6) 8%, rgba(243,146,0,0.6) 92%, transparent)',
             transform: 'translateX(-50%)',
           }}
         />
