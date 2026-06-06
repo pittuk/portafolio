@@ -1,12 +1,16 @@
 import type { MetadataRoute } from 'next'
-import { getProjects } from '@/lib/sanity/queries'
 import { MOCK_PROJECTS } from '@/lib/mock/projects'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://pittuk.net'
   let projects: any[] = []
   try {
-    projects = await getProjects()
+    if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+      const { getProjects } = await import('@/lib/sanity/queries')
+      projects = await getProjects()
+    } else {
+      projects = MOCK_PROJECTS
+    }
   } catch {
     projects = MOCK_PROJECTS
   }
