@@ -1,5 +1,5 @@
 'use client'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 
 interface ServiceCardProps {
@@ -15,6 +15,17 @@ export default function ServiceCard({ num, name, desc, tags, style }: ServiceCar
   const borderRef = useRef<HTMLDivElement>(null)
   const gradientRef = useRef<HTMLDivElement>(null)
   const numRef = useRef<HTMLParagraphElement>(null)
+
+  useEffect(() => {
+    return () => {
+      gsap.killTweensOf([
+        cardRef.current,
+        borderRef.current,
+        gradientRef.current,
+        numRef.current,
+      ])
+    }
+  }, [])
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const card = cardRef.current
@@ -39,14 +50,15 @@ export default function ServiceCard({ num, name, desc, tags, style }: ServiceCar
   }
 
   function handleMouseEnter() {
-    gsap.to(gradientRef.current, { opacity: 1, duration: 0.3, ease: 'power2.out' })
-    gsap.to(borderRef.current, { borderColor: 'rgba(0,194,168,0.30)', duration: 0.3 })
+    gsap.to(gradientRef.current, { opacity: 1, duration: 0.3, ease: 'power2.out', overwrite: 'auto' })
+    gsap.to(borderRef.current, { borderColor: 'rgba(0,194,168,0.30)', duration: 0.3, overwrite: 'auto' })
     gsap.to(numRef.current, {
       scale: 1.3,
       opacity: 1,
       textShadow: '0 0 12px rgba(0,194,168,0.5)',
       duration: 0.3,
       ease: 'power2.out',
+      overwrite: 'auto',
     })
   }
 
@@ -58,14 +70,15 @@ export default function ServiceCard({ num, name, desc, tags, style }: ServiceCar
       ease: 'power3.out',
       overwrite: 'auto',
     })
-    gsap.to(gradientRef.current, { opacity: 0, duration: 0.4, ease: 'power2.out' })
-    gsap.to(borderRef.current, { borderColor: 'rgba(255,255,255,0.06)', duration: 0.4 })
+    gsap.to(gradientRef.current, { opacity: 0, duration: 0.4, ease: 'power2.out', overwrite: 'auto' })
+    gsap.to(borderRef.current, { borderColor: 'rgba(255,255,255,0.06)', duration: 0.4, overwrite: 'auto' })
     gsap.to(numRef.current, {
       scale: 1,
       opacity: 0.6,
       textShadow: '0 0 0px rgba(0,194,168,0)',
       duration: 0.4,
       ease: 'power3.out',
+      overwrite: 'auto',
     })
   }
 
