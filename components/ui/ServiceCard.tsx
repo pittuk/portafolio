@@ -140,6 +140,16 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
                 position: 'relative',
                 zIndex: 1,
               }}>
+                {/* Decorative number bleeding off the right edge */}
+                <div style={{
+                  position: 'absolute', top: '50%', right: -10,
+                  transform: 'translateY(-50%)',
+                  fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 200,
+                  color: 'rgba(0,194,168,0.04)', lineHeight: 1, letterSpacing: -12,
+                  pointerEvents: 'none', userSelect: 'none', zIndex: 0,
+                }}>
+                  {num}
+                </div>
                 <div style={{ flex: '0 0 auto', minWidth: 220 }}>
                   <p
                     ref={numRef}
@@ -173,17 +183,16 @@ export default function ServiceCard({ num, name, desc, tags, variant, style }: S
                 position: 'relative',
                 zIndex: 1,
               }}>
-                {/* Decorative background number for featured card */}
-                {isFeatured && (
-                  <div style={{
-                    position: 'absolute', top: 16, right: 24,
-                    fontFamily: 'var(--heading)', fontSize: 110, fontWeight: 800,
-                    color: 'rgba(0,194,168,0.04)', lineHeight: 1, letterSpacing: -8,
-                    pointerEvents: 'none', userSelect: 'none', zIndex: 0,
-                  }}>
-                    {num}
-                  </div>
-                )}
+                {/* Decorative number — bleeds off the top-right edge, clipped by overflow:hidden */}
+                <div style={{
+                  position: 'absolute', top: isFeatured ? -24 : -18, right: isFeatured ? 16 : 12,
+                  fontFamily: 'var(--heading)', fontWeight: 800,
+                  fontSize: isFeatured ? 180 : 130,
+                  color: 'rgba(0,194,168,0.055)', lineHeight: 1, letterSpacing: -10,
+                  pointerEvents: 'none', userSelect: 'none', zIndex: 0,
+                }}>
+                  {num}
+                </div>
                 <p
                   ref={numRef}
                   style={{
