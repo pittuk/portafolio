@@ -39,6 +39,9 @@ export default function MobileDrawer({ open, links, pathname, onClose }: MobileD
         }}
       />
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menú de navegación"
         style={{
           position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 102,
           width: 'min(300px, 82vw)',
@@ -55,6 +58,7 @@ export default function MobileDrawer({ open, links, pathname, onClose }: MobileD
         <button
           onClick={onClose}
           aria-label="Cerrar menú"
+          tabIndex={open ? 0 : -1}
           style={{
             position: 'absolute', top: 20, right: 16,
             background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
@@ -99,6 +103,7 @@ export default function MobileDrawer({ open, links, pathname, onClose }: MobileD
                 key={href}
                 href={href}
                 onClick={onClose}
+                tabIndex={open ? 0 : -1}
                 style={{
                   display: 'flex', alignItems: 'center', gap: 12,
                   padding: 12, borderRadius: 12,
@@ -117,6 +122,7 @@ export default function MobileDrawer({ open, links, pathname, onClose }: MobileD
         <Link
           href="/#contacto"
           onClick={onClose}
+          tabIndex={open ? 0 : -1}
           style={{
             marginTop: 'auto',
             background: 'var(--orange)', color: '#fff',
