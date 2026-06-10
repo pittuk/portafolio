@@ -3,6 +3,32 @@ import type { Project } from '@/types'
 export const MOCK_PROJECTS: Project[] = [
   // ─── Web / WordPress / E-commerce ──────────────────────
   {
+    _id: 'mock-cruiser-custom-builds',
+    title: 'Cruiser-Tech Custom Builds',
+    slug: { current: 'cruiser-tech-custom-builds' },
+    category: ['WordPress', 'Desarrollo Web'],
+    year: 2025,
+    client: 'Cruiser-Tech',
+    role: 'Diseñador Web & Maquetador WordPress',
+    tools: ['WordPress', 'Elementor Pro', 'n8n', 'Photoshop'],
+    description: [],
+    descriptionText: 'Diseño y maquetación de la sección Custom Builds para Cruiser-Tech, especializada en la restauración y personalización de vehículos Toyota Land Cruiser y otros modelos Off-Road. El proyecto fue desarrollado en WordPress con Elementor Pro, priorizando una estructura visual orientada a la conversión: presentación de servicios de restauración, galería de proyectos realizados y formularios de contacto ubicados estratégicamente para maximizar la captación de leads. La sección incorpora además un chatbot conversacional conectado a un flujo de automatización en n8n, que cualifica y captura leads en tiempo real, sumando un canal adicional de conversión a la estrategia digital del sitio.',
+    liveUrl: 'https://cruiser-tech.com/custom-builds/',
+    featured: true,
+    order: -1,
+    sliceImages: [],
+    coverUrl: '/images/cruiser-tech-custom-builds/presentacion-Cruiser-Tech-Custom-Builds_01.jpg',
+    sliceUrls: [
+      '/images/cruiser-tech-custom-builds/presentacion-Cruiser-Tech-Custom-Builds_01.jpg',
+      '/images/cruiser-tech-custom-builds/presentacion-Cruiser-Tech-Custom-Builds_02.jpg',
+      '/images/cruiser-tech-custom-builds/presentacion-Cruiser-Tech-Custom-Builds_03.jpg',
+      '/images/cruiser-tech-custom-builds/presentacion-Cruiser-Tech-Custom-Builds_04.jpg',
+      '/images/cruiser-tech-custom-builds/presentacion-Cruiser-Tech-Custom-Builds_05.jpg',
+      '/images/cruiser-tech-custom-builds/presentacion-Cruiser-Tech-Custom-Builds_06.jpg',
+    ],
+    stackedImages: true,
+  },
+  {
     _id: 'mock-cablepar',
     title: 'Cablepar',
     slug: { current: 'cablepar' },
