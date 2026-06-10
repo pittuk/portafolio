@@ -11,7 +11,6 @@ import { useMediaQuery } from '@/lib/useMediaQuery'
 import MobileDrawer from './MobileDrawer'
 
 const LINKS = [
-  { href: '/#portfolio', label: 'Trabajo' },
   { href: '/#servicios', label: 'Servicios' },
   { href: '/#sobre-mi', label: 'Sobre mí' },
   { href: '/proyectos', label: 'Proyectos' },
@@ -62,7 +61,7 @@ export default function Nav() {
       <header
         ref={navRef}
         style={{
-          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 104,
           padding: isMobile ? '20px 20px 0' : '28px 40px 0',
           display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
         }}

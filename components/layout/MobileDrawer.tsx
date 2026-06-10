@@ -2,7 +2,7 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Briefcase, FolderKanban, User, Wrench, X, type LucideIcon } from 'lucide-react'
+import { FolderKanban, User, Wrench, X, type LucideIcon } from 'lucide-react'
 
 interface DrawerLink {
   href: string
@@ -17,7 +17,6 @@ interface MobileDrawerProps {
 }
 
 const ICONS: Record<string, LucideIcon> = {
-  '/#portfolio': Briefcase,
   '/#servicios': Wrench,
   '/#sobre-mi': User,
   '/proyectos': FolderKanban,
