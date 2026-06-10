@@ -12,6 +12,7 @@ const LINKS = [
   { href: '/#portfolio', label: 'Trabajo' },
   { href: '/#servicios', label: 'Servicios' },
   { href: '/#sobre-mi', label: 'Sobre mí' },
+  { href: '/proyectos', label: 'Proyectos' },
 ]
 
 export default function Nav() {
