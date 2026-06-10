@@ -77,7 +77,7 @@ export default function MobileDrawer({ open, links, pathname, onClose }: MobileD
         }}>
           <span style={{ position: 'relative', display: 'inline-block', width: 36, height: 36, flexShrink: 0 }}>
             <Image
-              src="/images/logo/logo letra blanca.png"
+              src="/images/logo/favicon.png"
               alt="Luis Cruz"
               fill
               sizes="36px"
