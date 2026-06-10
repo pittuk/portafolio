@@ -17,7 +17,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/studio/', '/api/'],
     },
-    sitemap: 'https://luiscruz.cl/sitemap.xml',
+    sitemap: 'https://pittuk.net/sitemap.xml',
   }
 }
 ```
@@ -36,7 +36,7 @@ import { getProjects } from '@/lib/sanity/queries'
 import { MOCK_PROJECTS } from '@/lib/mock/projects'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://luiscruz.cl'
+  const baseUrl = 'https://pittuk.net'
   let projects: any[] = []
   try {
     projects = await getProjects()
@@ -71,7 +71,7 @@ Agregar `metadataBase` y `alternates` al metadata export:
 
 ```ts
 export const metadata: Metadata = {
-  metadataBase: new URL('https://luiscruz.cl'),
+  metadataBase: new URL('https://pittuk.net'),
   alternates: {
     canonical: '/',
   },
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
 }
 ```
 
-- **Validacion:** Inspeccionar HTML head, debe incluir `<link rel="canonical" href="https://luiscruz.cl/" />`
+- **Validacion:** Inspeccionar HTML head, debe incluir `<link rel="canonical" href="https://pittuk.net/" />`
 - **Rollback:** Revertir cambios en `app/layout.tsx`
 
 ---
@@ -103,10 +103,10 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://luiscruz.cl/#organization',
+      '@id': 'https://pittuk.net/#organization',
       name: 'Luis Cruz',
-      url: 'https://luiscruz.cl',
-      logo: 'https://luiscruz.cl/images/logo/icono.svg',
+      url: 'https://pittuk.net',
+      logo: 'https://pittuk.net/images/logo/icono.svg',
       sameAs: [
         'https://www.linkedin.com/in/luiscruz/',
         'https://www.behance.net/luiscruz',
@@ -115,11 +115,11 @@ const jsonLd = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://luiscruz.cl/#website',
-      url: 'https://luiscruz.cl',
+      '@id': 'https://pittuk.net/#website',
+      url: 'https://pittuk.net',
       name: 'Luis Cruz',
       description: 'Portafolio de Luis Cruz — Diseñador Web y Desarrollador WordPress',
-      publisher: { '@id': 'https://luiscruz.cl/#organization' },
+      publisher: { '@id': 'https://pittuk.net/#organization' },
       inLanguage: 'es-CL',
     },
   ],
@@ -148,16 +148,16 @@ Agregar Person schema al @graph existente:
 ```ts
 {
   '@type': 'Person',
-  '@id': 'https://luiscruz.cl/#person',
+  '@id': 'https://pittuk.net/#person',
   name: 'Luis Cruz',
   jobTitle: 'Diseñador Web & Desarrollador WordPress',
-  url: 'https://luiscruz.cl',
+  url: 'https://pittuk.net',
   sameAs: [
     'https://www.linkedin.com/in/luiscruz/',
     'https://www.behance.net/luiscruz',
   ],
   knowsAbout: ['WordPress', 'UI/UX', 'E-commerce', 'Diseño Gráfico'],
-  worksFor: { '@id': 'https://luiscruz.cl/#organization' },
+  worksFor: { '@id': 'https://pittuk.net/#organization' },
 }
 ```
 
@@ -176,8 +176,8 @@ const breadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://luiscruz.cl/' },
-    { '@type': 'ListItem', position: 2, name: 'Proyectos', item: 'https://luiscruz.cl/proyectos' },
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://pittuk.net/' },
+    { '@type': 'ListItem', position: 2, name: 'Proyectos', item: 'https://pittuk.net/proyectos' },
     { '@type': 'ListItem', position: 3, name: project.title },
   ],
 }
@@ -201,23 +201,23 @@ Actualizar metadata:
 
 ```ts
 export const metadata: Metadata = {
-  metadataBase: new URL('https://luiscruz.cl'),
+  metadataBase: new URL('https://pittuk.net'),
   title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
   description: 'Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce. Portafolio profesional en Talca, Chile.',
   openGraph: {
     title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
     description: 'Portafolio profesional de diseño y desarrollo web. WordPress, UI/UX, E-commerce.',
-    url: 'https://luiscruz.cl',
+    url: 'https://pittuk.net',
     siteName: 'Luis Cruz',
     locale: 'es_CL',
     type: 'website',
-    images: [{ url: 'https://luiscruz.cl/images/logo/icono.svg', width: 512, height: 512 }],
+    images: [{ url: 'https://pittuk.net/images/logo/icono.svg', width: 512, height: 512 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
     description: 'Portafolio profesional de diseño y desarrollo web. WordPress, UI/UX, E-commerce.',
-    images: ['https://luiscruz.cl/images/logo/icono.svg'],
+    images: ['https://pittuk.net/images/logo/icono.svg'],
   },
   icons: {
     icon: '/images/logo/favicon.png',
@@ -328,10 +328,10 @@ Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce co
 - Branding
 
 ## Proyectos destacados
-- Cablepar: https://luiscruz.cl/proyectos/cablepar
-- Fluye por Chile: https://luiscruz.cl/proyectos/fluye-por-chile
-- Varity Labs: https://luiscruz.cl/proyectos/varity-labs
-- Wui Coffee Drink & Lounge: https://luiscruz.cl/proyectos/wui-coffee-drink-lounge
+- Cablepar: https://pittuk.net/proyectos/cablepar
+- Fluye por Chile: https://pittuk.net/proyectos/fluye-por-chile
+- Varity Labs: https://pittuk.net/proyectos/varity-labs
+- Wui Coffee Drink & Lounge: https://pittuk.net/proyectos/wui-coffee-drink-lounge
 
 ## Redes
 - LinkedIn: https://www.linkedin.com/in/luiscruz/
@@ -383,6 +383,6 @@ Una vez implementados Organization + Person schema con sameAs correctos y verifi
 
 ## Notas técnicas
 
-- **URL base:** Usar `https://luiscruz.cl` (o el dominio real del deploy). Cambiar en sitemap.ts, metadata, y JSON-LD antes de desplegar.
+- **URL base:** Usar `https://pittuk.net` (o el dominio real del deploy). Cambiar en sitemap.ts, metadata, y JSON-LD antes de desplegar.
 - **Sanity:** El sitio ya integra Sanity CMS con fallback a MOCK_PROJECTS. Cuando Sanity esté en producción, el sitemap generará todas las URLs dinámicamente.
 - **Hosting:** Next.js standalone output (`output: 'standalone'` en next.config.ts) — compatible con Vercel, Docker, o Node server propio.
