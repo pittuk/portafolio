@@ -6,7 +6,9 @@ import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Menu, X } from 'lucide-react'
 import { useMediaQuery } from '@/lib/useMediaQuery'
+import MobileDrawer from './MobileDrawer'
 
 const LINKS = [
   { href: '/#portfolio', label: 'Trabajo' },
@@ -46,30 +48,39 @@ export default function Nav() {
     setMenuOpen(false)
   }, [pathname])
 
-  return (
-    <header
-      ref={navRef}
-      style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        padding: isMobile ? '20px 20px 0' : '28px 40px 0',
-        display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
-      }}
-    >
-      <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-        <span style={{ position: 'relative', display: 'inline-block', width: isMobile ? 100 : 130, height: isMobile ? 27 : 34 }}>
-          <Image
-            src="/images/logo/logo letra blanca.png"
-            alt="Luis Cruz"
-            fill
-            priority
-            sizes="130px"
-            style={{ objectFit: 'contain', objectPosition: 'left center' }}
-          />
-        </span>
-      </Link>
+  useEffect(() => {
+    if (!menuOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [menuOpen])
 
-      {isMobile ? (
-        <>
+  return (
+    <>
+      <header
+        ref={navRef}
+        style={{
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+          padding: isMobile ? '20px 20px 0' : '28px 40px 0',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
+        }}
+      >
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <span style={{ position: 'relative', display: 'inline-block', width: isMobile ? 100 : 130, height: isMobile ? 27 : 34 }}>
+            <Image
+              src="/images/logo/logo letra blanca.png"
+              alt="Luis Cruz"
+              fill
+              priority
+              sizes="130px"
+              style={{ objectFit: 'contain', objectPosition: 'left center' }}
+            />
+          </span>
+        </Link>
+
+        {isMobile ? (
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="nav-mobile-toggle"
@@ -77,78 +88,49 @@ export default function Nav() {
             style={{
               background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
               borderRadius: 12, padding: 10, cursor: 'pointer', display: 'flex',
-              flexDirection: 'column', gap: 5, zIndex: 102, position: 'relative',
+              zIndex: 103, position: 'relative', color: 'var(--white)',
             }}
           >
-            <span style={{ display: 'block', width: 20, height: 2, background: 'var(--white)', borderRadius: 2, transition: 'transform 0.2s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
-            <span style={{ display: 'block', width: 20, height: 2, background: 'var(--white)', borderRadius: 2, transition: 'opacity 0.2s', opacity: menuOpen ? 0 : 1 }} />
-            <span style={{ display: 'block', width: 20, height: 2, background: 'var(--white)', borderRadius: 2, transition: 'transform 0.2s', transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }} />
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-
-          {menuOpen && (
-            <div
+        ) : (
+          <nav className="nav-desktop" style={{
+            background: 'rgba(255,255,255,0.04)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            borderRadius: '100px',
+            padding: '10px 20px',
+            display: 'flex', gap: 24, alignItems: 'center',
+            backdropFilter: 'blur(12px)',
+          }}>
+            {LINKS.map(({ href, label }) => (
+              <Link key={href} href={href} style={{ fontSize: 11, fontWeight: 500, color: 'var(--muted)', textDecoration: 'none' }}>
+                {label}
+              </Link>
+            ))}
+            <Link
+              href="/#contacto"
               style={{
-                position: 'fixed', inset: 0, zIndex: 101,
-                background: 'rgba(4,12,10,0.98)',
-                display: 'flex', flexDirection: 'column',
-                alignItems: 'center', justifyContent: 'center',
-                gap: 32,
+                background: 'var(--orange)', color: '#fff',
+                fontWeight: 700, borderRadius: '100px',
+                padding: '6px 16px', fontSize: 10,
+                letterSpacing: '1.5px', textTransform: 'uppercase',
+                textDecoration: 'none',
               }}
             >
-              {LINKS.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  style={{ fontSize: 20, fontWeight: 700, color: 'var(--white)', textDecoration: 'none', fontFamily: 'var(--heading)', letterSpacing: -1 }}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {label}
-                </Link>
-              ))}
-              <Link
-                href="/#contacto"
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  background: 'var(--orange)', color: '#fff',
-                  fontWeight: 700, borderRadius: '100px',
-                  padding: '10px 28px', fontSize: 11,
-                  letterSpacing: '2px', textTransform: 'uppercase',
-                  textDecoration: 'none', marginTop: 16,
-                }}
-              >
-                Hablemos
-              </Link>
-            </div>
-          )}
-        </>
-      ) : (
-        <nav className="nav-desktop" style={{
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.08)',
-          borderRadius: '100px',
-          padding: '10px 20px',
-          display: 'flex', gap: 24, alignItems: 'center',
-          backdropFilter: 'blur(12px)',
-        }}>
-          {LINKS.map(({ href, label }) => (
-            <Link key={href} href={href} style={{ fontSize: 11, fontWeight: 500, color: 'var(--muted)', textDecoration: 'none' }}>
-              {label}
+              Hablemos
             </Link>
-          ))}
-          <Link
-            href="/#contacto"
-            style={{
-              background: 'var(--orange)', color: '#fff',
-              fontWeight: 700, borderRadius: '100px',
-              padding: '6px 16px', fontSize: 10,
-              letterSpacing: '1.5px', textTransform: 'uppercase',
-              textDecoration: 'none',
-            }}
-          >
-            Hablemos
-          </Link>
-        </nav>
+          </nav>
+        )}
+      </header>
+
+      {isMobile && (
+        <MobileDrawer
+          open={menuOpen}
+          links={LINKS}
+          pathname={pathname}
+          onClose={() => setMenuOpen(false)}
+        />
       )}
-    </header>
+    </>
   )
 }
