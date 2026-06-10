@@ -60,13 +60,17 @@ export default function Nav() {
     <>
       <header
         ref={navRef}
+        aria-hidden={menuOpen}
         style={{
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 104,
           padding: isMobile ? '20px 20px 0' : '28px 40px 0',
           display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
+          opacity: menuOpen ? 0 : 1,
+          pointerEvents: menuOpen ? 'none' : 'auto',
+          transition: 'opacity 0.3s ease',
         }}
       >
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+        <Link href="/" tabIndex={menuOpen ? -1 : 0} style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <span style={{ position: 'relative', display: 'inline-block', width: isMobile ? 100 : 130, height: isMobile ? 27 : 34 }}>
             <Image
               src="/images/logo/logo letra blanca.png"
@@ -84,6 +88,7 @@ export default function Nav() {
             onClick={() => setMenuOpen(!menuOpen)}
             className="nav-mobile-toggle"
             aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            tabIndex={menuOpen ? -1 : 0}
             style={{
               background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
               borderRadius: 12, padding: 10, cursor: 'pointer', display: 'flex',
