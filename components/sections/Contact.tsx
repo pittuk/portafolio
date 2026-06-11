@@ -146,7 +146,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <DoubleBezelCard>
+        <DoubleBezelCard variant="ticket">
           <form onSubmit={handleSubmit(onSubmit)} style={{ padding: 28, display: 'flex', flexDirection: 'column', gap: 12 }}>
             {/* Honeypot — oculto */}
             <input type="text" {...register('honeypot')} style={{ display: 'none' }} tabIndex={-1} aria-hidden="true" />
