@@ -131,7 +131,7 @@ function ServiceStaggerCard({ position, service, handleMove, cardSize }: Service
             style={{
               fontSize: 8,
               letterSpacing: 1,
-              borderRadius: '100px',
+              borderRadius: 0,
               padding: '3px 10px',
               color: isCenter ? 'var(--bg)' : 'rgba(0,194,168,0.7)',
               background: isCenter ? 'rgba(4,12,10,0.1)' : 'rgba(0,194,168,0.06)',
