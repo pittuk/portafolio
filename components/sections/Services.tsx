@@ -2,7 +2,7 @@
 import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import ServiceCard from '@/components/ui/ServiceCard'
+import ServiceStaggerCards from '@/components/ui/ServiceStaggerCards'
 import { useMediaQuery } from '@/lib/useMediaQuery'
 
 const SERVICES = [
@@ -15,41 +15,32 @@ const SERVICES = [
 ]
 
 export default function Services() {
-  const gridRef = useRef<HTMLDivElement>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
   const isMobile = useMediaQuery('(max-width: 768px)')
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
-    if (!gridRef.current) return
+    if (!carouselRef.current) return
 
-    const cards = Array.from(gridRef.current.querySelectorAll<HTMLElement>('.service-card'))
-    const wave1 = cards.slice(0, 3)
-    const wave2 = cards.slice(3, 6)
-    const from = { rotateX: 8, y: 60, opacity: 0 }
-
-    gsap.set(cards, { opacity: 0 })
-
-    const makeTo = (extraDelay = 0) => ({
-      rotateX: 0, y: 0, opacity: 1,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: 'power3.out',
-      delay: extraDelay,
-      scrollTrigger: {
-        trigger: gridRef.current,
-        start: 'top 75%',
-        once: true,
-      },
-    })
-
-    const anim1 = gsap.fromTo(wave1, from, makeTo())
-    const anim2 = gsap.fromTo(wave2, from, makeTo(0.12))
+    const anim = gsap.fromTo(
+      carouselRef.current,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: carouselRef.current,
+          start: 'top 75%',
+          once: true,
+        },
+      }
+    )
 
     return () => {
-      anim1.scrollTrigger?.kill()
-      anim1.kill()
-      anim2.scrollTrigger?.kill()
-      anim2.kill()
+      anim.scrollTrigger?.kill()
+      anim.kill()
     }
   }, [])
 
@@ -71,37 +62,8 @@ export default function Services() {
         {!isMobile && <span style={{ fontFamily: 'var(--heading)', fontSize: 80, fontWeight: 800, color: 'rgba(0,194,168,0.08)', letterSpacing: -3, lineHeight: 1 }}>06</span>}
       </div>
 
-      <div
-        ref={gridRef}
-        style={{
-          display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-          gap: isMobile ? 12 : 16,
-        }}
-      >
-        {SERVICES.map((svc, i) => {
-          const isFeatured = i === 0
-          const isWide = i === 5
-          return (
-            <div
-              key={svc.num}
-              className="service-card"
-              style={{
-                gridColumn: isMobile ? '1' : isFeatured ? '1 / 3' : isWide ? '1 / 4' : undefined,
-                minHeight: isMobile ? 'auto' : isWide ? 100 : 220,
-              }}
-            >
-              <ServiceCard
-                num={svc.num}
-                name={svc.name}
-                desc={svc.desc}
-                tags={svc.tags}
-                variant={isMobile ? undefined : isFeatured ? 'featured' : isWide ? 'wide' : undefined}
-                style={{ height: isMobile ? 'auto' : '100%' }}
-              />
-            </div>
-          )
-        })}
+      <div ref={carouselRef}>
+        <ServiceStaggerCards services={SERVICES} />
       </div>
     </section>
   )
