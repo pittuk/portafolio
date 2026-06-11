@@ -8,6 +8,8 @@ import ProjectCard from '@/components/project/ProjectCard'
 import type { Project } from '@/types'
 import { useMediaQuery } from '@/lib/useMediaQuery'
 
+const TICKET_CLIP_PATH = 'polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)'
+
 interface PortfolioProps {
   projects: Project[]
 }
@@ -112,7 +114,7 @@ export default function Portfolio({ projects }: PortfolioProps) {
           {preview.map(project => (
             <ProjectCard key={project._id} project={project} />
           ))}
-          <button onClick={goToProjects} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(0,194,168,0.12)', borderRadius: 20, gap: 8, cursor: 'pointer', color: 'var(--teal)', background: 'rgba(0,194,168,0.02)', padding: '32px 20px' }}>
+          <button onClick={goToProjects} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(0,194,168,0.12)', clipPath: TICKET_CLIP_PATH, gap: 8, cursor: 'pointer', color: 'var(--teal)', background: 'rgba(0,194,168,0.02)', padding: '32px 20px' }}>
             <span style={{ fontFamily: 'var(--heading)', fontSize: 32, fontWeight: 800, lineHeight: 1 }}>→</span>
             <span style={{ fontSize: 9, letterSpacing: 2, textTransform: 'uppercase' }}>Ver todos</span>
             <span style={{ fontSize: 9, letterSpacing: 1, opacity: 0.5 }}>{projects.length} proyectos</span>
@@ -198,7 +200,7 @@ export default function Portfolio({ projects }: PortfolioProps) {
             display: 'flex', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'center',
             border: '1px solid rgba(0,194,168,0.12)',
-            borderRadius: 20, gap: 12, cursor: 'pointer',
+            clipPath: TICKET_CLIP_PATH, gap: 12, cursor: 'pointer',
             color: 'var(--teal)', background: 'rgba(0,194,168,0.02)',
           }}
         >
