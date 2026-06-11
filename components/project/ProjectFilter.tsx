@@ -48,7 +48,7 @@ export default function ProjectFilter({ projects }: Props) {
               background: active === c.key ? 'var(--teal)' : 'rgba(255,255,255,0.04)',
               color: active === c.key ? 'var(--bg)' : 'var(--muted)',
               border: active === c.key ? 'none' : '1px solid rgba(255,255,255,0.06)',
-              borderRadius: 100,
+              borderRadius: 0,
               padding: '8px 20px',
               fontSize: 11,
               fontWeight: 600,
