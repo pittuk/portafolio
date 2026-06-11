@@ -16,6 +16,8 @@ const LINKS = [
   { href: '/proyectos', label: 'Proyectos' },
 ]
 
+const BUTTON_TICKET_CLIP_PATH = 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% 100%, calc(100% - 8px) 100%, 8px 100%, 0 100%, 0 0)'
+
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
@@ -91,7 +93,7 @@ export default function Nav() {
             tabIndex={menuOpen ? -1 : 0}
             style={{
               background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: 12, padding: 10, cursor: 'pointer', display: 'flex',
+              borderRadius: 0, padding: 10, cursor: 'pointer', display: 'flex',
               zIndex: 103, position: 'relative', color: 'var(--white)',
             }}
           >
@@ -101,7 +103,7 @@ export default function Nav() {
           <nav className="nav-desktop" style={{
             background: 'rgba(255,255,255,0.04)',
             border: '1px solid rgba(255,255,255,0.08)',
-            borderRadius: '100px',
+            borderRadius: 0,
             padding: '10px 20px',
             display: 'flex', gap: 24, alignItems: 'center',
             backdropFilter: 'blur(12px)',
@@ -115,7 +117,8 @@ export default function Nav() {
               href="/#contacto"
               style={{
                 background: 'var(--orange)', color: '#fff',
-                fontWeight: 700, borderRadius: '100px',
+                fontWeight: 700, borderRadius: 0,
+                clipPath: BUTTON_TICKET_CLIP_PATH,
                 padding: '6px 16px', fontSize: 10,
                 letterSpacing: '1.5px', textTransform: 'uppercase',
                 textDecoration: 'none',
