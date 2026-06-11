@@ -53,6 +53,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import DoubleBezelCard from '@/components/ui/DoubleBezelCard'
 
+const BUTTON_TICKET_CLIP_PATH = 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% 100%, calc(100% - 8px) 100%, 8px 100%, 0 100%, 0 0)'
+
 const schema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
@@ -155,15 +157,15 @@ export default function Contact() {
               { field: 'name' as const, placeholder: 'Tu nombre' },
               { field: 'email' as const, placeholder: 'Tu email' },
             ].map(({ field, placeholder }) => (
-              <div key={field} style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${errors[field] ? 'rgba(255,80,80,0.4)' : 'rgba(255,255,255,0.06)'}`, borderRadius: 12, padding: 2 }}>
-                <div style={{ background: 'rgba(4,12,10,0.6)', borderRadius: 11 }}>
+              <div key={field} style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${errors[field] ? 'rgba(255,80,80,0.4)' : 'rgba(255,255,255,0.06)'}`, borderRadius: 0, padding: 2 }}>
+                <div style={{ background: 'rgba(4,12,10,0.6)', borderRadius: 0 }}>
                   <input id={field} aria-label={placeholder} placeholder={placeholder} {...register(field)} style={inputStyle} />
                 </div>
               </div>
             ))}
 
-            <div style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${errors.projectType ? 'rgba(255,80,80,0.4)' : 'rgba(255,255,255,0.06)'}`, borderRadius: 12, padding: 2 }}>
-              <div style={{ background: 'rgba(4,12,10,0.6)', borderRadius: 11 }}>
+            <div style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${errors.projectType ? 'rgba(255,80,80,0.4)' : 'rgba(255,255,255,0.06)'}`, borderRadius: 0, padding: 2 }}>
+              <div style={{ background: 'rgba(4,12,10,0.6)', borderRadius: 0 }}>
                 <select id="projectType" aria-label="Tipo de proyecto" {...register('projectType')} style={{ ...inputStyle, appearance: 'none' }}>
                   <option value="">Tipo de proyecto</option>
                   {PROJECT_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
@@ -171,8 +173,8 @@ export default function Contact() {
               </div>
             </div>
 
-            <div style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${errors.message ? 'rgba(255,80,80,0.4)' : 'rgba(255,255,255,0.06)'}`, borderRadius: 12, padding: 2 }}>
-              <div style={{ background: 'rgba(4,12,10,0.6)', borderRadius: 11 }}>
+            <div style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${errors.message ? 'rgba(255,80,80,0.4)' : 'rgba(255,255,255,0.06)'}`, borderRadius: 0, padding: 2 }}>
+              <div style={{ background: 'rgba(4,12,10,0.6)', borderRadius: 0 }}>
                 <textarea
                   id="message"
                   aria-label="Cuéntame sobre tu proyecto"
@@ -184,12 +186,13 @@ export default function Contact() {
               </div>
             </div>
 
-            <div style={{ background: 'rgba(0,194,168,0.1)', border: '1px solid rgba(0,194,168,0.2)', borderRadius: '100px', padding: 4 }}>
+            <div style={{ background: 'rgba(0,194,168,0.1)', border: '1px solid rgba(0,194,168,0.2)', borderRadius: 0, clipPath: BUTTON_TICKET_CLIP_PATH, padding: 4 }}>
               <button
                 type="submit"
                 disabled={status === 'loading'}
                 style={{
-                  background: 'var(--teal)', color: 'var(--bg)', borderRadius: '100px',
+                  background: 'var(--teal)', color: 'var(--bg)', borderRadius: 0,
+                  clipPath: BUTTON_TICKET_CLIP_PATH,
                   padding: '14px 24px', display: 'flex', alignItems: 'center',
                   justifyContent: 'space-between', width: '100%',
                   fontFamily: 'var(--body)', fontSize: 11, fontWeight: 700,
