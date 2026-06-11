@@ -48,3 +48,42 @@ body::before {
   opacity: 0;
   transform: translateY(32px);
 }
+
+/* Services — Stagger Cards Carousel */
+.service-stagger-card {
+  border: 1px solid var(--hairline);
+  transition: border-color 0.3s ease;
+}
+
+.service-stagger-card:hover {
+  border-color: rgba(0, 194, 168, 0.3);
+}
+
+.service-stagger-card.is-active {
+  border-color: var(--teal);
+}
+
+.service-stagger-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: transparent;
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  color: var(--white);
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.service-stagger-nav:hover {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--bg);
+}
+
+.service-stagger-nav:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
