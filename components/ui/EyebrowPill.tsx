@@ -11,7 +11,7 @@ export default function EyebrowPill({ children, className = '' }: EyebrowPillPro
       style={{
         background: 'rgba(0,194,168,0.08)',
         border: '1px solid rgba(0,194,168,0.2)',
-        borderRadius: '100px',
+        borderRadius: 0,
         padding: '5px 14px',
         fontSize: '9px',
         fontWeight: 600,
