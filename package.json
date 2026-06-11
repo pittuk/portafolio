@@ -11,8 +11,12 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^5.4.0",
+    "@radix-ui/react-accordion": "^1.2.13",
+    "@radix-ui/react-slot": "^1.2.5",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^5.30.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "gsap": "^3.15.0",
     "lucide-react": "^1.17.0",
     "next": "^16.2.7",
@@ -23,6 +27,7 @@
     "resend": "^6.12.4",
     "sanity": "^5.30.0",
     "splitting": "^1.1.0",
+    "tailwind-merge": "^3.6.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
