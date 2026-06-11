@@ -7,6 +7,7 @@ import EyebrowPill from '@/components/ui/EyebrowPill'
 import PrimaryButton from '@/components/ui/PrimaryButton'
 import { animateCinematicSlam } from '@/lib/animations/splitText'
 import { useMediaQuery } from '@/lib/useMediaQuery'
+import HeroText from '@/components/ui/hero-shutter-text'
 
 export default function Hero() {
   const isMobile = useMediaQuery('(max-width: 768px)')
@@ -82,53 +83,19 @@ export default function Hero() {
         opacity: 0.4,
       }} />
 
-      {/* Palabras de fondo — apiladas en columna izquierda + WEB a la derecha */}
-      {/* Mobile: visible como watermark estático. Desktop: animadas por GSAP desde opacity:0 */}
-      <div style={{
-        position: 'absolute',
-        top: isMobile ? '8%' : '6%',
-        left: isMobile ? 0 : -20,
-        display: 'flex', flexDirection: 'column',
-        gap: isMobile ? 6 : '2vw',
-        pointerEvents: 'none', zIndex: 1,
-      }}>
-        {[
-          { text: 'DISEÑO',      fs: isMobile ? '100px' : 'clamp(90px,18vw,280px)', ls: isMobile ? -4 : -8, ml: isMobile ? -100 : 0 },
-          { text: 'DESARROLLO',  fs: isMobile ? '68px'  : 'clamp(64px,12vw,180px)', ls: isMobile ? -3 : -6, ml: isMobile ? -48 : 0 },
-          { text: 'CREATIVIDAD', fs: isMobile ? '56px'  : 'clamp(52px,10vw,150px)', ls: isMobile ? -2 : -5, ml: isMobile ? -40 : 0 },
-        ].map((w, i) => (
-          <div
-            key={w.text}
-            ref={el => { if (el) bgWordsRef.current[i] = el }}
-            style={{
-              fontFamily: 'var(--heading)', fontWeight: 800,
-              fontSize: w.fs, lineHeight: 1, letterSpacing: w.ls,
-              color: 'rgba(0,194,168,0.9)',
-              whiteSpace: 'nowrap', userSelect: 'none',
-              opacity: isMobile ? 0.11 : 0,
-              marginLeft: w.ml,
-            }}
-          >
-            {w.text}
-          </div>
-        ))}
-      </div>
-      <div
-        ref={el => { if (el) bgWordsRef.current[3] = el }}
-        style={{
-          position: 'absolute',
-          bottom: isMobile ? '38%' : '5%',
-          right: isMobile ? -8 : -20,
-          fontFamily: 'var(--heading)', fontWeight: 800,
-          fontSize: isMobile ? 'clamp(64px,16vw,80px)' : 'clamp(48px, 9vw, 140px)',
-          color: 'rgba(0,194,168,0.9)',
-          lineHeight: 1, letterSpacing: isMobile ? -4 : -8,
-          pointerEvents: 'none', whiteSpace: 'nowrap',
-          userSelect: 'none', zIndex: 1,
-          opacity: isMobile ? 0.11 : 0,
-        }}
-      >
-        WEB
+      {/* Marca de agua animada con Shutter Text */}
+      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1 }}>
+        <HeroText
+          words={['DISEÑO', 'DESARROLLO', 'CREATIVIDAD', 'WEB']}
+          autoPlay={true}
+          interval={3500}
+          showControls={false}
+          showGrid={false}
+          showAccents={false}
+          className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none"
+          textClassName="text-[14vw] font-black text-[rgba(0,194,168,0.04)] dark:text-[rgba(0,194,168,0.03)] tracking-tighter"
+          sliceColorClassName="text-[rgba(249,115,22,0.06)] dark:text-[rgba(249,115,22,0.04)]"
+        />
       </div>
 
       {/* Contenido */}
