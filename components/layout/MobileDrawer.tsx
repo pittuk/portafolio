@@ -22,6 +22,8 @@ const ICONS: Record<string, LucideIcon> = {
   '/proyectos': FolderKanban,
 }
 
+const BUTTON_TICKET_CLIP_PATH = 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% 100%, calc(100% - 8px) 100%, 8px 100%, 0 100%, 0 0)'
+
 export default function MobileDrawer({ open, links, pathname, onClose }: MobileDrawerProps) {
   return (
     <>
@@ -61,7 +63,7 @@ export default function MobileDrawer({ open, links, pathname, onClose }: MobileD
           style={{
             position: 'absolute', top: 20, right: 16,
             background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
-            borderRadius: 10, padding: 6, cursor: 'pointer',
+            borderRadius: 0, padding: 6, cursor: 'pointer',
             display: 'flex', color: 'var(--white)',
           }}
         >
@@ -72,7 +74,7 @@ export default function MobileDrawer({ open, links, pathname, onClose }: MobileD
           display: 'flex', alignItems: 'center', gap: 10,
           padding: '10px 12px',
           background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
-          borderRadius: 14, marginBottom: 16, marginTop: 36,
+          borderRadius: 0, marginBottom: 16, marginTop: 36,
         }}>
           <span style={{ position: 'relative', display: 'inline-block', width: 36, height: 36, flexShrink: 0 }}>
             <Image
@@ -105,7 +107,7 @@ export default function MobileDrawer({ open, links, pathname, onClose }: MobileD
                 tabIndex={open ? 0 : -1}
                 style={{
                   display: 'flex', alignItems: 'center', gap: 12,
-                  padding: 12, borderRadius: 12,
+                  padding: 12, borderRadius: 0,
                   fontSize: 14, fontWeight: 600, textDecoration: 'none',
                   color: active ? 'var(--teal)' : 'var(--white)',
                   background: active ? 'rgba(0,194,168,0.15)' : 'transparent',
@@ -125,7 +127,8 @@ export default function MobileDrawer({ open, links, pathname, onClose }: MobileD
           style={{
             marginTop: 'auto',
             background: 'var(--orange)', color: '#fff',
-            fontWeight: 700, borderRadius: '100px',
+            fontWeight: 700, borderRadius: 0,
+            clipPath: BUTTON_TICKET_CLIP_PATH,
             padding: '14px 28px', fontSize: 11,
             letterSpacing: '2px', textTransform: 'uppercase',
             textDecoration: 'none', textAlign: 'center',
