@@ -6,6 +6,8 @@ import Image from 'next/image'
 import type { Project } from '@/types'
 import type { Metadata } from 'next'
 
+const BUTTON_TICKET_CLIP_PATH = 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% 100%, calc(100% - 8px) 100%, 8px 100%, 0 100%, 0 0)'
+
 interface Props {
   params: Promise<{ slug: string }>
 }
@@ -141,7 +143,7 @@ export default async function ProjectPage({ params }: Props) {
           {project.tools && project.tools.length > 0 && (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 24 }}>
               {project.tools.map(tool => (
-                <span key={tool} style={{ fontSize: 8, letterSpacing: 1, color: 'rgba(0,194,168,0.7)', background: 'rgba(0,194,168,0.06)', border: '1px solid rgba(0,194,168,0.12)', borderRadius: '100px', padding: '3px 10px' }}>
+                <span key={tool} style={{ fontSize: 8, letterSpacing: 1, color: 'rgba(0,194,168,0.7)', background: 'rgba(0,194,168,0.06)', border: '1px solid rgba(0,194,168,0.12)', borderRadius: 0, padding: '3px 10px' }}>
                   {tool}
                 </span>
               ))}
@@ -162,7 +164,7 @@ export default async function ProjectPage({ params }: Props) {
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 background: 'var(--teal)', color: 'var(--bg)',
-                borderRadius: '100px', padding: '10px 20px',
+                borderRadius: 0, clipPath: BUTTON_TICKET_CLIP_PATH, padding: '10px 20px',
                 fontFamily: 'var(--body)', fontSize: 10, fontWeight: 700,
                 letterSpacing: 1.5, textTransform: 'uppercase',
                 textDecoration: 'none',
@@ -197,7 +199,7 @@ export default async function ProjectPage({ params }: Props) {
                     {row.images.map((url, ci) => (
                       <div key={ci} style={{
                         flex: row.type === 'full' ? '1 1 100%' : '1 1 50%',
-                        borderRadius: 16, overflow: 'hidden',
+                        borderRadius: 0, overflow: 'hidden',
                         position: 'relative',
                         aspectRatio: row.type === 'full' ? '16/9' : '4/5',
                       }}>
@@ -218,28 +220,20 @@ export default async function ProjectPage({ params }: Props) {
             </div>
           ) : project.stackedImages ? (
             <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 0 }}>
-              {project.sliceUrls?.map((url, i) => {
-                const total = project.sliceUrls!.length
-                const borderRadius = i === 0
-                  ? '20px 20px 0 0'
-                  : i === total - 1
-                    ? '0 0 20px 20px'
-                    : '0 0 0 0'
-                return (
-                  <img
-                    key={i}
-                    src={url}
-                    alt={`${project.title} — imagen ${i + 1}`}
-                    loading="lazy"
-                    style={{ width: '100%', display: 'block', borderRadius }}
-                  />
-                )
-              })}
+              {project.sliceUrls?.map((url, i) => (
+                <img
+                  key={i}
+                  src={url}
+                  alt={`${project.title} — imagen ${i + 1}`}
+                  loading="lazy"
+                  style={{ width: '100%', display: 'block', borderRadius: 0 }}
+                />
+              ))}
             </div>
           ) : (
             <>
               {(project.coverUrl || project.coverImage) && (
-                <div style={{ borderRadius: 20, overflow: 'hidden', marginBottom: 16, position: 'relative', aspectRatio: '16/10' }}>
+                <div style={{ borderRadius: 0, overflow: 'hidden', marginBottom: 16, position: 'relative', aspectRatio: '16/10' }}>
                   <Image
                     src={project.coverUrl ?? urlFor(project.coverImage!).width(800).height(500).url()}
                     alt={project.title}
@@ -254,7 +248,7 @@ export default async function ProjectPage({ params }: Props) {
               {(project.sliceUrls && project.sliceUrls.length > 0) && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   {project.sliceUrls.map((url, i) => (
-                    <div key={i} style={{ borderRadius: 20, overflow: 'hidden', position: 'relative', aspectRatio: '16/9' }}>
+                    <div key={i} style={{ borderRadius: 0, overflow: 'hidden', position: 'relative', aspectRatio: '16/9' }}>
                       <Image
                         src={url}
                         alt={`${project.title} — imagen ${i + 1}`}
