@@ -2,6 +2,8 @@
 'use client'
 import { ReactNode } from 'react'
 
+const BUTTON_TICKET_CLIP_PATH = 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% 100%, calc(100% - 8px) 100%, 8px 100%, 0 100%, 0 0)'
+
 interface PrimaryButtonProps {
   children: ReactNode
   onClick?: () => void
@@ -15,7 +17,8 @@ export default function PrimaryButton({ children, onClick, href, icon = '↗' }:
       style={{
         background: 'var(--teal)',
         color: 'var(--bg)',
-        borderRadius: '100px',
+        borderRadius: 0,
+        clipPath: BUTTON_TICKET_CLIP_PATH,
         padding: '14px 28px',
         display: 'flex',
         alignItems: 'center',
@@ -46,7 +49,8 @@ export default function PrimaryButton({ children, onClick, href, icon = '↗' }:
     <div style={{
       background: 'rgba(0,194,168,0.06)',
       border: '1px solid rgba(0,194,168,0.15)',
-      borderRadius: '100px',
+      borderRadius: 0,
+      clipPath: BUTTON_TICKET_CLIP_PATH,
       padding: '5px',
       display: 'inline-block',
     }}>
