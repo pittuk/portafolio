@@ -290,7 +290,7 @@ export default async function ProjectPage({ params }: Props) {
                   <div style={{
                     background: 'rgba(255,255,255,0.02)',
                     border: '1px solid rgba(255,255,255,0.06)',
-                    borderRadius: 20, overflow: 'hidden',
+                    clipPath: 'polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)',
                     transition: 'border-color 0.3s, transform 0.3s',
                   }}>
                     {imgUrl && (
