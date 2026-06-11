@@ -10,10 +10,13 @@ interface HeroTextProps {
   autoPlay?: boolean;
   showControls?: boolean;
   showGrid?: boolean;
+  showGridOnly?: boolean;
   showAccents?: boolean;
+  wrapperOpacity?: number;
   className?: string;
   textClassName?: string;
   sliceColorClassName?: string;
+  gridOpacity?: string;
 }
 
 export default function HeroText({
@@ -22,10 +25,13 @@ export default function HeroText({
   autoPlay = false,
   showControls = true,
   showGrid = true,
+  showGridOnly = false,
   showAccents = true,
+  wrapperOpacity = 1,
   className = "",
   textClassName = "",
   sliceColorClassName = "",
+  gridOpacity = "0.07",
 }: HeroTextProps) {
   const [count, setCount] = useState(0);
 
@@ -44,16 +50,17 @@ export default function HeroText({
     <div
       className={cn(
         "relative flex flex-col items-center justify-center h-full w-full transition-colors duration-700",
-        showGrid && "bg-white dark:bg-zinc-950",
+        showGrid && !showGridOnly && "bg-white dark:bg-zinc-950",
         className
       )}
+      style={{ opacity: wrapperOpacity, filter: 'blur(1.5px)' }}
     >
       {/* Immersive Background Grid */}
-      {showGrid && (
+      {(showGrid || showGridOnly) && (
         <div
-          className="absolute inset-0 opacity-[0.05] dark:opacity-[0.15] pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: `linear-gradient(to right, #888 1px, transparent 1px), linear-gradient(to bottom, #888 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(to right, rgba(0,194,168,${gridOpacity}) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,194,168,${gridOpacity}) 1px, transparent 1px)`,
             backgroundSize: "clamp(20px, 5vw, 60px) clamp(20px, 5vw, 60px)",
           }}
         />
@@ -64,7 +71,7 @@ export default function HeroText({
         <AnimatePresence mode="wait">
           <motion.div
             key={count}
-            className="flex flex-wrap justify-center items-center w-full"
+            className="flex flex-nowrap justify-center items-center w-full"
           >
             {characters.map((char, i) => (
               <div
@@ -77,7 +84,7 @@ export default function HeroText({
                   animate={{ opacity: 1, filter: "blur(0px)" }}
                   transition={{ delay: i * 0.04 + 0.3, duration: 0.8 }}
                   className={cn(
-                    "text-[15vw] leading-none font-black text-zinc-900 dark:text-white tracking-tighter",
+                    "text-[15vw] leading-none font-black text-white tracking-tighter",
                     textClassName
                   )}
                 >
@@ -94,7 +101,7 @@ export default function HeroText({
                     ease: "easeInOut",
                   }}
                   className={cn(
-                    "absolute inset-0 text-[15vw] leading-none font-black text-indigo-600 dark:text-emerald-400 z-10 pointer-events-none",
+                    "absolute inset-0 text-[15vw] leading-none font-black text-orange-400 z-10 pointer-events-none",
                     sliceColorClassName
                   )}
                   style={{ clipPath: "polygon(0 0, 100% 0, 100% 35%, 0 35%)" }}
@@ -112,7 +119,7 @@ export default function HeroText({
                     ease: "easeInOut",
                   }}
                   className={cn(
-                    "absolute inset-0 text-[15vw] leading-none font-black text-zinc-800 dark:text-zinc-200 z-10 pointer-events-none",
+                    "absolute inset-0 text-[15vw] leading-none font-black text-white z-10 pointer-events-none",
                     textClassName
                   )}
                   style={{
@@ -132,7 +139,7 @@ export default function HeroText({
                     ease: "easeInOut",
                   }}
                   className={cn(
-                    "absolute inset-0 text-[15vw] leading-none font-black text-indigo-600 dark:text-emerald-400 z-10 pointer-events-none",
+                    "absolute inset-0 text-[15vw] leading-none font-black text-orange-400 z-10 pointer-events-none",
                     sliceColorClassName
                   )}
                   style={{

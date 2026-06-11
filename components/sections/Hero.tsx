@@ -91,10 +91,11 @@ export default function Hero() {
           interval={3500}
           showControls={false}
           showGrid={false}
+          showGridOnly={true}
+          gridOpacity="1"
           showAccents={false}
+          wrapperOpacity={0.05}
           className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none"
-          textClassName="text-[14vw] font-black text-[rgba(0,194,168,0.04)] dark:text-[rgba(0,194,168,0.03)] tracking-tighter"
-          sliceColorClassName="text-[rgba(249,115,22,0.06)] dark:text-[rgba(249,115,22,0.04)]"
         />
       </div>
 
