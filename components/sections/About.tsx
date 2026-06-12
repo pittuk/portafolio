@@ -12,6 +12,8 @@ const STATS = [{ num: 10, suffix: '+', label: 'Años exp.' }, { num: 50, suffix:
 export default function About() {
   const statsRefs = useRef<(HTMLSpanElement | null)[]>([])
   const photoRef = useRef<HTMLDivElement>(null)
+  const imageWrapRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const hoverRef = useRef(false)
   const rafRef = useRef(0)
@@ -54,6 +56,13 @@ export default function About() {
     rafRef.current = requestAnimationFrame(drawNoise)
 
     gsap.to(canvas, { opacity: 1, duration: 0.2 })
+    gsap.to(imageWrapRef.current, { opacity: 0, duration: 0.3 })
+    const video = videoRef.current
+    if (video) {
+      video.currentTime = 0
+      gsap.to(video, { opacity: 1, duration: 0.3 })
+      video.play()
+    }
   }
 
   const stopNoise = () => {
@@ -61,6 +70,9 @@ export default function About() {
     cancelAnimationFrame(rafRef.current)
 
     gsap.to(canvasRef.current, { opacity: 0, duration: 0.3 })
+    gsap.to(imageWrapRef.current, { opacity: 1, duration: 0.3 })
+    gsap.to(videoRef.current, { opacity: 0, duration: 0.3 })
+    videoRef.current?.pause()
   }
 
   useEffect(() => {
@@ -138,13 +150,27 @@ export default function About() {
             onMouseEnter={startNoise}
             onMouseLeave={stopNoise}
           >
-            <Image
-              src="/images/Luis Cruz.png"
-              alt="Luis Cruz"
-              fill
-              loading="lazy"
-              style={{ objectFit: 'cover', objectPosition: 'top' }}
-              sizes="(max-width: 768px) 100vw, 50vw"
+            <div ref={imageWrapRef} style={{ position: 'absolute', inset: 0 }}>
+              <Image
+                src="/images/Luis Cruz.png"
+                alt="Luis Cruz"
+                fill
+                loading="lazy"
+                style={{ objectFit: 'cover', objectPosition: 'top' }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <video
+              ref={videoRef}
+              src="/video/luis-cruz.mp4"
+              muted
+              playsInline
+              loop
+              preload="metadata"
+              style={{
+                position: 'absolute', inset: 0, width: '100%', height: '100%',
+                objectFit: 'cover', objectPosition: 'top', opacity: 0, pointerEvents: 'none',
+              }}
             />
             <div style={{
               position: 'absolute', inset: 0,
