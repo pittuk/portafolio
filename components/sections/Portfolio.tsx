@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useEffect, useCallback } from 'react'
+import { useRef, useLayoutEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import gsap from 'gsap'
 
@@ -40,7 +40,7 @@ export default function Portfolio({ projects }: PortfolioProps) {
     if (href) safeNavigate(href)
   }, [safeNavigate])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isMobile) return
     if (typeof window !== 'undefined' && window.innerWidth <= 768) return
     gsap.registerPlugin(ScrollTrigger)

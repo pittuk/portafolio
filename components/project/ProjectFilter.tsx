@@ -7,12 +7,10 @@ import { useMediaQuery } from '@/lib/useMediaQuery'
 
 const CATEGORIES = [
   { key: 'all', label: 'Todos' },
-  { key: 'WordPress', label: 'WordPress' },
+  { key: 'Empresas', label: 'Empresas' },
   { key: 'E-commerce', label: 'E-commerce' },
-  { key: 'Desarrollo Web', label: 'Desarrollo Web' },
+  { key: 'Turismo', label: 'Turismo' },
   { key: 'Diseño Gráfico', label: 'Diseño Gráfico' },
-  { key: 'Redes Sociales', label: 'Redes Sociales' },
-  { key: 'Flyers', label: 'Flyers' },
 ]
 
 interface Props {

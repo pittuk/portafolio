@@ -1,0 +1,27 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bloomTeal" cx="85%" cy="90%" r="60%">
+      <stop offset="0%" stop-color="#00c2a8" stop-opacity="0.28" />
+      <stop offset="65%" stop-color="#00c2a8" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="bloomOrange" cx="8%" cy="5%" r="45%">
+      <stop offset="0%" stop-color="#f39200" stop-opacity="0.14" />
+      <stop offset="60%" stop-color="#f39200" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00c2a8" stroke-opacity="0.08" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="#040c0a" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+  <rect width="1200" height="630" fill="url(#bloomOrange)" />
+  <rect width="1200" height="630" fill="url(#bloomTeal)" />
+
+  <line x1="0" y1="80" x2="0" y2="550" stroke="#00c2a8" stroke-opacity="0.4" stroke-width="2" />
+
+  <text x="80" y="360" font-family="'Arial Black', 'Helvetica Neue', sans-serif" font-weight="900" font-size="120" letter-spacing="-4" fill="#f0ede8">
+    Luis<tspan fill="#f39200">.</tspan>
+  </text>
+  <text x="80" y="430" font-family="Arial, sans-serif" font-weight="700" font-size="24" letter-spacing="6" fill="#00c2a8">CRUZ — BLOG</text>
+</svg>

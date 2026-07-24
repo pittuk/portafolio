@@ -1,9 +1,15 @@
 // components/sections/Contact.tsx
 'use client'
 import { useState } from 'react'
+import { Star } from 'lucide-react'
 import { useMediaQuery } from '@/lib/useMediaQuery'
 
 const SOCIALS = [
+  {
+    label: 'Google Reviews',
+    href: 'https://www.google.com/search?sca_esv=00b888171813a75e&rlz=1C1JJTC_esCL1170CL1170&sxsrf=APpeQnv_U7s2ATYtdxPVLqT5NeefO0iLIw%3A1784863168805&q=PITTUK&stick=H4sIAAAAAAAAAONgU1I1qLA0TUpOMrUwMEqxNDBLTUmyMqgwtjA2MTG0TLE0TEq1NDMzXMTKFuAZEhLqDQArXMv1MgAAAA&mat=CdNuzGuIiATP&ved=2ahUKEwiWuZi5reqVAxWWO7kGHbpmCy0QrMcEegQIFBAC',
+    icon: <Star size={18} />,
+  },
   {
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/pittuk/',

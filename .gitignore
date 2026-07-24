@@ -39,3 +39,6 @@ next-env.d.ts
 
 # git worktrees
 .worktrees/
+
+# graphify (internal knowledge graph, not project source)
+graphify-out/

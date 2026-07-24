@@ -62,9 +62,16 @@ export async function animateCinematicSlam(params: {
   ctaEl: HTMLElement | null
   scrollEl: HTMLElement | null
   gsapInstance: any
+  isCancelled?: () => boolean
 }): Promise<any> {
-  const { wordEls, titleSelector, eyebrowEl, descEl, ctaEl, scrollEl, gsapInstance: g } = params
+  const { wordEls, titleSelector, eyebrowEl, descEl, ctaEl, scrollEl, gsapInstance: g, isCancelled } = params
   const Splitting = (await import('splitting')).default
+
+  // The effect that kicked this off may have already cleaned up while the
+  // dynamic import above was in flight (React Fast Refresh, isMobile toggle).
+  // Bail before touching the DOM — otherwise this stale run mutates whatever
+  // element now matches titleSelector, out of sync with React's own tree.
+  if (isCancelled?.()) return null
 
   const W = window.innerWidth
   const H = window.innerHeight

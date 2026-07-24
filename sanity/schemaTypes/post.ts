@@ -9,9 +9,21 @@ export const post = defineType({
     defineField({ name: 'title', type: 'string', validation: r => r.required() }),
     defineField({ name: 'slug', type: 'slug', options: { source: 'title' }, validation: r => r.required() }),
     defineField({ name: 'publishedAt', type: 'datetime' }),
-    defineField({ name: 'excerpt', type: 'text', rows: 3 }),
-    defineField({ name: 'body', type: 'array', of: [{ type: 'block' }, { type: 'image' }] }),
-    defineField({ name: 'coverImage', type: 'image', options: { hotspot: true } }),
-    defineField({ name: 'tags', type: 'array', of: [{ type: 'string' }] }),
+    defineField({ name: 'excerpt', title: 'Resumen', type: 'text', rows: 3 }),
+    defineField({
+      name: 'sections',
+      title: 'Contenido',
+      type: 'array',
+      of: [{
+        type: 'object',
+        name: 'section',
+        fields: [
+          defineField({ name: 'heading', title: 'Subtítulo', type: 'string' }),
+          defineField({ name: 'body', title: 'Texto', type: 'text', rows: 6, validation: r => r.required() }),
+        ],
+      }],
+    }),
+    defineField({ name: 'coverImage', title: 'Imagen de portada', type: 'image', options: { hotspot: true } }),
+    defineField({ name: 'tags', title: 'Etiquetas', type: 'array', of: [{ type: 'string' }] }),
   ],
 })

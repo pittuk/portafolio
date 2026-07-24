@@ -25,6 +25,29 @@ export interface Project {
   stackedImages?: boolean
   mosaicLayout?: boolean
   descriptionText?: string
+  caseStudy?: {
+    problem: string
+    goal: string
+    whatIDid: string[]
+    result: string[]
+  }
+}
+
+export interface PostSection {
+  heading: string
+  body: string
+}
+
+export interface Post {
+  _id: string
+  title: string
+  slug: { current: string }
+  publishedAt: string
+  excerpt: string
+  coverImage?: SanityImage
+  coverUrl?: string
+  tags?: string[]
+  sections: PostSection[]
 }
 
 export interface Settings {

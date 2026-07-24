@@ -27,6 +27,7 @@ export default function Hero() {
     }
 
     let tl: any = null
+    let cancelled = false
     const wordElements = bgWordsRef.current.filter(Boolean)
     const originalContents = new Map<HTMLElement, string>()
     wordElements.forEach(el => originalContents.set(el, el.innerHTML))
@@ -42,12 +43,14 @@ export default function Hero() {
         ctaEl: ctaRef.current,
         scrollEl: null,
         gsapInstance: gsap,
-      }).then(t => { tl = t }).catch(console.error)
+        isCancelled: () => cancelled,
+      }).then(t => { if (!cancelled) tl = t; else t?.kill() }).catch(console.error)
     }
 
     return () => {
+      cancelled = true
       tl?.kill()
-      originalContents.forEach((html, el) => { el.innerHTML = html })
+      originalContents.forEach((html, el) => { if (el.isConnected) el.innerHTML = html })
     }
   }, [isMobile])
 
@@ -127,12 +130,12 @@ export default function Hero() {
           <p
             ref={descRef}
             style={{
-              fontSize: 13, color: 'var(--muted)', lineHeight: 1.8,
-              maxWidth: 360, fontWeight: 400, opacity: isMobile ? 1 : 0,
+              fontSize: isMobile ? 14 : 17, color: 'var(--muted)', lineHeight: 1.7,
+              maxWidth: isMobile ? 360 : 560, fontWeight: 400, opacity: isMobile ? 1 : 0,
             }}
           >
-            Creo sitios web que <strong style={{ color: 'var(--white)', fontWeight: 600 }}>convierten visitas en clientes reales</strong>.
-            Diseño estratégico + desarrollo técnico desde hace más de 10 años.
+            Diseño y desarrollo sitios web y tiendas WooCommerce para empresas en Chile y Latinoamérica que quieren <strong style={{ color: 'var(--white)', fontWeight: 600 }}>vender más sin depender solo de redes sociales</strong>.
+            Estrategia, diseño y código en una sola persona — sin intermediarios.
           </p>
           <div ref={ctaRef} style={{ opacity: isMobile ? 1 : 0, flexShrink: 0 }}>
             <PrimaryButton href="#portfolio">Ver proyectos</PrimaryButton>

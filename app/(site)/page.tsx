@@ -1,8 +1,10 @@
 import Hero from '@/components/sections/Hero'
+import TrustBar from '@/components/sections/TrustBar'
 import Services from '@/components/sections/Services'
 import Portfolio from '@/components/sections/Portfolio'
 import Process from '@/components/sections/Process'
 import About from '@/components/sections/About'
+import Comparison from '@/components/sections/Comparison'
 import Contact from '@/components/sections/Contact'
 import { getProjects } from '@/lib/sanity/queries'
 import { MOCK_PROJECTS } from '@/lib/mock/projects'
@@ -22,8 +24,10 @@ export default async function Home() {
         <p>Especialista en WordPress, WooCommerce, UI/UX design y e-commerce. Más de 5 años de experiencia creando sitios web profesionales para empresas en Chile y Latinoamérica.</p>
       </section>
       <Hero />
+      <TrustBar />
       <Services />
       <Portfolio projects={projects} />
+      <Comparison />
       <Process />
       <About />
       <Contact />

@@ -22,38 +22,52 @@ const items = [
   },
   {
     id: "3",
+    title: "Propuesta",
+    tag: "Cotización",
+    content:
+      "Te envío una propuesta detallada: qué incluye, qué no, tiempos de entrega y costo. Sin sorpresas antes de empezar.",
+  },
+  {
+    id: "4",
     title: "Diseño",
     tag: "UX / UI",
     content:
       "Wireframes y mockups funcionales para validar la visión antes de escribir código. Lo que ves es lo que construimos.",
   },
   {
-    id: "4",
+    id: "5",
     title: "Desarrollo",
     tag: "Código",
     content:
       "Construcción con las tecnologías adecuadas al proyecto: velocidad, SEO y escalabilidad desde el primer día.",
   },
   {
-    id: "5",
+    id: "6",
     title: "Testeo",
     tag: "QA",
     content:
       "Pruebas exhaustivas en dispositivos reales para garantizar que todo funcione correctamente antes del lanzamiento.",
   },
   {
-    id: "6",
+    id: "7",
     title: "Entrega",
     tag: "Lanzar",
     content:
-      "Deploy, testing final, capacitación y soporte post-lanzamiento. Entregado — y funcionando.",
+      "Deploy, testing final y capacitación para que puedas administrar el sitio vos mismo. Entregado — y funcionando.",
+  },
+  {
+    id: "8",
+    title: "Soporte",
+    tag: "Post-lanzamiento",
+    content:
+      "Sigo disponible para actualizaciones, seguridad y cambios menores. Un sitio no está terminado el día que se publica.",
   },
 ];
 
 export function Accordion05() {
   return (
     <div className="max-w-3xl mx-auto px-6 md:px-14">
-      <Accordion type="single" defaultValue="3" collapsible className="w-full">
+      <Accordion type="single" defaultValue="1" collapsible className="w-full">
         {items.map((item) => (
           <AccordionItem value={item.id} key={item.id} className="last:border-b">
             <AccordionTrigger className="text-left overflow-hidden duration-200 hover:no-underline cursor-pointer -space-y-6 data-[state=open]:space-y-0 [&>svg]:hidden">

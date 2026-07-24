@@ -18,6 +18,15 @@
   to { height: 0; }
 }
 
+@keyframes trustbar-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-trustbar-scroll {
+  animation: trustbar-scroll 28s linear infinite;
+}
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;

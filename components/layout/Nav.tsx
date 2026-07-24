@@ -6,14 +6,22 @@ import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Menu, X } from 'lucide-react'
+import { ChevronDown, Menu, X } from 'lucide-react'
 import { useMediaQuery } from '@/lib/useMediaQuery'
 import MobileDrawer from './MobileDrawer'
 
+const SERVICE_LINKS = [
+  { href: '/diseno-web-wordpress', label: 'Diseño web WordPress' },
+  { href: '/diseno-tiendas-woocommerce', label: 'Tiendas WooCommerce' },
+  { href: '/mantenimiento-wordpress', label: 'Mantenimiento WordPress' },
+  { href: '/diseno-web-empresas', label: 'Diseño web para empresas' },
+]
+
 const LINKS = [
-  { href: '/#servicios', label: 'Servicios' },
+  { href: '/#servicios', label: 'Servicios', children: SERVICE_LINKS },
   { href: '/#sobre-mi', label: 'Sobre mí' },
   { href: '/proyectos', label: 'Proyectos' },
+  { href: '/blog', label: 'Blog' },
 ]
 
 const BUTTON_TICKET_CLIP_PATH = 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% 100%, calc(100% - 8px) 100%, 8px 100%, 0 100%, 0 0)'
@@ -23,6 +31,7 @@ export default function Nav() {
   const pathname = usePathname()
   const isMobile = useMediaQuery('(max-width: 768px)')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
   useEffect(() => {
     gsap.set(navRef.current, { y: 0 })
@@ -47,6 +56,7 @@ export default function Nav() {
 
   useEffect(() => {
     setMenuOpen(false)
+    setOpenDropdown(null)
   }, [pathname])
 
   useEffect(() => {
@@ -108,10 +118,52 @@ export default function Nav() {
             display: 'flex', gap: 24, alignItems: 'center',
             backdropFilter: 'blur(12px)',
           }}>
-            {LINKS.map(({ href, label }) => (
-              <Link key={href} href={href} style={{ fontSize: 11, fontWeight: 500, color: 'var(--muted)', textDecoration: 'none' }}>
-                {label}
-              </Link>
+            {LINKS.map(({ href, label, children }) => (
+              children ? (
+                <div
+                  key={href}
+                  style={{ position: 'relative' }}
+                  onMouseEnter={() => setOpenDropdown(href)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <Link
+                    href={href}
+                    onFocus={() => setOpenDropdown(href)}
+                    style={{ fontSize: 11, fontWeight: 500, color: 'var(--muted)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}
+                  >
+                    {label}
+                    <ChevronDown size={12} style={{ transition: 'transform 0.2s', transform: openDropdown === href ? 'rotate(180deg)' : 'none' }} />
+                  </Link>
+                  {openDropdown === href && (
+                    <div style={{ position: 'absolute', top: '100%', left: 0, paddingTop: 12, minWidth: 220 }}>
+                      <div style={{
+                        background: 'rgba(10,20,16,0.98)', border: '1px solid rgba(255,255,255,0.08)',
+                        backdropFilter: 'blur(12px)', padding: 6,
+                        display: 'flex', flexDirection: 'column', gap: 2,
+                      }}>
+                        {children.map(child => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            style={{
+                              fontSize: 11, color: 'var(--muted)', textDecoration: 'none',
+                              padding: '9px 12px', whiteSpace: 'nowrap',
+                            }}
+                            onMouseEnter={e => { e.currentTarget.style.color = 'var(--teal)'; e.currentTarget.style.background = 'rgba(0,194,168,0.06)' }}
+                            onMouseLeave={e => { e.currentTarget.style.color = 'var(--muted)'; e.currentTarget.style.background = 'transparent' }}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link key={href} href={href} style={{ fontSize: 11, fontWeight: 500, color: 'var(--muted)', textDecoration: 'none' }}>
+                  {label}
+                </Link>
+              )
             ))}
             <Link
               href="/#contacto"
