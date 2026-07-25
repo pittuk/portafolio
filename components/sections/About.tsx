@@ -153,7 +153,7 @@ export default function About() {
       <div ref={photoRef} style={{ position: 'relative' }}>
         <DoubleBezelCard variant="ticket">
           <div
-            style={{ borderRadius: 0, height: isMobile ? 320 : 480, position: 'relative', overflow: 'hidden', cursor: 'none' }}
+            style={{ borderRadius: 0, height: isMobile ? 320 : 480, position: 'relative', overflow: 'hidden' }}
             onMouseEnter={startNoise}
             onMouseLeave={stopNoise}
           >
