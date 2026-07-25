@@ -27,15 +27,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await resolvePost(slug)
   if (!post) return { title: 'Artículo no encontrado — Luis Cruz' }
   const image = post.coverUrl ?? (post.coverImage ? urlFor(post.coverImage).width(1200).height(630).url() : null)
+  const seoTitle = post.seoTitle ?? post.title
   return {
-    title: `${post.title} — Luis Cruz`,
+    title: `${seoTitle} — Luis Cruz`,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
-      title: post.title, description: post.excerpt, type: 'article',
+      title: seoTitle, description: post.excerpt, type: 'article',
+      url: `https://pittuk.net/blog/${slug}`,
+      siteName: 'Luis Cruz',
+      locale: 'es_CL',
       images: image ? [{ url: image, width: 1200, height: 630 }] : [],
     },
     twitter: {
-      card: 'summary_large_image', title: post.title, description: post.excerpt,
+      card: 'summary_large_image', title: seoTitle, description: post.excerpt,
       images: image ? [image] : [],
     },
   }
@@ -79,7 +84,7 @@ export default async function BlogPostPage({ params }: Props) {
         <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', letterSpacing: 3, marginBottom: 12, textTransform: 'uppercase' }}>
           {new Date(post.publishedAt).toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' })}
         </p>
-        <h1 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(32px,5vw,56px)', letterSpacing: -2, lineHeight: 1.05, marginBottom: 32 }}>
+        <h1 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(24px,3.2vw,36px)', letterSpacing: -1.5, lineHeight: 1.1, marginBottom: 32 }}>
           {post.title}
         </h1>
 

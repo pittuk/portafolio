@@ -41,6 +41,7 @@ export interface PostSection {
 export interface Post {
   _id: string
   title: string
+  seoTitle?: string
   slug: { current: string }
   publishedAt: string
   excerpt: string

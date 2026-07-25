@@ -4,6 +4,7 @@ export const MOCK_POSTS: Post[] = [
   {
     _id: 'mock-cuanto-cuesta-pagina-web',
     title: '¿Cuánto cuesta una página web en Chile? Guía de precios',
+    seoTitle: '¿Cuánto cuesta una página web en Chile?',
     slug: { current: 'cuanto-cuesta-una-pagina-web-en-chile' },
     publishedAt: '2026-07-20',
     coverUrl: '/images/blog/cuanto-cuesta-una-pagina-web-en-chile-guia-de-precios.webp',
@@ -39,6 +40,7 @@ export const MOCK_POSTS: Post[] = [
   {
     _id: 'mock-elementor-vs-divi',
     title: 'Elementor vs. Divi: ¿cuál elegir para tu sitio en WordPress?',
+    seoTitle: 'Elementor vs. Divi: ¿cuál elegir?',
     slug: { current: 'elementor-vs-divi' },
     publishedAt: '2026-07-08',
     coverUrl: '/images/blog/elementor-vs-divi-cual-elegir-para-tu-sitio-en-wordpress.webp',
@@ -74,6 +76,7 @@ export const MOCK_POSTS: Post[] = [
   {
     _id: 'mock-woocommerce-o-shopify',
     title: 'WooCommerce o Shopify: ¿cuál conviene para tu tienda online?',
+    seoTitle: 'WooCommerce o Shopify: ¿cuál elegir?',
     slug: { current: 'woocommerce-o-shopify' },
     publishedAt: '2026-06-25',
     coverUrl: '/images/blog/woocommerce-o-shopify-cual-conviene-para-tu-tienda-online.webp',
@@ -109,6 +112,7 @@ export const MOCK_POSTS: Post[] = [
   {
     _id: 'mock-como-elegir-agencia-web',
     title: 'Cómo elegir una agencia web (o freelancer) sin arrepentirte',
+    seoTitle: 'Cómo elegir una agencia web sin arrepentirte',
     slug: { current: 'como-elegir-una-agencia-web' },
     publishedAt: '2026-06-10',
     coverUrl: '/images/blog/como-elegir-una-agencia-web-o-freelancer-sin-arrepentirte.webp',
@@ -144,6 +148,7 @@ export const MOCK_POSTS: Post[] = [
   {
     _id: 'mock-errores-tienda-online',
     title: 'Errores comunes al crear una tienda online (y cómo evitarlos)',
+    seoTitle: 'Errores comunes al crear una tienda online',
     slug: { current: 'errores-al-crear-una-tienda-online' },
     publishedAt: '2026-05-28',
     coverUrl: '/images/blog/errores-comunes-al-crear-una-tienda-online-y-como-evitarlos.webp',
@@ -173,6 +178,174 @@ export const MOCK_POSTS: Post[] = [
       {
         heading: 'Lanzar sin un plan de qué pasa después',
         body: 'Una tienda no está "terminada" el día del lanzamiento. Inventario, promociones, seguimiento de carritos abandonados y contenido para SEO necesitan atención continua, o la tienda se estanca apenas pasa el entusiasmo inicial.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-wordpress-vs-wix-vs-squarespace',
+    title: 'WordPress vs. Wix vs. Squarespace: ¿cuál conviene para tu empresa?',
+    seoTitle: 'WordPress vs. Wix vs. Squarespace: ¿cuál usar?',
+    slug: { current: 'wordpress-vs-wix-vs-squarespace' },
+    publishedAt: '2026-05-14',
+    coverUrl: '/images/blog/wordpress-vs-wix-vs-squarespace-cual-conviene-para-tu-empresa.webp',
+    excerpt: 'Los constructores "todo incluido" prometen simplicidad, WordPress promete control. Antes de elegir, conviene entender qué estás sacrificando en cada opción.',
+    tags: ['WordPress', 'Comparativa', 'Guía'],
+    sections: [
+      {
+        heading: '',
+        body: 'Wix y Squarespace venden simplicidad: te registrás, elegís una plantilla y en un día tenés un sitio publicado. WordPress vende control: podés construir cualquier cosa, pero requiere más decisiones. Ninguno es "el mejor" — la pregunta correcta es qué estás dispuesto a sacrificar a cambio de qué.',
+      },
+      {
+        heading: 'Simplicidad vs. control',
+        body: 'Wix y Squarespace resuelven el hosting, la seguridad y las actualizaciones por vos, dentro de un ecosistema cerrado. WordPress te da acceso al código y a miles de plugins, pero la responsabilidad de mantenerlo actualizado y seguro recae en vos o en quien contrates para eso.',
+      },
+      {
+        heading: 'Qué pasa cuando tu negocio crece',
+        body: 'Un catálogo de productos que crece, una integración puntual con un sistema interno, o un blog pensado para SEO técnico son cosas que WordPress resuelve sin pelear con la plataforma. Los constructores todo-en-uno pueden empezar a quedarse cortos justo cuando el negocio empieza a necesitar más.',
+      },
+      {
+        heading: 'SEO y velocidad',
+        body: 'Los tres pueden posicionar bien si están bien configurados, pero WordPress da más margen de ajuste fino — control sobre el hosting, caché, estructura de URLs y datos estructurados — que las plataformas cerradas no siempre permiten tocar.',
+      },
+      {
+        heading: 'Cuál elegiría según el caso',
+        body: 'Si necesitás algo simple, sin plan de crecer mucho y sin presupuesto para mantenimiento, un constructor todo-en-uno reduce fricción. Si tu sitio es una herramienta de negocio que va a evolucionar — más productos, más contenido, más integraciones — WordPress da el margen que después vas a necesitar.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-cuanto-tiempo-toma-pagina-web',
+    title: '¿Cuánto tiempo toma hacer una página web? Plazos reales',
+    seoTitle: '¿Cuánto tiempo toma hacer una página web?',
+    slug: { current: 'cuanto-tiempo-toma-hacer-una-pagina-web' },
+    publishedAt: '2026-04-30',
+    coverUrl: '/images/blog/cuanto-tiempo-toma-hacer-una-pagina-web-plazos-reales.webp',
+    excerpt: 'Los plazos que ves en una cotización rara vez cuentan toda la historia. Esto es lo que realmente determina cuánto tarda un sitio en estar listo.',
+    tags: ['Guía', 'WordPress', 'Proceso'],
+    sections: [
+      {
+        heading: '',
+        body: 'Una landing page simple puede estar lista en una semana. Una tienda online con catálogo grande puede tomar dos meses o más. La diferencia casi nunca es la velocidad de quien construye — es cuánto hay que definir antes de empezar a construir.',
+      },
+      {
+        heading: 'Lo que realmente alarga un proyecto',
+        body: 'Esperar contenido y fotos que no estaban listas, rondas de revisión que se estiran, o decisiones de diseño que cambian a mitad de camino suelen agregar más tiempo que el desarrollo en sí. El código se escribe rápido; las decisiones tardan.',
+      },
+      {
+        heading: 'Plazos aproximados por tipo de sitio',
+        body: 'Una landing page: 1 a 2 semanas. Un sitio corporativo de varias páginas: 3 a 5 semanas. Una tienda WooCommerce con catálogo mediano: 6 a 10 semanas, dependiendo de cuántos productos y qué integraciones necesite. Estos son rangos, no promesas — cada proyecto tiene sus propias variables.',
+      },
+      {
+        heading: 'Cómo acortar el plazo sin apurar mal el proyecto',
+        body: 'Tener el contenido (textos, fotos, logo) listo antes de empezar, definir de antemano quién aprueba cada etapa, y limitar las rondas de revisión a lo esencial son las formas más efectivas de acortar un proyecto sin sacrificar calidad.',
+      },
+      {
+        heading: 'Una señal de alerta',
+        body: 'Desconfiá de un plazo que suena demasiado corto para la complejidad del proyecto — generalmente significa que algo se va a saltar: pruebas, optimización, o contenido pensado con cuidado. Un plazo realista dicho de entrada ahorra sorpresas después.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-senales-pagina-web-pierde-clientes',
+    title: 'Señales de que tu página web te está haciendo perder clientes',
+    seoTitle: 'Señales de que tu web te hace perder clientes',
+    slug: { current: 'senales-de-que-tu-pagina-web-pierde-clientes' },
+    publishedAt: '2026-04-16',
+    coverUrl: '/images/blog/senales-de-que-tu-pagina-web-te-esta-haciendo-perder-clientes.webp',
+    excerpt: 'Muchas páginas web pierden clientes en silencio, sin quejas ni reclamos visibles. Estas son las señales más comunes de que la tuya podría estar entre ellas.',
+    tags: ['Guía', 'Conversión', 'UX'],
+    sections: [
+      {
+        heading: '',
+        body: 'Nadie te va a escribir para avisarte que se fue de tu sitio sin contactarte. Esa pérdida pasa en silencio, y las señales suelen estar a la vista si sabés dónde mirar.',
+      },
+      {
+        heading: 'Tarda más de 3 segundos en cargar',
+        body: 'Cada segundo extra de carga aumenta la probabilidad de que alguien se vaya antes de ver tu contenido. Si tu sitio se siente lento en el celular con datos móviles, probablemente ya estás perdiendo visitas que ni siquiera aparecen en tus métricas de contacto.',
+      },
+      {
+        heading: 'No queda claro qué hacer al entrar',
+        body: 'Si un visitante nuevo tarda más de unos segundos en entender qué ofrecés y qué se supone que haga después, gran parte se va sin actuar. Un mensaje claro y un botón de acción visible valen más que un diseño elaborado.',
+      },
+      {
+        heading: 'El formulario de contacto es la única forma de escribirte',
+        body: 'No todos quieren llenar un formulario para hacer una pregunta simple. Un WhatsApp visible, un correo directo o un botón de llamada reducen la fricción para quien está listo para conversar ahora, no después.',
+      },
+      {
+        heading: 'No se ve bien en el celular',
+        body: 'La mayoría de tus visitantes llegan desde el celular. Si el sitio se ve "aceptable" pero no fue pensado para esa pantalla — textos chicos, botones difíciles de tocar, imágenes que tardan — estás perdiendo conversiones de forma silenciosa.',
+      },
+      {
+        heading: 'No transmite quién está detrás',
+        body: 'Sin fotos reales, sin casos concretos y sin ninguna señal de que hay una persona o empresa real detrás, un sitio genera dudas en vez de confianza — incluso si el diseño es lindo. La confianza se construye con evidencia, no solo con estética.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-seo-tecnico-wordpress-basico',
+    title: 'SEO técnico para WordPress: lo básico que todo sitio necesita',
+    seoTitle: 'SEO técnico para WordPress: lo básico',
+    slug: { current: 'seo-tecnico-para-wordpress-lo-basico' },
+    publishedAt: '2026-04-02',
+    coverUrl: '/images/blog/seo-tecnico-para-wordpress-lo-basico-que-todo-sitio-necesita.webp',
+    excerpt: 'Antes de pensar en estrategias avanzadas de SEO, hay una base técnica que todo sitio en WordPress necesita tener resuelta. Esto es lo esencial.',
+    tags: ['SEO', 'WordPress', 'Guía'],
+    sections: [
+      {
+        heading: '',
+        body: 'El SEO técnico no es la parte más vistosa del posicionamiento, pero es la base sobre la que todo lo demás funciona. Un sitio con buen contenido pero mala base técnica compite en desventaja frente a uno más simple pero bien resuelto.',
+      },
+      {
+        heading: 'Velocidad de carga',
+        body: 'Google usa Core Web Vitals (LCP, INP, CLS) como señal de ranking. Imágenes optimizadas, buen hosting y un tema liviano importan más para el SEO técnico que cualquier plugin de "SEO todo en uno" mal configurado.',
+      },
+      {
+        heading: 'Indexación y estructura',
+        body: 'Un sitemap XML actualizado, un robots.txt que no bloquee por error páginas importantes, y URLs limpias y descriptivas son la base para que Google encuentre e indexe correctamente cada página del sitio.',
+      },
+      {
+        heading: 'Datos estructurados (Schema)',
+        body: 'Marcar tu sitio con Schema.org (Organization, Article, Product, FAQ) ayuda a los buscadores a entender de qué trata cada página, y puede desbloquear resultados enriquecidos en Google — desde estrellas de reseña hasta preguntas frecuentes desplegadas directamente en el resultado de búsqueda.',
+      },
+      {
+        heading: 'Mobile-first, de verdad',
+        body: 'Google indexa principalmente la versión móvil de tu sitio. Un tema "responsive" que solo reacomoda elementos no es lo mismo que un sitio pensado mobile-first, con jerarquía visual y velocidad optimizadas para esa pantalla primero.',
+      },
+      {
+        heading: 'Lo que no resuelve un plugin',
+        body: 'Los plugins de SEO ayudan a completar metadatos, pero no arreglan un hosting lento, un tema mal codificado o contenido débil. El SEO técnico es tanto trabajo de desarrollo como de configuración — y por eso conviene resolverlo con quien entienda ambos lados.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-rediseno-web-cuando-conviene',
+    title: 'Rediseño web: cuándo conviene y qué esperar del proceso',
+    seoTitle: 'Rediseño web: cuándo conviene y qué esperar',
+    slug: { current: 'rediseno-web-cuando-conviene-y-que-esperar' },
+    publishedAt: '2026-03-19',
+    coverUrl: '/images/blog/rediseno-web-cuando-conviene-y-que-esperar-del-proceso.webp',
+    excerpt: 'No todo sitio que "se ve viejo" necesita rediseño, y no todo rediseño resuelve el problema de fondo. Esto es lo que conviene evaluar antes de empezar de nuevo.',
+    tags: ['Guía', 'Rediseño', 'UX'],
+    sections: [
+      {
+        heading: '',
+        body: 'Rediseñar un sitio por estética suele ser la razón equivocada. Vale la pena rediseñar cuando el sitio actual frena el negocio — no solo cuando ya no gusta cómo se ve.',
+      },
+      {
+        heading: 'Señales de que sí conviene',
+        body: 'El sitio no se ve bien en el celular, tarda demasiado en cargar, no refleja los servicios o productos actuales, o simplemente no genera consultas a pesar del tráfico que recibe. Estos son problemas estructurales que un ajuste visual menor no resuelve.',
+      },
+      {
+        heading: 'Cuando el problema no es el diseño',
+        body: 'A veces el sitio se ve bien pero no convierte porque el mensaje no es claro, no hay un llamado a la acción visible, o el tráfico que llega no es el público correcto. Rediseñar sin resolver eso significa gastar en un sitio nuevo que repite el mismo problema con otro color.',
+      },
+      {
+        heading: 'Qué conviene conservar',
+        body: 'Un rediseño no tiene por qué empezar de cero. El contenido que ya posiciona bien en Google, las URLs que ya tienen autoridad acumulada, y cualquier integración que funciona bien deberían mantenerse — tirar todo y reconstruir desde cero suele costar posiciones de SEO ganadas con tiempo.',
+      },
+      {
+        heading: 'Qué esperar del proceso',
+        body: 'Un rediseño serio empieza con una auditoría del sitio actual (qué funciona, qué no, qué mueve tráfico), sigue con una propuesta de arquitectura y diseño, y solo después con desarrollo. Saltarse la auditoría inicial es la forma más común de repetir los mismos errores con una capa nueva de pintura.',
       },
     ],
   },
