@@ -1,14 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { z } from 'zod'
+import { escapeHtml as esc } from '@/lib/escapeHtml'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 const PROJECT_TYPES = ['Sitio WordPress', 'E-Commerce', 'UI/UX Design', 'Diseño Gráfico', 'Otro'] as const
-
-function esc(s: string) {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-}
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Nombre muy corto'),
