@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
+import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -100,6 +101,22 @@ function ChipGroup({ options, value, onChange }: { options: string[]; value: str
   )
 }
 
+function Logo() {
+  return (
+    <div style={{ position: 'fixed', top: 16, left: 20, zIndex: 51 }}>
+      <span style={{ position: 'relative', display: 'inline-block', width: 100, height: 26 }}>
+        <Image
+          src="/images/logo/logo letra blanca.png"
+          alt="Luis Cruz"
+          fill
+          sizes="100px"
+          style={{ objectFit: 'contain', objectPosition: 'left center' }}
+        />
+      </span>
+    </div>
+  )
+}
+
 function Slide({ n, title, children }: { n: number; title: string; children: ReactNode }) {
   return (
     <div style={{ minHeight: '70vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -196,8 +213,10 @@ export default function CuestionarioForm() {
     const target = e.target as HTMLElement
     if (target.tagName === 'TEXTAREA') return
     e.preventDefault()
-    if (isLastStep) handleSubmit(onSubmit)()
-    else goNext()
+    // Submitting is a deliberate action on the last step — only the
+    // "Enviar cuestionario" button does it, Enter never does, so a stray
+    // Enter (e.g. confirming a <select> option) can't fire it early.
+    if (!isLastStep) goNext()
   }
 
   const onSubmit = async (data: CuestionarioData) => {
@@ -217,6 +236,7 @@ export default function CuestionarioForm() {
   if (isSubmitSuccessful) {
     return (
       <div style={{ textAlign: 'center', padding: '80px 20px', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <Logo />
         <h1 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(28px,4vw,40px)', color: 'var(--white)', marginBottom: 12 }}>
           ¡Gracias, {getValues('name')}!<span style={{ color: 'var(--orange)' }}>.</span>
         </h1>
@@ -228,6 +248,7 @@ export default function CuestionarioForm() {
   if (!started) {
     return (
       <div style={{ maxWidth: 640, margin: '0 auto', padding: '20px', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <Logo />
         <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', letterSpacing: 3, marginBottom: 12 }}>BRIEF DE PROYECTO</p>
         <h1 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(32px,6vw,56px)', letterSpacing: -2, lineHeight: 1, color: 'var(--white)', marginBottom: 20 }}>
           Cuéntame sobre tu <span style={{ color: 'var(--teal)' }}>proyecto</span><span style={{ color: 'var(--orange)' }}>.</span>
@@ -259,6 +280,7 @@ export default function CuestionarioForm() {
       <div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: 3, background: 'rgba(255,255,255,0.06)', zIndex: 50 }}>
         <div style={{ height: '100%', width: `${((step + 1) / STEP_TITLES.length) * 100}%`, background: 'var(--teal)', transition: 'width 0.3s ease' }} />
       </div>
+      <Logo />
 
       <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown} noValidate>
         <input type="text" {...register('honeypot')} style={{ display: 'none' }} tabIndex={-1} aria-hidden="true" />
