@@ -64,7 +64,6 @@ export default function ProjectCard({ project, style }: ProjectCardProps) {
           clipPath: 'polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)',
           height: '100%',
           minHeight: 200,
-          cursor: 'none',
           ...style,
         }}
       >
