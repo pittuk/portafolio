@@ -128,11 +128,16 @@ export default function CuestionarioForm() {
   })
 
   useEffect(() => {
-    const draft = typeof window !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null
-    if (draft) {
-      try { reset(JSON.parse(draft)) } catch { /* ignore corrupt draft */ }
-      const savedStep = Number(localStorage.getItem(STEP_KEY))
-      setStep(Number.isFinite(savedStep) && savedStep > 0 ? savedStep : 0)
+    // STEP_KEY only ever gets written once the user clicks "Comenzar" — its
+    // presence (not just STORAGE_KEY's) is what tells us a session is in
+    // progress, so a fresh visit always shows the welcome screen.
+    const savedStep = typeof window !== 'undefined' ? localStorage.getItem(STEP_KEY) : null
+    if (savedStep !== null) {
+      const draft = localStorage.getItem(STORAGE_KEY)
+      if (draft) {
+        try { reset(JSON.parse(draft)) } catch { /* ignore corrupt draft */ }
+      }
+      setStep(Number(savedStep) || 0)
       setStarted(true)
       return
     }
@@ -142,12 +147,13 @@ export default function CuestionarioForm() {
   }, [])
 
   useEffect(() => {
+    if (!started) return
     const sub = watch(values => {
       const { brandManualFile: _omit, ...rest } = values
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(rest)) } catch { /* storage full, skip */ }
     })
     return () => sub.unsubscribe()
-  }, [watch])
+  }, [watch, started])
 
   useEffect(() => {
     if (started) localStorage.setItem(STEP_KEY, String(step))
