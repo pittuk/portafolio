@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
       { source: '/project/web-e-commerce-futbolista-alexander-gonzalez', destination: '/proyectos/alexander-gonzalez', permanent: true },
       { source: '/project/wui-coffee-drink-lounge', destination: '/proyectos/wui-coffee-drink-lounge', permanent: true },
       { source: '/project/contratista-mineria', destination: '/proyectos/contratista-mineria', permanent: true },
+      { source: '/project/web-para-empresa-comercializadora-de-piedras', destination: '/proyectos/piedras-naturales', permanent: true },
       // Discontinued legacy WordPress projects → portfolio hub
       { source: '/project/:slug*', destination: '/proyectos', permanent: true },
       { source: '/project_category/:slug*', destination: '/proyectos', permanent: true },
