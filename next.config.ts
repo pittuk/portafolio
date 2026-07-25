@@ -18,6 +18,13 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // www → apex, the canonical domain used across metadata/schema
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.pittuk.net' }],
+        destination: 'https://pittuk.net/:path*',
+        permanent: true,
+      },
       // Legacy WordPress projects that map 1:1 to a current portfolio entry
       { source: '/project/voy-de-una', destination: '/proyectos/voy-de-una', permanent: true },
       { source: '/project/web-e-commerce-futbolista-alexander-gonzalez', destination: '/proyectos/alexander-gonzalez', permanent: true },
