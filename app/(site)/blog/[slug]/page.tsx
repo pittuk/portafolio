@@ -63,13 +63,18 @@ export default async function BlogPostPage({ params }: Props) {
     )
   }
 
+  const image = post.coverUrl ?? (post.coverImage ? urlFor(post.coverImage).width(1200).height(630).url() : null)
   const articleLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
-    datePublished: post.publishedAt,
     description: post.excerpt,
-    author: { '@type': 'Person', name: 'Luis Cruz' },
+    image: image ? [image] : undefined,
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://pittuk.net/blog/${slug}` },
+    author: { '@id': 'https://pittuk.net/#person' },
+    publisher: { '@id': 'https://pittuk.net/#organization' },
   }
 
   return (

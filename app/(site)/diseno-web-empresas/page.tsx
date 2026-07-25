@@ -3,10 +3,23 @@ import { getProjects } from '@/lib/sanity/queries'
 import { MOCK_PROJECTS } from '@/lib/mock/projects'
 import ServicePageTemplate from '@/components/service/ServicePageTemplate'
 
+const TITLE = 'Diseño web para empresas — Luis Cruz'
+const DESCRIPTION = 'Sitios corporativos pensados para transmitir solidez y generar consultas reales, no solo una tarjeta de presentación online.'
+
 export const metadata: Metadata = {
-  title: 'Diseño web para empresas — Luis Cruz',
-  description: 'Sitios corporativos pensados para transmitir solidez y generar consultas reales, no solo una tarjeta de presentación online.',
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: '/diseno-web-empresas' },
+  openGraph: {
+    title: TITLE, description: DESCRIPTION, type: 'website',
+    url: 'https://pittuk.net/diseno-web-empresas',
+    siteName: 'Luis Cruz', locale: 'es_CL',
+    images: [{ url: 'https://pittuk.net/images/logo/icono.svg', width: 512, height: 512 }],
+  },
+  twitter: {
+    card: 'summary_large_image', title: TITLE, description: DESCRIPTION,
+    images: ['https://pittuk.net/images/logo/icono.svg'],
+  },
 }
 
 const SLUGS = ['cablepar', 'contratista-mineria', 'empresa-de-alimentos', 'arriendo-de-maquinaria']
@@ -24,6 +37,8 @@ export default async function DisenoWebEmpresasPage() {
     <ServicePageTemplate
       eyebrow="Servicios"
       title={<>Diseño web para <span style={{ color: 'var(--teal)' }}>empresas</span><span style={{ color: 'var(--orange)' }}>.</span></>}
+      name="Diseño web para empresas"
+      slug="diseno-web-empresas"
       intro="Sitios corporativos pensados para transmitir solidez y generar consultas reales, no solo una tarjeta de presentación online."
       included={[
         'Arquitectura de información clara por tipo de servicio',

@@ -8,10 +8,23 @@ import type { Post } from '@/types'
 
 const TICKET_CLIP_PATH = 'polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)'
 
+const TITLE = 'Blog — Luis Cruz'
+const DESCRIPTION = 'Artículos sobre diseño web, WordPress y WooCommerce para empresas en Chile y Latinoamérica.'
+
 export const metadata: Metadata = {
-  title: 'Blog — Luis Cruz',
-  description: 'Artículos sobre diseño web, WordPress y WooCommerce para empresas en Chile y Latinoamérica.',
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: '/blog' },
+  openGraph: {
+    title: TITLE, description: DESCRIPTION, type: 'website',
+    url: 'https://pittuk.net/blog',
+    siteName: 'Luis Cruz', locale: 'es_CL',
+    images: [{ url: 'https://pittuk.net/images/logo/icono.svg', width: 512, height: 512 }],
+  },
+  twitter: {
+    card: 'summary_large_image', title: TITLE, description: DESCRIPTION,
+    images: ['https://pittuk.net/images/logo/icono.svg'],
+  },
 }
 
 export default async function BlogPage() {
@@ -23,8 +36,27 @@ export default async function BlogPage() {
   }
   if (!posts.length) posts = MOCK_POSTS
 
+  const collectionLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: TITLE,
+    description: DESCRIPTION,
+    url: 'https://pittuk.net/blog',
+    isPartOf: { '@id': 'https://pittuk.net/#website' },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: posts.map((post, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `https://pittuk.net/blog/${post.slug.current}`,
+        name: post.title,
+      })),
+    },
+  }
+
   return (
     <section className="section-padding" style={{ padding: '100px 20px 60px', minHeight: '100vh' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
       <h1 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(36px,10vw,96px)', letterSpacing: -3, lineHeight: 1, marginBottom: 48 }}>
         Blog<span style={{ color: 'var(--orange)' }}>.</span>
       </h1>

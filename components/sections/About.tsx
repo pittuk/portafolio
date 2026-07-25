@@ -7,7 +7,12 @@ import DoubleBezelCard from '@/components/ui/DoubleBezelCard'
 import { useMediaQuery } from '@/lib/useMediaQuery'
 
 const SKILLS = ['WordPress', 'Elementor', 'Divi', 'HTML/CSS', 'JavaScript', 'WooCommerce', 'MySQL', 'cPanel', 'Photoshop', 'Illustrator', 'SQL']
-const STATS = [{ num: 10, suffix: '+', label: 'Años exp.' }, { num: 50, suffix: '+', label: 'Proyectos' }, { num: 100, suffix: '%', label: 'Compromiso' }]
+const STATS = [
+  { num: 15, suffix: '+', label: 'Años exp.' },
+  { num: 85, suffix: '+', label: 'Proyectos' },
+  { num: 47, suffix: '+', label: 'Tiendas WooCommerce' },
+  { num: 90, suffix: '%', label: 'Recomendación' },
+]
 
 export default function About() {
   const statsRefs = useRef<(HTMLSpanElement | null)[]>([])
@@ -122,7 +127,7 @@ export default function About() {
           Luis<br />Cruz<span style={{ color: 'var(--orange)' }}>.</span>
         </h2>
         <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 2, marginBottom: 32 }}>
-          Mi trayectoria comenzó como diseñador gráfico, donde adquirí una base sólida en comunicación visual y creatividad. Luego migré al mundo digital especializándome en maquetación web con HTML y CSS, hasta llegar a WordPress, donde hoy construyo sitios completos con Elementor y Divi. Combino diseño estratégico, experiencia de usuario y desarrollo técnico para crear soluciones digitales eficientes y escalables que aportan crecimiento real a cada proyecto.
+          Mi trayectoria comenzó como diseñador gráfico, donde adquirí una base sólida en comunicación visual y creatividad. Luego migré al mundo digital especializándome en maquetación web con HTML y CSS, hasta llegar a WordPress, donde hoy construyo sitios completos con Elementor y Divi. Combino diseño estratégico, experiencia de usuario y desarrollo técnico para crear soluciones digitales eficientes y escalables que aportan crecimiento real a cada proyecto. He trabajado con clientes en Chile, Venezuela, Estados Unidos, Argentina, Colombia y España.
         </p>
         <div style={{ display: 'flex', gap: isMobile ? 20 : 32, marginBottom: 32, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           {STATS.map((stat, i) => (

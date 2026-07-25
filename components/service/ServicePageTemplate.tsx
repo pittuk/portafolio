@@ -15,6 +15,8 @@ export interface ServiceFAQ {
 interface ServicePageTemplateProps {
   eyebrow: string
   title: React.ReactNode
+  name: string
+  slug: string
   intro: string
   included: string[]
   faq: ServiceFAQ[]
@@ -23,7 +25,7 @@ interface ServicePageTemplateProps {
 }
 
 export default function ServicePageTemplate({
-  eyebrow, title, intro, included, faq, projects, projectsHeading = 'Sitios que construí',
+  eyebrow, title, name, slug, intro, included, faq, projects, projectsHeading = 'Sitios que construí',
 }: ServicePageTemplateProps) {
   const faqLd = {
     '@context': 'https://schema.org',
@@ -35,9 +37,30 @@ export default function ServicePageTemplate({
     })),
   }
 
+  const serviceLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name,
+    description: intro,
+    url: `https://pittuk.net/${slug}`,
+    provider: { '@id': 'https://pittuk.net/#organization' },
+    areaServed: ['CL', 'AR', 'CO', 'VE', 'ES', 'US'],
+  }
+
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://pittuk.net/' },
+      { '@type': 'ListItem', position: 2, name, item: `https://pittuk.net/${slug}` },
+    ],
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
       <section style={{ padding: '140px 20px 0', maxWidth: 900, margin: '0 auto' }}>
         <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 16 }}>
