@@ -20,9 +20,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: `${project.title} — Luis Cruz`,
       description: project.descriptionText?.slice(0, 160) || `Proyecto de ${project.client || 'Luis Cruz'}`,
+      alternates: { canonical: `/proyectos/${slug}` },
       openGraph: {
         title: `${project.title} — Luis Cruz`,
         description: project.descriptionText?.slice(0, 160) || `Proyecto de diseño y desarrollo web`,
+        url: `https://pittuk.net/proyectos/${slug}`,
+        siteName: 'Luis Cruz',
+        locale: 'es_CL',
+        type: 'article',
         images: project.coverUrl ? [{ url: project.coverUrl }] : [],
       },
       twitter: {
@@ -37,9 +42,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (mock) return {
       title: `${mock.title} — Luis Cruz`,
       description: mock.descriptionText?.slice(0, 160) || `Proyecto de ${mock.client || 'Luis Cruz'}`,
+      alternates: { canonical: `/proyectos/${slug}` },
       openGraph: {
         title: `${mock.title} — Luis Cruz`,
         description: mock.descriptionText?.slice(0, 160) || `Proyecto de diseño y desarrollo web`,
+        url: `https://pittuk.net/proyectos/${slug}`,
+        siteName: 'Luis Cruz',
+        locale: 'es_CL',
+        type: 'article',
         images: mock.coverUrl ? [{ url: mock.coverUrl }] : [],
       },
       twitter: {

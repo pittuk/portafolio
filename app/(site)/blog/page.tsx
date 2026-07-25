@@ -11,6 +11,7 @@ const TICKET_CLIP_PATH = 'polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100%
 export const metadata: Metadata = {
   title: 'Blog — Luis Cruz',
   description: 'Artículos sobre diseño web, WordPress y WooCommerce para empresas en Chile y Latinoamérica.',
+  alternates: { canonical: '/blog' },
 }
 
 export default async function BlogPage() {
