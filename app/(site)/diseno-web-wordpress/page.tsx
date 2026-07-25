@@ -3,10 +3,23 @@ import { getProjects } from '@/lib/sanity/queries'
 import { MOCK_PROJECTS } from '@/lib/mock/projects'
 import ServicePageTemplate from '@/components/service/ServicePageTemplate'
 
+const TITLE = 'Diseño web en WordPress — Luis Cruz'
+const DESCRIPTION = 'Sitios web profesionales en WordPress, diseñados y desarrollados por una sola persona: sin intermediarios, con foco en velocidad, SEO técnico y conversión.'
+
 export const metadata: Metadata = {
-  title: 'Diseño web en WordPress — Luis Cruz',
-  description: 'Sitios web profesionales en WordPress, diseñados y desarrollados por una sola persona: sin intermediarios, con foco en velocidad, SEO técnico y conversión.',
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: '/diseno-web-wordpress' },
+  openGraph: {
+    title: TITLE, description: DESCRIPTION, type: 'website',
+    url: 'https://pittuk.net/diseno-web-wordpress',
+    siteName: 'Luis Cruz', locale: 'es_CL',
+    images: [{ url: 'https://pittuk.net/images/logo/icono.svg', width: 512, height: 512 }],
+  },
+  twitter: {
+    card: 'summary_large_image', title: TITLE, description: DESCRIPTION,
+    images: ['https://pittuk.net/images/logo/icono.svg'],
+  },
 }
 
 const SLUGS = ['cablepar', 'varity-labs', 'contratista-mineria']
@@ -24,6 +37,8 @@ export default async function DisenoWebWordPressPage() {
     <ServicePageTemplate
       eyebrow="Servicios"
       title={<>Diseño web en <span style={{ color: 'var(--teal)' }}>WordPress</span><span style={{ color: 'var(--orange)' }}>.</span></>}
+      name="Diseño web en WordPress"
+      slug="diseno-web-wordpress"
       intro="Sitios web profesionales en WordPress, diseñados y desarrollados por una sola persona: sin intermediarios, con foco en velocidad, SEO técnico y conversión."
       included={[
         'Diseño UI/UX a medida — no plantillas genéricas',

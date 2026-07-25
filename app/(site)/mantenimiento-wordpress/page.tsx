@@ -3,10 +3,23 @@ import { getProjects } from '@/lib/sanity/queries'
 import { MOCK_PROJECTS } from '@/lib/mock/projects'
 import ServicePageTemplate from '@/components/service/ServicePageTemplate'
 
+const TITLE = 'Mantenimiento de sitios WordPress — Luis Cruz'
+const DESCRIPTION = 'Actualizaciones, seguridad, backups y soporte para que tu sitio siga funcionando bien después del lanzamiento, sin que tengas que pensar en eso.'
+
 export const metadata: Metadata = {
-  title: 'Mantenimiento de sitios WordPress — Luis Cruz',
-  description: 'Actualizaciones, seguridad, backups y soporte para que tu sitio siga funcionando bien después del lanzamiento, sin que tengas que pensar en eso.',
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: '/mantenimiento-wordpress' },
+  openGraph: {
+    title: TITLE, description: DESCRIPTION, type: 'website',
+    url: 'https://pittuk.net/mantenimiento-wordpress',
+    siteName: 'Luis Cruz', locale: 'es_CL',
+    images: [{ url: 'https://pittuk.net/images/logo/icono.svg', width: 512, height: 512 }],
+  },
+  twitter: {
+    card: 'summary_large_image', title: TITLE, description: DESCRIPTION,
+    images: ['https://pittuk.net/images/logo/icono.svg'],
+  },
 }
 
 const SLUGS = ['cablepar', 'fluye-por-chile', 'varity-labs']
@@ -24,6 +37,8 @@ export default async function MantenimientoWordPressPage() {
     <ServicePageTemplate
       eyebrow="Servicios"
       title={<>Mantenimiento de sitios <span style={{ color: 'var(--teal)' }}>WordPress</span><span style={{ color: 'var(--orange)' }}>.</span></>}
+      name="Mantenimiento de sitios WordPress"
+      slug="mantenimiento-wordpress"
       intro="Actualizaciones, seguridad, backups y soporte para que tu sitio siga funcionando bien después del lanzamiento, sin que tengas que pensar en eso."
       included={[
         'Actualizaciones de WordPress, plugins y tema',
