@@ -1,21 +1,33 @@
 'use client'
-import { useEffect, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   cuestionarioSchema, type CuestionarioData,
   PROJECT_TYPES, YES_NO_UNSURE, LOGO_OPTIONS, COPY_OPTIONS, IMAGES_OPTIONS, MAINTENANCE_OPTIONS,
-  SECTION_OPTIONS, FEATURE_OPTIONS, STYLE_OPTIONS,
+  SECTION_OPTIONS, FEATURE_OPTIONS, STYLE_OPTIONS, WEBSITE_OBJECTIVES, TONE_PREFERENCE, TYPOGRAPHY_STYLE,
+  MAX_ATTACHMENT_BYTES,
 } from '@/lib/cuestionario/schema'
 
 const STORAGE_KEY = 'cuestionario-draft'
 const BUTTON_TICKET_CLIP_PATH = 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% 100%, calc(100% - 8px) 100%, 8px 100%, 0 100%, 0 0)'
+const MAX_ATTACHMENT_MB = MAX_ATTACHMENT_BYTES / (1024 * 1024)
 
 const labelStyle: React.CSSProperties = { display: 'block', fontSize: 10, fontWeight: 600, color: 'var(--muted)', letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 6 }
+const hintStyle: React.CSSProperties = { fontSize: 11, color: 'rgba(240,237,232,0.35)', marginTop: 6 }
 const inputStyle: React.CSSProperties = {
   background: 'rgba(4,12,10,0.6)', border: 'none', outline: 'none',
   fontFamily: 'var(--body)', fontSize: 13, color: 'var(--white)', width: '100%', padding: '12px 16px',
+}
+
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => resolve((reader.result as string).split(',')[1] ?? '')
+    reader.onerror = reject
+    reader.readAsDataURL(file)
+  })
 }
 
 function FieldWrap({ error, children }: { error?: boolean; children: ReactNode }) {
@@ -26,11 +38,12 @@ function FieldWrap({ error, children }: { error?: boolean; children: ReactNode }
   )
 }
 
-function Field({ label, required, error, children }: { label: string; required?: boolean; error?: boolean; children: ReactNode }) {
+function Field({ label, required, error, hint, children }: { label: string; required?: boolean; error?: boolean; hint?: string; children: ReactNode }) {
   return (
     <div>
       <label style={labelStyle}>{label}{required && ' *'}</label>
       <FieldWrap error={error}>{children}</FieldWrap>
+      {hint && <p style={hintStyle}>{hint}</p>}
     </div>
   )
 }
@@ -80,6 +93,8 @@ const selectStyle: React.CSSProperties = { ...inputStyle, appearance: 'none' }
 
 export default function CuestionarioForm() {
   const searchParams = useSearchParams()
+  const [fileName, setFileName] = useState('')
+  const [fileError, setFileError] = useState('')
   const {
     register, handleSubmit, watch, reset, setValue, getValues,
     formState: { errors, isSubmitting, isSubmitSuccessful },
@@ -103,12 +118,29 @@ export default function CuestionarioForm() {
 
   useEffect(() => {
     const sub = watch(values => {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(values))
+      const { brandManualFile: _omit, ...rest } = values
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(rest)) } catch { /* storage full, skip */ }
     })
     return () => sub.unsubscribe()
   }, [watch])
 
   const values = watch()
+
+  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    if (file.size > MAX_ATTACHMENT_BYTES) {
+      setFileError(`El archivo pesa más de ${MAX_ATTACHMENT_MB}MB. Usa el link de abajo en su lugar.`)
+      setFileName('')
+      setValue('brandManualFile', undefined)
+      e.target.value = ''
+      return
+    }
+    setFileError('')
+    const base64 = await fileToBase64(file)
+    setValue('brandManualFile', { name: file.name, type: file.type, base64 })
+    setFileName(file.name)
+  }
 
   const onSubmit = async (data: CuestionarioData) => {
     const res = await fetch('/api/cuestionario', {
@@ -141,7 +173,7 @@ export default function CuestionarioForm() {
         Cuéntame sobre tu <span style={{ color: 'var(--teal)' }}>proyecto</span><span style={{ color: 'var(--orange)' }}>.</span>
       </h1>
       <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.8, marginBottom: 48 }}>
-        Entre más detalles me des, más rápido y certero va a ser el diseño. No hace falta responder todo — si algo prefieres dejarlo a mi criterio, dilo y avanzamos. Tus respuestas se guardan automáticamente en este navegador mientras completas el formulario.
+        Entre más detalles me des, más rápido y certero va a ser el diseño. No hace falta responder todo — si algo prefieres dejarlo a mi criterio, dilo y avanzamos. Tus respuestas de texto se guardan automáticamente en este navegador mientras completas el formulario (el archivo adjunto no, así que evita recargar la página después de subirlo).
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -171,19 +203,43 @@ export default function CuestionarioForm() {
           </Field>
         </Section>
 
-        <Section n={2} title="Objetivos">
-          <Field label="¿Qué quieres lograr con este sitio?" required error={!!errors.mainGoal}>
-            <textarea {...register('mainGoal')} rows={3} placeholder="Ej: vender más, mostrar mi portafolio, generar consultas..." style={{ ...inputStyle, resize: 'none' }} />
+        <Section n={2} title="ADN de marca">
+          <Field label="Si tu marca fuera una persona, ¿cómo sería?" hint="Ej: joven y atrevida, seria y corporativa, cercana y artesanal, innovadora y tech-forward.">
+            <textarea {...register('personalityDescription')} rows={2} style={{ ...inputStyle, resize: 'none' }} />
           </Field>
-          <Field label="Público objetivo">
-            <input {...register('targetAudience')} placeholder="¿A quién le hablas?" style={inputStyle} />
+          <Field label="3 valores que deben percibirse al entrar a tu web" hint="Ej: confianza, innovación, rapidez, elegancia, cercanía.">
+            <input {...register('coreValues')} style={inputStyle} />
           </Field>
-          <Field label="Acción principal que debe tomar el visitante">
-            <input {...register('mainCTA')} placeholder="Ej: escribir por WhatsApp, comprar, agendar una hora" style={inputStyle} />
+          <Field label="¿Qué te diferencia de la competencia?">
+            <textarea {...register('valueProposition')} rows={2} style={{ ...inputStyle, resize: 'none' }} />
+          </Field>
+          <Field label="¿En qué idioma(s) se presentará la web?">
+            <input {...register('languages')} placeholder="Ej: español, o español e inglés" style={inputStyle} />
           </Field>
         </Section>
 
-        <Section n={3} title="Estructura y funcionalidades">
+        <Section n={3} title="Objetivos">
+          <Field label="¿Qué quieres lograr con este sitio?" required error={!!errors.mainGoal}>
+            <textarea {...register('mainGoal')} rows={3} placeholder="Ej: vender más, mostrar mi portafolio, generar consultas..." style={{ ...inputStyle, resize: 'none' }} />
+          </Field>
+          <Field label="Cliente ideal / público objetivo" hint="Edad, intereses, ubicación, ocupación...">
+            <input {...register('targetAudience')} placeholder="¿A quién le hablas?" style={inputStyle} />
+          </Field>
+          <Field label="Objetivo estratégico de la web">
+            <select {...register('websiteObjective')} style={selectStyle}>
+              <option value="">Selecciona una opción</option>
+              {WEBSITE_OBJECTIVES.map(o => <option key={o} value={o}>{o}</option>)}
+            </select>
+          </Field>
+          <Field label="CTA principal" hint="Lo más importante que debe hacer el visitante al entrar.">
+            <input {...register('mainCTA')} placeholder="Ej: escribir por WhatsApp, comprar, agendar una hora" style={inputStyle} />
+          </Field>
+          <Field label="CTA secundario (opcional)">
+            <input {...register('secondaryCTA')} style={inputStyle} />
+          </Field>
+        </Section>
+
+        <Section n={4} title="Estructura y funcionalidades">
           <Field label="Páginas o secciones que imaginas">
             <input {...register('pagesEstimate')} placeholder="Ej: Inicio, Servicios, Contacto (o 'no sé, guíame')" style={inputStyle} />
           </Field>
@@ -214,7 +270,7 @@ export default function CuestionarioForm() {
           </Field>
         </Section>
 
-        <Section n={4} title="Contenido">
+        <Section n={5} title="Contenido">
           <Field label="Logo">
             <select {...register('hasLogo')} style={selectStyle}>
               <option value="">Selecciona una opción</option>
@@ -233,31 +289,77 @@ export default function CuestionarioForm() {
               {IMAGES_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
             </select>
           </Field>
+          <div>
+            <label style={labelStyle}>Manual de identidad gráfica (opcional)</label>
+            <FieldWrap>
+              <input type="file" accept=".pdf,.jpg,.jpeg,.png,.svg" onChange={handleFile} style={{ ...inputStyle, padding: '10px 12px' }} />
+            </FieldWrap>
+            {fileName && <p style={hintStyle}>Adjuntado: {fileName}</p>}
+            {fileError && <p style={{ ...hintStyle, color: 'rgba(255,80,80,0.8)' }}>{fileError}</p>}
+            {!fileError && <p style={hintStyle}>Si tienes un manual de marca o de uso del logo, adjúntalo aquí (máx. {MAX_ATTACHMENT_MB}MB).</p>}
+          </div>
+          <Field label="O un link a tu manual de marca" hint="Si el archivo pesa más de lo permitido, comparte un link de Drive/WeTransfer.">
+            <input {...register('brandManualLink')} style={inputStyle} />
+          </Field>
         </Section>
 
-        <Section n={5} title="Diseño y estilo">
+        <Section n={6} title="Diseño y estilo">
           <Field label="Paleta de colores">
             <input {...register('colorPalette')} placeholder="Colores o códigos hex, o 'a tu criterio'" style={inputStyle} />
           </Field>
+          <Field label="Colores a evitar">
+            <input {...register('colorsToAvoid')} style={inputStyle} />
+          </Field>
+          <Field label="Preferencia de tonalidad">
+            <select {...register('tonePreference')} style={selectStyle}>
+              <option value="">Selecciona una opción</option>
+              {TONE_PREFERENCE.map(o => <option key={o} value={o}>{o}</option>)}
+            </select>
+          </Field>
           <Field label="Fuentes">
             <input {...register('fonts')} placeholder="Fuentes que te gusten, o 'a tu criterio'" style={inputStyle} />
+          </Field>
+          <Field label="Estilo tipográfico">
+            <select {...register('typographyStyle')} style={selectStyle}>
+              <option value="">Selecciona una opción</option>
+              {TYPOGRAPHY_STYLE.map(o => <option key={o} value={o}>{o}</option>)}
+            </select>
           </Field>
           <div>
             <label style={labelStyle}>Estilo deseado</label>
             <ChipGroup options={STYLE_OPTIONS} value={values.stylePreferences ?? []} onChange={v => setValue('stylePreferences', v)} />
           </div>
-          <Field label="Sitios que te gustan (URL y qué te gusta de cada uno)">
-            <textarea {...register('likedSites')} rows={3} style={{ ...inputStyle, resize: 'none' }} />
-          </Field>
+
+          <p style={{ ...labelStyle, marginTop: 8, color: 'var(--teal)' }}>Sitios de referencia que te gustan</p>
+          {([1, 2, 3] as const).map(i => (
+            <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <Field label={`Referencia ${i} — URL`}>
+                <input {...register(`ref${i}Url` as const)} placeholder="https://..." style={inputStyle} />
+              </Field>
+              <Field label="¿Qué te gusta de este sitio?">
+                <input {...register(`ref${i}Notes` as const)} placeholder="El menú, las animaciones, los colores, la limpieza..." style={inputStyle} />
+              </Field>
+            </div>
+          ))}
+
           <Field label="Sitios o estilos que NO te gustan">
             <textarea {...register('dislikedSites')} rows={2} style={{ ...inputStyle, resize: 'none' }} />
           </Field>
-          <Field label="Competencia a considerar">
-            <textarea {...register('competitorSites')} rows={2} style={{ ...inputStyle, resize: 'none' }} />
-          </Field>
+
+          <p style={{ ...labelStyle, marginTop: 8, color: 'var(--teal)' }}>Competencia directa</p>
+          {([1, 2, 3] as const).map(i => (
+            <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <Field label={`Competidor ${i} — URL`}>
+                <input {...register(`comp${i}Url` as const)} placeholder="https://..." style={inputStyle} />
+              </Field>
+              <Field label="¿Qué harías diferente?">
+                <input {...register(`comp${i}Notes` as const)} style={inputStyle} />
+              </Field>
+            </div>
+          ))}
         </Section>
 
-        <Section n={6} title="Aspectos técnicos">
+        <Section n={7} title="Aspectos técnicos">
           <Field label="¿Necesitas posicionamiento SEO?">
             <select {...register('needsSEO')} style={selectStyle}>
               <option value="">Selecciona una opción</option>
@@ -275,7 +377,7 @@ export default function CuestionarioForm() {
           </Field>
         </Section>
 
-        <Section n={7} title="Logística">
+        <Section n={8} title="Logística">
           <Field label="Plazo deseado">
             <input {...register('deadline')} placeholder="Ej: en 6 semanas, para marzo..." style={inputStyle} />
           </Field>
