@@ -133,7 +133,21 @@ export default function CuestionarioForm() {
   const [step, setStep] = useState(0)
   const [fileName, setFileName] = useState('')
   const [fileError, setFileError] = useState('')
+  const [isAdvancing, setIsAdvancing] = useState(false)
   const slideRef = useRef<HTMLDivElement>(null)
+  // Guards goNext/submit against firing twice from the same click — a ref
+  // (not state) because it must block a second, near-simultaneous event
+  // synchronously, before React has re-rendered the button as disabled.
+  const busyRef = useRef(false)
+  // The "Siguiente"/"Enviar cuestionario" button sits in the same spot and
+  // changes role on every step change. trigger() resolves fast enough that
+  // the second click of an ordinary double-click can land on the button
+  // *after* it has already flipped role — e.g. click 1 advances to the
+  // last step, click 2 (a fraction of a second later) lands on what is now
+  // "Enviar" and submits before the user ever sees the slide. A short
+  // cooldown after each transition absorbs that second click.
+  const stepEnteredAtRef = useRef(Date.now())
+  const CLICK_COOLDOWN_MS = 500
   const {
     register, handleSubmit, watch, reset, setValue, getValues, trigger,
     formState: { errors, isSubmitting, isSubmitSuccessful },
@@ -177,6 +191,10 @@ export default function CuestionarioForm() {
   }, [step, started])
 
   useEffect(() => {
+    stepEnteredAtRef.current = Date.now()
+  }, [step, started])
+
+  useEffect(() => {
     if (!slideRef.current) return
     gsap.fromTo(slideRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' })
   }, [step, started])
@@ -202,9 +220,16 @@ export default function CuestionarioForm() {
   const isLastStep = step === STEP_TITLES.length - 1
 
   const goNext = async () => {
-    const valid = await trigger(STEP_FIELDS[step])
-    if (!valid) return
-    setStep(s => Math.min(s + 1, STEP_TITLES.length - 1))
+    if (busyRef.current) return
+    busyRef.current = true
+    setIsAdvancing(true)
+    try {
+      const valid = await trigger(STEP_FIELDS[step])
+      if (valid) setStep(s => Math.min(s + 1, STEP_TITLES.length - 1))
+    } finally {
+      busyRef.current = false
+      setIsAdvancing(false)
+    }
   }
   const goBack = () => setStep(s => Math.max(s - 1, 0))
 
@@ -213,9 +238,9 @@ export default function CuestionarioForm() {
     const target = e.target as HTMLElement
     if (target.tagName === 'TEXTAREA') return
     e.preventDefault()
-    // Submitting is a deliberate action on the last step — only the
-    // "Enviar cuestionario" button does it, Enter never does, so a stray
-    // Enter (e.g. confirming a <select> option) can't fire it early.
+    // Submitting is a deliberate action on the last step — only clicking
+    // "Enviar cuestionario" does it, Enter never does, so a stray Enter
+    // (e.g. confirming a <select> option) can't fire it early.
     if (!isLastStep) goNext()
   }
 
@@ -230,6 +255,22 @@ export default function CuestionarioForm() {
       localStorage.removeItem(STEP_KEY)
     } else {
       throw new Error('submit failed')
+    }
+  }
+
+  const submitForm = handleSubmit(onSubmit)
+  const handlePrimaryClick = () => {
+    if (busyRef.current) return
+    if (isLastStep) {
+      // Only the submit action needs the cooldown — it's the one a
+      // trailing double-click click can "spill over" onto right after
+      // arriving here. Regular Siguiente clicks on earlier steps stay
+      // instant.
+      if (Date.now() - stepEnteredAtRef.current < CLICK_COOLDOWN_MS) return
+      busyRef.current = true
+      submitForm().finally(() => { busyRef.current = false })
+    } else {
+      goNext()
     }
   }
 
@@ -282,7 +323,7 @@ export default function CuestionarioForm() {
       </div>
       <Logo />
 
-      <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown} noValidate>
+      <form onSubmit={e => { e.preventDefault(); handlePrimaryClick() }} onKeyDown={handleKeyDown} noValidate>
         <input type="text" {...register('honeypot')} style={{ display: 'none' }} tabIndex={-1} aria-hidden="true" />
 
         <div ref={slideRef}>
@@ -534,9 +575,9 @@ export default function CuestionarioForm() {
 
           <div style={{ background: 'rgba(0,194,168,0.1)', border: '1px solid rgba(0,194,168,0.2)', clipPath: BUTTON_TICKET_CLIP_PATH, padding: 4 }}>
             <button
-              type={isLastStep ? 'submit' : 'button'}
-              onClick={isLastStep ? undefined : goNext}
-              disabled={isSubmitting}
+              type="button"
+              onClick={handlePrimaryClick}
+              disabled={isSubmitting || isAdvancing}
               style={{
                 background: 'var(--teal)', color: 'var(--bg)', clipPath: BUTTON_TICKET_CLIP_PATH,
                 padding: '14px 24px', display: 'flex', alignItems: 'center', gap: 12,
