@@ -7,6 +7,7 @@ const SERVICE_LINKS = [
   { href: '/diseno-tiendas-woocommerce', label: 'Tiendas WooCommerce' },
   { href: '/mantenimiento-wordpress', label: 'Mantenimiento WordPress' },
   { href: '/diseno-web-empresas', label: 'Diseño web para empresas' },
+  { href: '/politica-de-privacidad', label: 'Política de privacidad' },
 ]
 
 export default function Footer() {
