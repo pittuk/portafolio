@@ -129,7 +129,9 @@ export default function About() {
         <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 2, marginBottom: 32 }}>
           Mi trayectoria comenzó como diseñador gráfico, donde adquirí una base sólida en comunicación visual y creatividad. Luego migré al mundo digital especializándome en maquetación web con HTML y CSS, hasta llegar a WordPress, donde hoy construyo sitios completos con Elementor y Divi. Combino diseño estratégico, experiencia de usuario y desarrollo técnico para crear soluciones digitales eficientes y escalables que aportan crecimiento real a cada proyecto. He trabajado con clientes en Chile, Venezuela, Estados Unidos, Argentina, Colombia y España.
         </p>
-        <div style={{ display: 'flex', gap: isMobile ? 20 : 32, marginBottom: 32, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={isMobile
+          ? { display: 'grid', gridTemplateColumns: '1fr 1fr', rowGap: 20, columnGap: 20, marginBottom: 32, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.06)' }
+          : { display: 'flex', gap: 32, marginBottom: 32, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           {STATS.map((stat, i) => (
             <div key={stat.label}>
               <div style={{ fontFamily: 'var(--heading)', fontSize: isMobile ? 32 : 40, fontWeight: 800, color: 'var(--teal)', letterSpacing: -2, lineHeight: 1 }}>
