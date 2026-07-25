@@ -58,7 +58,7 @@ export default function Hero() {
     <section
       id="inicio"
       style={{
-        minHeight: '100svh',
+        minHeight: isMobile ? 'auto' : '100svh',
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -86,21 +86,23 @@ export default function Hero() {
         opacity: 0.4,
       }} />
 
-      {/* Marca de agua animada con Shutter Text */}
-      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1 }}>
-        <HeroText
-          words={['DISEÑO', 'DESARROLLO', 'CREATIVIDAD', 'WEB']}
-          autoPlay={true}
-          interval={3500}
-          showControls={false}
-          showGrid={false}
-          showGridOnly={true}
-          gridOpacity="1"
-          showAccents={false}
-          wrapperOpacity={0.05}
-          className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none"
-        />
-      </div>
+      {/* Marca de agua animada con Shutter Text — desactivada en mobile (peso y espacio innecesarios) */}
+      {!isMobile && (
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1 }}>
+          <HeroText
+            words={['DISEÑO', 'DESARROLLO', 'CREATIVIDAD', 'WEB']}
+            autoPlay={true}
+            interval={3500}
+            showControls={false}
+            showGrid={false}
+            showGridOnly={true}
+            gridOpacity="1"
+            showAccents={false}
+            wrapperOpacity={0.05}
+            className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none"
+          />
+        </div>
+      )}
 
       {/* Contenido */}
       <div className="hero-content" style={{
