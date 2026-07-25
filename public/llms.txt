@@ -1,13 +1,13 @@
 # Luis Cruz — Diseñador Web & Desarrollador WordPress
 
 ## Sobre mí
-Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce con mas de 5 anos de experiencia. Con sede en Talca, Chile.
+Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce con más de 5 años de experiencia. Con sede en Talca, Chile.
 
 ## Servicios
-- Diseno y desarrollo WordPress
+- Diseño y desarrollo WordPress
 - WooCommerce y E-commerce
 - UI/UX Design
-- Diseno Grafico
+- Diseño Gráfico
 - Branding
 
 ## Proyectos destacados
@@ -17,5 +17,5 @@ Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce co
 - Wui Coffee Drink & Lounge: https://pittuk.net/proyectos/wui-coffee-drink-lounge
 
 ## Redes
-- LinkedIn: https://www.linkedin.com/in/luiscruz/
-- Behance: https://www.behance.net/luiscruz
+- LinkedIn: https://www.linkedin.com/in/pittuk/
+- Behance: https://www.behance.net/PITTUK
