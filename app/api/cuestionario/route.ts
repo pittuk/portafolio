@@ -7,13 +7,13 @@ import { cuestionarioSchema, type CuestionarioData } from '@/lib/cuestionario/sc
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 const SECTIONS: { title: string; fields: (keyof CuestionarioData)[] }[] = [
-  { title: 'Datos generales', fields: ['name', 'company', 'email', 'phone', 'industry', 'projectType'] },
+  { title: 'Datos generales', fields: ['name', 'company', 'email', 'phone', 'industry', 'projectType', 'projectTypeOther'] },
   { title: 'ADN de marca', fields: ['personalityDescription', 'coreValues', 'valueProposition', 'languages'] },
-  { title: 'Objetivos', fields: ['mainGoal', 'targetAudience', 'websiteObjective', 'mainCTA', 'secondaryCTA'] },
-  { title: 'Estructura y funcionalidades', fields: ['pagesEstimate', 'sections', 'features', 'hasDomain', 'domainName', 'hasHosting'] },
+  { title: 'Objetivos', fields: ['mainGoal', 'targetAudience', 'websiteObjective', 'websiteObjectiveOther', 'mainCTA', 'secondaryCTA'] },
+  { title: 'Estructura y funcionalidades', fields: ['pagesEstimate', 'sections', 'sectionsOther', 'features', 'featuresOther', 'hasDomain', 'domainName', 'hasHosting'] },
   { title: 'Contenido', fields: ['hasLogo', 'hasCopy', 'hasImages', 'brandManualLink'] },
   { title: 'Diseño y estilo', fields: [
-    'colorPalette', 'colorsToAvoid', 'tonePreference', 'fonts', 'typographyStyle', 'stylePreferences',
+    'colorPalette', 'colorsToAvoid', 'tonePreference', 'fonts', 'typographyStyle', 'stylePreferences', 'stylePreferencesOther',
     'ref1Url', 'ref1Notes', 'ref2Url', 'ref2Notes', 'ref3Url', 'ref3Notes', 'dislikedSites',
     'comp1Url', 'comp1Notes', 'comp2Url', 'comp2Notes', 'comp3Url', 'comp3Notes',
   ] },
@@ -23,17 +23,20 @@ const SECTIONS: { title: string; fields: (keyof CuestionarioData)[] }[] = [
 
 const FIELD_LABELS: Record<keyof CuestionarioData, string> = {
   name: 'Nombre', company: 'Empresa / marca', email: 'Email', phone: 'Teléfono', industry: 'Rubro',
-  projectType: 'Tipo de proyecto',
+  projectType: 'Tipo de proyecto', projectTypeOther: 'Tipo de proyecto (otro)',
   personalityDescription: 'Si la marca fuera una persona', coreValues: 'Valores principales',
   valueProposition: 'Propuesta de valor única', languages: 'Idiomas de la web',
   mainGoal: 'Objetivo principal', targetAudience: 'Cliente ideal / público objetivo',
-  websiteObjective: 'Objetivo estratégico de la web', mainCTA: 'CTA principal', secondaryCTA: 'CTA secundario',
-  pagesEstimate: 'Páginas/secciones estimadas', sections: 'Secciones deseadas', features: 'Funcionalidades',
+  websiteObjective: 'Objetivo estratégico de la web', websiteObjectiveOther: 'Objetivo estratégico (otro)',
+  mainCTA: 'CTA principal', secondaryCTA: 'CTA secundario',
+  pagesEstimate: 'Páginas/secciones estimadas', sections: 'Secciones deseadas', sectionsOther: 'Secciones deseadas (otro)',
+  features: 'Funcionalidades', featuresOther: 'Funcionalidades (otro)',
   hasDomain: '¿Tiene dominio?', domainName: 'Dominio', hasHosting: '¿Tiene hosting?',
   hasLogo: 'Logo', hasCopy: 'Textos', hasImages: 'Fotos/videos', brandManualLink: 'Link a manual de marca',
   brandManualFile: 'Manual de marca adjunto',
   colorPalette: 'Paleta de colores', colorsToAvoid: 'Colores a evitar', tonePreference: 'Preferencia clara/oscura',
   fonts: 'Fuentes', typographyStyle: 'Estilo tipográfico', stylePreferences: 'Estilo deseado',
+  stylePreferencesOther: 'Estilo deseado (otro)',
   ref1Url: 'Referencia 1 — URL', ref1Notes: 'Referencia 1 — qué le gusta',
   ref2Url: 'Referencia 2 — URL', ref2Notes: 'Referencia 2 — qué le gusta',
   ref3Url: 'Referencia 3 — URL', ref3Notes: 'Referencia 3 — qué le gusta',

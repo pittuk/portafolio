@@ -24,12 +24,12 @@ const STEP_TITLES = [
 ]
 
 const STEP_FIELDS: (keyof CuestionarioData)[][] = [
-  ['name', 'company', 'email', 'phone', 'industry', 'projectType'],
+  ['name', 'company', 'email', 'phone', 'industry', 'projectType', 'projectTypeOther'],
   ['personalityDescription', 'coreValues', 'valueProposition', 'languages'],
-  ['mainGoal', 'targetAudience', 'websiteObjective', 'mainCTA', 'secondaryCTA'],
-  ['pagesEstimate', 'sections', 'features', 'hasDomain', 'domainName', 'hasHosting'],
+  ['mainGoal', 'targetAudience', 'websiteObjective', 'websiteObjectiveOther', 'mainCTA', 'secondaryCTA'],
+  ['pagesEstimate', 'sections', 'sectionsOther', 'features', 'featuresOther', 'hasDomain', 'domainName', 'hasHosting'],
   ['hasLogo', 'hasCopy', 'hasImages', 'brandManualLink', 'brandManualFile'],
-  ['colorPalette', 'colorsToAvoid', 'tonePreference', 'fonts', 'typographyStyle', 'stylePreferences'],
+  ['colorPalette', 'colorsToAvoid', 'tonePreference', 'fonts', 'typographyStyle', 'stylePreferences', 'stylePreferencesOther'],
   ['ref1Url', 'ref1Notes', 'ref2Url', 'ref2Notes', 'ref3Url', 'ref3Notes', 'dislikedSites', 'comp1Url', 'comp1Notes', 'comp2Url', 'comp2Notes', 'comp3Url', 'comp3Notes'],
   ['needsSEO', 'keywords', 'wantsMaintenance'],
   ['deadline', 'decisionMaker', 'additionalNotes'],
@@ -350,6 +350,11 @@ export default function CuestionarioForm() {
                   {PROJECT_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
                 </select>
               </Field>
+              {values.projectType === 'Otro' && (
+                <Field label="¿Cuál?">
+                  <input {...register('projectTypeOther')} style={inputStyle} autoFocus />
+                </Field>
+              )}
             </Slide>
           )}
 
@@ -384,6 +389,11 @@ export default function CuestionarioForm() {
                   {WEBSITE_OBJECTIVES.map(o => <option key={o} value={o}>{o}</option>)}
                 </select>
               </Field>
+              {values.websiteObjective === 'Otra' && (
+                <Field label="¿Cuál?">
+                  <input {...register('websiteObjectiveOther')} style={inputStyle} autoFocus />
+                </Field>
+              )}
               <Field label="CTA principal" hint="Lo más importante que debe hacer el visitante al entrar.">
                 <input {...register('mainCTA')} placeholder="Ej: escribir por WhatsApp, comprar, agendar una hora" style={inputStyle} />
               </Field>
@@ -402,10 +412,20 @@ export default function CuestionarioForm() {
                 <label style={labelStyle}>Secciones deseadas</label>
                 <ChipGroup options={SECTION_OPTIONS} value={values.sections ?? []} onChange={v => setValue('sections', v)} />
               </div>
+              {(values.sections ?? []).includes('Otro') && (
+                <Field label="¿Qué otra sección?">
+                  <input {...register('sectionsOther')} style={inputStyle} autoFocus />
+                </Field>
+              )}
               <div>
                 <label style={labelStyle}>Funcionalidades</label>
                 <ChipGroup options={FEATURE_OPTIONS} value={values.features ?? []} onChange={v => setValue('features', v)} />
               </div>
+              {(values.features ?? []).includes('Otro') && (
+                <Field label="¿Qué otra funcionalidad?">
+                  <input {...register('featuresOther')} style={inputStyle} autoFocus />
+                </Field>
+              )}
               <Field label="¿Tienes dominio propio?">
                 <select {...register('hasDomain')} style={selectStyle}>
                   <option value="">Selecciona una opción</option>
@@ -488,6 +508,11 @@ export default function CuestionarioForm() {
                 <label style={labelStyle}>Estilo deseado</label>
                 <ChipGroup options={STYLE_OPTIONS} value={values.stylePreferences ?? []} onChange={v => setValue('stylePreferences', v)} />
               </div>
+              {(values.stylePreferences ?? []).includes('Otro') && (
+                <Field label="¿Qué otro estilo?">
+                  <input {...register('stylePreferencesOther')} style={inputStyle} autoFocus />
+                </Field>
+              )}
             </Slide>
           )}
 

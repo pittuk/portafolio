@@ -43,6 +43,7 @@ export const cuestionarioSchema = z.object({
   phone: z.string().optional(),
   industry: z.string().optional(),
   projectType: optionalEnum(PROJECT_TYPES),
+  projectTypeOther: z.string().optional(),
 
   // ADN de marca
   personalityDescription: z.string().optional(),
@@ -54,13 +55,16 @@ export const cuestionarioSchema = z.object({
   mainGoal: z.string().min(10, 'Cuéntame un poco más sobre el objetivo'),
   targetAudience: z.string().optional(),
   websiteObjective: optionalEnum(WEBSITE_OBJECTIVES),
+  websiteObjectiveOther: z.string().optional(),
   mainCTA: z.string().optional(),
   secondaryCTA: z.string().optional(),
 
   // Estructura y funcionalidades
   pagesEstimate: z.string().optional(),
   sections: z.array(z.string()).optional(),
+  sectionsOther: z.string().optional(),
   features: z.array(z.string()).optional(),
+  featuresOther: z.string().optional(),
   hasDomain: optionalEnum(YES_NO_UNSURE),
   domainName: z.string().optional(),
   hasHosting: optionalEnum(YES_NO_UNSURE),
@@ -79,6 +83,7 @@ export const cuestionarioSchema = z.object({
   fonts: z.string().optional(),
   typographyStyle: optionalEnum(TYPOGRAPHY_STYLE),
   stylePreferences: z.array(z.string()).optional(),
+  stylePreferencesOther: z.string().optional(),
   ref1Url: z.string().optional(),
   ref1Notes: z.string().optional(),
   ref2Url: z.string().optional(),
