@@ -1,15 +1,15 @@
 'use client'
-import { useEffect, useRef, useCallback } from 'react'
-import Image from 'next/image'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import DoubleBezelCard from '@/components/ui/DoubleBezelCard'
 import { useMediaQuery } from '@/lib/useMediaQuery'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Image from 'next/image'
+import { useCallback, useEffect, useRef } from 'react'
 
 const SKILLS = ['WordPress', 'Elementor', 'Divi', 'HTML/CSS', 'JavaScript', 'WooCommerce', 'MySQL', 'cPanel', 'Photoshop', 'Illustrator', 'SQL']
 const STATS = [
   { num: 15, suffix: '+', label: 'Años exp.' },
-  { num: 85, suffix: '+', label: 'Proyectos' },
+  { num: 125, suffix: '+', label: 'Proyectos' },
   { num: 47, suffix: '+', label: 'Tiendas WooCommerce' },
   { num: 90, suffix: '%', label: 'Recomendación' },
 ]

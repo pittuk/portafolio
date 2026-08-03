@@ -29,27 +29,42 @@ export default function Comparison() {
 
       <DoubleBezelCard variant="ticket" style={{ maxWidth: 760, margin: '0 auto' }}>
         <div>
-          <div style={{
-            display: 'grid', gridTemplateColumns: isMobile ? '1fr 44px 44px' : '1fr 160px 160px',
-            borderBottom: '1px solid var(--hairline)',
-          }}>
-            <div />
-            <div style={{ padding: '16px 8px', textAlign: 'center', fontSize: isMobile ? 10 : 12, fontWeight: 700, color: 'var(--teal)', textTransform: 'uppercase', letterSpacing: 1 }}>Conmigo</div>
-            <div style={{ padding: '16px 8px', textAlign: 'center', fontSize: isMobile ? 10 : 12, fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: 1 }}>Agencia</div>
-          </div>
+          {!isMobile && (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 160px 160px', borderBottom: '1px solid var(--hairline)' }}>
+              <div />
+              <div style={{ padding: '16px 8px', textAlign: 'center', fontSize: 12, fontWeight: 700, color: 'var(--teal)', textTransform: 'uppercase', letterSpacing: 1 }}>Conmigo</div>
+              <div style={{ padding: '16px 8px', textAlign: 'center', fontSize: 12, fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: 1 }}>Agencia</div>
+            </div>
+          )}
 
-          {ROWS.map((row, i) => (
+          {ROWS.map((row, i) => isMobile ? (
             <div
               key={row.me}
               style={{
-                display: 'grid', gridTemplateColumns: isMobile ? '1fr 44px 44px' : '1fr 160px 160px',
+                padding: '16px 16px', display: 'flex', flexDirection: 'column', gap: 8,
+                borderBottom: i === ROWS.length - 1 ? 'none' : '1px solid rgba(255,255,255,0.06)',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                <Check size={14} color="var(--teal)" style={{ flexShrink: 0, marginTop: 2 }} />
+                <span style={{ fontSize: 12, color: 'var(--white)', lineHeight: 1.5 }}>{row.me}</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                <X size={14} color="var(--muted)" style={{ flexShrink: 0, marginTop: 2 }} />
+                <span style={{ fontSize: 11, color: 'var(--muted)', lineHeight: 1.5 }}>{row.agency}</span>
+              </div>
+            </div>
+          ) : (
+            <div
+              key={row.me}
+              style={{
+                display: 'grid', gridTemplateColumns: '1fr 160px 160px',
                 borderBottom: i === ROWS.length - 1 ? 'none' : '1px solid rgba(255,255,255,0.06)',
                 alignItems: 'center',
               }}
             >
-              <div style={{ padding: '18px 16px', fontSize: isMobile ? 12 : 13, color: 'var(--white)', lineHeight: 1.5 }}>
+              <div style={{ padding: '18px 16px', fontSize: 13, color: 'var(--white)', lineHeight: 1.5 }}>
                 {row.me}
-                {isMobile && <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>{row.agency}</div>}
               </div>
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Check size={18} color="var(--teal)" />

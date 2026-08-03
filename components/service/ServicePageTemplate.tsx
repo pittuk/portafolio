@@ -66,7 +66,7 @@ export default function ServicePageTemplate({
         <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 16 }}>
           {eyebrow}
         </p>
-        <h1 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(32px,6vw,64px)', letterSpacing: -2, lineHeight: 1.05, marginBottom: 24 }}>
+        <h1 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(26px,7vw,64px)', letterSpacing: -2, lineHeight: 1.05, marginBottom: 24, overflowWrap: 'break-word' }}>
           {title}
         </h1>
         <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.8, maxWidth: 640, marginBottom: 32 }}>

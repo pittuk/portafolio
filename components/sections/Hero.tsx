@@ -114,7 +114,7 @@ export default function Hero() {
           <EyebrowPill>WordPress · UI/UX · e-Commerce</EyebrowPill>
         </div>
 
-        <h1
+        <div
           className="hero-title"
           style={{
             fontFamily: 'var(--heading)', fontWeight: 800,
@@ -126,7 +126,7 @@ export default function Hero() {
           }}
         >
           Luis<br />Cruz<span style={{ color: 'var(--orange)' }}>.</span>
-        </h1>
+        </div>
 
         <div className="hero-desc-cta" style={{ marginTop: 28, display: 'flex', alignItems: isMobile ? 'flex-start' : 'flex-end', justifyContent: 'space-between', gap: 40, flexDirection: isMobile ? 'column' : 'row' }}>
           <p
