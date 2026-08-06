@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Syne, Space_Grotesk } from 'next/font/google'
+import { Syne, Space_Grotesk, Inknut_Antiqua } from 'next/font/google'
 import Script from 'next/script'
 import '@/app/globals.css'
 import GSAPProvider from '@/components/providers/GSAPProvider'
@@ -15,6 +15,13 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-space',
+  display: 'swap',
+})
+
+const inknutAntiqua = Inknut_Antiqua({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-inknut-antiqua',
   display: 'swap',
 })
 
@@ -89,7 +96,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${syne.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+    <html lang="es" className={`${syne.variable} ${spaceGrotesk.variable} ${inknutAntiqua.variable}`} suppressHydrationWarning>
       <body>
         {/* Google Analytics */}
         <Script
