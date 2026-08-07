@@ -349,4 +349,196 @@ export const MOCK_POSTS: Post[] = [
       },
     ],
   },
+  {
+    _id: 'mock-mantenimiento-wordpress-que-incluye',
+    title: 'Mantenimiento web WordPress: qué incluye y cuánto deberías pagar',
+    seoTitle: 'Mantenimiento WordPress: qué incluye y cuánto cuesta',
+    slug: { current: 'mantenimiento-wordpress-que-incluye-y-cuanto-cuesta' },
+    publishedAt: '2026-08-07',
+    coverUrl: '/images/blog/mantenimiento-wordpress-que-incluye-y-cuanto-cuesta.webp',
+    excerpt: 'Un sitio en WordPress no se termina el día que se publica. Esto es lo que un mantenimiento serio debería cubrir, y por qué saltárselo suele salir más caro.',
+    tags: ['WordPress', 'Mantenimiento', 'Guía'],
+    sections: [
+      {
+        heading: '',
+        body: 'WordPress es un software, no un objeto terminado — el núcleo, el tema y cada plugin reciben actualizaciones, y algunas corrigen vulnerabilidades de seguridad reales. Un sitio publicado y nunca más tocado es, con el tiempo, un sitio expuesto. El mantenimiento no es un gasto extra: es la parte del servicio que sigue después del lanzamiento.',
+      },
+      {
+        heading: 'Qué debería incluir un mantenimiento serio',
+        body: 'Actualizaciones de núcleo, tema y plugins probadas antes de aplicarse (no solo un clic automático), backups periódicos guardados fuera del propio hosting, monitoreo de que el sitio esté online, y un canal para resolver algo si se rompe. Sin esto, "mantenimiento" es solo una palabra en una cotización.',
+      },
+      {
+        heading: 'Lo que pasa si no se hace',
+        body: 'Plugins desactualizados son la puerta de entrada más común para sitios hackeados en WordPress. Y no siempre se nota de inmediato: a veces el sitio sigue funcionando mientras inyecta contenido malicioso invisible que Google penaliza en el ranking antes de que el dueño se entere.',
+      },
+      {
+        heading: 'Actualizar no es solo hacer clic en "actualizar"',
+        body: 'Una actualización de plugin puede romper algo que dependía de su versión anterior. Actualizar bien implica probar en un entorno de staging antes de aplicar el cambio al sitio real, o al menos tener un backup reciente para revertir si algo falla. Actualizar a ciegas en producción es la forma más común de "arreglar" un sitio y dejarlo peor.',
+      },
+      {
+        heading: 'Cuánto cuesta',
+        body: 'El rango varía mucho según el tamaño del sitio y qué tan crítico es que nunca esté caído — un blog simple no necesita el mismo nivel de vigilancia que una tienda que factura todos los días. Lo importante no es encontrar el precio más bajo, sino entender exactamente qué cubre esa mensualidad y qué pasa el día que algo falla.',
+      },
+      {
+        heading: 'Cómo evaluar si tu mantenimiento actual sirve',
+        body: 'Preguntá cuándo fue el último backup verificado (no solo generado), cuándo se actualizó el sitio por última vez, y qué pasaría si el sitio cayera hoy: ¿alguien se entera antes que un cliente? Si no hay respuestas claras, probablemente no hay mantenimiento real, aunque se esté pagando por él.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-como-migrar-a-woocommerce',
+    title: 'Cómo migrar tu tienda a WooCommerce sin perder ventas ni SEO',
+    seoTitle: 'Cómo migrar tu tienda a WooCommerce sin perder SEO',
+    slug: { current: 'como-migrar-tu-tienda-a-woocommerce-sin-perder-seo' },
+    publishedAt: '2026-08-06',
+    coverUrl: '/images/blog/como-migrar-tu-tienda-a-woocommerce-sin-perder-seo.webp',
+    excerpt: 'Cambiar de plataforma es una decisión con riesgo real: mal hecha, puede costar posiciones en Google y ventas durante semanas. Así se migra sin perder lo que ya funciona.',
+    tags: ['WooCommerce', 'E-commerce', 'SEO', 'Guía'],
+    sections: [
+      {
+        heading: '',
+        body: 'Migrar una tienda de plataforma no es solo copiar productos de un lado a otro. Cada URL, cada ficha indexada en Google y cada integración con la que ya contás son cosas que se pueden perder si la migración se hace sin plan. Bien ejecutada, una migración a WooCommerce puede pasar casi desapercibida para tus clientes.',
+      },
+      {
+        heading: 'Antes de mover nada: auditá lo que tenés',
+        body: 'Exportá el catálogo completo (productos, variantes, precios, imágenes, descripciones), y hacé una lista de qué URLs están indexadas en Google Search Console y cuáles reciben tráfico real. Esa lista es la que después vas a usar para no perder ni una posición ganada.',
+      },
+      {
+        heading: 'El paso que más gente se salta: los redirects',
+        body: 'Si las URLs de la tienda nueva no coinciden con las anteriores, cada producto necesita un redirect 301 de la URL vieja a la nueva. Sin esto, Google encuentra páginas caídas donde antes había fichas indexadas, y esa autoridad acumulada durante meses o años se pierde de un día para otro.',
+      },
+      {
+        heading: 'Migrar el catálogo sin perder datos',
+        body: 'WooCommerce tiene herramientas de importación que aceptan CSV con productos, variantes e inventario, y hay plugins específicos para migrar desde Shopify, PrestaShop u otras plataformas conservando SKUs e imágenes. Migrar producto por producto a mano solo tiene sentido si el catálogo es muy chico.',
+      },
+      {
+        heading: 'Probar antes de apagar la tienda vieja',
+        body: 'La tienda nueva debería estar completa y probada — checkout, pasarela de pago, cálculo de envío, emails de confirmación — antes de apagar la anterior. Correr ambas en paralelo por unos días, con la nueva en un dominio de pruebas, evita el escenario de quedarte sin tienda funcionando durante la transición.',
+      },
+      {
+        heading: 'Después de migrar',
+        body: 'Monitoreá Search Console las semanas siguientes para detectar errores de indexación o caídas de tráfico temprano, y confirmá que las integraciones que tenías (email marketing, contabilidad, pasarela de pago) sigan funcionando en el nuevo entorno. Una migración no termina cuando el sitio nuevo está online — termina cuando confirmás que nada se rompió.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-plugins-esenciales-wordpress',
+    title: 'Plugins esenciales de WordPress para un sitio profesional (y cuáles evitar)',
+    seoTitle: 'Plugins esenciales de WordPress (y cuáles evitar)',
+    slug: { current: 'plugins-esenciales-de-wordpress-y-cuales-evitar' },
+    publishedAt: '2026-08-05',
+    coverUrl: '/images/blog/plugins-esenciales-de-wordpress-y-cuales-evitar.webp',
+    excerpt: 'No todos los plugins que promete resolver algo lo resuelven bien. Estos son los que realmente valen la pena en un sitio profesional, y las señales de los que conviene evitar.',
+    tags: ['WordPress', 'Plugins', 'Guía'],
+    sections: [
+      {
+        heading: '',
+        body: 'Cada plugin instalado es código extra corriendo en tu sitio: suma funcionalidad, pero también suma peso, superficie de ataque y una actualización más que mantener al día. La pregunta no es cuántos plugins tener, sino cuáles realmente ganan su lugar.',
+      },
+      {
+        heading: 'Los que sí valen la pena',
+        body: 'Un plugin de SEO (Yoast o Rank Math) para manejar metadatos y sitemap, uno de caché para velocidad, uno de seguridad para protección básica contra fuerza bruta, y un plugin de backups que guarde copias fuera del propio hosting. Cuatro categorías cubren la mayoría de lo esencial — el resto depende del proyecto.',
+      },
+      {
+        heading: 'Señales de un plugin problemático',
+        body: 'Sin actualizaciones hace más de un año, pocas instalaciones activas, reseñas recientes con quejas de errores, o un desarrollador que no responde soporte. Un plugin abandonado es un riesgo de seguridad que crece con el tiempo, aunque hoy funcione sin problemas aparentes.',
+      },
+      {
+        heading: 'El error de "un plugin para cada cosa"',
+        body: 'Instalar un plugin distinto para cada función chica (uno para popups, otro para formularios, otro para redes sociales) suma peso y puntos de falla que se podrían resolver con un plugin más completo o directamente con código. Cada plugin de más es una actualización más que puede romper algo.',
+      },
+      {
+        heading: 'Plugins todo-en-uno: la trampa de la comodidad',
+        body: 'Los plugins que prometen resolver SEO, velocidad, seguridad y formularios en uno solo suenan convenientes, pero suelen hacer cada cosa peor que un plugin especializado, y si falla, falla en varios frentes a la vez. Mejor pocos plugins buenos en su categoría que uno que promete todo.',
+      },
+      {
+        heading: 'Cómo mantenerlos sanos',
+        body: 'Revisá periódicamente qué plugins están instalados y desactivá (y eliminá) los que ya no se usan — un plugin desactivado sigue siendo código vulnerable si nunca se actualiza. Menos plugins activos significa menos superficie de ataque y menos cosas que pueden romperse con la próxima actualización de WordPress.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-proceso-crear-pagina-web-paso-a-paso',
+    title: 'Cómo es el proceso de crear una página web, paso a paso',
+    seoTitle: 'El proceso de crear una página web, paso a paso',
+    slug: { current: 'como-es-el-proceso-de-crear-una-pagina-web-paso-a-paso' },
+    publishedAt: '2026-08-04',
+    coverUrl: '/images/blog/como-es-el-proceso-de-crear-una-pagina-web-paso-a-paso.webp',
+    excerpt: 'Saber qué esperar en cada etapa reduce la incertidumbre de encargar un sitio web. Este es el proceso real, desde la primera reunión hasta el soporte después del lanzamiento.',
+    tags: ['Guía', 'Proceso', 'WordPress'],
+    sections: [
+      {
+        heading: '',
+        body: 'Encargar una página web se siente menos riesgoso cuando sabés qué esperar en cada etapa. Este es el proceso, de principio a fin, tal como debería verse con quien lo hace en serio.',
+      },
+      {
+        heading: '1. Reunión inicial',
+        body: 'Una conversación de 30 minutos para entender el negocio, el objetivo del sitio y qué problema tiene que resolver — no para hablar de colores todavía. Esta etapa define si el proyecto tiene sentido antes de invertir tiempo en una propuesta.',
+      },
+      {
+        heading: '2. Propuesta',
+        body: 'Con lo conversado, se arma una propuesta concreta: alcance, páginas, funcionalidades, plazos y precio. Una propuesta seria detalla qué incluye y qué no, para que no haya sorpresas después de aceptarla.',
+      },
+      {
+        heading: '3. Diseño',
+        body: 'Se define la arquitectura de información (qué páginas y en qué orden) y el diseño visual, generalmente con una etapa de revisión antes de pasar a desarrollo. Cambiar el diseño acá es rápido; cambiarlo después de construido, no.',
+      },
+      {
+        heading: '4. Desarrollo',
+        body: 'El diseño aprobado se convierte en un sitio funcional: WordPress, el tema o builder elegido, WooCommerce si hay tienda, formularios, integraciones. Es la etapa que más tiempo toma y la que menos debería sorprender, si las anteriores estuvieron bien definidas.',
+      },
+      {
+        heading: '5. Revisión y ajustes',
+        body: 'El cliente prueba el sitio antes de publicarlo: contenido, funcionamiento en celular, formularios, velocidad. Acotar esta etapa a rondas definidas de antemano evita que se estire indefinidamente.',
+      },
+      {
+        heading: '6. Publicación',
+        body: 'El sitio pasa a producción: dominio, hosting, certificado SSL, y las verificaciones finales antes de que quede visible al público. Una buena publicación incluye probar que todo funcione en el entorno real, no solo en el de pruebas.',
+      },
+      {
+        heading: '7. Soporte',
+        body: 'El trabajo no termina el día del lanzamiento. Un buen proceso deja claro quién responde si algo falla después, y qué cubre ese soporte — esa claridad es la que reduce el riesgo percibido de encargar un sitio nuevo.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-wordpress-lento-causas-y-solucion',
+    title: 'WordPress lento: causas comunes y cómo solucionarlo',
+    seoTitle: 'WordPress lento: causas comunes y cómo solucionarlo',
+    slug: { current: 'wordpress-lento-causas-comunes-y-como-solucionarlo' },
+    publishedAt: '2026-08-03',
+    coverUrl: '/images/blog/wordpress-lento-causas-comunes-y-como-solucionarlo.webp',
+    excerpt: 'Un sitio lento pierde visitas y posiciones en Google en silencio. Estas son las causas más comunes de lentitud en WordPress, en el orden en que conviene revisarlas.',
+    tags: ['WordPress', 'Performance', 'Guía'],
+    sections: [
+      {
+        heading: '',
+        body: 'Un WordPress lento casi nunca tiene una sola causa — es la suma de varias decisiones chicas: un hosting insuficiente, imágenes sin optimizar, demasiados plugins. La buena noticia es que la mayoría de las causas comunes tienen solución sin reconstruir el sitio desde cero.',
+      },
+      {
+        heading: 'Hosting insuficiente para el tráfico real',
+        body: 'Un hosting compartido barato puede andar bien con poco tráfico y volverse el cuello de botella apenas el sitio crece. Si el sitio se siente lento incluso con caché y optimización aplicada, el hosting suele ser la causa raíz, no el síntoma.',
+      },
+      {
+        heading: 'Imágenes sin optimizar',
+        body: 'Es la causa más común y la más fácil de resolver: imágenes pesadas, sin comprimir, sin formatos modernos (WebP o AVIF) y sin dimensiones definidas suman segundos de carga innecesarios. Comprimir y servir el tamaño correcto para cada pantalla suele ser la mejora de mayor impacto por menor esfuerzo.',
+      },
+      {
+        heading: 'Demasiados plugins, o plugins mal hechos',
+        body: 'Cada plugin activo carga su propio código en cada visita, aunque solo se use en una sección del sitio. Un plugin mal optimizado puede pesar más que varios buenos juntos — el número de plugins importa menos que la calidad de cada uno.',
+      },
+      {
+        heading: 'Sin caché configurada',
+        body: 'Sin un plugin de caché, WordPress reconstruye cada página desde la base de datos en cada visita, en vez de servir una versión ya generada. Configurar caché es de las mejoras más baratas de aplicar en relación al impacto que tiene en velocidad.',
+      },
+      {
+        heading: 'Un tema pesado o mal codificado',
+        body: 'Algunos temas cargan estilos y scripts para funciones que el sitio ni siquiera usa. Un tema liviano, bien codificado, suele rendir mejor que uno cargado de opciones aunque el diseño final se vea parecido.',
+      },
+      {
+        heading: 'Por dónde empezar',
+        body: 'Corré una prueba de velocidad (PageSpeed Insights o GTmetrix) para ver qué recomienda específicamente en tu caso, y priorizá imágenes y caché antes de pensar en cambiar de hosting o de tema — son los cambios más rápidos de aplicar y suelen dar la mejora más visible primero.',
+      },
+    ],
+  },
 ]

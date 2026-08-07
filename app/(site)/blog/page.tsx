@@ -35,6 +35,8 @@ export default async function BlogPage() {
     posts = MOCK_POSTS
   }
   if (!posts.length) posts = MOCK_POSTS
+  // ponytail: mock array happens to be pre-sorted; sort explicitly so display order never depends on insertion order
+  posts = [...posts].sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt))
 
   const collectionLd = {
     '@context': 'https://schema.org',
