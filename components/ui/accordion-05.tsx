@@ -73,9 +73,9 @@ export function Accordion05() {
             <AccordionTrigger className="text-left overflow-hidden duration-200 hover:no-underline cursor-pointer -space-y-6 data-[state=open]:space-y-0 [&>svg]:hidden">
               <div className="flex flex-1 items-start gap-4">
                 <p className="text-xs font-bold text-[var(--orange)]">{item.id}</p>
-                <h1 className="uppercase relative text-3xl md:text-5xl text-[var(--teal)]">
+                <h3 className="uppercase relative text-3xl md:text-5xl text-[var(--teal)]">
                   {item.title}
-                </h1>
+                </h3>
               </div>
             </AccordionTrigger>
 

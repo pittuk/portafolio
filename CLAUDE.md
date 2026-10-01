@@ -1,388 +1,225 @@
-# SEO Implementation Tasks — Luis Cruz Portfolio
+# SEO Implementation Tasks — pittuk.net (auditoría 2026-10-01)
 
-## Fase 1 — Higiene crítica (semana 1)
+Informe completo: `docs/auditoria/pittuk-seo-geo-aeo-audit-2026-10-01.md` — score 54/100.
 
-### TC-01: robots.txt
-- **Categoría:** `autonoma`
-- **Bloque:** A — Fundamentos técnicos
-- **Archivo:** `app/robots.ts` (crear)
+**Ronda anterior (TC-01 a TC-12 de la auditoría de junio 2026):** implementada. robots.ts, sitemap.ts, canonical por página, grafo Organization + WebSite + Person, BreadcrumbList, OG/Twitter, AVIF/WebP en next.config, llms.txt y H1 oculto en la home. Siguen pendientes de esa ronda: Google Business Profile optimizado, citaciones externas y Knowledge Panel (ver TC-18 y TC-19).
 
-```ts
-import type { MetadataRoute } from 'next'
+## Estado (actualizado 2026-10-01, rama `seo/fase-1-oct`)
 
-export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/studio/', '/api/'],
-    },
-    sitemap: 'https://pittuk.net/sitemap.xml',
-  }
-}
-```
+- **Hecho:** TC-02, TC-03, TC-04, TC-05, TC-07, TC-09, TC-10, TC-15.
+- **Parcial:**
+  - TC-01: el código ya carga el video recién al hacer scroll; falta comprimir el mp4 y el poster.
+  - TC-06: el hero quedó resuelto (altura y opacidad por CSS); faltan About, Services y Portfolio.
+  - TC-11: se agregaron GitHub e Instagram al `sameAs` de Person; falta ProfessionalService.
+  - TC-13: la imagen del Article ya es absoluta y `dateModified` sale de `updatedAt`; falta la byline.
+- **Medición local (Lighthouse, build de producción):**
+  - Móvil: 45 → 69; peso 12,9 MB → 1,1 MB; CLS 0,27 → 0,07; LCP real (sin throttling) 0,42 s, simulado 6,2 s (lo empuja el JS: GSAP + gtag).
+  - Desktop: 94.
+- **Próximo cuello de botella:** el JS en el hilo principal (~2,2 s en móvil simulado). Evaluar cargar gtag con `next/script strategy="lazyOnload"` y diferir GSAP fuera del hero.
 
-- **Validacion:** `GET /robots.txt` debe devolver 200 con contenido válido
-- **Rollback:** Eliminar `app/robots.ts`
-
-### TC-02: Sitemap XML
-- **Categoria:** `autonoma`
-- **Bloque:** A — Fundamentos técnicos
-- **Archivo:** `app/sitemap.ts` (crear)
-
-```ts
-import type { MetadataRoute } from 'next'
-import { getProjects } from '@/lib/sanity/queries'
-import { MOCK_PROJECTS } from '@/lib/mock/projects'
-
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://pittuk.net'
-  let projects: any[] = []
-  try {
-    projects = await getProjects()
-  } catch {
-    projects = MOCK_PROJECTS
-  }
-
-  const projectEntries = projects.map(p => ({
-    url: `${baseUrl}/proyectos/${p.slug.current}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }))
-
-  return [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
-    { url: `${baseUrl}/proyectos`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    ...projectEntries,
-  ]
-}
-```
-
-- **Validacion:** `GET /sitemap.xml` debe devolver XML válido con todas las URLs
-- **Rollback:** Eliminar `app/sitemap.ts`
-
-### TC-03: Canonical URL
-- **Categoria:** `autonoma`
-- **Bloque:** A — Fundamentos técnicos
-- **Archivos:** `app/layout.tsx`
-
-Agregar `metadataBase` y `alternates` al metadata export:
-
-```ts
-export const metadata: Metadata = {
-  metadataBase: new URL('https://pittuk.net'),
-  alternates: {
-    canonical: '/',
-  },
-  title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
-  description: 'Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce.',
-  icons: {
-    icon: '/images/logo/favicon.png',
-  },
-}
-```
-
-- **Validacion:** Inspeccionar HTML head, debe incluir `<link rel="canonical" href="https://pittuk.net/" />`
-- **Rollback:** Revertir cambios en `app/layout.tsx`
+Categorías: `autonoma` = Claude Code puede ejecutarla sin supervisión · `staging` = probar con `npm run build` + revisión visual antes de deploy · `pause` = requiere decisión o insumo de Luis.
 
 ---
 
-## Fase 2 — Schema y entidades (semanas 2-3)
+## Fase 1 — Performance e higiene (semanas 1-2)
 
-### TC-04: Organization + WebSite schema
-- **Categoria:** `autonoma`
-- **Bloque:** D — Schema / Structured Data
-- **Archivo:** `app/layout.tsx`
-
-Agregar JSON-LD con Organization + WebSite en el layout:
-
-```ts
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Organization',
-      '@id': 'https://pittuk.net/#organization',
-      name: 'Luis Cruz',
-      url: 'https://pittuk.net',
-      logo: 'https://pittuk.net/images/logo/icono.svg',
-      sameAs: [
-        'https://www.linkedin.com/in/luiscruz/',
-        'https://www.behance.net/luiscruz',
-      ],
-      knowsAbout: ['WordPress', 'UI/UX Design', 'E-commerce', 'Diseño Gráfico'],
-    },
-    {
-      '@type': 'WebSite',
-      '@id': 'https://pittuk.net/#website',
-      url: 'https://pittuk.net',
-      name: 'Luis Cruz',
-      description: 'Portafolio de Luis Cruz — Diseñador Web y Desarrollador WordPress',
-      publisher: { '@id': 'https://pittuk.net/#organization' },
-      inLanguage: 'es-CL',
-    },
-  ],
-}
-```
-
-Insertar en el body del RootLayout, antes de `{children}`:
+### TC-01: Video de About liviano y diferido
+- **Categoría:** `pause` (Luis entrega el video comprimido) → luego `autonoma`
+- **Bloque:** B — Core Web Vitals
+- **Archivos:** `public/video/luis-cruz.mp4`, `components/sections/About.tsx`
+- Hoy pesa 10 MB y `autoPlay` lo descarga completo al cargar la home (7-9 MB transferidos en Lighthouse).
+- Comprimir: `ffmpeg -i luis-cruz.mp4 -vf scale=-2:720 -c:v libx264 -crf 28 -preset slow -an -movflags +faststart luis-cruz.mp4` (objetivo < 2 MB). Generar `public/video/luis-cruz-poster.jpg`.
+- En el `<video>`: quitar `autoPlay`, agregar `preload="none"` y `poster`, y reproducir solo cuando entra en pantalla:
 
 ```tsx
-<script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-/>
+const videoRef = useRef<HTMLVideoElement>(null)
+useEffect(() => {
+  const v = videoRef.current
+  if (!v) return
+  const io = new IntersectionObserver(([e]) => { e.isIntersecting ? v.play().catch(() => {}) : v.pause() }, { threshold: 0.25 })
+  io.observe(v)
+  return () => io.disconnect()
+}, [])
 ```
 
-- **Validacion:** Google Rich Results Test debe mostrar Organization y WebSite sin errores
-- **Rollback:** Eliminar el bloque `<script>` y la constante `jsonLd`
+- **Validación:** Lighthouse móvil, peso total < 3 MB; el video no aparece en la red hasta hacer scroll a "Sobre mí".
+- **Rollback:** revertir `About.tsx` y restaurar el mp4 original desde git.
 
-### TC-05: Person schema con sameAs
-- **Categoria:** `autonoma`
-- **Bloque:** D — Schema / Structured Data
-- **Archivo:** `app/layout.tsx`
+### TC-02: Portadas del portafolio optimizadas
+- **Categoría:** `autonoma`
+- **Bloque:** B — Core Web Vitals / C — Imágenes
+- **Archivo:** `components/project/ProjectCard.tsx` (línea ~77)
+- Quitar `unoptimized={!!project.coverUrl}`. Las portadas son locales, así que Next.js puede servirlas en AVIF/WebP. Mantener `unoptimized` solo para `.svg`. Revisar que `sizes` refleje el ancho real de la tarjeta.
+- **Validación:** en la pestaña Network, las portadas salen de `/_next/image?...` en avif/webp y ninguna pasa de 200 KB. Ahorro estimado por Lighthouse: ~2,9 MB.
+- **Rollback:** restaurar la prop.
 
-Agregar Person schema al @graph existente:
+### TC-03: Imagen del hero pre-optimizada (LCP)
+- **Categoría:** `autonoma`
+- **Bloque:** B — Core Web Vitals
+- **Archivos:** `public/images/Luis Cruz.png` (2,4 MB), `components/sections/Hero.tsx`
+- Convertir a `public/images/luis-cruz-hero.webp` (calidad 75, ~1600 px de ancho) y usarla en el `<Image>` del hero con `priority` y `quality={70}`. Mantener el PNG solo si otro sitio lo referencia (Schema Person `image` → actualizar a la nueva ruta).
+- **Validación:** LCP móvil en Lighthouse < 3,5 s (objetivo final < 2,5 s junto con TC-06).
+- **Rollback:** volver al `src` anterior.
+
+### TC-04: Cifra de experiencia consistente
+- **Categoría:** `autonoma`
+- **Bloque:** E — GEO / F — E-E-A-T
+- **Archivos:** `app/(site)/page.tsx`, `public/llms.txt`
+- "Sobre mí" dice 15+ años, mientras el H1 oculto y llms.txt dicen "más de 5 años". Unificar en "más de 15 años" en todos lados.
+- **Validación:** `grep -rn "5 años" app components public` no devuelve nada.
+- **Rollback:** revertir texto.
+
+### TC-05: Eliminar `/demo` y el componente sin uso
+- **Categoría:** `autonoma`
+- **Bloque:** A — Indexabilidad
+- **Archivos:** borrar `app/(site)/demo/` y `components/ui/hero-shutter-text.tsx` (verificar con grep que nada más los importe).
+- `/demo` responde 200, es indexable y su canonical apunta a la home.
+- **Validación:** `GET /demo` → 404; `npm run build` OK.
+- **Rollback:** `git checkout` de los archivos borrados.
+
+### TC-06: CLS — estilos responsive en CSS, no en JS
+- **Categoría:** `staging`
+- **Bloque:** B — Core Web Vitals
+- **Archivos:** `components/sections/Hero.tsx` (prioridad), luego `About.tsx`, `Services`, `Portfolio`
+- `useMediaQuery` es `false` en el SSR, así que el HTML inicial trae estilos desktop y al hidratar en móvil cambian (`minHeight: 100svh → auto`, padding 120/40 → 100/20). Lighthouse mide CLS 0,27 en el hero.
+- Pasar los valores que dependen del viewport a clases con media queries (Tailwind `md:` o CSS en `globals.css`), y dejar `isMobile` solo para lógica (desactivar animaciones GSAP).
+- **Validación:** Lighthouse móvil con CLS < 0,1; revisión visual en 375 px y 1920 px.
+- **Rollback:** revertir los componentes tocados.
+
+### TC-07: Un solo H1 en la home
+- **Categoría:** `autonoma`
+- **Bloque:** C — Encabezados
+- **Archivos:** `app/(site)/page.tsx`, `components/sections/Hero.tsx`, `components/ui/accordion-05.tsx` (línea ~76)
+- Hoy hay 9 H1: el bloque oculto + 8 pasos del proceso.
+- Convertir el `<div className="hero-title">` en `<h1>`, con el texto completo accesible: `Luis Cruz.` visible + `<span className="sr-only"> — Diseñador web y desarrollador WordPress en Chile</span>`. Mantener la clase `.hero-title`, porque la usa la animación GSAP.
+- Eliminar la `<section>` oculta de `page.tsx` (mover su párrafo a texto visible si aporta).
+- En `accordion-05.tsx`, `<h1>` → `<h3>` sin cambiar estilos.
+- **Validación:** `curl -s https://pittuk.net | grep -o "<h1" | wc -l` → 1. La animación del título sigue funcionando.
+- **Rollback:** revertir los tres archivos.
+
+### TC-08: Imagen OG rasterizada
+- **Categoría:** `pause` (Luis diseña la imagen) → luego `autonoma`
+- **Bloque:** C — On-page
+- **Archivos:** `public/images/og-default.jpg` (1200×630), `app/layout.tsx`, páginas de servicio y `/blog`
+- Facebook, LinkedIn y WhatsApp no renderizan el SVG actual (`icono.svg`). Reemplazar en `openGraph.images` y `twitter.images` por `/images/og-default.jpg` con `width: 1200, height: 630`.
+- **Validación:** Facebook Sharing Debugger y LinkedIn Post Inspector muestran la imagen.
+- **Rollback:** volver a `icono.svg`.
+
+### TC-09: Meta descriptions en rango
+- **Categoría:** `autonoma`
+- **Bloque:** C — On-page
+- **Archivos:** `lib/mock/posts.ts`, `app/layout.tsx`
+- Los `excerpt` de los 5 posts de septiembre tienen 170-180 caracteres, y la home tiene 101 con un "Portafolio profesional" genérico. Dejar todo en 140-160 caracteres, con intención y ciudad o país. Ejemplo para la home: "Diseño y desarrollo de sitios WordPress y tiendas WooCommerce para empresas en Chile y Latinoamérica. Trato directo, sin intermediarios. Pittuk — Luis Cruz."
+- **Validación:** script que mida `len(excerpt)` ≤ 160.
+- **Rollback:** revertir textos.
+
+### TC-10: `lastmod` real en el sitemap
+- **Categoría:** `autonoma`
+- **Bloque:** A — Sitemap
+- **Archivos:** `app/sitemap.ts`, `types/index.ts`, `lib/mock/posts.ts`
+- Hoy todas las URLs usan `new Date()` (la hora del build), lo que le dice a Google que todo cambió en cada deploy. Usar `post.updatedAt ?? post.publishedAt` para posts (agregar el campo opcional `updatedAt` al tipo `Post`), y una fecha fija por proyecto o página estática.
+- **Validación:** `curl -s https://pittuk.net/sitemap.xml | grep lastmod | sort | uniq -c` muestra fechas distintas.
+- **Rollback:** volver a `new Date()`.
+
+---
+
+## Fase 2 — Schema, autor y enlazado (semanas 3-6)
+
+### TC-11: ProfessionalService con NAP
+- **Categoría:** `pause` (Luis confirma qué dirección publicar: ciudad o dirección completa, y teléfono)
+- **Bloque:** D — Schema / G — Local
+- **Archivo:** `app/layout.tsx` (agregar al `@graph`)
 
 ```ts
 {
-  '@type': 'Person',
-  '@id': 'https://pittuk.net/#person',
-  name: 'Luis Cruz',
-  jobTitle: 'Diseñador Web & Desarrollador WordPress',
+  '@type': 'ProfessionalService',
+  '@id': 'https://pittuk.net/#business',
+  name: 'Pittuk — Luis Cruz',
   url: 'https://pittuk.net',
-  sameAs: [
-    'https://www.linkedin.com/in/luiscruz/',
-    'https://www.behance.net/luiscruz',
-  ],
-  knowsAbout: ['WordPress', 'UI/UX', 'E-commerce', 'Diseño Gráfico'],
-  worksFor: { '@id': 'https://pittuk.net/#organization' },
+  image: 'https://pittuk.net/images/og-default.jpg',
+  telephone: '+56967093146',
+  address: { '@type': 'PostalAddress', addressLocality: 'Talca', addressRegion: 'Maule', addressCountry: 'CL' },
+  areaServed: ['CL', 'AR', 'CO', 'VE', 'ES', 'US'],
+  founder: { '@id': 'https://pittuk.net/#person' },
+  sameAs: ['<URL de Maps del perfil de Google Business>'],
 }
 ```
 
-- **Validacion:** Schema.org validator debe mostrar Person con sameAs válidos
-- **Rollback:** Eliminar el objeto Person del @graph
+- Reemplazar `https://share.google/...` en Organization por la URL de Maps del perfil. En `components/sections/Contact.tsx`, reemplazar el link a `google.com/search?...` (lleva parámetros de sesión) por la misma URL.
+- Agregar a `sameAs` de Person: `https://github.com/pittuk` y `https://www.instagram.com/p1ttuk/`.
+- **Validación:** Rich Results Test sin errores; validator.schema.org muestra ProfessionalService.
+- **Rollback:** quitar el nodo.
 
-### TC-06: BreadcrumbList schema
-- **Categoria:** `autonoma`
-- **Bloque:** D — Schema / Structured Data
-- **Archivos:** `app/(site)/proyectos/[slug]/page.tsx`
+### TC-12: FAQPage solo donde corresponde
+- **Categoría:** `pause` (decidir: quitar el schema o crear `/preguntas-frecuentes`)
+- **Bloque:** D — Schema
+- **Archivos:** páginas de servicio (`app/(site)/diseno-web-wordpress/page.tsx` y las otras 3)
+- Desde 2026, Google no muestra rich results de FAQPage fuera de páginas de FAQ primarias. Recomendación: mantener las preguntas visibles y quitar solo el JSON-LD FAQPage.
+- **Validación:** Rich Results Test sin FAQPage en servicios.
+- **Rollback:** restaurar el bloque.
 
-Agregar BreadcrumbList schema en la página de detalle de proyecto:
+### TC-13: Byline y caja de autor en artículos
+- **Categoría:** `autonoma`
+- **Bloque:** E — Author entity / F — E-E-A-T
+- **Archivo:** `app/(site)/blog/[slug]/page.tsx`
+- Bajo el H1: "Por Luis Cruz · {fecha} · {minutos} min de lectura". Al final del artículo: caja con foto (avatar recortado de la foto del hero), 2 líneas de bio ("Diseñador y desarrollador web con más de 15 años de experiencia…") y enlace a LinkedIn con `rel="author"`.
+- En el Article JSON-LD: `image` como URL absoluta (`https://pittuk.net${image}`) y `dateModified` desde `updatedAt`.
+- **Validación:** Rich Results Test → Article sin advertencias; la caja de autor se ve en móvil.
+- **Rollback:** revertir el archivo.
 
-```tsx
-const breadcrumbLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://pittuk.net/' },
-    { '@type': 'ListItem', position: 2, name: 'Proyectos', item: 'https://pittuk.net/proyectos' },
-    { '@type': 'ListItem', position: 3, name: project.title },
-  ],
-}
-```
+### TC-14: Enlazado interno contextual
+- **Categoría:** `autonoma`
+- **Bloque:** C — Internal linking / E — Topical cluster
+- **Archivos:** `types/index.ts`, `lib/mock/posts.ts`, `app/(site)/blog/[slug]/page.tsx`
+- Agregar a `Post` los campos opcionales `service?: string` (slug de la página de servicio) y `related?: string[]` (slugs). Renderizar al final de cada artículo un CTA al servicio ("¿Necesitás una tienda WooCommerce? → Diseño de tiendas WooCommerce") y "Artículos relacionados" con 2 enlaces.
+- Mapeo sugerido: pasarelas/migrar/WooCommerce vs Shopify/errores tienda → `/diseno-tiendas-woocommerce`; mantenimiento/plugins/lento/hosting → `/mantenimiento-wordpress`; el resto → `/diseno-web-empresas` o `/diseno-web-wordpress`.
+- En cada página de servicio, una sección "Guías relacionadas" con 3 artículos de su cluster.
+- **Validación:** cada artículo tiene ≥ 3 enlaces internos en el cuerpo y cada servicio ≥ 3 hacia el blog.
+- **Rollback:** quitar el render, porque los campos son opcionales.
 
-Insertar en el JSX:
-
-```tsx
-<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-```
-
-- **Validacion:** Rich Results Test debe mostrar BreadcrumbList
-- **Rollback:** Eliminar el bloque de script
-
-### TC-07: Open Graph + Twitter Cards
-- **Categoria:** `autonoma`
-- **Bloque:** C — On-page y contenido
-- **Archivo:** `app/layout.tsx`
-
-Actualizar metadata:
-
-```ts
-export const metadata: Metadata = {
-  metadataBase: new URL('https://pittuk.net'),
-  title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
-  description: 'Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce. Portafolio profesional en Talca, Chile.',
-  openGraph: {
-    title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
-    description: 'Portafolio profesional de diseño y desarrollo web. WordPress, UI/UX, E-commerce.',
-    url: 'https://pittuk.net',
-    siteName: 'Luis Cruz',
-    locale: 'es_CL',
-    type: 'website',
-    images: [{ url: 'https://pittuk.net/images/logo/icono.svg', width: 512, height: 512 }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
-    description: 'Portafolio profesional de diseño y desarrollo web. WordPress, UI/UX, E-commerce.',
-    images: ['https://pittuk.net/images/logo/icono.svg'],
-  },
-  icons: {
-    icon: '/images/logo/favicon.png',
-  },
-}
-```
-
-En `[slug]/page.tsx`, mejorar `generateMetadata` para incluir OG por proyecto:
-
-```ts
-return {
-  title: `${project.title} — Luis Cruz`,
-  description: project.descriptionText?.slice(0, 160) || `Proyecto de ${project.client || 'Luis Cruz'}`,
-  openGraph: {
-    title: `${project.title} — Luis Cruz`,
-    description: project.descriptionText?.slice(0, 160) || `Proyecto de diseño y desarrollo web`,
-    images: project.coverUrl ? [{ url: project.coverUrl }] : [],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `${project.title} — Luis Cruz`,
-    description: project.descriptionText?.slice(0, 160) || `Proyecto de diseño y desarrollo web`,
-    images: project.coverUrl ? [project.coverUrl] : [],
-  },
-}
-```
-
-- **Validacion:** Compartir URL en WhatsApp/LinkedIn debe mostrar preview con imagen
-- **Rollback:** Revertir cambios en metadata
+### TC-15: llms.txt actualizado
+- **Categoría:** `autonoma`
+- **Bloque:** E — GEO (baja prioridad)
+- **Archivo:** `public/llms.txt`
+- Agregar "Servicios" con las 4 URLs, "Guías" con los 10 artículos más comerciales, contacto (WhatsApp) y la experiencia corregida (TC-04).
+- **Validación:** `GET /llms.txt` → 200.
+- **Rollback:** versión anterior.
 
 ---
 
-## Fase 3 — Performance (semana 3-4)
+## Fase 3 — Contenido y autoridad (semanas 6-12)
 
-### TC-08: Optimización de imágenes
-- **Categoria:** `autonoma`
-- **Bloque:** B — Core Web Vitals
-- **Archivos:** Múltiples (revisar componentes Image)
+### TC-16: Ampliar páginas de servicio y artículos clave
+- **Categoría:** `pause` (Luis valida precios, plazos y casos reales)
+- **Bloque:** C — Topical depth / E — Citable facts
+- **Archivos:** las 4 páginas de servicio y `lib/mock/posts.ts`
+- Servicios: hoy tienen ~180 palabras; objetivo 900+. Cada uno abre con una respuesta directa de 2-4 oraciones (qué es, para quién, desde cuánto, en cuánto tiempo), seguida de qué incluye, rango de precio en CLP, plazos, proceso, 2 casos del portafolio con resultado y FAQ visible.
+- Artículos prioritarios (hoy ~370 palabras; objetivo 1.000-1.500): cuánto cuesta una página web en Chile, WooCommerce o Shopify, pasarelas de pago en Chile, mantenimiento WordPress y hosting en Chile. Incluir cifras propias (rangos de precio, plazos medidos en proyectos reales) y una tabla comparativa por artículo.
+- **Validación:** conteo de palabras; Search Console a 4-6 semanas muestra impresiones nuevas en queries con cifras.
+- **Rollback:** n/a (contenido).
 
-Asegurar que todas las imágenes usen:
-- `sizes` correcto
-- `priority` solo en LCP (hero)
-- `loading="lazy"` en el resto
-- Formatos modernos (las imágenes locales están en .webp y .jpg — convertir a AVIF cuando sea posible)
+### TC-17: Fichas de proyecto como casos de estudio
+- **Categoría:** `pause` (requiere datos de cada cliente)
+- **Bloque:** C — Contenido / F — E-E-A-T
+- **Archivos:** `lib/mock/projects.ts`, `app/(site)/proyectos/[slug]/page.tsx`
+- Hoy tienen ~155 palabras. Agregar: desafío, solución, stack, resultado medible (velocidad, ventas, leads) y, si es posible, una cita del cliente. Title: `{Proyecto} — Caso de diseño web {tipo} | Pittuk`.
+- **Validación:** ≥ 400 palabras por ficha en los 5 proyectos principales.
 
-En `next.config.ts`:
+### TC-18: Reseñas y perfil de Google Business
+- **Categoría:** `pause`
+- **Bloque:** F — E-E-A-T / G — Local
+- Pedir reseñas a clientes recientes (enlace directo a reseñas del perfil), completar servicios y categoría "Diseñador de sitios web" y publicar proyectos como posts del perfil. Con ≥ 5 reseñas reales, evaluar mostrarlas en el sitio. No usar AggregateRating con reseñas propias del sitio.
 
-```ts
-images: {
-  formats: ['image/avif', 'image/webp'],
-  // ...
-}
-```
-
-### TC-09: Lazy loading + dimensiones explícitas
-- **Categoria:** `autonoma`
-- **Bloque:** B — Core Web Vitals
-- **Archivos:** Todos los componentes con imágenes
-
-Todas las imágenes no-hero deben tener `loading="lazy"` y `aspectRatio` explícito para evitar CLS. Las imágenes del portfolio carousel ya tienen `aspectRatio`, verificar que el contenedor tenga dimensiones antes de la carga.
-
-### TC-10: Reducir payload JS
-- **Categoria:** `pause` (requiere verificación manual)
-- **Bloque:** B — Core Web Vitals
-- **Archivos:** `components/providers/GSAPProvider.tsx`
-
-GSAP y Splitting.js son bundles grandes para un portafolio. Verificar:
-- Tree-shaking de módulos GSAP no usados (Draggable, MotionPath, etc.)
-- `import('splitting')` dinámico solo en Hero
-- SplitChunks para separar vendor JS del app JS
-
----
-
-## Fase 4 — Contenido y GEO (semanas 4-8)
-
-### TC-11: Direct-answer paragraphs en Home
-- **Categoria:** `staging` (probar en build antes)
-- **Bloque:** E — GEO/AEO
-- **Archivo:** `app/(site)/page.tsx`
-
-El Hero debe abrir con un párrafo directo que responda "quién es Luis Cruz" en 2-4 oraciones. Esto debe estar visible en el HTML inicial (server component) para que los crawlers AI lo capturen. Actualmente Hero es client component — mover contenido clave a server component wrapper.
-
-Agregar un bloque server-side antes del Hero:
-
-```tsx
-<section style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', opacity: 0 }}>
-  <h1>Luis Cruz — Diseñador Web y Desarrollador WordPress en Talca, Chile</h1>
-  <p>Especialista en WordPress, WooCommerce, UI/UX design y e-commerce. Más de 5 años de experiencia creando sitios web profesionales para empresas en Chile y Latinoamérica.</p>
-</section>
-```
-
-### TC-12: llms.txt
-- **Categoria:** `autonoma`
-- **Bloque:** E — GEO/AEO
-- **Archivo:** `public/llms.txt` (crear)
-
-```
-# Luis Cruz — Diseñador Web & Desarrollador WordPress
-
-## Sobre mí
-Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce con más de 5 años de experiencia. Con sede en Talca, Chile.
-
-## Servicios
-- Diseño y desarrollo WordPress
-- WooCommerce y E-commerce
-- UI/UX Design
-- Diseño Gráfico
-- Branding
-
-## Proyectos destacados
-- Cablepar: https://pittuk.net/proyectos/cablepar
-- Fluye por Chile: https://pittuk.net/proyectos/fluye-por-chile
-- Varity Labs: https://pittuk.net/proyectos/varity-labs
-- Wui Coffee Drink & Lounge: https://pittuk.net/proyectos/wui-coffee-drink-lounge
-
-## Redes
-- LinkedIn: https://www.linkedin.com/in/luiscruz/
-- Behance: https://www.behance.net/luiscruz
-```
-
-### TC-13: Author entity verification
-- **Categoria:** `pause` (requiere inputs del cliente)
-- **Bloque:** E — GEO/AEO
-- **Archivos:** `app/layout.tsx`
-
-Actualizar Person schema con:
-- LinkedIn URL real
-- `alumniOf` si aplica
-- `birthPlace` (Talca, Chile)
-- Foto (`image`) profesional
-
-Requiere que el cliente confirme URLs de LinkedIn y Behance.
-
----
-
-## Fase 5 — E-E-A-T (continuo)
-
-### TC-14: Google Business Profile
-- **Categoria:** `pause` (requiere decisión humana)
+### TC-19: Citaciones externas y marca
+- **Categoría:** `pause`
 - **Bloque:** F — E-E-A-T
-
-Para un diseñador web freelance, un perfil de Google Business Profile con reseñas y portafolio refuerza la entidad local. Crear perfil con:
-- Categoría: "Diseñador web"
-- Servicios: WordPress, UI/UX, E-commerce
-- Fotos del portafolio
-
-### TC-15: Citaciones externas
-- **Categoria:** `pause` (requiere decisión humana)
-- **Bloque:** F — E-E-A-T
-
-Obtener menciones en:
-- Behance (ya tiene perfil — vincular desde el sitio)
-- Directorios chilenos: Páginas Amarillas, EmpresasChile
-- Foros de WordPress Chile
-
-### TC-16: Knowledge Panel
-- **Categoria:** `pause` (requiere decisión humana)
-- **Bloque:** F — E-E-A-T
-
-Una vez implementados Organization + Person schema con sameAs correctos y verified LinkedIn, Google puede generar automáticamente un Knowledge Panel. Monitorear en Search Console tras 4-8 semanas de indexación.
+- Mismo nombre ("Pittuk — Luis Cruz"), web y WhatsApp en LinkedIn, Behance, GitHub, Instagram, Páginas Amarillas, Hotfrog Chile y 2x3.cl (perfil profesional). Pedir crédito "Sitio por Pittuk" con enlace en el footer de los sitios de clientes que lo acepten.
 
 ---
 
 ## Notas técnicas
 
-- **URL base:** Usar `https://pittuk.net` (o el dominio real del deploy). Cambiar en sitemap.ts, metadata, y JSON-LD antes de desplegar.
-- **Sanity:** El sitio ya integra Sanity CMS con fallback a MOCK_PROJECTS. Cuando Sanity esté en producción, el sitemap generará todas las URLs dinámicamente.
-- **Hosting:** Next.js standalone output (`output: 'standalone'` en next.config.ts) — compatible con Vercel, Docker, o Node server propio.
+- **URL base:** `https://pittuk.net` (www y http redirigen con 308).
+- **Contenido:** posts y proyectos viven en `lib/mock/*.ts`; Sanity es opcional (si `NEXT_PUBLIC_SANITY_PROJECT_ID` está vacío, se usan los mocks).
+- **Deploy:** push a `main` + clic manual en Easypanel. El build en el VPS tarda varios minutos; es normal.
+- **Medición:** repetir Lighthouse móvil tras la Fase 1. Cuando PageSpeed tenga cuota o haya datos CrUX, usar campo (p75) como métrica oficial.

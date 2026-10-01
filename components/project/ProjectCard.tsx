@@ -74,7 +74,6 @@ export default function ProjectCard({ project, style }: ProjectCardProps) {
             alt={project.title}
             fill
             loading="lazy"
-            unoptimized={!!project.coverUrl}
             sizes="(max-width: 768px) 100vw, 50vw"
             style={{ objectFit: 'cover' }}
           />

@@ -20,19 +20,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     posts = MOCK_POSTS
   }
 
+  // ponytail: lastmod solo donde hay una fecha real de contenido; sin fecha es mejor omitirlo
+  // que mandar la hora del build, que le dice a Google que todo cambió en cada deploy.
   const projectEntries = projects.map(p => ({
     url: `${baseUrl}/proyectos/${p.slug.current}`,
-    lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   }))
 
+  const postDate = (p: any) => p.updatedAt ?? p.publishedAt
   const postEntries = posts.map(p => ({
     url: `${baseUrl}/blog/${p.slug.current}`,
-    lastModified: new Date(),
+    lastModified: postDate(p),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
+  const latestPost = posts.map(postDate).sort().at(-1)
 
   const serviceEntries = [
     'diseno-web-wordpress',
@@ -41,15 +44,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'diseno-web-empresas',
   ].map(slug => ({
     url: `${baseUrl}/${slug}`,
-    lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.85,
   }))
 
   return [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
-    { url: `${baseUrl}/proyectos`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: baseUrl, changeFrequency: 'weekly', priority: 1 },
+    { url: `${baseUrl}/proyectos`, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/blog`, lastModified: latestPost, changeFrequency: 'weekly', priority: 0.7 },
     ...serviceEntries,
     ...projectEntries,
     ...postEntries,
