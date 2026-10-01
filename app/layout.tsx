@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
-  description: 'Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce. Portafolio profesional.',
+  description: 'Diseño de sitios WordPress y tiendas WooCommerce para empresas en Chile y Latinoamérica. Trato directo con quien diseña y programa, sin intermediarios.',
   openGraph: {
     title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
-    description: 'Portafolio profesional de diseño y desarrollo web. WordPress, UI/UX, E-commerce.',
+    description: 'Diseño de sitios WordPress y tiendas WooCommerce para empresas en Chile y Latinoamérica. Trato directo con quien diseña y programa, sin intermediarios.',
     url: 'https://pittuk.net',
     siteName: 'Luis Cruz',
     locale: 'es_CL',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
-    description: 'Portafolio profesional de diseño y desarrollo web. WordPress, UI/UX, E-commerce.',
+    description: 'Diseño de sitios WordPress y tiendas WooCommerce para empresas en Chile y Latinoamérica. Trato directo con quien diseña y programa, sin intermediarios.',
     images: ['https://pittuk.net/images/logo/icono.svg'],
   },
   icons: {
@@ -87,6 +87,8 @@ const jsonLd = {
       sameAs: [
         'https://www.linkedin.com/in/pittuk/',
         'https://www.behance.net/PITTUK',
+        'https://github.com/pittuk',
+        'https://www.instagram.com/p1ttuk/',
       ],
       knowsAbout: ['WordPress', 'UI/UX', 'E-commerce', 'Diseño Gráfico'],
       worksFor: { '@id': 'https://pittuk.net/#organization' },

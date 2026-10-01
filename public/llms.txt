@@ -1,21 +1,35 @@
-# Luis Cruz — Diseñador Web & Desarrollador WordPress
+# Pittuk — Luis Cruz, diseñador web y desarrollador WordPress
 
-## Sobre mí
-Diseñador y desarrollador web especializado en WordPress, UI/UX y e-Commerce con más de 5 años de experiencia. Con sede en Talca, Chile.
+> Diseñador y desarrollador web con más de 15 años de experiencia, especializado en WordPress, WooCommerce y UI/UX. Con sede en Talca, Chile; trabaja con empresas de Chile, Latinoamérica, España y Estados Unidos. Estrategia, diseño y código en una sola persona, sin intermediarios.
 
 ## Servicios
-- Diseño y desarrollo WordPress
-- WooCommerce y E-commerce
-- UI/UX Design
-- Diseño Gráfico
-- Branding
+- [Diseño web en WordPress](https://pittuk.net/diseno-web-wordpress): sitios corporativos a medida en WordPress.
+- [Diseño de tiendas WooCommerce](https://pittuk.net/diseno-tiendas-woocommerce): tiendas online con pasarelas de pago chilenas.
+- [Diseño web para empresas](https://pittuk.net/diseno-web-empresas): sitios orientados a generar consultas.
+- [Mantenimiento WordPress](https://pittuk.net/mantenimiento-wordpress): actualizaciones, backups y seguridad.
+
+## Guías
+- [¿Cuánto cuesta una página web en Chile?](https://pittuk.net/blog/cuanto-cuesta-una-pagina-web-en-chile)
+- [WooCommerce o Shopify: cuál conviene](https://pittuk.net/blog/woocommerce-o-shopify)
+- [Pasarelas de pago en Chile para WooCommerce](https://pittuk.net/blog/pasarelas-de-pago-en-chile-para-woocommerce)
+- [Elementor vs. Divi](https://pittuk.net/blog/elementor-vs-divi)
+- [Página web o solo redes sociales](https://pittuk.net/blog/pagina-web-o-redes-sociales-que-necesita-tu-negocio)
+- [Landing page o sitio web completo](https://pittuk.net/blog/landing-page-o-sitio-web-completo)
+- [Mantenimiento WordPress: qué incluye y cuánto cuesta](https://pittuk.net/blog/mantenimiento-wordpress-que-incluye-y-cuanto-cuesta)
+- [Cómo elegir hosting para WordPress en Chile](https://pittuk.net/blog/como-elegir-hosting-para-wordpress-en-chile)
+- [Cómo migrar tu tienda a WooCommerce sin perder SEO](https://pittuk.net/blog/como-migrar-tu-tienda-a-woocommerce-sin-perder-seo)
+- [Cuánto tiempo toma hacer una página web](https://pittuk.net/blog/cuanto-tiempo-toma-hacer-una-pagina-web)
+- [Todas las guías](https://pittuk.net/blog)
 
 ## Proyectos destacados
-- Cablepar: https://pittuk.net/proyectos/cablepar
-- Fluye por Chile: https://pittuk.net/proyectos/fluye-por-chile
-- Varity Labs: https://pittuk.net/proyectos/varity-labs
-- Wui Coffee Drink & Lounge: https://pittuk.net/proyectos/wui-coffee-drink-lounge
+- [Cablepar](https://pittuk.net/proyectos/cablepar)
+- [Fluye por Chile](https://pittuk.net/proyectos/fluye-por-chile)
+- [Varity Labs](https://pittuk.net/proyectos/varity-labs)
+- [Wui Coffee Drink & Lounge](https://pittuk.net/proyectos/wui-coffee-drink-lounge)
+- [Todos los proyectos](https://pittuk.net/proyectos)
 
-## Redes
+## Contacto y perfiles
+- WhatsApp: https://wa.me/56967093146
 - LinkedIn: https://www.linkedin.com/in/pittuk/
 - Behance: https://www.behance.net/PITTUK
+- GitHub: https://github.com/pittuk

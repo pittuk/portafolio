@@ -57,7 +57,7 @@ export default function Hero() {
     <section
       id="inicio"
       style={{
-        minHeight: isMobile ? 'auto' : '100svh',
+        minHeight: '100svh',
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -66,7 +66,7 @@ export default function Hero() {
     >
       {/* Foto de fondo */}
       <Image
-        src="/images/Luis Cruz.png"
+        src="/images/luis-cruz-hero.webp"
         alt="Luis Cruz"
         fill
         priority
@@ -77,7 +77,7 @@ export default function Hero() {
       <div style={{
         position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
         background: isMobile
-          ? 'linear-gradient(0deg, var(--bg) 10%, rgba(4,12,10,0.75) 60%, rgba(4,12,10,0.6))'
+          ? 'linear-gradient(0deg, var(--bg) 0%, rgba(4,12,10,0.85) 45%, rgba(4,12,10,0.15) 75%, rgba(4,12,10,0.35) 100%)'
           : 'linear-gradient(0deg, var(--bg), transparent 40%), linear-gradient(90deg, var(--bg) 0%, rgba(4,12,10,0.85) 35%, rgba(4,12,10,0.4) 70%, rgba(4,12,10,0.6))',
       }} />
       {/* Retícula */}
@@ -115,39 +115,44 @@ export default function Hero() {
       {/* Contenido */}
       <div className="hero-content" style={{
         flex: 1, display: 'flex', flexDirection: 'column',
-        justifyContent: 'flex-end', padding: isMobile ? '100px 20px 80px' : '120px 40px 48px',
+        justifyContent: 'flex-end', padding: isMobile ? '100px 20px 40px' : '120px 40px 48px',
         position: 'relative', zIndex: 2,
       }}>
-        <div ref={eyebrowRef} style={{ opacity: isMobile ? 1 : 0 }}>
+        <div ref={eyebrowRef} className="hero-anim">
           <EyebrowPill>WordPress · UI/UX · e-Commerce</EyebrowPill>
         </div>
 
+        <h1 style={{ margin: 0 }}>
+        {/* sr-only fuera de .hero-title para que la animación GSAP no lo parta en letras */}
+        <span className="sr-only">Luis Cruz — Diseñador web y desarrollador WordPress en Chile</span>
         <div
-          className="hero-title"
+          aria-hidden="true"
+          className="hero-title hero-anim"
           style={{
             fontFamily: 'var(--heading)', fontWeight: 800,
             fontSize: 'clamp(72px, 12vw, 160px)',
             lineHeight: 0.9, letterSpacing: -4,
             color: 'var(--white)', marginTop: 20,
             overflow: 'hidden',
-            opacity: isMobile ? 1 : 0,
           }}
         >
           Luis<br />Cruz<span style={{ color: 'var(--orange)' }}>.</span>
         </div>
+        </h1>
 
         <div className="hero-desc-cta" style={{ marginTop: 28, display: 'flex', alignItems: isMobile ? 'flex-start' : 'flex-end', justifyContent: 'space-between', gap: 40, flexDirection: isMobile ? 'column' : 'row' }}>
           <p
             ref={descRef}
+            className="hero-anim"
             style={{
               fontSize: isMobile ? 14 : 17, color: 'var(--muted)', lineHeight: 1.7,
-              maxWidth: isMobile ? 360 : 560, fontWeight: 400, opacity: isMobile ? 1 : 0,
+              maxWidth: isMobile ? 360 : 560, fontWeight: 400,
             }}
           >
             Diseño y desarrollo sitios web y tiendas WooCommerce para empresas en Chile y Latinoamérica que quieren <strong style={{ color: 'var(--white)', fontWeight: 600 }}>vender más sin depender solo de redes sociales</strong>.
             Estrategia, diseño y código en una sola persona — sin intermediarios.
           </p>
-          <div ref={ctaRef} style={{ opacity: isMobile ? 1 : 0, flexShrink: 0 }}>
+          <div ref={ctaRef} className="hero-anim" style={{ flexShrink: 0 }}>
             <PrimaryButton href="#portfolio">Ver proyectos</PrimaryButton>
           </div>
         </div>

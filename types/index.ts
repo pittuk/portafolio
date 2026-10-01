@@ -44,6 +44,8 @@ export interface Post {
   seoTitle?: string
   slug: { current: string }
   publishedAt: string
+  // Solo cuando el contenido cambia de verdad: alimenta dateModified y el lastmod del sitemap
+  updatedAt?: string
   excerpt: string
   coverImage?: SanityImage
   coverUrl?: string

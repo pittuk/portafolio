@@ -8,7 +8,7 @@ export const MOCK_POSTS: Post[] = [
     slug: { current: 'cuanto-cuesta-una-pagina-web-en-chile' },
     publishedAt: '2026-07-20',
     coverUrl: '/images/blog/cuanto-cuesta-una-pagina-web-en-chile-guia-de-precios.webp',
-    excerpt: 'El precio de una página web varía muchísimo según lo que realmente necesites. Esta guía explica qué factores mueven el precio, para que sepas qué preguntar antes de cotizar.',
+    excerpt: 'El precio de una página web en Chile depende de lo que realmente necesitás. Qué factores mueven el precio y qué preguntar antes de cotizar.',
     tags: ['Precios', 'WordPress', 'Guía'],
     sections: [
       {
@@ -44,7 +44,7 @@ export const MOCK_POSTS: Post[] = [
     slug: { current: 'elementor-vs-divi' },
     publishedAt: '2026-07-08',
     coverUrl: '/images/blog/elementor-vs-divi-cual-elegir-para-tu-sitio-en-wordpress.webp',
-    excerpt: 'Los dos page builders más usados en WordPress resuelven lo mismo de forma distinta. Una comparación honesta, desde la experiencia real de construir sitios con ambos.',
+    excerpt: 'Los dos page builders más usados en WordPress, comparados desde la experiencia real de construir sitios con ambos. Cuál conviene según tu proyecto.',
     tags: ['WordPress', 'Elementor', 'Divi', 'Comparativa'],
     sections: [
       {
@@ -80,7 +80,7 @@ export const MOCK_POSTS: Post[] = [
     slug: { current: 'woocommerce-o-shopify' },
     publishedAt: '2026-06-25',
     coverUrl: '/images/blog/woocommerce-o-shopify-cual-conviene-para-tu-tienda-online.webp',
-    excerpt: 'Antes de elegir plataforma para tu tienda, conviene entender qué estás comprando: control total con más responsabilidad, o simplicidad con menos margen de personalización.',
+    excerpt: 'Control total con más responsabilidad, o simplicidad con menos personalización. Qué estás comprando realmente al elegir la plataforma de tu tienda.',
     tags: ['E-commerce', 'WooCommerce', 'Shopify', 'Comparativa'],
     sections: [
       {
@@ -152,7 +152,7 @@ export const MOCK_POSTS: Post[] = [
     slug: { current: 'errores-al-crear-una-tienda-online' },
     publishedAt: '2026-05-28',
     coverUrl: '/images/blog/errores-comunes-al-crear-una-tienda-online-y-como-evitarlos.webp',
-    excerpt: 'Muchos de los problemas que frenan las ventas de una tienda online no son de diseño — son decisiones tomadas (o salteadas) antes de lanzar. Estos son los más comunes.',
+    excerpt: 'Lo que frena las ventas de una tienda online rara vez es el diseño: son decisiones tomadas (o salteadas) antes de lanzar. Los errores más comunes.',
     tags: ['E-commerce', 'WooCommerce', 'Guía'],
     sections: [
       {
@@ -392,7 +392,7 @@ export const MOCK_POSTS: Post[] = [
     slug: { current: 'como-migrar-tu-tienda-a-woocommerce-sin-perder-seo' },
     publishedAt: '2026-08-06',
     coverUrl: '/images/blog/como-migrar-tu-tienda-a-woocommerce-sin-perder-seo.webp',
-    excerpt: 'Cambiar de plataforma es una decisión con riesgo real: mal hecha, puede costar posiciones en Google y ventas durante semanas. Así se migra sin perder lo que ya funciona.',
+    excerpt: 'Mal hecha, una migración cuesta posiciones en Google y ventas durante semanas. Cómo pasar tu tienda a WooCommerce sin perder lo que ya funciona.',
     tags: ['WooCommerce', 'E-commerce', 'SEO', 'Guía'],
     sections: [
       {
@@ -428,7 +428,7 @@ export const MOCK_POSTS: Post[] = [
     slug: { current: 'plugins-esenciales-de-wordpress-y-cuales-evitar' },
     publishedAt: '2026-08-05',
     coverUrl: '/images/blog/plugins-esenciales-de-wordpress-y-cuales-evitar.webp',
-    excerpt: 'No todos los plugins que promete resolver algo lo resuelven bien. Estos son los que realmente valen la pena en un sitio profesional, y las señales de los que conviene evitar.',
+    excerpt: 'Qué plugins de WordPress valen la pena en un sitio profesional, y las señales de los que conviene evitar antes de que te rompan el sitio.',
     tags: ['WordPress', 'Plugins', 'Guía'],
     sections: [
       {
@@ -464,7 +464,7 @@ export const MOCK_POSTS: Post[] = [
     slug: { current: 'como-es-el-proceso-de-crear-una-pagina-web-paso-a-paso' },
     publishedAt: '2026-08-04',
     coverUrl: '/images/blog/como-es-el-proceso-de-crear-una-pagina-web-paso-a-paso.webp',
-    excerpt: 'Saber qué esperar en cada etapa reduce la incertidumbre de encargar un sitio web. Este es el proceso real, desde la primera reunión hasta el soporte después del lanzamiento.',
+    excerpt: 'Qué esperar en cada etapa de encargar un sitio web: el proceso real, desde la primera reunión hasta el soporte después del lanzamiento.',
     tags: ['Guía', 'Proceso', 'WordPress'],
     sections: [
       {
@@ -508,7 +508,7 @@ export const MOCK_POSTS: Post[] = [
     slug: { current: 'wordpress-lento-causas-comunes-y-como-solucionarlo' },
     publishedAt: '2026-08-03',
     coverUrl: '/images/blog/wordpress-lento-causas-comunes-y-como-solucionarlo.webp',
-    excerpt: 'Un sitio lento pierde visitas y posiciones en Google en silencio. Estas son las causas más comunes de lentitud en WordPress, en el orden en que conviene revisarlas.',
+    excerpt: 'Un sitio lento pierde visitas y posiciones en Google. Las causas más comunes de lentitud en WordPress, en el orden en que conviene revisarlas.',
     tags: ['WordPress', 'Performance', 'Guía'],
     sections: [
       {
@@ -548,7 +548,7 @@ export const MOCK_POSTS: Post[] = [
     slug: { current: 'pagina-web-o-redes-sociales-que-necesita-tu-negocio' },
     publishedAt: '2026-09-30',
     coverUrl: '/images/blog/pagina-web-o-redes-sociales-que-necesita-tu-negocio.webp',
-    excerpt: 'Instagram y Facebook sirven para que te descubran, pero no son tuyos. Por qué depender solo de redes sociales es un riesgo, y qué rol cumple una página web propia.',
+    excerpt: 'Instagram y Facebook sirven para que te descubran, pero no son tuyos. Por qué depender solo de redes es un riesgo y qué rol cumple una web propia.',
     tags: ['Estrategia', 'Redes sociales', 'Guía'],
     sections: [
       {
@@ -612,7 +612,7 @@ export const MOCK_POSTS: Post[] = [
     slug: { current: 'pasarelas-de-pago-en-chile-para-woocommerce' },
     publishedAt: '2026-09-28',
     coverUrl: '/images/blog/pasarelas-de-pago-en-chile-para-woocommerce.webp',
-    excerpt: 'Elegir la pasarela de pago define cuánto pagás por cada venta, cuándo recibís el dinero y cuántos clientes abandonan el checkout. Las opciones más usadas en Chile, comparadas.',
+    excerpt: 'Webpay, Mercado Pago, Flow y Khipu comparadas: comisiones, plazos de abono y medios de pago para elegir la pasarela de tu tienda en Chile.',
     tags: ['WooCommerce', 'E-commerce', 'Chile', 'Guía'],
     sections: [
       {
@@ -648,7 +648,7 @@ export const MOCK_POSTS: Post[] = [
     slug: { current: 'que-necesitas-antes-de-encargar-tu-pagina-web' },
     publishedAt: '2026-09-27',
     coverUrl: '/images/blog/que-necesitas-antes-de-encargar-tu-pagina-web.webp',
-    excerpt: 'La mayoría de los proyectos web no se atrasan por el desarrollo, sino por el contenido. Esta es la lista de lo que conviene preparar para que tu sitio salga a tiempo.',
+    excerpt: 'Los proyectos web no se atrasan por el desarrollo, sino por el contenido. Lo que conviene tener listo para que tu sitio salga a tiempo.',
     tags: ['Guía', 'Proceso', 'Contenido'],
     sections: [
       {
@@ -684,7 +684,7 @@ export const MOCK_POSTS: Post[] = [
     slug: { current: 'como-elegir-hosting-para-wordpress-en-chile' },
     publishedAt: '2026-09-26',
     coverUrl: '/images/blog/como-elegir-hosting-para-wordpress-en-chile.webp',
-    excerpt: 'El hosting define la velocidad, la estabilidad y buena parte de la seguridad de tu sitio. Qué mirar al elegir uno para WordPress, y qué promesas conviene ignorar.',
+    excerpt: 'El hosting define la velocidad, estabilidad y seguridad de tu sitio. Qué mirar al elegir uno para WordPress en Chile y qué promesas ignorar.',
     tags: ['WordPress', 'Hosting', 'Guía'],
     sections: [
       {

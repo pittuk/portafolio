@@ -16,6 +16,7 @@ const STATS = [
 export default function About() {
   const statsRefs = useRef<(HTMLSpanElement | null)[]>([])
   const photoRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
   const isMobile = useMediaQuery('(max-width: 768px)')
 
   useEffect(() => {
@@ -47,7 +48,16 @@ export default function About() {
       }
     )
 
+    // El video solo se descarga y reproduce cuando la sección entra en pantalla
+    const video = videoRef.current
+    const io = video && new IntersectionObserver(
+      ([e]) => { e.isIntersecting ? video.play().catch(() => {}) : video.pause() },
+      { threshold: 0.25 },
+    )
+    if (video && io) io.observe(video)
+
     return () => {
+      io?.disconnect()
       tweens.forEach(t => {
         t.scrollTrigger?.kill()
         t.kill()
@@ -91,12 +101,13 @@ export default function About() {
         <DoubleBezelCard variant="ticket">
           <div style={{ borderRadius: 0, height: isMobile ? 320 : 480, position: 'relative', overflow: 'hidden' }}>
             <video
+              ref={videoRef}
               src="/video/luis-cruz.mp4"
               aria-label="Luis Cruz"
               muted
               playsInline
               loop
-              autoPlay
+              preload="none"
               style={{
                 position: 'absolute', inset: 0, width: '100%', height: '100%',
                 objectFit: 'cover', objectPosition: 'top', pointerEvents: 'none',
