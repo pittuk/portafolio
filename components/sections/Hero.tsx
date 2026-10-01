@@ -7,11 +7,12 @@ import EyebrowPill from '@/components/ui/EyebrowPill'
 import PrimaryButton from '@/components/ui/PrimaryButton'
 import { animateCinematicSlam } from '@/lib/animations/splitText'
 import { useMediaQuery } from '@/lib/useMediaQuery'
-import HeroText from '@/components/ui/hero-shutter-text'
+import Image from 'next/image'
+
+const GRAIN_SVG = "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")"
 
 export default function Hero() {
   const isMobile = useMediaQuery('(max-width: 768px)')
-  const bgWordsRef = useRef<HTMLDivElement[]>([])
   const descRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
   const eyebrowRef = useRef<HTMLDivElement>(null)
@@ -28,15 +29,13 @@ export default function Hero() {
 
     let tl: any = null
     let cancelled = false
-    const wordElements = bgWordsRef.current.filter(Boolean)
     const originalContents = new Map<HTMLElement, string>()
-    wordElements.forEach(el => originalContents.set(el, el.innerHTML))
     const titleEl = document.querySelector('.hero-title') as HTMLElement | null
     if (titleEl) originalContents.set(titleEl, titleEl.innerHTML)
 
     if (typeof window !== 'undefined' && window.innerWidth > 768) {
       animateCinematicSlam({
-        wordEls: wordElements,
+        wordEls: [],
         titleSelector: '.hero-title',
         eyebrowEl: eyebrowRef.current,
         descEl: descRef.current,
@@ -65,6 +64,33 @@ export default function Hero() {
         overflow: 'hidden',
       }}
     >
+      {/* Foto de fondo */}
+      <Image
+        src="/images/Luis Cruz.png"
+        alt="Luis Cruz"
+        fill
+        priority
+        sizes="100vw"
+        style={{ objectFit: 'cover', objectPosition: 'center 20%', zIndex: 0 }}
+      />
+      {/* Degradado de legibilidad */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
+        background: isMobile
+          ? 'linear-gradient(0deg, var(--bg) 10%, rgba(4,12,10,0.75) 60%, rgba(4,12,10,0.6))'
+          : 'linear-gradient(0deg, var(--bg), transparent 40%), linear-gradient(90deg, var(--bg) 0%, rgba(4,12,10,0.85) 35%, rgba(4,12,10,0.4) 70%, rgba(4,12,10,0.6))',
+      }} />
+      {/* Retícula */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
+        backgroundImage: 'linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)',
+        backgroundSize: '48px 48px',
+      }} />
+      {/* Grano */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
+        backgroundImage: GRAIN_SVG, opacity: 0.15, mixBlendMode: 'overlay',
+      }} />
       {/* Bloom inferior derecho */}
       <div style={{
         position: 'absolute', bottom: -120, right: -80,
@@ -85,24 +111,6 @@ export default function Hero() {
         background: 'linear-gradient(180deg, transparent, var(--teal) 40%, transparent)',
         opacity: 0.4,
       }} />
-
-      {/* Marca de agua animada con Shutter Text — desactivada en mobile (peso y espacio innecesarios) */}
-      {!isMobile && (
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1 }}>
-          <HeroText
-            words={['DISEÑO', 'DESARROLLO', 'CREATIVIDAD', 'WEB']}
-            autoPlay={true}
-            interval={3500}
-            showControls={false}
-            showGrid={false}
-            showGridOnly={true}
-            gridOpacity="1"
-            showAccents={false}
-            wrapperOpacity={0.05}
-            className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none"
-          />
-        </div>
-      )}
 
       {/* Contenido */}
       <div className="hero-content" style={{

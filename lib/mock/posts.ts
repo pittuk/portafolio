@@ -541,4 +541,176 @@ export const MOCK_POSTS: Post[] = [
       },
     ],
   },
+  {
+    _id: 'mock-pagina-web-vs-redes-sociales',
+    title: '¿Página web o solo redes sociales? Lo que tu negocio realmente necesita',
+    seoTitle: 'Página web o redes sociales: qué necesita tu negocio',
+    slug: { current: 'pagina-web-o-redes-sociales-que-necesita-tu-negocio' },
+    publishedAt: '2026-09-30',
+    coverUrl: '/images/blog/pagina-web-o-redes-sociales-que-necesita-tu-negocio.webp',
+    excerpt: 'Instagram y Facebook sirven para que te descubran, pero no son tuyos. Por qué depender solo de redes sociales es un riesgo, y qué rol cumple una página web propia.',
+    tags: ['Estrategia', 'Redes sociales', 'Guía'],
+    sections: [
+      {
+        heading: '',
+        body: 'Muchos negocios en Chile venden solo por Instagram o WhatsApp, y les funciona — hasta que deja de funcionar. Las redes sociales son un gran canal para que te descubran, pero son terreno arrendado: las reglas, el alcance y hasta tu cuenta dependen de una empresa que no sos vos.',
+      },
+      {
+        heading: 'El problema de construir sobre terreno arrendado',
+        body: 'El alcance orgánico de una publicación puede caer de un mes a otro por un cambio de algoritmo, y una cuenta suspendida o hackeada puede borrar años de seguidores en un día. Si todas tus ventas pasan por ahí, todo tu negocio depende de algo que no controlás.',
+      },
+      {
+        heading: 'Lo que una página web hace y las redes no',
+        body: 'Una web aparece cuando alguien busca en Google lo que vendés — gente con intención de compra, no alguien que pasaba scrolleando. Además da credibilidad (muchos clientes buscan el sitio antes de comprar), concentra la información en un solo lugar y te permite medir de dónde vienen tus clientes.',
+      },
+      {
+        heading: 'No es una cosa o la otra',
+        body: 'La estrategia que mejor funciona combina las dos: las redes generan atención y comunidad, y la web convierte esa atención en consultas o ventas. Cada publicación puede llevar a una página con toda la información, el catálogo o un formulario, en vez de depender de responder lo mismo por mensaje directo.',
+      },
+      {
+        heading: 'Cuándo dar el paso',
+        body: 'Si respondés las mismas preguntas una y otra vez por WhatsApp, si perdés ventas porque la gente no encuentra precios o catálogo, o si querés vender a clientes que no te siguen todavía, ya es momento. Una web simple y bien hecha suele pagarse sola con las consultas que antes se perdían.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-landing-page-o-sitio-web',
+    title: 'Landing page o sitio web completo: cuál necesitás y cuándo',
+    seoTitle: 'Landing page o sitio web completo: cuál necesitás',
+    slug: { current: 'landing-page-o-sitio-web-completo' },
+    publishedAt: '2026-09-29',
+    coverUrl: '/images/blog/landing-page-o-sitio-web-completo.webp',
+    excerpt: 'Una landing page y un sitio web resuelven problemas distintos. Cómo saber cuál conviene según tu objetivo, tu presupuesto y la etapa de tu negocio.',
+    tags: ['Estrategia', 'Landing page', 'Guía'],
+    sections: [
+      {
+        heading: '',
+        body: 'Una landing page es una sola página con un solo objetivo: que el visitante haga una acción concreta, como dejar sus datos o comprar un producto. Un sitio web completo tiene varias secciones y sirve para presentar el negocio entero. Elegir mal no es grave, pero sí puede significar pagar por algo que no necesitás todavía, o quedarte corto.',
+      },
+      {
+        heading: 'Cuándo conviene una landing page',
+        body: 'Para lanzar un producto o servicio puntual, para campañas pagadas en Google o Meta, o para validar una idea antes de invertir en un sitio completo. Al tener un solo mensaje y un solo botón, suele convertir mejor que una página de inicio llena de opciones.',
+      },
+      {
+        heading: 'Cuándo conviene un sitio web completo',
+        body: 'Si ofrecés varios servicios, si querés aparecer en Google para distintas búsquedas, o si tu negocio necesita mostrar trayectoria, proyectos y equipo para generar confianza. Cada página de servicio es una puerta de entrada más desde los buscadores, algo que una sola landing no puede cubrir.',
+      },
+      {
+        heading: 'La diferencia en SEO',
+        body: 'Una landing apunta a una búsqueda principal; un sitio con varias páginas y un blog puede posicionarse para decenas. Si la estrategia depende de tráfico orgánico a largo plazo, el sitio completo gana. Si depende de publicidad pagada a corto plazo, la landing suele ser suficiente.',
+      },
+      {
+        heading: 'Empezar chico y crecer',
+        body: 'Una opción sensata es partir con una landing bien hecha sobre WordPress y sumar páginas a medida que el negocio crece, sin rehacer todo. Lo importante es que la base técnica permita crecer: una landing hecha en una herramienta cerrada después obliga a empezar de cero.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-pasarelas-de-pago-chile-woocommerce',
+    title: 'Pasarelas de pago en Chile para WooCommerce: Webpay, Mercado Pago, Flow y más',
+    seoTitle: 'Pasarelas de pago en Chile para WooCommerce',
+    slug: { current: 'pasarelas-de-pago-en-chile-para-woocommerce' },
+    publishedAt: '2026-09-28',
+    coverUrl: '/images/blog/pasarelas-de-pago-en-chile-para-woocommerce.webp',
+    excerpt: 'Elegir la pasarela de pago define cuánto pagás por cada venta, cuándo recibís el dinero y cuántos clientes abandonan el checkout. Las opciones más usadas en Chile, comparadas.',
+    tags: ['WooCommerce', 'E-commerce', 'Chile', 'Guía'],
+    sections: [
+      {
+        heading: '',
+        body: 'La pasarela de pago es la parte de la tienda donde se cierra la venta, y también donde más se pierden. Comisiones, plazos de abono y métodos de pago aceptados varían bastante entre proveedores, y conviene elegir con esos números en mano, no solo por costumbre.',
+      },
+      {
+        heading: 'Webpay Plus (Transbank)',
+        body: 'Es la opción que más confianza genera en el comprador chileno, porque acepta tarjetas de débito y crédito de todos los bancos con una interfaz conocida. Tiene plugin oficial para WooCommerce. Requiere un proceso de afiliación y validación técnica antes de pasar a producción, así que hay que considerarlo en los plazos.',
+      },
+      {
+        heading: 'Mercado Pago',
+        body: 'Rápido de activar, sin contrato de afiliación complejo, y acepta tarjetas, saldo en cuenta y cuotas. Su comisión suele ser algo mayor y el plazo de liberación del dinero depende de la modalidad elegida. Es una buena opción para empezar a vender rápido.',
+      },
+      {
+        heading: 'Flow, Khipu y transferencias',
+        body: 'Flow agrupa varios medios (Webpay, transferencia, otros) en una sola integración. Khipu permite pagar con transferencia bancaria automatizada, algo que mucha gente en Chile prefiere frente a la tarjeta. Ofrecer transferencia como alternativa puede recuperar ventas de clientes que no quieren ingresar datos de tarjeta.',
+      },
+      {
+        heading: 'Cómo elegir',
+        body: 'Compará la comisión por transacción, el plazo en que el dinero llega a tu cuenta, los medios de pago que acepta y la calidad del plugin para WooCommerce (actualizaciones recientes, soporte). Muchas tiendas terminan usando dos: una principal con tarjetas y una alternativa con transferencia.',
+      },
+      {
+        heading: 'Probar antes de lanzar',
+        body: 'Todas las pasarelas tienen un modo de pruebas. Antes de publicar la tienda, hay que hacer compras de prueba completas — pago aprobado, rechazado y anulado — y revisar que el pedido cambie de estado correctamente y que lleguen los correos de confirmación. Un checkout que falla en silencio es la forma más cara de perder ventas.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-que-necesito-para-hacer-mi-pagina-web',
+    title: 'Qué necesitás tener listo antes de encargar tu página web',
+    seoTitle: 'Qué necesitás antes de encargar tu página web',
+    slug: { current: 'que-necesitas-antes-de-encargar-tu-pagina-web' },
+    publishedAt: '2026-09-27',
+    coverUrl: '/images/blog/que-necesitas-antes-de-encargar-tu-pagina-web.webp',
+    excerpt: 'La mayoría de los proyectos web no se atrasan por el desarrollo, sino por el contenido. Esta es la lista de lo que conviene preparar para que tu sitio salga a tiempo.',
+    tags: ['Guía', 'Proceso', 'Contenido'],
+    sections: [
+      {
+        heading: '',
+        body: 'El cuello de botella más común en un proyecto web no es el diseño ni la programación: es esperar textos, fotos o accesos que el cliente todavía no tiene. Preparar esto antes de empezar acorta semanas el proyecto y mejora el resultado final.',
+      },
+      {
+        heading: 'Objetivo y público claros',
+        body: '¿Qué tiene que lograr el sitio: consultas, ventas, reservas? ¿Quién es tu cliente ideal y qué busca? Tener esto claro define la estructura, los textos y los llamados a la acción. Un sitio sin objetivo definido termina siendo un folleto bonito que no genera contactos.',
+      },
+      {
+        heading: 'Logo e identidad visual',
+        body: 'El logo en buena calidad (idealmente en vector: SVG, AI o PDF), los colores de marca y las tipografías si las hay. Si todavía no tenés identidad definida, conviene resolverlo antes o como parte del proyecto, no improvisarlo en el camino.',
+      },
+      {
+        heading: 'Textos y fotos',
+        body: 'Descripción de servicios o productos, información de la empresa, preguntas frecuentes y datos de contacto. Las fotos propias del negocio, del equipo o de los productos generan mucha más confianza que las de banco de imágenes. Si escribir no es lo tuyo, se puede contratar redacción, pero la información base solo la tenés vos.',
+      },
+      {
+        heading: 'Dominio, hosting y accesos',
+        body: 'Si ya tenés dominio (por ejemplo en NIC Chile) o hosting, hay que tener a mano los accesos. Si no, conviene que el dominio quede registrado a tu nombre, no al de quien hace el sitio: es un activo de tu empresa y tiene que ser tuyo.',
+      },
+      {
+        heading: 'Referencias',
+        body: 'Dos o tres sitios que te gusten (y por qué), y también alguno que no te guste. Las referencias ahorran muchas rondas de revisión porque ponen en imágenes lo que es difícil explicar con palabras.',
+      },
+    ],
+  },
+  {
+    _id: 'mock-como-elegir-hosting-wordpress-chile',
+    title: 'Cómo elegir hosting para WordPress en Chile sin pagar de más',
+    seoTitle: 'Cómo elegir hosting para WordPress en Chile',
+    slug: { current: 'como-elegir-hosting-para-wordpress-en-chile' },
+    publishedAt: '2026-09-26',
+    coverUrl: '/images/blog/como-elegir-hosting-para-wordpress-en-chile.webp',
+    excerpt: 'El hosting define la velocidad, la estabilidad y buena parte de la seguridad de tu sitio. Qué mirar al elegir uno para WordPress, y qué promesas conviene ignorar.',
+    tags: ['WordPress', 'Hosting', 'Guía'],
+    sections: [
+      {
+        heading: '',
+        body: 'El hosting es el servidor donde vive tu sitio. Es fácil elegirlo solo por precio, pero un hosting malo se paga después en lentitud, caídas y horas de soporte. La buena noticia es que no hace falta el plan más caro: hace falta el adecuado para tu tipo de sitio.',
+      },
+      {
+        heading: 'Compartido, VPS o administrado',
+        body: 'Un hosting compartido es económico y suficiente para sitios corporativos con tráfico moderado. Un VPS da recursos dedicados y más control, útil para tiendas o sitios con más visitas. Un hosting administrado para WordPress suma actualizaciones, caché y backups gestionados, a cambio de un precio mayor.',
+      },
+      {
+        heading: 'Lo que sí importa',
+        body: 'Versión actual de PHP, discos SSD o NVMe, certificado SSL gratuito, backups automáticos que puedas restaurar vos mismo y soporte que responda en horario útil y en español. Un servidor con buena latencia hacia Chile también ayuda, aunque un CDN puede compensar si el servidor está lejos.',
+      },
+      {
+        heading: 'Promesas que conviene ignorar',
+        body: '"Ancho de banda ilimitado" y "sitios ilimitados" suelen venir con límites de CPU o memoria escondidos en la letra chica. El precio promocional del primer año también engaña: hay que mirar el precio de renovación, que puede ser el doble o el triple.',
+      },
+      {
+        heading: 'Hosting para WooCommerce',
+        body: 'Una tienda online exige más que un sitio informativo: cada carrito y cada checkout se procesan en el servidor sin caché. Para WooCommerce conviene un plan con recursos dedicados o un VPS, sobre todo si se esperan campañas o fechas como el CyberDay.',
+      },
+      {
+        heading: 'Señales de que es hora de cambiar',
+        body: 'Caídas frecuentes, un sitio lento incluso después de optimizar imágenes y caché, errores 500 en horas de mayor tráfico o un soporte que tarda días en responder. Migrar de hosting es un proceso conocido y, bien hecho, no implica perder posiciones en Google.',
+      },
+    ],
+  },
 ]

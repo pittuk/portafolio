@@ -3,8 +3,7 @@ import DoubleBezelCard from '@/components/ui/DoubleBezelCard'
 import { useMediaQuery } from '@/lib/useMediaQuery'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Image from 'next/image'
-import { useCallback, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 const SKILLS = ['WordPress', 'Elementor', 'Divi', 'HTML/CSS', 'JavaScript', 'WooCommerce', 'MySQL', 'cPanel', 'Photoshop', 'Illustrator', 'SQL']
 const STATS = [
@@ -17,68 +16,7 @@ const STATS = [
 export default function About() {
   const statsRefs = useRef<(HTMLSpanElement | null)[]>([])
   const photoRef = useRef<HTMLDivElement>(null)
-  const imageWrapRef = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const hoverRef = useRef(false)
-  const rafRef = useRef(0)
   const isMobile = useMediaQuery('(max-width: 768px)')
-
-  const drawNoise = useCallback(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    const w = canvas.width
-    const h = canvas.height
-    const imageData = ctx.createImageData(w, h)
-    const data = imageData.data
-
-    for (let i = 0; i < data.length; i += 4) {
-      const v = Math.random() * 255
-      data[i] = v
-      data[i + 1] = v
-      data[i + 2] = v
-      data[i + 3] = 30 + Math.random() * 40
-    }
-
-    ctx.putImageData(imageData, 0, 0)
-
-    if (hoverRef.current) {
-      rafRef.current = requestAnimationFrame(drawNoise)
-    }
-  }, [])
-
-  const startNoise = () => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const parent = canvas.parentElement
-    if (!parent) return
-    canvas.width = parent.offsetWidth
-    canvas.height = parent.offsetHeight
-    hoverRef.current = true
-    rafRef.current = requestAnimationFrame(drawNoise)
-
-    gsap.to(canvas, { opacity: 1, duration: 0.2 })
-    gsap.to(imageWrapRef.current, { opacity: 0, duration: 0.3 })
-    const video = videoRef.current
-    if (video) {
-      video.currentTime = 0
-      gsap.to(video, { opacity: 1, duration: 0.3 })
-      video.play()
-    }
-  }
-
-  const stopNoise = () => {
-    hoverRef.current = false
-    cancelAnimationFrame(rafRef.current)
-
-    gsap.to(canvasRef.current, { opacity: 0, duration: 0.3 })
-    gsap.to(imageWrapRef.current, { opacity: 1, duration: 0.3 })
-    gsap.to(videoRef.current, { opacity: 0, duration: 0.3 })
-    videoRef.current?.pause()
-  }
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -116,9 +54,8 @@ export default function About() {
       })
       photoAnim.scrollTrigger?.kill()
       photoAnim.kill()
-      cancelAnimationFrame(rafRef.current)
     }
-  }, [drawNoise])
+  }, [])
 
   return (
     <section id="sobre-mi" className="about-grid section-padding" style={{ padding: isMobile ? '80px 20px' : '100px 40px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 32 : 60, alignItems: 'center' }}>
@@ -152,31 +89,17 @@ export default function About() {
 
       <div ref={photoRef} style={{ position: 'relative' }}>
         <DoubleBezelCard variant="ticket">
-          <div
-            style={{ borderRadius: 0, height: isMobile ? 320 : 480, position: 'relative', overflow: 'hidden' }}
-            onMouseEnter={startNoise}
-            onMouseLeave={stopNoise}
-          >
-            <div ref={imageWrapRef} style={{ position: 'absolute', inset: 0 }}>
-              <Image
-                src="/images/Luis Cruz.png"
-                alt="Luis Cruz"
-                fill
-                loading="lazy"
-                style={{ objectFit: 'cover', objectPosition: 'top' }}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
+          <div style={{ borderRadius: 0, height: isMobile ? 320 : 480, position: 'relative', overflow: 'hidden' }}>
             <video
-              ref={videoRef}
               src="/video/luis-cruz.mp4"
+              aria-label="Luis Cruz"
               muted
               playsInline
               loop
-              preload="metadata"
+              autoPlay
               style={{
                 position: 'absolute', inset: 0, width: '100%', height: '100%',
-                objectFit: 'cover', objectPosition: 'top', opacity: 0, pointerEvents: 'none',
+                objectFit: 'cover', objectPosition: 'top', pointerEvents: 'none',
               }}
             />
             <div style={{
@@ -189,14 +112,6 @@ export default function About() {
               backgroundImage: 'linear-gradient(rgba(0,194,168,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,194,168,0.1) 1px, transparent 1px)',
               backgroundSize: '40px 40px',
             }} />
-            <canvas
-              ref={canvasRef}
-              style={{
-                position: 'absolute', inset: 0, width: '100%', height: '100%',
-                opacity: 0, pointerEvents: 'none',
-                mixBlendMode: 'screen',
-              }}
-            />
           </div>
         </DoubleBezelCard>
       </div>

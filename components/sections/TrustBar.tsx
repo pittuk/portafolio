@@ -10,6 +10,7 @@ const LOGOS = [
   { file: 'logo-educationusa.png', alt: 'EducationUSA' },
   { file: 'Logo-Alvarandy.png', alt: 'Alvarandy' },
   { file: 'Logo ikon edition.svg', alt: 'Ikon Edition' },
+  { file: 'logo-redana.png', alt: 'Red ANA' },
 ]
 
 // Duplicated so the track can loop seamlessly: translateX(-50%) lands exactly
