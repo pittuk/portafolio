@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Syne, Space_Grotesk, Inknut_Antiqua } from 'next/font/google'
 import Script from 'next/script'
 import '@/app/globals.css'
-import GSAPProvider from '@/components/providers/GSAPProvider'
 
 const syne = Syne({
   subsets: ['latin'],
@@ -117,9 +116,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <GSAPProvider>
-          {children}
-        </GSAPProvider>
+        {children}
       </body>
     </html>
   )

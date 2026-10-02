@@ -87,6 +87,17 @@ body::before {
   .hero-anim { opacity: 0; }
 }
 
+/* ProjectCard: flecha que aparece al pasar el mouse */
+.project-card-arrow {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+.project-card:hover .project-card-arrow {
+  opacity: 1;
+  transform: scale(1);
+}
+
 /* Animaciones de entrada — clase base */
 .reveal-hidden {
   opacity: 0;

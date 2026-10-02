@@ -20,7 +20,7 @@ Informe completo: `docs/auditoria/pittuk-seo-geo-aeo-audit-2026-10-01.md` — sc
   - Home: 45 → 76; peso 12,9 MB → 1,1 MB; CLS 0,27 → 0,07; TBT 170 ms; LCP simulado 5,4 s (real sin throttling ~0,4 s).
   - Post: 80.
   - Desktop: 94.
-- **Próximo cuello de botella:** GSAP en el bundle de todas las páginas.
+- **GSAP solo en la home** (rama `perf/gsap-solo-home`): se eliminó `GSAPProvider` del layout raíz (todas las animaciones ya definen su `ease`), y Nav (ocultar al bajar) y ProjectCard (hover magnético) pasaron a CSS. Lighthouse móvil: artículo 80 → 91, servicio 84, home sin cambio (75). **No volver a importar `gsap` en componentes compartidos** (Nav, ProjectCard, layout): lo arrastra a todas las páginas.
 
 Categorías: `autonoma` = Claude Code puede ejecutarla sin supervisión · `staging` = probar con `npm run build` + revisión visual antes de deploy · `pause` = requiere decisión o insumo de Luis.
 
