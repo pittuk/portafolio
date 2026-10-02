@@ -2,10 +2,8 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import { useMediaQuery } from '@/lib/useMediaQuery'
 import MobileDrawer from './MobileDrawer'
@@ -27,31 +25,28 @@ const LINKS = [
 const BUTTON_TICKET_CLIP_PATH = 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% 100%, calc(100% - 8px) 100%, 8px 100%, 0 100%, 0 0)'
 
 export default function Nav() {
-  const navRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
   const isMobile = useMediaQuery('(max-width: 768px)')
   const [menuOpen, setMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
+  // Se oculta al bajar y reaparece al subir. Sin GSAP: así la librería no se
+  // carga en páginas que no la usan (el Nav está en todas).
+  const [hidden, setHidden] = useState(false)
+
   useEffect(() => {
-    gsap.set(navRef.current, { y: 0 })
+    setHidden(false)
   }, [pathname])
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-    let lastY = 0
-    const st = ScrollTrigger.create({
-      onUpdate: (self) => {
-        const currentY = self.scroll()
-        if (currentY > lastY && currentY > 100) {
-          gsap.to(navRef.current, { y: -100, duration: 0.4, ease: 'power2.in' })
-        } else {
-          gsap.to(navRef.current, { y: 0, duration: 0.4, ease: 'power2.out' })
-        }
-        lastY = currentY
-      },
-    })
-    return () => st.kill()
+    let lastY = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      setHidden(y > lastY && y > 100)
+      lastY = y
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => {
@@ -71,7 +66,6 @@ export default function Nav() {
   return (
     <>
       <header
-        ref={navRef}
         aria-hidden={menuOpen}
         style={{
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 104,
@@ -79,7 +73,8 @@ export default function Nav() {
           display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
           opacity: menuOpen ? 0 : 1,
           pointerEvents: menuOpen ? 'none' : 'auto',
-          transition: 'opacity 0.3s ease',
+          transform: hidden ? 'translateY(-100px)' : 'translateY(0)',
+          transition: 'opacity 0.3s ease, transform 0.4s ease',
         }}
       >
         <Link href="/" tabIndex={menuOpen ? -1 : 0} style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>

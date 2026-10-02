@@ -69,33 +69,57 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Elementor vs. Divi: ¿cuál elegir?',
     slug: { current: 'elementor-vs-divi' },
     publishedAt: '2026-07-08',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/elementor-vs-divi-cual-elegir-para-tu-sitio-en-wordpress.webp',
     excerpt: 'Los dos page builders más usados en WordPress, comparados desde la experiencia real de construir sitios con ambos. Cuál conviene según tu proyecto.',
     tags: ['WordPress', 'Elementor', 'Divi', 'Comparativa'],
     sections: [
       {
         heading: '',
-        body: 'Elementor y Divi son los dos constructores visuales más usados en WordPress, y la pregunta de "cuál es mejor" es la equivocada — la que importa es cuál conviene para tu proyecto. Esto no es una comparación de specs sacada de una tabla: es lo que aprendí construyendo sitios corporativos y tiendas con ambos.',
+        body: 'Elementor y Divi son los dos constructores visuales más usados en WordPress, y la pregunta de "cuál es mejor" es la equivocada: la que importa es cuál conviene para tu proyecto. Esto no es una comparación de especificaciones sacada de una tabla de marketing, sino lo que aprendí construyendo sitios corporativos y tiendas con ambos.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Para un sitio corporativo, los dos dan un resultado profesional. Elementor conviene si querés el editor más ágil, el ecosistema de addons más grande o diseñar a fondo una tienda WooCommerce con su Theme Builder. Divi conviene si vas a hacer varios sitios y te sirve su licencia de por vida. Si tu sitio ya está hecho en uno de los dos, casi siempre conviene quedarse donde estás.',
+      },
+      {
+        heading: 'Comparativa rápida',
+        body: 'Estas son las diferencias que en la práctica pesan al elegir.',
+        table: {
+          head: ['Criterio', 'Elementor', 'Divi'],
+          rows: [
+            ['Modelo de licencia', 'Versión gratuita + Elementor Pro con suscripción anual', 'Suscripción anual o licencia de por vida para sitios ilimitados'],
+            ['Editor', 'Panel lateral, rápido y muy usado', 'Edición visual sobre la página, con su propio tema'],
+            ['Ecosistema', 'El más grande de addons y plantillas de terceros', 'Más cerrado, con plantillas propias de Elegant Themes'],
+            ['WooCommerce', 'Theme Builder para fichas, carrito y checkout (Pro)', 'Módulos para WooCommerce integrados'],
+            ['Rendimiento', 'Depende de la configuración y los addons', 'Depende de la configuración; requiere optimizar'],
+            ['Facilidad para el cliente', 'Muy conocido: es fácil encontrar quien lo edite', 'Menos profesionales disponibles en el mercado'],
+          ],
+        },
       },
       {
         heading: 'Qué tienen en común',
-        body: 'Los dos son editores visuales de arrastrar y soltar, no requieren saber programar para armar una página, tienen un ecosistema enorme de plantillas y ambos funcionan bien con WooCommerce. Para un sitio corporativo estándar, cualquiera de los dos te va a dar un resultado profesional.',
+        body: 'Los dos son editores visuales de arrastrar y soltar, no requieren saber programar para armar una página, tienen un ecosistema amplio de plantillas y funcionan bien con WooCommerce. Para un sitio corporativo estándar, cualquiera de los dos permite un resultado profesional, siempre que quien lo construya cuide la estructura, la velocidad y la consistencia del diseño.',
       },
       {
         heading: 'Dónde se nota la diferencia',
-        body: 'Elementor tiene una interfaz más moderna y un editor que se siente más ágil, además de un ecosistema gigante de addons de terceros. Divi viene con su propio tema integrado y una licencia de por vida que resuelve varios sitios sin pagar de nuevo — pero puede sentirse un poco más pesado si no se optimiza bien.',
+        body: 'Elementor tiene una interfaz que se siente más ágil y un ecosistema enorme de addons de terceros, lo que facilita resolver casi cualquier necesidad sin código. Divi viene con su propio tema y una licencia de por vida que cubre sitios ilimitados, algo atractivo si manejás varios proyectos. La contracara de Elementor es que el costo de Pro y de algunos addons se renueva cada año; la de Divi, que el ecosistema es más cerrado.',
       },
       {
         heading: 'Rendimiento y velocidad',
-        body: 'Ningún builder es "lento" o "rápido" por sí solo — un sitio mal optimizado en cualquiera de los dos va a cargar mal, y un sitio bien configurado (caché, imágenes optimizadas, buen hosting) puede rendir bien en ambos. El builder es una parte de la ecuación, no toda.',
+        body: 'Ningún builder es lento o rápido por sí solo. Un sitio con diez addons, imágenes sin optimizar y hosting barato va a cargar mal en cualquiera de los dos, y uno bien configurado (caché, imágenes en WebP o AVIF, CSS y JS optimizados, buen hosting) puede pasar Core Web Vitals en ambos. Lo que sí suma peso es la cantidad de elementos anidados: diseñar con estructura simple es más importante que el builder elegido.',
+      },
+      {
+        heading: 'Quién va a editar el sitio después',
+        body: 'Es un criterio que se olvida: si tu equipo va a actualizar páginas, conviene la herramienta que les resulte más cómoda, y si algún día cambiás de proveedor, conviene una que muchos profesionales manejen. Elementor tiene ventaja en ese punto porque es el builder más extendido, así que es más fácil encontrar a alguien que lo edite.',
       },
       {
         heading: 'Cuál elegiría para tu proyecto',
-        body: 'Para un sitio corporativo simple, cualquiera funciona. Para una tienda con WooCommerce, Elementor Pro tiene una integración nativa con el WooCommerce Builder que hace más directo diseñar fichas de producto y checkout. Y si tu sitio actual ya está construido en uno de los dos, generalmente conviene mantenerlo — reconstruir todo solo para cambiar de builder rara vez vale la pena.',
+        body: 'Para un sitio corporativo simple, cualquiera funciona. Para una tienda WooCommerce donde las fichas de producto y el checkout son clave, Elementor Pro da más control con su Theme Builder. Para quien hace varios sitios y quiere un costo fijo, Divi es razonable. Y si tu sitio ya está construido en uno de los dos, reconstruir todo solo para cambiar de builder rara vez se justifica: mejor optimizar lo que hay.',
       },
       {
         heading: 'En la práctica',
-        body: 'La herramienta importa menos que quien la usa. Yo trabajo con ambos según lo que cada proyecto necesita, en vez de forzar siempre la misma solución porque es la que más domino.',
+        body: 'La herramienta importa menos que quien la usa. Trabajo con ambos según lo que cada proyecto necesita, en vez de forzar siempre la misma solución, y en algunos casos conviene directamente un tema liviano o desarrollo a medida sin builder, cuando la prioridad absoluta es la velocidad.',
       },
     ],
   },
@@ -197,33 +221,57 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Errores comunes al crear una tienda online',
     slug: { current: 'errores-al-crear-una-tienda-online' },
     publishedAt: '2026-05-28',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/errores-comunes-al-crear-una-tienda-online-y-como-evitarlos.webp',
     excerpt: 'Lo que frena las ventas de una tienda online rara vez es el diseño: son decisiones tomadas (o salteadas) antes de lanzar. Los errores más comunes.',
     tags: ['E-commerce', 'WooCommerce', 'Guía'],
     sections: [
       {
         heading: '',
-        body: 'Muchos de los problemas que frenan las ventas de una tienda online no son de diseño — son decisiones tomadas, o salteadas, antes de lanzar. Estos son los errores más comunes que veo repetirse.',
+        body: 'Muchos de los problemas que frenan las ventas de una tienda online no son de diseño: son decisiones tomadas, o salteadas, antes de lanzar. Estos son los errores que más se repiten en tiendas que recién parten, y cómo evitarlos desde el inicio.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Los errores más caros al crear una tienda online son: un checkout largo o que obliga a crear cuenta, mostrar el costo de envío recién al final, fichas de producto incompletas, un sitio que no fue pensado para el celular, pocos medios de pago, velocidad ignorada y lanzar sin plan para después. Todos se pueden evitar si se definen antes de construir.',
+      },
+      {
+        heading: 'Los errores y cómo evitarlos',
+        body: 'Un resumen para revisar tu tienda o la que estás por lanzar.',
+        table: {
+          head: ['Error', 'Qué provoca', 'Cómo evitarlo'],
+          rows: [
+            ['Checkout largo u obligado a crear cuenta', 'Carritos abandonados', 'Compra como invitado y solo los campos necesarios'],
+            ['Costo de envío oculto hasta el final', 'Abandono en el último paso', 'Mostrar el envío por comuna o región antes del checkout'],
+            ['Fichas sin información clave', 'El cliente busca la respuesta en otro lado', 'Tallas, medidas, stock, despacho y devoluciones en cada ficha'],
+            ['No pensar en el celular', 'Ventas perdidas en silencio', 'Diseñar primero para móvil y probar el checkout en un celular real'],
+            ['Un solo medio de pago', 'Clientes sin forma de pagar', 'Tarjeta más una alternativa de transferencia'],
+            ['Ignorar la velocidad', 'Menos conversiones y peor posición en Google', 'Imágenes optimizadas, caché y hosting adecuado'],
+          ],
+        },
       },
       {
         heading: 'Checkout con demasiados pasos',
-        body: 'Cada paso de más en el checkout es una oportunidad para que alguien abandone el carrito. Pedí solo la información necesaria, y si podés ofrecer compra como invitado sin obligar a crear una cuenta, hacelo — cada fricción de más cuesta ventas.',
+        body: 'Cada paso o campo de más en el checkout es una oportunidad para que alguien abandone el carrito. Pedí solo la información necesaria para despachar y facturar, permití comprar como invitado y dejá la creación de cuenta como opción después de la compra.',
+      },
+      {
+        heading: 'Sorpresas en el costo de envío',
+        body: 'Que el envío aparezca recién en el último paso es una de las causas más comunes de abandono. Mostrá el costo o una tabla de envíos por zona antes del checkout, o un umbral de envío gratis visible desde la ficha de producto.',
       },
       {
         heading: 'Fichas de producto sin la información que el cliente necesita',
-        body: 'Faltan tallas, especificaciones, costos de envío o política de devolución, y el cliente se va a buscar esa respuesta a otro lado. Una ficha de producto tiene que responder las dudas antes de que se conviertan en una razón para no comprar.',
+        body: 'Si faltan tallas, especificaciones, plazos de despacho o la política de devolución, el cliente se va a buscar esa respuesta a otro lado y muchas veces no vuelve. Una buena ficha responde las dudas antes de que se conviertan en una razón para no comprar, con fotos propias desde varios ángulos.',
       },
       {
         heading: 'No pensar el sitio para el celular',
-        body: 'La mayoría del tráfico de una tienda online es mobile. Que el sitio "se vea" en el celular no es lo mismo que haber sido pensado para ese uso — botones chicos, precios difíciles de leer o imágenes lentas pierden ventas de forma silenciosa, sin que nadie se queje directamente.',
+        body: 'La mayor parte del tráfico de una tienda online llega desde el celular. Que el sitio "se vea" en el teléfono no es lo mismo que haber sido pensado para ese uso: botones chicos, menús difíciles, precios poco legibles o un checkout incómodo pierden ventas sin que nadie se queje directamente.',
       },
       {
-        heading: 'Velocidad de carga ignorada hasta que ya es tarde',
-        body: 'Imágenes sin optimizar, demasiados plugins y hosting insuficiente para el tráfico real de una tienda no solo afectan el puntaje de Core Web Vitals — afectan conversiones concretas. Es más barato resolver esto antes de lanzar que después de perder ventas por meses.',
+        heading: 'Pocas señales de confianza',
+        body: 'Una tienda nueva tiene que demostrar que es real: datos de contacto visibles, WhatsApp o chat, políticas de envío y devolución claras, medios de pago reconocidos y, cuando existan, reseñas de clientes. Sin eso, el comprador duda justo en el momento de pagar.',
       },
       {
         heading: 'Lanzar sin un plan de qué pasa después',
-        body: 'Una tienda no está "terminada" el día del lanzamiento. Inventario, promociones, seguimiento de carritos abandonados y contenido para SEO necesitan atención continua, o la tienda se estanca apenas pasa el entusiasmo inicial.',
+        body: 'Una tienda no está terminada el día del lanzamiento. Inventario, promociones, recuperación de carritos abandonados, medición de qué se vende y contenido para posicionar en Google necesitan atención continua, o la tienda se estanca apenas pasa el entusiasmo inicial.',
       },
     ],
   },
@@ -265,29 +313,51 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: '¿Cuánto tiempo toma hacer una página web?',
     slug: { current: 'cuanto-tiempo-toma-hacer-una-pagina-web' },
     publishedAt: '2026-04-30',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/cuanto-tiempo-toma-hacer-una-pagina-web-plazos-reales.webp',
     excerpt: 'Los plazos que ves en una cotización rara vez cuentan toda la historia. Esto es lo que realmente determina cuánto tarda un sitio en estar listo.',
     tags: ['Guía', 'WordPress', 'Proceso'],
     sections: [
       {
         heading: '',
-        body: 'Una landing page simple puede estar lista en una semana. Una tienda online con catálogo grande puede tomar dos meses o más. La diferencia casi nunca es la velocidad de quien construye — es cuánto hay que definir antes de empezar a construir.',
+        body: 'Una landing page simple puede estar lista en una semana. Una tienda online con catálogo grande puede tomar dos meses o más. La diferencia casi nunca es la velocidad de quien construye: es cuánto hay que definir y reunir antes de empezar a construir. Esta guía muestra plazos reales por tipo de sitio y qué hacer para que el tuyo no se alargue.',
       },
       {
-        heading: 'Lo que realmente alarga un proyecto',
-        body: 'Esperar contenido y fotos que no estaban listas, rondas de revisión que se estiran, o decisiones de diseño que cambian a mitad de camino suelen agregar más tiempo que el desarrollo en sí. El código se escribe rápido; las decisiones tardan.',
+        heading: 'Respuesta corta',
+        body: 'Una landing page toma de 1 a 2 semanas; un sitio corporativo de varias páginas, de 3 a 5 semanas; una tienda WooCommerce con catálogo mediano, de 6 a 10 semanas. Lo que más alarga un proyecto no es el desarrollo, sino esperar contenido, las rondas de revisión y las integraciones con terceros.',
       },
       {
         heading: 'Plazos aproximados por tipo de sitio',
-        body: 'Una landing page: 1 a 2 semanas. Un sitio corporativo de varias páginas: 3 a 5 semanas. Una tienda WooCommerce con catálogo mediano: 6 a 10 semanas, dependiendo de cuántos productos y qué integraciones necesite. Estos son rangos, no promesas — cada proyecto tiene sus propias variables.',
+        body: 'Son rangos de proyectos reales, no promesas: cada proyecto tiene sus variables.',
+        table: {
+          head: ['Tipo de sitio', 'Plazo típico', 'Qué lo alarga'],
+          rows: [
+            ['Landing page', '1 a 2 semanas', 'Textos de venta sin definir'],
+            ['Sitio corporativo', '3 a 5 semanas', 'Contenido de varias páginas, fotos, aprobaciones'],
+            ['Tienda WooCommerce', '6 a 10 semanas', 'Carga del catálogo, pasarela de pago, envíos, facturación'],
+            ['Rediseño de un sitio existente', 'Similar a uno nuevo', 'Migrar contenido y mantener el SEO ganado'],
+          ],
+        },
+      },
+      {
+        heading: 'Cómo se reparte el tiempo',
+        body: 'En un sitio corporativo típico, el tiempo se reparte en etapas que se pueden planificar: una reunión inicial y propuesta (pocos días), el diseño de la arquitectura y la interfaz (alrededor de una semana, más la revisión), el desarrollo (una a dos semanas), la revisión del cliente con ajustes, y la publicación con verificaciones finales. Cuando cada etapa tiene fecha y responsable, el proyecto avanza; cuando no, se estanca entre etapas.',
+      },
+      {
+        heading: 'Lo que realmente alarga un proyecto',
+        body: 'Esperar textos y fotos que no estaban listos, rondas de revisión que se estiran sin un límite acordado, decisiones de diseño que cambian a mitad de camino y aprobaciones que dependen de varias personas suelen sumar más tiempo que el desarrollo en sí. En tiendas online hay un factor extra: algunas integraciones dependen de terceros, como la validación técnica de Webpay de Transbank, que puede tomar más que programar la integración.',
+      },
+      {
+        heading: 'Qué podés tener listo antes de empezar',
+        body: 'Logo en buena calidad, textos de cada servicio o producto, fotos propias, accesos al dominio y hosting si ya existen, y dos o tres sitios de referencia. En una tienda, además, el catálogo en una planilla (nombre, precio, descripción, stock, imágenes). Llegar con esto resuelto puede acortar el proyecto en semanas.',
       },
       {
         heading: 'Cómo acortar el plazo sin apurar mal el proyecto',
-        body: 'Tener el contenido (textos, fotos, logo) listo antes de empezar, definir de antemano quién aprueba cada etapa, y limitar las rondas de revisión a lo esencial son las formas más efectivas de acortar un proyecto sin sacrificar calidad.',
+        body: 'Definir de antemano quién aprueba cada etapa, limitar las rondas de revisión a las acordadas, dar feedback consolidado (una lista, no mensajes sueltos) y lanzar con lo esencial dejando mejoras para una segunda etapa. Un sitio publicado y bien hecho que después crece le gana a uno perfecto que nunca sale.',
       },
       {
         heading: 'Una señal de alerta',
-        body: 'Desconfiá de un plazo que suena demasiado corto para la complejidad del proyecto — generalmente significa que algo se va a saltar: pruebas, optimización, o contenido pensado con cuidado. Un plazo realista dicho de entrada ahorra sorpresas después.',
+        body: 'Desconfiá de un plazo que suena demasiado corto para la complejidad del proyecto: generalmente significa que algo se va a saltar, como pruebas, optimización de velocidad o contenido pensado con cuidado. Un plazo realista dicho de entrada ahorra sorpresas después.',
       },
     ],
   },
@@ -458,33 +528,51 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Cómo migrar tu tienda a WooCommerce sin perder SEO',
     slug: { current: 'como-migrar-tu-tienda-a-woocommerce-sin-perder-seo' },
     publishedAt: '2026-08-06',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/como-migrar-tu-tienda-a-woocommerce-sin-perder-seo.webp',
     excerpt: 'Mal hecha, una migración cuesta posiciones en Google y ventas durante semanas. Cómo pasar tu tienda a WooCommerce sin perder lo que ya funciona.',
     tags: ['WooCommerce', 'E-commerce', 'SEO', 'Guía'],
     sections: [
       {
         heading: '',
-        body: 'Migrar una tienda de plataforma no es solo copiar productos de un lado a otro. Cada URL, cada ficha indexada en Google y cada integración con la que ya contás son cosas que se pueden perder si la migración se hace sin plan. Bien ejecutada, una migración a WooCommerce puede pasar casi desapercibida para tus clientes.',
+        body: 'Migrar una tienda de plataforma no es solo copiar productos de un lado a otro. Cada URL indexada en Google, cada ficha con historial y cada integración con la que ya contás se pueden perder si la migración se hace sin plan. Bien ejecutada, una migración a WooCommerce pasa casi desapercibida para tus clientes y para Google. Esta guía explica el proceso completo, paso a paso.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Para migrar a WooCommerce sin perder ventas ni SEO: exportá e importá el catálogo completo, armá un mapa de redirecciones 301 de cada URL antigua a su equivalente nueva, probá la tienda nueva entera (pagos, envíos, correos) antes del cambio, y después del lanzamiento monitoreá Search Console durante algunas semanas.',
       },
       {
         heading: 'Antes de mover nada: auditá lo que tenés',
-        body: 'Exportá el catálogo completo (productos, variantes, precios, imágenes, descripciones), y hacé una lista de qué URLs están indexadas en Google Search Console y cuáles reciben tráfico real. Esa lista es la que después vas a usar para no perder ni una posición ganada.',
+        body: 'Exportá el catálogo completo (productos, variantes, precios, imágenes, descripciones, SKUs), los clientes y el historial de pedidos si lo necesitás. En Google Search Console, descargá la lista de páginas indexadas y las que reciben clics. Esa lista es la base del mapa de redirecciones: ninguna URL con tráfico puede quedar sin destino.',
       },
       {
-        heading: 'El paso que más gente se salta: los redirects',
-        body: 'Si las URLs de la tienda nueva no coinciden con las anteriores, cada producto necesita un redirect 301 de la URL vieja a la nueva. Sin esto, Google encuentra páginas caídas donde antes había fichas indexadas, y esa autoridad acumulada durante meses o años se pierde de un día para otro.',
+        heading: 'El paso que más gente se salta: las redirecciones',
+        body: 'Cada plataforma usa su propio formato de URL, así que casi nunca coinciden. Cada página antigua necesita un redirect 301 a su equivalente en la tienda nueva; sin esto, Google encuentra páginas caídas donde antes había fichas indexadas y la autoridad acumulada durante años se pierde.',
+        table: {
+          head: ['Página', 'Ejemplo en Shopify', 'Ejemplo en WooCommerce'],
+          rows: [
+            ['Producto', '/products/zapatilla-negra', '/producto/zapatilla-negra'],
+            ['Categoría', '/collections/zapatillas', '/categoria-producto/zapatillas'],
+            ['Página', '/pages/contacto', '/contacto'],
+            ['Artículo del blog', '/blogs/noticias/guia-tallas', '/blog/guia-tallas'],
+          ],
+        },
       },
       {
         heading: 'Migrar el catálogo sin perder datos',
-        body: 'WooCommerce tiene herramientas de importación que aceptan CSV con productos, variantes e inventario, y hay plugins específicos para migrar desde Shopify, PrestaShop u otras plataformas conservando SKUs e imágenes. Migrar producto por producto a mano solo tiene sentido si el catálogo es muy chico.',
+        body: 'WooCommerce tiene un importador que acepta CSV con productos, variantes, precios e inventario, y hay herramientas específicas para migrar desde Shopify, PrestaShop u otras plataformas conservando SKUs, imágenes y reseñas. Conviene migrar primero a un entorno de pruebas, revisar una muestra de productos con variantes complejas, y recién después hacer la importación final.',
+      },
+      {
+        heading: 'Lo que no se migra solo',
+        body: 'Las contraseñas de los clientes normalmente no se pueden trasladar (por seguridad), así que hay que avisar que deberán crear una nueva. Las apps de la plataforma anterior tampoco se migran: cada funcionalidad (reseñas, envíos, email marketing, facturación) necesita su equivalente en WooCommerce. Hacé la lista de integraciones antes de empezar, no después.',
       },
       {
         heading: 'Probar antes de apagar la tienda vieja',
-        body: 'La tienda nueva debería estar completa y probada — checkout, pasarela de pago, cálculo de envío, emails de confirmación — antes de apagar la anterior. Correr ambas en paralelo por unos días, con la nueva en un dominio de pruebas, evita el escenario de quedarte sin tienda funcionando durante la transición.',
+        body: 'La tienda nueva debería estar completa y probada (checkout, pasarela de pago, cálculo de envío, correos de confirmación, documentos tributarios) antes de apuntar el dominio. Trabajarla en un dominio de pruebas mientras la tienda antigua sigue vendiendo evita quedarte sin tienda durante la transición.',
       },
       {
-        heading: 'Después de migrar',
-        body: 'Monitoreá Search Console las semanas siguientes para detectar errores de indexación o caídas de tráfico temprano, y confirmá que las integraciones que tenías (email marketing, contabilidad, pasarela de pago) sigan funcionando en el nuevo entorno. Una migración no termina cuando el sitio nuevo está online — termina cuando confirmás que nada se rompió.',
+        heading: 'El día del cambio y después',
+        body: 'Elegí un momento de bajo tráfico, aplicá las redirecciones, cambiá el DNS y verificá que las URLs antiguas más visitadas redirijan bien. Enviá el sitemap nuevo a Search Console y monitoreá las semanas siguientes los errores de indexación y el tráfico orgánico. Es normal una fluctuación breve; una caída sostenida indica redirecciones faltantes. Una migración no termina cuando la tienda nueva está online: termina cuando confirmás que nada se rompió.',
       },
     ],
   },

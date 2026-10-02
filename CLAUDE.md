@@ -13,14 +13,14 @@ Informe completo: `docs/auditoria/pittuk-seo-geo-aeo-audit-2026-10-01.md` — sc
   - TC-01: el código ya carga el video recién al hacer scroll; falta comprimir el mp4 y el poster.
   - TC-06: el hero quedó resuelto (altura y opacidad por CSS). CLS móvil en 0,07 (< 0,1); About, Services y Portfolio solo si el dato de campo lo pide.
   - TC-11: se agregaron GitHub e Instagram al `sameAs` de Person y un retrato (`luis-cruz-retrato.webp`) como `image`. Luis decidió **no publicar ubicación**, así que no se agrega el nodo ProfessionalService.
-  - TC-16: las 4 páginas de servicio pasaron de ~180 a ~500 palabras con la nueva prop `sections` del template (para quién, proceso, plazos, experiencia), sin precios por decisión de Luis. Los 5 artículos clave (cuánto cuesta, WooCommerce o Shopify, pasarelas, mantenimiento y hosting) pasaron de ~370 a 590-765 palabras, con un párrafo "Respuesta corta", una tabla comparativa (`PostSection.table`) y `updatedAt: 2026-10-01`. Para llegar a 1.000+ hacen falta datos propios (precios o casos).
+  - TC-16: las 4 páginas de servicio pasaron de ~180 a ~500 palabras con la nueva prop `sections` del template (para quién, proceso, plazos, experiencia), sin precios por decisión de Luis. Los 5 artículos clave (cuánto cuesta, WooCommerce o Shopify, pasarelas, mantenimiento y hosting) pasaron de ~370 a 590-765 palabras, con un párrafo "Respuesta corta", una tabla comparativa (`PostSection.table`) y `updatedAt: 2026-10-01`. En una segunda tanda se ampliaron igual Elementor vs Divi, plazos, migración a WooCommerce y errores en tiendas (490-650 palabras). Quedan 11 artículos de ~370 palabras. Para llegar a 1.000+ hacen falta datos propios (precios o casos).
 - **Decidido:** TC-12, quitar el JSON-LD FAQPage de los servicios. Hecho; las preguntas siguen visibles.
 - **Otros cambios:** Google Analytics carga con `lazyOnload`. Las fechas de los posts se formatean en UTC (antes mostraban un día menos).
 - **Medición local (Lighthouse móvil, build de producción):**
   - Home: 45 → 76; peso 12,9 MB → 1,1 MB; CLS 0,27 → 0,07; TBT 170 ms; LCP simulado 5,4 s (real sin throttling ~0,4 s).
   - Post: 80.
   - Desktop: 94.
-- **Próximo cuello de botella:** GSAP en el bundle de todas las páginas.
+- **GSAP solo en la home** (rama `perf/gsap-solo-home`): se eliminó `GSAPProvider` del layout raíz (todas las animaciones ya definen su `ease`), y Nav (ocultar al bajar) y ProjectCard (hover magnético) pasaron a CSS. Lighthouse móvil: artículo 80 → 91, servicio 84, home sin cambio (75). **No volver a importar `gsap` en componentes compartidos** (Nav, ProjectCard, layout): lo arrastra a todas las páginas.
 
 Categorías: `autonoma` = Claude Code puede ejecutarla sin supervisión · `staging` = probar con `npm run build` + revisión visual antes de deploy · `pause` = requiere decisión o insumo de Luis.
 

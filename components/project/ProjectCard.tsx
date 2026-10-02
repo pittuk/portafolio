@@ -3,7 +3,6 @@
 import { useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import gsap from 'gsap'
 import { urlFor } from '@/lib/sanity/image'
 import type { Project } from '@/types'
 
@@ -14,27 +13,25 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, style }: ProjectCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
-  const arrowRef = useRef<HTMLDivElement>(null)
 
+  // Efecto magnético con transición CSS (sin GSAP, para no cargarlo en servicios y /proyectos).
+  // La flecha aparece por CSS: .project-card:hover .project-card-arrow en globals.css
   useEffect(() => {
     const card = cardRef.current!
-    const arrow = arrowRef.current!
 
     let bounds: DOMRect
 
     const onEnter = () => {
       bounds = card.getBoundingClientRect()
-      gsap.to(arrow, { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' })
     }
     const onLeave = () => {
-      gsap.to(arrow, { opacity: 0, scale: 0.8, duration: 0.3 })
-      gsap.to(card, { x: 0, y: 0, duration: 0.5, ease: 'power3.out' })
+      card.style.transform = ''
     }
     const onMove = (e: MouseEvent) => {
       if (!bounds) return
       const x = ((e.clientX - bounds.left) / bounds.width - 0.5) * 8
       const y = ((e.clientY - bounds.top) / bounds.height - 0.5) * 8
-      gsap.to(card, { x, y, duration: 0.4, ease: 'power2.out' })
+      card.style.transform = `translate(${x}px, ${y}px)`
     }
 
     card.addEventListener('mouseenter', onEnter)
@@ -57,8 +54,10 @@ export default function ProjectCard({ project, style }: ProjectCardProps) {
     <Link href={`/proyectos/${project.slug.current}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
       <div
         ref={cardRef}
+        className="project-card"
         style={{
           position: 'relative',
+          transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
           background: 'rgba(255,255,255,0.02)',
           border: '1px solid rgba(255,255,255,0.05)',
           clipPath: 'polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)',
@@ -105,7 +104,7 @@ export default function ProjectCard({ project, style }: ProjectCardProps) {
 
         {/* Arrow badge */}
         <div
-          ref={arrowRef}
+          className="project-card-arrow"
           style={{
             position: 'absolute', top: 16, right: 16, zIndex: 3,
             width: 36, height: 36,
@@ -113,7 +112,6 @@ export default function ProjectCard({ project, style }: ProjectCardProps) {
             borderRadius: '50%',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 14, color: 'var(--teal)',
-            opacity: 0, transform: 'scale(0.8)',
           }}
         >↗</div>
       </div>
