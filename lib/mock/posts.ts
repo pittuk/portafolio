@@ -415,6 +415,7 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Señales de que tu web te hace perder clientes',
     slug: { current: 'senales-de-que-tu-pagina-web-pierde-clientes' },
     publishedAt: '2026-04-16',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/senales-de-que-tu-pagina-web-te-esta-haciendo-perder-clientes.webp',
     excerpt: 'Muchas páginas web pierden clientes en silencio, sin quejas ni reclamos visibles. Estas son las señales más comunes de que la tuya podría estar entre ellas.',
     tags: ['Guía', 'Conversión', 'UX'],
@@ -422,6 +423,24 @@ export const MOCK_POSTS: Post[] = [
       {
         heading: '',
         body: 'Nadie te va a escribir para avisarte que se fue de tu sitio sin contactarte. Esa pérdida pasa en silencio, y las señales suelen estar a la vista si sabés dónde mirar.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Tu página web pierde clientes si tarda más de 3 segundos en cargar, si al entrar no queda claro qué ofrecés y qué hacer, si se usa mal en el celular, si la única forma de contacto es un formulario, o si no muestra quién está detrás. Todas se pueden comprobar en una tarde con herramientas gratuitas.',
+      },
+      {
+        heading: 'Cómo revisar tu sitio en una tarde',
+        body: 'Cada señal tiene una forma concreta de comprobarla.',
+        table: {
+          head: ['Señal', 'Cómo comprobarla', 'Qué hacer'],
+          rows: [
+            ['Carga lenta', 'PageSpeed Insights, versión móvil', 'Optimizar imágenes, caché y hosting'],
+            ['Mensaje confuso', 'Mostrá la portada 5 segundos a alguien y preguntale qué hacés', 'Titular que diga qué hacés y para quién'],
+            ['Contacto difícil', 'Contá cuántos clics hay desde la portada hasta escribirte', 'WhatsApp y teléfono visibles en todas las páginas'],
+            ['Mal en el celular', 'Usá tu sitio con una mano, en tu propio teléfono', 'Botones grandes, texto legible, menú simple'],
+            ['Sin señales de confianza', 'Buscá quién está detrás, clientes y reseñas', 'Equipo, proyectos reales, testimonios, datos de contacto'],
+          ],
+        },
       },
       {
         heading: 'Tarda más de 3 segundos en cargar',
@@ -443,6 +462,10 @@ export const MOCK_POSTS: Post[] = [
         heading: 'No transmite quién está detrás',
         body: 'Sin fotos reales, sin casos concretos y sin ninguna señal de que hay una persona o empresa real detrás, un sitio genera dudas en vez de confianza — incluso si el diseño es lindo. La confianza se construye con evidencia, no solo con estética.',
       },
+      {
+        heading: 'Cómo saber si el problema es real',
+        body: 'Las intuiciones engañan; los datos no. En Google Analytics, revisá cuántas visitas terminan en un contacto (formulario, clic en WhatsApp o en el teléfono) y desde qué páginas. En Search Console, mirá qué búsquedas te muestran y cuántos clics reciben. Si hay visitas pero casi no hay contactos, el problema está en el sitio; si no hay visitas, está en la visibilidad. Son soluciones distintas.',
+      },
     ],
   },
   {
@@ -451,6 +474,7 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'SEO técnico para WordPress: lo básico',
     slug: { current: 'seo-tecnico-para-wordpress-lo-basico' },
     publishedAt: '2026-04-02',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/seo-tecnico-para-wordpress-lo-basico-que-todo-sitio-necesita.webp',
     excerpt: 'Antes de pensar en estrategias avanzadas de SEO, hay una base técnica que todo sitio en WordPress necesita tener resuelta. Esto es lo esencial.',
     tags: ['SEO', 'WordPress', 'Guía'],
@@ -458,6 +482,27 @@ export const MOCK_POSTS: Post[] = [
       {
         heading: '',
         body: 'El SEO técnico no es la parte más vistosa del posicionamiento, pero es la base sobre la que todo lo demás funciona. Un sitio con buen contenido pero mala base técnica compite en desventaja frente a uno más simple pero bien resuelto.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'El SEO técnico básico de un sitio WordPress cubre cinco cosas: que cargue rápido (Core Web Vitals en verde), que Google pueda rastrear e indexar las páginas correctas (sitemap, robots.txt, sin noindex accidentales), una estructura clara de URLs y encabezados, datos estructurados que describan tu negocio, y una experiencia pensada primero para el celular.',
+      },
+      {
+        heading: 'Checklist de SEO técnico',
+        body: 'Lo mínimo que todo sitio WordPress debería tener resuelto.',
+        table: {
+          head: ['Elemento', 'Qué revisar', 'Herramienta'],
+          rows: [
+            ['Velocidad', 'LCP, INP y CLS en verde en móvil', 'PageSpeed Insights'],
+            ['Indexación', 'Que las páginas importantes estén indexadas y las inútiles no', 'Search Console, informe de páginas'],
+            ['Sitemap', 'Que exista, esté enviado y solo tenga URLs válidas', 'Search Console, Sitemaps'],
+            ['robots.txt', 'Que no bloquee páginas ni recursos importantes', 'Visitar /robots.txt'],
+            ['Títulos y descripciones', 'Únicos por página y con la búsqueda principal', 'Plugin de SEO'],
+            ['Encabezados', 'Un solo H1 por página y H2 que ordenen el contenido', 'Inspeccionar la página'],
+            ['Datos estructurados', 'Organization, LocalBusiness, Article o Product según el sitio, sin errores', 'Prueba de resultados enriquecidos de Google'],
+            ['HTTPS y redirecciones', 'Todo en https, una sola versión (con o sin www)', 'Navegador y Search Console'],
+          ],
+        },
       },
       {
         heading: 'Velocidad de carga',
@@ -478,6 +523,10 @@ export const MOCK_POSTS: Post[] = [
       {
         heading: 'Lo que no resuelve un plugin',
         body: 'Los plugins de SEO ayudan a completar metadatos, pero no arreglan un hosting lento, un tema mal codificado o contenido débil. El SEO técnico es tanto trabajo de desarrollo como de configuración — y por eso conviene resolverlo con quien entienda ambos lados.',
+      },
+      {
+        heading: 'Señales de que algo anda mal',
+        body: 'En Search Console, el informe de páginas muestra las que Google no indexó y por qué: errores 404, páginas con redirección, duplicadas sin canonical o excluidas con noindex. Un aumento repentino de páginas no indexadas, o una caída de clics sin cambios en el contenido, suele indicar un problema técnico. Revisarlo una vez al mes evita enterarse tarde.',
       },
     ],
   },
@@ -653,6 +702,7 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Plugins esenciales de WordPress (y cuáles evitar)',
     slug: { current: 'plugins-esenciales-de-wordpress-y-cuales-evitar' },
     publishedAt: '2026-08-05',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/plugins-esenciales-de-wordpress-y-cuales-evitar.webp',
     excerpt: 'Qué plugins de WordPress valen la pena en un sitio profesional, y las señales de los que conviene evitar antes de que te rompan el sitio.',
     tags: ['WordPress', 'Plugins', 'Guía'],
@@ -660,6 +710,25 @@ export const MOCK_POSTS: Post[] = [
       {
         heading: '',
         body: 'Cada plugin instalado es código extra corriendo en tu sitio: suma funcionalidad, pero también suma peso, superficie de ataque y una actualización más que mantener al día. La pregunta no es cuántos plugins tener, sino cuáles realmente ganan su lugar.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Un sitio WordPress profesional necesita pocos plugins y buenos: uno de SEO, uno de caché, uno de seguridad, uno de backups y, según el sitio, uno de formularios y uno para optimizar imágenes. Evitá los plugins abandonados (sin actualizaciones en meses), los que repiten funciones de otro y los "todo en uno" que prometen resolver todo.',
+      },
+      {
+        heading: 'Las categorías que sí valen la pena',
+        body: 'Una referencia de qué cubrir y con qué. Los nombres son ejemplos conocidos, no la única opción.',
+        table: {
+          head: ['Categoría', 'Para qué sirve', 'Ejemplos conocidos'],
+          rows: [
+            ['SEO', 'Títulos, descripciones, sitemap y datos estructurados', 'Yoast SEO, Rank Math'],
+            ['Caché y rendimiento', 'Servir páginas ya generadas y optimizar CSS y JS', 'WP Rocket, LiteSpeed Cache'],
+            ['Seguridad', 'Firewall y protección contra intentos de acceso', 'Wordfence'],
+            ['Backups', 'Copias automáticas guardadas fuera del hosting', 'UpdraftPlus'],
+            ['Formularios', 'Contacto y cotizaciones', 'Contact Form 7, WPForms'],
+            ['Imágenes', 'Comprimir y convertir a WebP o AVIF', 'ShortPixel, Imagify'],
+          ],
+        },
       },
       {
         heading: 'Los que sí valen la pena',
@@ -681,6 +750,10 @@ export const MOCK_POSTS: Post[] = [
         heading: 'Cómo mantenerlos sanos',
         body: 'Revisá periódicamente qué plugins están instalados y desactivá (y eliminá) los que ya no se usan — un plugin desactivado sigue siendo código vulnerable si nunca se actualiza. Menos plugins activos significa menos superficie de ataque y menos cosas que pueden romperse con la próxima actualización de WordPress.',
       },
+      {
+        heading: 'Antes de instalar un plugin nuevo',
+        body: 'Revisá cuándo se actualizó por última vez, cuántas instalaciones activas tiene, si es compatible con tu versión de WordPress y qué dicen las reseñas recientes. Preguntate también si la función que buscás ya la cubre algo que tenés instalado, o si se resuelve con unas líneas de código. Y probalo primero en un entorno de pruebas si el sitio vende o recibe consultas todos los días.',
+      },
     ],
   },
   {
@@ -689,6 +762,7 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'El proceso de crear una página web, paso a paso',
     slug: { current: 'como-es-el-proceso-de-crear-una-pagina-web-paso-a-paso' },
     publishedAt: '2026-08-04',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/como-es-el-proceso-de-crear-una-pagina-web-paso-a-paso.webp',
     excerpt: 'Qué esperar en cada etapa de encargar un sitio web: el proceso real, desde la primera reunión hasta el soporte después del lanzamiento.',
     tags: ['Guía', 'Proceso', 'WordPress'],
@@ -696,6 +770,26 @@ export const MOCK_POSTS: Post[] = [
       {
         heading: '',
         body: 'Encargar una página web se siente menos riesgoso cuando sabés qué esperar en cada etapa. Este es el proceso, de principio a fin, tal como debería verse con quien lo hace en serio.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Crear una página web profesional tiene siete etapas: reunión inicial, propuesta, diseño, desarrollo, revisión, publicación y soporte. En un sitio corporativo, todo el proceso toma de 3 a 5 semanas, y lo que más influye en el plazo es tener listo el contenido y que las aprobaciones no se demoren.',
+      },
+      {
+        heading: 'El proceso en una tabla',
+        body: 'Qué pasa en cada etapa, qué se necesita de tu parte y cuánto suele tomar en un sitio corporativo.',
+        table: {
+          head: ['Etapa', 'Qué pasa', 'Qué se necesita de vos', 'Duración aproximada'],
+          rows: [
+            ['Reunión inicial', 'Entender el negocio y el objetivo del sitio', '30 minutos', '1 día'],
+            ['Propuesta', 'Alcance, páginas, plazos y precio por escrito', 'Revisarla y aprobarla', 'Pocos días'],
+            ['Diseño', 'Arquitectura de páginas e interfaz', 'Referencias, logo y feedback', '1 a 2 semanas'],
+            ['Desarrollo', 'Construcción en WordPress', 'Textos y fotos', '1 a 2 semanas'],
+            ['Revisión', 'Pruebas y ajustes acordados', 'Feedback consolidado', 'Pocos días'],
+            ['Publicación', 'Dominio, SSL, verificaciones', 'Accesos al dominio', '1 día'],
+            ['Soporte', 'Resolver dudas y problemas', 'Avisar si algo falla', 'Continuo'],
+          ],
+        },
       },
       {
         heading: '1. Reunión inicial',
@@ -724,6 +818,10 @@ export const MOCK_POSTS: Post[] = [
       {
         heading: '7. Soporte',
         body: 'El trabajo no termina el día del lanzamiento. Un buen proceso deja claro quién responde si algo falla después, y qué cubre ese soporte — esa claridad es la que reduce el riesgo percibido de encargar un sitio nuevo.',
+      },
+      {
+        heading: 'Qué recibís al final',
+        body: 'El sitio publicado, los accesos de administrador, el dominio registrado a nombre de tu empresa, las cuentas de Google Analytics y Search Console configuradas, y una capacitación para editar textos e imágenes por tu cuenta. Si algo de esa lista queda en manos del proveedor, preguntá por qué antes de firmar.',
       },
     ],
   },
@@ -801,6 +899,7 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Página web o redes sociales: qué necesita tu negocio',
     slug: { current: 'pagina-web-o-redes-sociales-que-necesita-tu-negocio' },
     publishedAt: '2026-09-30',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/pagina-web-o-redes-sociales-que-necesita-tu-negocio.webp',
     excerpt: 'Instagram y Facebook sirven para que te descubran, pero no son tuyos. Por qué depender solo de redes es un riesgo y qué rol cumple una web propia.',
     tags: ['Estrategia', 'Redes sociales', 'Guía'],
@@ -808,6 +907,25 @@ export const MOCK_POSTS: Post[] = [
       {
         heading: '',
         body: 'Muchos negocios en Chile venden solo por Instagram o WhatsApp, y les funciona — hasta que deja de funcionar. Las redes sociales son un gran canal para que te descubran, pero son terreno arrendado: las reglas, el alcance y hasta tu cuenta dependen de una empresa que no sos vos.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Un negocio necesita las dos cosas, pero no cumplen el mismo rol. Las redes sociales sirven para que te descubran y mantener el contacto; la página web es tuya, aparece cuando alguien busca en Google lo que vendés y concentra la información para convertir esa atención en consultas o ventas. Depender solo de redes es construir sobre terreno arrendado.',
+      },
+      {
+        heading: 'Qué hace cada una',
+        body: 'No compiten: se complementan.',
+        table: {
+          head: ['Criterio', 'Redes sociales', 'Página web'],
+          rows: [
+            ['De quién es', 'De la plataforma', 'Tuya'],
+            ['Cómo te encuentran', 'Algoritmo y seguidores', 'Búsquedas en Google con intención de compra'],
+            ['Alcance', 'Puede caer por un cambio de algoritmo', 'Crece con el contenido acumulado'],
+            ['Información', 'Dispersa en publicaciones', 'Ordenada: servicios, catálogo, precios, contacto'],
+            ['Medición', 'Métricas de la plataforma', 'Analítica completa de visitas y conversiones'],
+            ['Riesgo', 'Cuenta suspendida o hackeada', 'Bajo, si está mantenida y respaldada'],
+          ],
+        },
       },
       {
         heading: 'El problema de construir sobre terreno arrendado',
@@ -825,6 +943,10 @@ export const MOCK_POSTS: Post[] = [
         heading: 'Cuándo dar el paso',
         body: 'Si respondés las mismas preguntas una y otra vez por WhatsApp, si perdés ventas porque la gente no encuentra precios o catálogo, o si querés vender a clientes que no te siguen todavía, ya es momento. Una web simple y bien hecha suele pagarse sola con las consultas que antes se perdían.',
       },
+      {
+        heading: 'Cómo conectar ambas',
+        body: 'El enlace de tu perfil puede llevar a una página pensada para quien llega desde redes, no a la portada. Cada publicación sobre un producto o servicio puede enlazar a su página con toda la información. Y en la web, un botón de WhatsApp visible y los perfiles de redes enlazados cierran el círculo. Medir cuántas visitas llegan desde cada red te dice dónde vale la pena invertir.',
+      },
     ],
   },
   {
@@ -833,6 +955,7 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Landing page o sitio web completo: cuál necesitás',
     slug: { current: 'landing-page-o-sitio-web-completo' },
     publishedAt: '2026-09-29',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/landing-page-o-sitio-web-completo.webp',
     excerpt: 'Una landing page y un sitio web resuelven problemas distintos. Cómo saber cuál conviene según tu objetivo, tu presupuesto y la etapa de tu negocio.',
     tags: ['Estrategia', 'Landing page', 'Guía'],
@@ -840,6 +963,25 @@ export const MOCK_POSTS: Post[] = [
       {
         heading: '',
         body: 'Una landing page es una sola página con un solo objetivo: que el visitante haga una acción concreta, como dejar sus datos o comprar un producto. Un sitio web completo tiene varias secciones y sirve para presentar el negocio entero. Elegir mal no es grave, pero sí puede significar pagar por algo que no necesitás todavía, o quedarte corto.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Elegí una landing page si tenés un solo objetivo, una campaña pagada o una idea por validar, y necesitás algo en 1 a 2 semanas. Elegí un sitio web completo si ofrecés varios servicios, querés aparecer en Google para distintas búsquedas o necesitás mostrar trayectoria. Se puede empezar con una landing y crecer después, si la base técnica lo permite.',
+      },
+      {
+        heading: 'Comparativa',
+        body: 'Las diferencias que más importan al decidir.',
+        table: {
+          head: ['Criterio', 'Landing page', 'Sitio web completo'],
+          rows: [
+            ['Objetivo', 'Una sola acción: contacto, compra o registro', 'Presentar el negocio completo'],
+            ['Páginas', 'Una', 'Varias: servicios, empresa, proyectos, contacto'],
+            ['Plazo típico', '1 a 2 semanas', '3 a 5 semanas'],
+            ['Tráfico ideal', 'Campañas pagadas y redes sociales', 'Búsquedas orgánicas en Google'],
+            ['SEO', 'Una búsqueda principal', 'Muchas búsquedas, una por página'],
+            ['Crecimiento', 'Limitado, salvo que sea la base de un sitio', 'Se le suman páginas y contenido'],
+          ],
+        },
       },
       {
         heading: 'Cuándo conviene una landing page',
@@ -856,6 +998,10 @@ export const MOCK_POSTS: Post[] = [
       {
         heading: 'Empezar chico y crecer',
         body: 'Una opción sensata es partir con una landing bien hecha sobre WordPress y sumar páginas a medida que el negocio crece, sin rehacer todo. Lo importante es que la base técnica permita crecer: una landing hecha en una herramienta cerrada después obliga a empezar de cero.',
+      },
+      {
+        heading: 'Qué tiene una landing que convierte',
+        body: 'Un titular que diga en una frase qué ofrecés y para quién, un solo llamado a la acción repetido a lo largo de la página, beneficios concretos en vez de características, pruebas de confianza (clientes, testimonios, cifras), respuesta a las objeciones más comunes y un formulario o botón de WhatsApp sin fricción. Todo lo que distrae de esa acción, sobra.',
       },
     ],
   },
@@ -924,6 +1070,7 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Qué necesitás antes de encargar tu página web',
     slug: { current: 'que-necesitas-antes-de-encargar-tu-pagina-web' },
     publishedAt: '2026-09-27',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/que-necesitas-antes-de-encargar-tu-pagina-web.webp',
     excerpt: 'Los proyectos web no se atrasan por el desarrollo, sino por el contenido. Lo que conviene tener listo para que tu sitio salga a tiempo.',
     tags: ['Guía', 'Proceso', 'Contenido'],
@@ -931,6 +1078,25 @@ export const MOCK_POSTS: Post[] = [
       {
         heading: '',
         body: 'El cuello de botella más común en un proyecto web no es el diseño ni la programación: es esperar textos, fotos o accesos que el cliente todavía no tiene. Preparar esto antes de empezar acorta semanas el proyecto y mejora el resultado final.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Antes de encargar tu página web, tené listo: el objetivo del sitio y a quién apunta, el logo en buena calidad, los textos de cada servicio o producto, fotos propias, los accesos al dominio y hosting si ya existen, y dos o tres sitios de referencia. Con eso resuelto, el proyecto puede acortarse en semanas.',
+      },
+      {
+        heading: 'Checklist',
+        body: 'Qué preparar, en qué formato y qué hacer si todavía no lo tenés.',
+        table: {
+          head: ['Qué', 'Formato ideal', 'Si todavía no lo tenés'],
+          rows: [
+            ['Logo', 'Vector: SVG, AI o PDF', 'Resolver la identidad antes o como parte del proyecto'],
+            ['Textos', 'Un documento por página o servicio', 'Contratar redacción, pero la información base la das vos'],
+            ['Fotos', 'Propias, en alta resolución', 'Una sesión de fotos o, como último recurso, banco de imágenes'],
+            ['Dominio', 'A nombre de tu empresa', 'Registrarlo (por ejemplo, el .cl en NIC Chile)'],
+            ['Hosting', 'Accesos al panel', 'Elegirlo junto con quien construye el sitio'],
+            ['Referencias', '2 o 3 sitios con lo que te gusta y lo que no', 'Revisar sitios de tu competencia'],
+          ],
+        },
       },
       {
         heading: 'Objetivo y público claros',
@@ -951,6 +1117,10 @@ export const MOCK_POSTS: Post[] = [
       {
         heading: 'Referencias',
         body: 'Dos o tres sitios que te gusten (y por qué), y también alguno que no te guste. Las referencias ahorran muchas rondas de revisión porque ponen en imágenes lo que es difícil explicar con palabras.',
+      },
+      {
+        heading: 'Accesos que conviene ordenar',
+        body: 'Además del dominio y el hosting, reuní los accesos a las cuentas que se van a conectar al sitio: Google (para Analytics, Search Console y el perfil de empresa), redes sociales, pasarela de pago si vas a vender y la herramienta de email marketing si usás una. Que todas estén a nombre de la empresa, con un correo corporativo y no personal, evita problemas cuando alguien deja el equipo.',
       },
     ],
   },
