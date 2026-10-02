@@ -78,6 +78,28 @@ export default function Hero() {
           sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
         />
+        {/* Video encima de la foto: aparece con fundido cuando empieza a reproducirse,
+            así la foto sigue siendo el LCP y no hay pantalla negra mientras carga. */}
+        <video
+          src="/video/luis-cruz-hero.mp4"
+          muted
+          autoPlay
+          loop
+          playsInline
+          aria-hidden="true"
+          ref={v => {
+            if (!v) return
+            // autoPlay puede arrancar antes de la hidratación, y entonces onPlaying ya no llega
+            const show = () => { v.style.opacity = '1' }
+            if (!v.paused && v.readyState >= 3) show()
+            else v.addEventListener('playing', show, { once: true })
+          }}
+          style={{
+            position: 'absolute', inset: 0, width: '100%', height: '100%',
+            objectFit: 'cover', objectPosition: 'center 20%',
+            opacity: 0, transition: 'opacity 0.8s ease',
+          }}
+        />
       </div>
       {/* Degradado de legibilidad */}
       <div style={{
