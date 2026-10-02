@@ -83,7 +83,7 @@ const jsonLd = {
       name: 'Luis Cruz',
       jobTitle: 'Diseñador Web & Desarrollador WordPress',
       url: 'https://pittuk.net',
-      image: 'https://pittuk.net/images/Luis%20Cruz.png',
+      image: 'https://pittuk.net/images/luis-cruz-retrato.webp',
       sameAs: [
         'https://www.linkedin.com/in/pittuk/',
         'https://www.behance.net/PITTUK',
@@ -103,9 +103,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-G5QHPP2V5W"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="ga-init" strategy="afterInteractive">
+        <Script id="ga-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

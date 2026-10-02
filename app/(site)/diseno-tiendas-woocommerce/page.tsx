@@ -48,6 +48,28 @@ export default async function DisenoTiendasWooCommercePage() {
         'Campos personalizados (ACF) para catálogos con especificaciones técnicas',
         'Sitio responsive, pensado primero para mobile',
       ]}
+      sections={[
+        {
+          heading: 'Para quién es',
+          body: 'Para negocios que hoy venden por Instagram o WhatsApp y quieren una tienda propia que cobre sola, y para tiendas que ya existen en otra plataforma y necesitan más control. WooCommerce corre sobre WordPress: la tienda es tuya, sin comisión por venta de la plataforma, y puede crecer con contenido y SEO en el mismo sitio.',
+        },
+        {
+          heading: 'Pagos y envíos pensados para Chile',
+          body: 'Integro la pasarela que mejor se ajusta a tu negocio: Webpay Plus de Transbank, Mercado Pago, Flow o Khipu, y transferencia bancaria como alternativa para quien no quiere pagar con tarjeta. Los envíos se configuran por comuna o región, con retiro en tienda si aplica. Antes de publicar, cada medio de pago se prueba con compras completas: aprobadas, rechazadas y anuladas.',
+        },
+        {
+          heading: 'Plazos reales',
+          body: 'Una tienda WooCommerce con un catálogo mediano toma de 6 a 10 semanas, según cuántos productos haya que cargar y qué integraciones necesite (pasarela, courier, facturación). Si ya tenés el catálogo en una planilla o en otra plataforma, la carga se hace por importación y el plazo se acorta.',
+        },
+        {
+          heading: 'Si ya tenés una tienda en otra plataforma',
+          body: 'Migrar desde Shopify, Jumpseller u otra plataforma es posible sin perder posiciones en Google: se mantiene el catálogo, se redirige cada URL antigua a su equivalente nueva y se prueba todo en paralelo antes de apagar la tienda anterior.',
+        },
+        {
+          heading: 'Experiencia',
+          body: 'He construido más de 47 tiendas WooCommerce, de catálogos chicos a tiendas con especificaciones técnicas por producto. Diseño, desarrollo y configuración los hace la misma persona, así que la tienda que se aprueba es la que se publica.',
+        },
+      ]}
       projects={featured}
       projectsHeading="Tiendas que he construido"
       faq={[

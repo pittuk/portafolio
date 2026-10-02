@@ -7,33 +7,59 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: '¿Cuánto cuesta una página web en Chile?',
     slug: { current: 'cuanto-cuesta-una-pagina-web-en-chile' },
     publishedAt: '2026-07-20',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/cuanto-cuesta-una-pagina-web-en-chile-guia-de-precios.webp',
     excerpt: 'El precio de una página web en Chile depende de lo que realmente necesitás. Qué factores mueven el precio y qué preguntar antes de cotizar.',
     tags: ['Precios', 'WordPress', 'Guía'],
     sections: [
       {
         heading: '',
-        body: '"¿Cuánto cuesta una página web?" no tiene una respuesta única — depende de lo que estés construyendo. Un landing page simple y una tienda online con cientos de productos no cuestan lo mismo, ni deberían. Esta guía explica qué factores realmente mueven el precio, para que puedas cotizar con criterio en vez de comparar números sueltos.',
+        body: '"¿Cuánto cuesta una página web?" no tiene una respuesta única: depende de lo que estés construyendo. Una landing page simple y una tienda online con cientos de productos no cuestan lo mismo, ni deberían. Esta guía explica qué factores mueven realmente el precio de un sitio web en Chile, qué costos aparecen después del lanzamiento y qué preguntar para comparar cotizaciones con criterio, en vez de comparar números sueltos.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'El precio de una página web depende de cinco cosas: el tipo de sitio (landing, corporativo o tienda online), la cantidad de páginas, si el diseño es a medida o sobre plantilla, las funcionalidades que necesita (pagos, reservas, integraciones) y quién lo construye. A eso se suman costos recurrentes que casi nadie cotiza al inicio: dominio, hosting y mantenimiento. Una cotización seria detalla todo eso; una que es solo un número, no.',
+      },
+      {
+        heading: 'Los tres tipos de sitio y qué los diferencia',
+        body: 'Una landing page es una sola página con un objetivo, como captar contactos para un servicio o una campaña. Es lo más rápido y económico de construir. Un sitio corporativo tiene varias secciones (servicios, empresa, proyectos, contacto) y suma trabajo de arquitectura de información y contenido. Una tienda online con WooCommerce suma catálogo, pasarela de pago, envíos y muchas más pruebas antes de publicar. El precio escala con la complejidad real del proyecto, no con el tamaño de la empresa que lo pide.',
+        table: {
+          head: ['Tipo de sitio', 'Para qué sirve', 'Plazo típico', 'Qué más pesa en el precio'],
+          rows: [
+            ['Landing page', 'Un objetivo: captar contactos o vender un servicio puntual', '1 a 2 semanas', 'Calidad del texto y del diseño de conversión'],
+            ['Sitio corporativo', 'Presentar la empresa y generar consultas desde Google', '3 a 5 semanas', 'Número de páginas, diseño a medida, contenido'],
+            ['Tienda WooCommerce', 'Vender online con pago y despacho', '6 a 10 semanas', 'Tamaño del catálogo, pasarela, envíos e integraciones'],
+          ],
+        },
       },
       {
         heading: 'Qué mueve realmente el precio',
-        body: 'El tipo de sitio (landing, corporativo, tienda online), la cantidad de páginas, si el diseño es a medida o sobre una plantilla, las funcionalidades que necesita (pasarela de pago, reservas, multi-idioma, integraciones) y quién lo construye — freelancer o agencia — son los factores que más impactan el precio final. Dos sitios que "se ven parecidos" pueden costar muy distinto si uno tiene una arquitectura pensada para escalar y el otro no.',
-      },
-      {
-        heading: 'Landing page vs. sitio corporativo vs. tienda online',
-        body: 'Una landing page (una sola página orientada a un objetivo, como captar leads) es lo más rápido y económico de construir. Un sitio corporativo con varias secciones (servicios, nosotros, contacto, blog) suma tiempo de arquitectura de información y contenido. Una tienda online con WooCommerce suma pasarela de pago, gestión de inventario, envíos y, generalmente, más pruebas antes de publicar. El precio escala con la complejidad real, no con el tamaño de la empresa que lo pide.',
+        body: 'Primero, el diseño: una plantilla adaptada cuesta menos que un diseño a medida, pero también se parece a miles de otros sitios. Segundo, las funcionalidades: cada integración (pasarela de pago, sistema de reservas, CRM, facturación electrónica, multi-idioma) suma horas de desarrollo y de pruebas. Tercero, el contenido: si hay que escribir los textos, producir fotos o cargar cientos de productos, eso es trabajo aparte. Cuarto, el rendimiento y el SEO técnico: un sitio pensado para cargar rápido y posicionar en Google requiere más cuidado que uno que solo "se ve bien". Dos sitios que se ven parecidos pueden costar muy distinto si uno está construido para crecer y el otro no.',
       },
       {
         heading: 'Lo que casi nadie cotiza (y después cuesta caro)',
-        body: 'Hosting, dominio, certificado SSL, mantenimiento, actualizaciones de seguridad y backups suelen quedar fuera de la cotización inicial y aparecen después como gastos "sorpresa". Antes de aceptar una propuesta, vale la pena preguntar explícitamente qué pasa después del lanzamiento: quién actualiza el sitio, quién responde si algo se rompe, y qué cubre el precio más allá de la entrega.',
+        body: 'El dominio (.cl en NIC Chile o .com), el hosting, el certificado SSL, las licencias de plugins o temas premium, el mantenimiento mensual y los backups suelen quedar fuera de la cotización inicial y aparecen después como gastos sorpresa. Antes de aceptar una propuesta conviene preguntar explícitamente qué pasa después del lanzamiento: quién actualiza el sitio, quién responde si algo se rompe y qué cubre el precio más allá de la entrega.',
+        table: {
+          head: ['Costo', 'Frecuencia', 'Qué preguntar'],
+          rows: [
+            ['Dominio', 'Anual', '¿Queda registrado a nombre de mi empresa?'],
+            ['Hosting', 'Mensual o anual', '¿Cuál es el precio de renovación, no solo el del primer año?'],
+            ['Licencias premium', 'Anual', '¿Qué plugins o temas de pago usa el sitio y quién los renueva?'],
+            ['Mantenimiento', 'Mensual', '¿Incluye actualizaciones, backups y soporte ante caídas?'],
+          ],
+        },
       },
       {
-        heading: 'Cómo cotizar sin sorpresas',
-        body: 'Pedí que la cotización especifique qué incluye (número de páginas, revisiones, capacitación), qué no incluye (hosting, contenido, fotografía), y los plazos de entrega. Un proveedor serio no debería tener problema en desglosar esto — si una cotización es un solo número sin detalle, es una señal de alerta.',
+        heading: 'Freelancer o agencia',
+        body: 'Una agencia suma estructura y varios especialistas, pero también intermediarios entre vos y quien realmente hace el trabajo, y ese costo de coordinación se refleja en el precio. Un freelancer con experiencia real en diseño, desarrollo y SEO técnico puede ofrecer trato directo y cambios más rápidos, a cambio de depender de una sola persona. Ninguna opción es mejor en abstracto: depende de la complejidad del proyecto y de cuánto valorás hablar directo con quien construye tu sitio.',
       },
       {
-        heading: '¿Freelancer o agencia?',
-        body: 'Una agencia suma estructura y varios especialistas, pero también intermediarios entre vos y quien realmente hace el trabajo. Un freelancer con experiencia real en diseño, desarrollo y SEO técnico puede ofrecer trato directo, cambios más rápidos y menos capas de comunicación — a cambio de depender de una sola persona en vez de un equipo. Ninguna opción es mejor en abstracto; depende de la complejidad del proyecto y de cuánto valorás el contacto directo con quien construye tu sitio.',
+        heading: 'Cómo comparar cotizaciones sin equivocarte',
+        body: 'Pedí que cada cotización detalle: número de páginas, si el diseño es a medida o plantilla, cuántas rondas de revisión incluye, si incluye carga de contenido, capacitación, plazos de entrega y qué queda fuera (hosting, textos, fotografía). Compará ítem por ítem, no el total. Si una cotización es mucho más barata que el resto, casi siempre es porque algo de esa lista no está incluido.',
+      },
+      {
+        heading: 'Señales de alerta',
+        body: 'Desconfiá de una cotización que no detalla qué incluye, de un plazo demasiado corto para el alcance, de un proveedor que registra el dominio a su nombre o que no te entrega los accesos de administrador, y de quien no puede mostrar sitios reales construidos por él. Un sitio web es un activo de tu empresa: tiene que quedar a tu nombre y bajo tu control.',
       },
     ],
   },
@@ -79,33 +105,53 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'WooCommerce o Shopify: ¿cuál elegir?',
     slug: { current: 'woocommerce-o-shopify' },
     publishedAt: '2026-06-25',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/woocommerce-o-shopify-cual-conviene-para-tu-tienda-online.webp',
     excerpt: 'Control total con más responsabilidad, o simplicidad con menos personalización. Qué estás comprando realmente al elegir la plataforma de tu tienda.',
     tags: ['E-commerce', 'WooCommerce', 'Shopify', 'Comparativa'],
     sections: [
       {
         heading: '',
-        body: 'La pregunta no es cuál plataforma es "mejor" en abstracto, sino qué trade-off le conviene a tu negocio: control total con más responsabilidad encima, o simplicidad a cambio de menos margen de personalización.',
+        body: 'La pregunta no es cuál plataforma es "mejor" en abstracto, sino qué trade-off le conviene a tu negocio: control total con más responsabilidad encima, o simplicidad a cambio de menos margen de personalización. Después de construir más de 47 tiendas WooCommerce, esta es la comparación honesta, con lo que pesa especialmente cuando vendés en Chile.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'WooCommerce conviene si querés control total, combinar la tienda con contenido para posicionar en Google, o ya tenés un sitio en WordPress. Shopify conviene si querés lanzar rápido, tu equipo no es técnico y preferís pagar una mensualidad para no pensar en hosting ni actualizaciones. En Chile hay un factor extra: la integración con pasarelas y medios de pago locales.',
       },
       {
         heading: 'Cómo funciona cada una',
-        body: 'WooCommerce es un plugin gratuito que corre sobre WordPress: el sitio vive en tu propio hosting y vos (o quien te mantenga el sitio) sos responsable de actualizaciones, seguridad y backups. Shopify es un SaaS — todo está alojado y mantenido por ellos, y pagás una mensualidad por ese servicio.',
+        body: 'WooCommerce es un plugin gratuito que corre sobre WordPress: la tienda vive en tu propio hosting y vos (o quien mantenga el sitio) son responsables de actualizaciones, seguridad y backups. Shopify es un servicio por suscripción: la plataforma aloja y mantiene la tienda, y pagás una mensualidad por eso.',
+        table: {
+          head: ['Criterio', 'WooCommerce', 'Shopify'],
+          rows: [
+            ['Modelo', 'Plugin gratuito sobre WordPress, en tu hosting', 'Suscripción mensual, alojado por Shopify'],
+            ['Control del código', 'Total', 'Limitado a temas y apps de su ecosistema'],
+            ['Mantenimiento', 'A tu cargo o de quien contrates', 'Incluido en la plataforma'],
+            ['Contenido y SEO', 'WordPress completo: blog, páginas, plugins SEO', 'Blog básico, menos flexible'],
+            ['Pasarelas chilenas', 'Plugins para Webpay, Mercado Pago, Flow, Khipu', 'Vía apps de terceros, con comisión adicional de la plataforma'],
+            ['Velocidad de lanzamiento', 'Más configuración inicial', 'Más rápido para empezar'],
+          ],
+        },
       },
       {
-        heading: 'Costos reales',
-        body: 'Con WooCommerce no hay mensualidad de plataforma, pero el hosting, el mantenimiento y algunos plugins de pago suman costos que vos controlás directamente. Con Shopify pagás una mensualidad fija que crece según el plan, e incluye hosting, seguridad y soporte — pero las comisiones por transacción y las apps premium también suman con el tiempo. Los números exactos varían según el proyecto, así que no sirve comparar "precio de plataforma" sin mirar el resto.',
+        heading: 'Costos: qué se paga en cada una',
+        body: 'Con WooCommerce no hay mensualidad de plataforma ni comisión por venta de la plataforma, pero sí pagás hosting, mantenimiento y, a veces, plugins premium; costos que controlás directamente y podés ajustar. Con Shopify pagás una mensualidad que sube con el plan, y si no usás su sistema de pagos propio (Shopify Payments, que no opera en Chile) la plataforma cobra una comisión adicional por cada venta procesada con una pasarela externa, que se suma a la comisión de la pasarela. En tiendas con mucho volumen, esa diferencia pesa.',
       },
       {
         heading: 'Personalización y control',
-        body: 'WooCommerce te da acceso al código: prácticamente cualquier funcionalidad es posible con desarrollo a medida, y se integra de forma nativa con todo el ecosistema de WordPress (blog, SEO, plugins). Shopify es más cerrado a su propio ecosistema de apps — los cambios profundos requieren developers que sepan Liquid — pero la experiencia lista para usar es más pulida y rápida de lanzar.',
+        body: 'WooCommerce te da acceso al código: prácticamente cualquier funcionalidad es posible con desarrollo a medida, desde fichas de producto con especificaciones técnicas hasta integraciones con sistemas de inventario o facturación. Shopify es más cerrado: lo que no ofrece un tema o una app requiere developers que conozcan Liquid, su lenguaje de plantillas. A cambio, la experiencia lista para usar de Shopify es muy pulida.',
+      },
+      {
+        heading: 'Contenido y posicionamiento en Google',
+        body: 'Si tu estrategia incluye atraer clientes desde Google con guías, comparativas y páginas de categoría bien trabajadas, WooCommerce tiene ventaja: vive dentro de WordPress, el CMS más usado para contenido, con control fino sobre URLs, metadatos, datos estructurados y velocidad. Shopify cubre lo básico de SEO, pero con menos flexibilidad en la estructura de URLs y el contenido.',
       },
       {
         heading: 'Mantenimiento y seguridad',
-        body: 'En WooCommerce, la responsabilidad de mantener el sitio actualizado y seguro es tuya o de quien contrates para eso. En Shopify, la plataforma se encarga — es menos de qué preocuparte, pero también menos margen de acción si algo específico falla y necesitás resolverlo vos mismo.',
+        body: 'En WooCommerce, mantener la tienda actualizada y segura es responsabilidad tuya o de quien contrates. Bien hecho, implica actualizaciones probadas, backups fuera del hosting y monitoreo. En Shopify, la plataforma se encarga: es menos de qué preocuparte, pero también menos margen de acción si algo específico falla.',
       },
       {
         heading: 'Cuál elegiría según el caso',
-        body: 'Si ya tenés presencia en WordPress, un catálogo complejo, o querés combinar tienda con contenido fuerte orientado a SEO, WooCommerce tiene más sentido. Si querés lanzar rápido, sin pensar en mantenimiento técnico, y tu equipo no es técnico, Shopify reduce fricción. Ninguna es la respuesta correcta para todos los casos.',
+        body: 'Elegí WooCommerce si ya tenés un sitio en WordPress, si tu catálogo tiene especificaciones o reglas complejas, si el contenido y el SEO son parte importante de cómo conseguís clientes, o si querés evitar comisiones de plataforma. Elegí Shopify si necesitás lanzar en pocos días, no tenés a nadie técnico y valorás que todo esté incluido en una mensualidad. Y si ya vendés en una y te queda chica, migrar es posible sin perder posiciones en Google, con un plan de redirecciones.',
       },
     ],
   },
@@ -355,33 +401,54 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Mantenimiento WordPress: qué incluye y cuánto cuesta',
     slug: { current: 'mantenimiento-wordpress-que-incluye-y-cuanto-cuesta' },
     publishedAt: '2026-08-07',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/mantenimiento-wordpress-que-incluye-y-cuanto-cuesta.webp',
     excerpt: 'Un sitio en WordPress no se termina el día que se publica. Esto es lo que un mantenimiento serio debería cubrir, y por qué saltárselo suele salir más caro.',
     tags: ['WordPress', 'Mantenimiento', 'Guía'],
     sections: [
       {
         heading: '',
-        body: 'WordPress es un software, no un objeto terminado — el núcleo, el tema y cada plugin reciben actualizaciones, y algunas corrigen vulnerabilidades de seguridad reales. Un sitio publicado y nunca más tocado es, con el tiempo, un sitio expuesto. El mantenimiento no es un gasto extra: es la parte del servicio que sigue después del lanzamiento.',
+        body: 'WordPress es un software, no un objeto terminado: el núcleo, el tema y cada plugin reciben actualizaciones, y algunas corrigen vulnerabilidades de seguridad reales. Un sitio publicado y nunca más tocado es, con el tiempo, un sitio expuesto. Esta guía explica qué debería incluir un mantenimiento serio, con qué frecuencia y cómo saber si el que pagás hoy realmente funciona.',
       },
       {
-        heading: 'Qué debería incluir un mantenimiento serio',
-        body: 'Actualizaciones de núcleo, tema y plugins probadas antes de aplicarse (no solo un clic automático), backups periódicos guardados fuera del propio hosting, monitoreo de que el sitio esté online, y un canal para resolver algo si se rompe. Sin esto, "mantenimiento" es solo una palabra en una cotización.',
+        heading: 'Respuesta corta',
+        body: 'Un mantenimiento WordPress serio incluye cuatro cosas: actualizaciones probadas de núcleo, tema y plugins; backups automáticos guardados fuera del hosting; monitoreo de disponibilidad y seguridad; y alguien que responda y resuelva cuando algo falla. Si falta cualquiera de las cuatro, el sitio queda expuesto aunque se esté pagando por mantenerlo.',
+      },
+      {
+        heading: 'Qué se hace y cada cuánto',
+        body: 'El mantenimiento no es una tarea única, sino una rutina. Esta es una frecuencia razonable para un sitio corporativo o una tienda pequeña; una tienda con muchas ventas diarias necesita backups y monitoreo más frecuentes.',
+        table: {
+          head: ['Tarea', 'Frecuencia', 'Por qué importa'],
+          rows: [
+            ['Monitoreo de disponibilidad', 'Continuo', 'Detectar una caída antes que tus clientes'],
+            ['Backup completo (archivos y base de datos)', 'Diario o semanal, según cuánto cambie el sitio', 'Poder volver atrás si algo se rompe o te hackean'],
+            ['Actualizaciones de plugins y tema', 'Semanal o quincenal, probadas', 'Cerrar vulnerabilidades conocidas'],
+            ['Actualización del núcleo de WordPress', 'Cuando sale una versión, tras verificar compatibilidad', 'Seguridad y compatibilidad'],
+            ['Escaneo de seguridad', 'Semanal', 'Encontrar código malicioso que no se ve a simple vista'],
+            ['Revisión de velocidad y errores', 'Mensual', 'Evitar que el sitio se ponga lento de a poco'],
+            ['Prueba de restauración de backup', 'Trimestral', 'Un backup que nunca se probó puede no servir'],
+          ],
+        },
       },
       {
         heading: 'Lo que pasa si no se hace',
-        body: 'Plugins desactualizados son la puerta de entrada más común para sitios hackeados en WordPress. Y no siempre se nota de inmediato: a veces el sitio sigue funcionando mientras inyecta contenido malicioso invisible que Google penaliza en el ranking antes de que el dueño se entere.',
+        body: 'Los plugins desactualizados son la puerta de entrada más común para sitios hackeados en WordPress. Y no siempre se nota de inmediato: a veces el sitio sigue funcionando mientras inyecta contenido malicioso o enlaces a sitios de spam que no ves, pero que Google detecta. El resultado puede ser una advertencia de "sitio peligroso" en el navegador, la caída en el ranking o el bloqueo del hosting. Limpiar un sitio comprometido y recuperar las posiciones perdidas cuesta bastante más que mantenerlo.',
       },
       {
         heading: 'Actualizar no es solo hacer clic en "actualizar"',
-        body: 'Una actualización de plugin puede romper algo que dependía de su versión anterior. Actualizar bien implica probar en un entorno de staging antes de aplicar el cambio al sitio real, o al menos tener un backup reciente para revertir si algo falla. Actualizar a ciegas en producción es la forma más común de "arreglar" un sitio y dejarlo peor.',
+        body: 'Una actualización de plugin puede romper algo que dependía de su versión anterior: un formulario que deja de enviar, un checkout que falla, un diseño que se desarma. Actualizar bien implica tener un backup reciente antes de cada cambio, probar en un entorno de staging cuando el sitio es crítico, y revisar después que lo importante siga funcionando. Actualizar a ciegas en producción es la forma más común de "arreglar" un sitio y dejarlo peor.',
       },
       {
-        heading: 'Cuánto cuesta',
-        body: 'El rango varía mucho según el tamaño del sitio y qué tan crítico es que nunca esté caído — un blog simple no necesita el mismo nivel de vigilancia que una tienda que factura todos los días. Lo importante no es encontrar el precio más bajo, sino entender exactamente qué cubre esa mensualidad y qué pasa el día que algo falla.',
+        heading: 'Qué no suele incluir',
+        body: 'Un mantenimiento cubre que el sitio funcione, esté seguro y al día. Los rediseños, secciones nuevas, funcionalidades a medida o campañas suelen cotizarse aparte. Los cambios menores de texto e imágenes muchas veces sí están incluidos. Lo importante es que esté escrito: qué cubre la mensualidad, en cuánto tiempo responden ante una caída y qué se cobra por fuera.',
+      },
+      {
+        heading: 'Cuánto deberías pagar',
+        body: 'El valor depende del tamaño del sitio y de qué tan crítico es que nunca esté caído: un sitio informativo no necesita el mismo nivel de vigilancia que una tienda que factura todos los días. En vez de buscar el precio más bajo, compará qué tareas de la tabla anterior cubre cada propuesta y cuál es el tiempo de respuesta comprometido.',
       },
       {
         heading: 'Cómo evaluar si tu mantenimiento actual sirve',
-        body: 'Preguntá cuándo fue el último backup verificado (no solo generado), cuándo se actualizó el sitio por última vez, y qué pasaría si el sitio cayera hoy: ¿alguien se entera antes que un cliente? Si no hay respuestas claras, probablemente no hay mantenimiento real, aunque se esté pagando por él.',
+        body: 'Preguntá tres cosas: cuándo fue el último backup y si alguna vez se probó restaurarlo; cuándo se actualizó el sitio por última vez y qué se revisó después; y qué pasaría si el sitio cayera hoy (¿alguien se entera antes que un cliente?). Si no hay respuestas claras, probablemente no hay mantenimiento real, aunque se esté pagando por él.',
       },
     ],
   },
@@ -611,33 +678,56 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Pasarelas de pago en Chile para WooCommerce',
     slug: { current: 'pasarelas-de-pago-en-chile-para-woocommerce' },
     publishedAt: '2026-09-28',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/pasarelas-de-pago-en-chile-para-woocommerce.webp',
     excerpt: 'Webpay, Mercado Pago, Flow y Khipu comparadas: comisiones, plazos de abono y medios de pago para elegir la pasarela de tu tienda en Chile.',
     tags: ['WooCommerce', 'E-commerce', 'Chile', 'Guía'],
     sections: [
       {
         heading: '',
-        body: 'La pasarela de pago es la parte de la tienda donde se cierra la venta, y también donde más se pierden. Comisiones, plazos de abono y métodos de pago aceptados varían bastante entre proveedores, y conviene elegir con esos números en mano, no solo por costumbre.',
+        body: 'La pasarela de pago es la parte de la tienda donde se cierra la venta, y también donde más se pierden. Comisiones, plazos de abono y medios de pago aceptados varían entre proveedores, y conviene elegir con esa información en mano, no solo por costumbre. Esta guía compara las pasarelas más usadas en Chile para tiendas WooCommerce y explica cómo probarlas antes de lanzar.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Para la mayoría de las tiendas en Chile, la combinación que mejor funciona es una pasarela principal con tarjetas de débito y crédito (Webpay Plus o Mercado Pago) más una alternativa de transferencia (Khipu o transferencia manual). Webpay genera más confianza en el comprador chileno; Mercado Pago es más rápido de activar; Flow agrupa varios medios en una sola integración.',
+      },
+      {
+        heading: 'Comparativa de pasarelas en Chile',
+        body: 'Las condiciones comerciales exactas (comisiones y plazos de abono) cambian y dependen del plan y del volumen de cada comercio, así que conviene confirmarlas directamente con cada proveedor antes de decidir. Lo que sí se puede comparar de forma estable es qué ofrece cada una y para qué tipo de tienda conviene.',
+        table: {
+          head: ['Pasarela', 'Medios de pago', 'Activación', 'Conviene para'],
+          rows: [
+            ['Webpay Plus (Transbank)', 'Débito y crédito de todos los bancos chilenos', 'Afiliación comercial y validación técnica de la integración', 'Tiendas que quieren la opción más reconocida por el comprador chileno'],
+            ['Mercado Pago', 'Tarjetas, saldo en cuenta, cuotas', 'Rápida, con cuenta de Mercado Pago', 'Empezar a vender pronto, sin contrato de afiliación complejo'],
+            ['Flow', 'Webpay, transferencia y otros medios en una sola integración', 'Registro en Flow', 'Ofrecer varios medios sin integrar cada uno por separado'],
+            ['Khipu', 'Transferencia bancaria automatizada', 'Registro en Khipu', 'Clientes que prefieren no usar tarjeta'],
+            ['Transferencia manual', 'Transferencia con confirmación manual', 'Inmediata', 'Pedidos grandes o B2B; requiere revisar cada pago a mano'],
+          ],
+        },
       },
       {
         heading: 'Webpay Plus (Transbank)',
-        body: 'Es la opción que más confianza genera en el comprador chileno, porque acepta tarjetas de débito y crédito de todos los bancos con una interfaz conocida. Tiene plugin oficial para WooCommerce. Requiere un proceso de afiliación y validación técnica antes de pasar a producción, así que hay que considerarlo en los plazos.',
+        body: 'Es la opción que más confianza genera en el comprador chileno, porque acepta tarjetas de débito y crédito de todos los bancos con una interfaz que la gente reconoce. Tiene plugin oficial para WooCommerce. Antes de pasar a producción, Transbank exige un proceso de afiliación y una validación técnica de la integración; hay que considerarlo en los plazos del proyecto, porque puede tomar más que el desarrollo mismo.',
       },
       {
         heading: 'Mercado Pago',
-        body: 'Rápido de activar, sin contrato de afiliación complejo, y acepta tarjetas, saldo en cuenta y cuotas. Su comisión suele ser algo mayor y el plazo de liberación del dinero depende de la modalidad elegida. Es una buena opción para empezar a vender rápido.',
+        body: 'Se activa rápido, sin contrato de afiliación complejo, y acepta tarjetas, saldo en cuenta y pago en cuotas. Su plugin para WooCommerce está bien mantenido. Es una buena opción para empezar a vender pronto o para tiendas que ya usan Mercado Pago en otros canales. Revisá la comisión y el plazo de liberación del dinero según la modalidad que elijas.',
       },
       {
         heading: 'Flow, Khipu y transferencias',
-        body: 'Flow agrupa varios medios (Webpay, transferencia, otros) en una sola integración. Khipu permite pagar con transferencia bancaria automatizada, algo que mucha gente en Chile prefiere frente a la tarjeta. Ofrecer transferencia como alternativa puede recuperar ventas de clientes que no quieren ingresar datos de tarjeta.',
+        body: 'Flow agrupa varios medios (incluido Webpay) en una sola integración, lo que simplifica la configuración. Khipu permite pagar con transferencia bancaria automatizada, algo que mucha gente en Chile prefiere frente a ingresar datos de tarjeta. Ofrecer transferencia como alternativa recupera ventas de clientes que abandonarían el checkout si la única opción fuera la tarjeta.',
       },
       {
-        heading: 'Cómo elegir',
-        body: 'Compará la comisión por transacción, el plazo en que el dinero llega a tu cuenta, los medios de pago que acepta y la calidad del plugin para WooCommerce (actualizaciones recientes, soporte). Muchas tiendas terminan usando dos: una principal con tarjetas y una alternativa con transferencia.',
+        heading: 'Cómo elegir la tuya',
+        body: 'Compará cuatro cosas: la comisión por transacción, el plazo en que el dinero llega a tu cuenta, los medios de pago que acepta y la calidad del plugin para WooCommerce (actualizaciones recientes, compatibilidad con la versión actual, soporte). Muchas tiendas terminan usando dos pasarelas: una principal con tarjetas y una alternativa con transferencia. Más opciones no siempre es mejor: tres o cuatro botones de pago confunden más de lo que ayudan.',
+      },
+      {
+        heading: 'Facturación y conciliación',
+        body: 'Vender online también implica emitir boleta o factura electrónica por cada venta. Existen proveedores de facturación electrónica con integración para WooCommerce que generan el documento automáticamente al confirmarse el pago. Conviene resolverlo desde el inicio, porque emitir boletas a mano no escala cuando la tienda empieza a vender todos los días.',
       },
       {
         heading: 'Probar antes de lanzar',
-        body: 'Todas las pasarelas tienen un modo de pruebas. Antes de publicar la tienda, hay que hacer compras de prueba completas — pago aprobado, rechazado y anulado — y revisar que el pedido cambie de estado correctamente y que lleguen los correos de confirmación. Un checkout que falla en silencio es la forma más cara de perder ventas.',
+        body: 'Todas las pasarelas tienen un modo de pruebas. Antes de publicar la tienda hay que hacer compras de prueba completas (pago aprobado, rechazado y anulado) y revisar que el pedido cambie de estado correctamente, que se descuente el stock, que llegue el correo de confirmación al cliente y que se genere el documento tributario. Un checkout que falla en silencio es la forma más cara de perder ventas.',
       },
     ],
   },
@@ -683,33 +773,51 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Cómo elegir hosting para WordPress en Chile',
     slug: { current: 'como-elegir-hosting-para-wordpress-en-chile' },
     publishedAt: '2026-09-26',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/como-elegir-hosting-para-wordpress-en-chile.webp',
     excerpt: 'El hosting define la velocidad, estabilidad y seguridad de tu sitio. Qué mirar al elegir uno para WordPress en Chile y qué promesas ignorar.',
     tags: ['WordPress', 'Hosting', 'Guía'],
     sections: [
       {
         heading: '',
-        body: 'El hosting es el servidor donde vive tu sitio. Es fácil elegirlo solo por precio, pero un hosting malo se paga después en lentitud, caídas y horas de soporte. La buena noticia es que no hace falta el plan más caro: hace falta el adecuado para tu tipo de sitio.',
+        body: 'El hosting es el servidor donde vive tu sitio. Es fácil elegirlo solo por precio, pero un hosting inadecuado se paga después en lentitud, caídas y horas de soporte. No hace falta el plan más caro: hace falta el adecuado para tu tipo de sitio. Esta guía explica qué tipos de hosting existen, qué mirar al elegir uno para WordPress en Chile y qué promesas conviene ignorar.',
       },
       {
-        heading: 'Compartido, VPS o administrado',
-        body: 'Un hosting compartido es económico y suficiente para sitios corporativos con tráfico moderado. Un VPS da recursos dedicados y más control, útil para tiendas o sitios con más visitas. Un hosting administrado para WordPress suma actualizaciones, caché y backups gestionados, a cambio de un precio mayor.',
+        heading: 'Respuesta corta',
+        body: 'Para un sitio corporativo con tráfico moderado alcanza un hosting compartido de buena calidad, con PHP actualizado, discos SSD o NVMe, SSL gratuito y backups automáticos. Para una tienda WooCommerce o un sitio con más visitas conviene un VPS o un hosting administrado para WordPress. En cualquier caso, mirá el precio de renovación y la calidad del soporte, no solo el precio del primer año.',
+      },
+      {
+        heading: 'Tipos de hosting',
+        body: 'La diferencia principal está en cuántos recursos son tuyos y quién se encarga de administrar el servidor.',
+        table: {
+          head: ['Tipo', 'Para quién', 'Ventaja', 'Límite'],
+          rows: [
+            ['Compartido', 'Sitios corporativos y blogs con tráfico moderado', 'Económico y sin administración técnica', 'Comparte recursos con otros sitios; se resiente con picos de tráfico'],
+            ['VPS', 'Tiendas y sitios con más visitas', 'Recursos dedicados y más control', 'Requiere saber administrar el servidor, o pagar a quien lo haga'],
+            ['WordPress administrado', 'Empresas que no quieren ocuparse de la parte técnica', 'Caché, backups y actualizaciones gestionadas', 'Más caro; a veces restringe plugins'],
+            ['Cloud', 'Proyectos con tráfico variable o alto', 'Escala según la demanda', 'Costos menos predecibles y configuración más compleja'],
+          ],
+        },
       },
       {
         heading: 'Lo que sí importa',
-        body: 'Versión actual de PHP, discos SSD o NVMe, certificado SSL gratuito, backups automáticos que puedas restaurar vos mismo y soporte que responda en horario útil y en español. Un servidor con buena latencia hacia Chile también ayuda, aunque un CDN puede compensar si el servidor está lejos.',
+        body: 'Versión actual de PHP (WordPress rinde mejor y es más seguro con versiones recientes), discos SSD o NVMe, certificado SSL gratuito, backups automáticos que puedas restaurar vos mismo, acceso a staging para probar cambios y soporte que responda en horario útil y en español. La ubicación del servidor influye en la velocidad: uno con buena latencia hacia Chile ayuda, aunque un CDN puede compensar si el servidor está lejos.',
       },
       {
         heading: 'Promesas que conviene ignorar',
-        body: '"Ancho de banda ilimitado" y "sitios ilimitados" suelen venir con límites de CPU o memoria escondidos en la letra chica. El precio promocional del primer año también engaña: hay que mirar el precio de renovación, que puede ser el doble o el triple.',
+        body: '"Ancho de banda ilimitado", "sitios ilimitados" y "almacenamiento ilimitado" suelen venir con límites de CPU, memoria o procesos escondidos en la letra chica, que son justamente los que frenan a WordPress. El precio promocional del primer año también engaña: hay que mirar el precio de renovación, que puede ser bastante mayor. Y desconfiá de un hosting que no permite descargar tus propios backups.',
       },
       {
         heading: 'Hosting para WooCommerce',
-        body: 'Una tienda online exige más que un sitio informativo: cada carrito y cada checkout se procesan en el servidor sin caché. Para WooCommerce conviene un plan con recursos dedicados o un VPS, sobre todo si se esperan campañas o fechas como el CyberDay.',
+        body: 'Una tienda online exige más que un sitio informativo: el carrito, el checkout y la cuenta del cliente no se pueden servir desde caché, así que cada una de esas páginas se procesa en el servidor en cada visita. Para WooCommerce conviene un plan con recursos dedicados o un VPS, sobre todo si se esperan campañas o fechas de alto tráfico como el CyberDay o el Black Friday, cuando un hosting justo se cae en el peor momento.',
+      },
+      {
+        heading: 'Dominio y hosting: separados es mejor',
+        body: 'Conviene que el dominio esté registrado a nombre de tu empresa (por ejemplo, el .cl en NIC Chile) y, si es posible, separado del hosting. Así, si algún día cambiás de proveedor, solo hay que apuntar el dominio al servidor nuevo, sin depender de que el proveedor anterior te libere nada.',
       },
       {
         heading: 'Señales de que es hora de cambiar',
-        body: 'Caídas frecuentes, un sitio lento incluso después de optimizar imágenes y caché, errores 500 en horas de mayor tráfico o un soporte que tarda días en responder. Migrar de hosting es un proceso conocido y, bien hecho, no implica perder posiciones en Google.',
+        body: 'Caídas frecuentes, un sitio lento incluso después de optimizar imágenes y configurar caché, errores 500 en horas de más tráfico, avisos de "límite de recursos alcanzado" o un soporte que tarda días en responder. Migrar de hosting es un proceso conocido y, bien hecho (con backup completo, prueba en el servidor nuevo y cambio de DNS planificado), no implica perder posiciones en Google.',
       },
     ],
   },

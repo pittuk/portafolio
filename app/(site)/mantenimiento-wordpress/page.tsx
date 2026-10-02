@@ -47,6 +47,28 @@ export default async function MantenimientoWordPressPage() {
         'Soporte ante errores o caídas',
         'Cambios menores de contenido bajo demanda',
       ]}
+      sections={[
+        {
+          heading: 'Para quién es',
+          body: 'Para empresas con un sitio o una tienda en WordPress que no tienen a nadie a cargo de la parte técnica. Si tu sitio vende, recibe consultas o simplemente representa a tu marca, que se caiga, se ponga lento o lo hackeen tiene un costo, aunque nadie lo esté mirando.',
+        },
+        {
+          heading: 'Cómo funciona mes a mes',
+          body: 'Las actualizaciones de WordPress, el tema y los plugins se aplican de forma controlada, con un backup reciente antes de cada cambio para poder revertir si algo falla. Los backups se guardan fuera del hosting. El sitio se monitorea para detectar caídas y actividad sospechosa, y si algo se rompe, lo resuelvo yo sin que tengas que coordinar con nadie más.',
+        },
+        {
+          heading: 'Por qué no conviene saltárselo',
+          body: 'Los plugins desactualizados son la puerta de entrada más común para sitios hackeados en WordPress, y muchas veces el daño no se nota: el sitio sigue funcionando mientras inyecta contenido que Google penaliza. Mantener al día cuesta mucho menos que limpiar un sitio comprometido y recuperar las posiciones perdidas.',
+        },
+        {
+          heading: 'Si tu sitio lo hizo otra persona',
+          body: 'No hace falta que yo haya construido el sitio. Al empezar hago una revisión: versiones de WordPress y plugins, plugins abandonados, backups existentes, velocidad y seguridad básica. Con eso sabés en qué estado está el sitio y qué conviene corregir primero.',
+        },
+        {
+          heading: 'Qué no incluye',
+          body: 'Rediseños, secciones nuevas o funcionalidades a medida se cotizan aparte. El mantenimiento cubre que el sitio funcione, esté seguro y al día; los cambios menores de texto e imágenes sí están incluidos.',
+        },
+      ]}
       projects={featured}
       faq={[
         {

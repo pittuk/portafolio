@@ -48,11 +48,34 @@ export default async function DisenoWebWordPressPage() {
         'Sitio 100% responsive',
         'Capacitación para que puedas editar contenido vos mismo',
       ]}
+      sections={[
+        {
+          heading: 'Para quién es',
+          body: 'Para empresas y profesionales que necesitan un sitio propio, rápido y fácil de editar, sin depender de una agencia para cada cambio. WordPress mueve más del 40% de los sitios del mundo: hay soporte, plugins y profesionales disponibles para el largo plazo, y tu sitio no queda atado a una plataforma cerrada ni a una sola persona.',
+        },
+        {
+          heading: 'Cómo trabajo un sitio en WordPress',
+          body: 'Empieza con una reunión de 30 minutos para entender el negocio y qué tiene que lograr el sitio. Después viene una propuesta con alcance y plazos, el diseño de la arquitectura de páginas y la interfaz, el desarrollo en WordPress, una ronda de revisión con vos, y la publicación con dominio, SSL y verificaciones finales. Diseño y código los hace la misma persona, así que no se pierde nada entre lo que se aprueba y lo que se construye.',
+        },
+        {
+          heading: 'Plazos reales',
+          body: 'Una landing page toma de 1 a 2 semanas. Un sitio corporativo de varias páginas, de 3 a 5 semanas. Lo que más mueve el plazo no es el desarrollo, sino tener listos los textos, las fotos y los accesos; por eso al inicio te paso una lista concreta de lo que hace falta.',
+        },
+        {
+          heading: 'Elementor, Divi o código a medida',
+          body: 'Elijo la herramienta según el proyecto: Elementor o Divi cuando conviene que tu equipo edite páginas visualmente, y desarrollo más a medida cuando la prioridad es el rendimiento o una funcionalidad específica. En todos los casos el sitio se optimiza para velocidad y Core Web Vitals, porque Google mide la experiencia en celular y un sitio lento pierde visitas.',
+        },
+        {
+          heading: 'Qué recibís al final',
+          body: 'El sitio publicado, los accesos de administrador, el dominio registrado a tu nombre y una capacitación para editar textos e imágenes por tu cuenta. Más de 15 años construyendo sitios y más de 125 proyectos entregados me enseñaron que un sitio solo sirve si el cliente puede mantenerlo vivo después del lanzamiento.',
+        },
+      ]}
       projects={featured}
       faq={[
         {
           q: '¿Cuánto tiempo toma construir un sitio en WordPress?',
-          a: 'Depende del alcance. Un sitio corporativo simple puede estar listo en pocas semanas; uno con más secciones o funcionalidades a medida toma más tiempo.',
+          a: 'Una landing page toma de 1 a 2 semanas y un sitio corporativo de varias páginas, de 3 a 5 semanas. El plazo depende sobre todo de tener listo el contenido.',
+          link: { href: '/blog/cuanto-tiempo-toma-hacer-una-pagina-web', label: 'Ver los plazos en detalle' },
         },
         {
           q: '¿Usás Elementor o Divi?',
