@@ -185,33 +185,57 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Cómo elegir una agencia web sin arrepentirte',
     slug: { current: 'como-elegir-una-agencia-web' },
     publishedAt: '2026-06-10',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/como-elegir-una-agencia-web-o-freelancer-sin-arrepentirte.webp',
     excerpt: 'Contratar a quien construya tu sitio es una decisión cara de revertir después. Estas son las preguntas que realmente importan antes de firmar.',
     tags: ['Guía', 'Freelance', 'Agencia'],
     sections: [
       {
         heading: '',
-        body: 'Elegir quién construye tu sitio web es una decisión que después es cara de revertir — no solo en plata, también en tiempo. No se trata de encontrar el portafolio más grande o el precio más bajo, sino de hacer las preguntas correctas antes de firmar.',
+        body: 'Elegir quién construye tu sitio web es una decisión cara de revertir, no solo en plata, también en tiempo. No se trata de encontrar el portafolio más grande o el precio más bajo, sino de hacer las preguntas correctas antes de firmar. Esta guía reúne esas preguntas y las señales que separan a un buen proveedor de uno que te va a dar problemas.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Para elegir una agencia o un freelancer web, revisá sitios reales que haya construido (no capturas), preguntá quién hace el trabajo y quién será tu contacto, exigí una propuesta que detalle qué incluye y qué no, confirmá que el dominio y los accesos queden a tu nombre, y aclará qué pasa después del lanzamiento.',
+      },
+      {
+        heading: 'Las preguntas que conviene hacer',
+        body: 'Con estas preguntas, en una sola reunión sabés casi todo lo que necesitás.',
+        table: {
+          head: ['Pregunta', 'Respuesta que da confianza', 'Señal de alerta'],
+          rows: [
+            ['¿Puedo ver sitios en línea que hayas construido?', 'Varios links reales, que cargan rápido en el celular', 'Solo capturas o mockups'],
+            ['¿Quién hace el trabajo y quién es mi contacto?', 'Un nombre concreto, de principio a fin', '"El equipo" sin nadie identificable'],
+            ['¿Qué incluye y qué no incluye la propuesta?', 'Detalle por ítem: páginas, revisiones, contenido, capacitación', 'Un solo número sin desglose'],
+            ['¿A nombre de quién queda el dominio y el hosting?', 'A nombre de tu empresa, con accesos entregados', 'A nombre del proveedor'],
+            ['¿Qué pasa después del lanzamiento?', 'Soporte o mantenimiento definido por escrito', '"Ahí vemos"'],
+            ['¿Cómo se mide si el sitio funciona?', 'Analítica, Search Console y objetivos de contacto o venta', 'Solo que "se vea bien"'],
+          ],
+        },
       },
       {
         heading: 'Pedí ver proyectos reales, no solo el portafolio',
-        body: 'Pedí sitios en producción, no capturas o mockups. Abrilos en el celular, fijate si cargan rápido, si se ven bien. Y preguntá por un proyecto en concreto: cuál era el problema del cliente, qué se hizo, y qué resultado dejó. Si no pueden contarte eso con detalle, probablemente no lo pensaron así.',
+        body: 'Pedí sitios en producción, no capturas. Abrilos en el celular, fijate si cargan rápido y si se pueden usar con una mano. Y preguntá por un proyecto concreto: cuál era el problema del cliente, qué se hizo y qué resultado dejó. Si no pueden contarlo con detalle, probablemente no lo pensaron así.',
       },
       {
         heading: 'Preguntá quién hace el trabajo, no solo quién lo vende',
-        body: 'En muchas agencias, la persona que te vende el proyecto no es la que después lo construye. Preguntá directamente quién va a ser tu contacto durante el desarrollo, y si va a ser la misma persona de principio a fin.',
+        body: 'En muchas agencias, la persona que vende el proyecto no es la que después lo construye, y cada cambio pasa por un ejecutivo antes de llegar al diseñador o al programador. Preguntá directamente quién va a ser tu contacto durante el desarrollo y si va a ser la misma persona de principio a fin.',
+      },
+      {
+        heading: 'Que todo quede a tu nombre',
+        body: 'El dominio, el hosting, las cuentas de Google (Analytics, Search Console, Business Profile) y los accesos de administrador del sitio deben quedar a nombre de tu empresa. Es el punto que más problemas genera cuando una relación con un proveedor se termina: si el dominio está a nombre de otro, tu sitio depende de él.',
       },
       {
         heading: 'Aclará qué pasa después del lanzamiento',
-        body: 'Preguntá sobre mantenimiento posterior: quién arregla algo si se rompe, si existe algún acuerdo de soporte, y qué pasa si en seis meses querés hacer cambios. Un sitio entregado sin ningún plan de qué sigue después suele ser el inicio de sorpresas caras.',
+        body: 'Preguntá quién arregla algo si se rompe, si existe un acuerdo de mantenimiento, cuánto tardan en responder ante una caída y qué pasa si en seis meses querés hacer cambios. Un sitio entregado sin plan de qué sigue suele ser el inicio de sorpresas caras.',
       },
       {
         heading: 'Fijate en la comunicación, no solo en el precio',
-        body: 'La cotización más barata no siempre termina siendo la más económica si la comunicación es lenta o requiere varias vueltas para resolver algo simple. Cómo responden y qué preguntan durante el proceso de cotizar es una buena señal de cómo va a ser trabajar con ellos después.',
+        body: 'La cotización más barata no siempre termina siendo la más económica si la comunicación es lenta o requiere varias vueltas para resolver algo simple. Cómo responden y qué te preguntan mientras cotizan es una buena señal de cómo será trabajar con ellos: un buen proveedor pregunta por tu negocio antes de hablar de colores.',
       },
       {
-        heading: 'Freelancer o agencia, otra vez',
-        body: 'Una agencia suma estructura y especialistas, a costa de intermediarios entre vos y quien hace el trabajo. Un freelancer con experiencia real ofrece trato directo y cambios más rápidos, a cambio de depender de una sola persona. Ninguna opción es automáticamente mejor — depende de la complejidad de tu proyecto y de cuánto valorás hablar directo con quien construye tu sitio.',
+        heading: 'Freelancer o agencia',
+        body: 'Una agencia suma estructura y especialistas, a costa de intermediarios entre vos y quien hace el trabajo. Un freelancer con experiencia real ofrece trato directo y cambios más rápidos, a cambio de depender de una sola persona. Para sitios corporativos y tiendas de tamaño pequeño o mediano, el trato directo suele ganar; para proyectos con muchos frentes en paralelo, una agencia puede tener sentido.',
       },
     ],
   },
@@ -281,29 +305,53 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'WordPress vs. Wix vs. Squarespace: ¿cuál usar?',
     slug: { current: 'wordpress-vs-wix-vs-squarespace' },
     publishedAt: '2026-05-14',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/wordpress-vs-wix-vs-squarespace-cual-conviene-para-tu-empresa.webp',
     excerpt: 'Los constructores "todo incluido" prometen simplicidad, WordPress promete control. Antes de elegir, conviene entender qué estás sacrificando en cada opción.',
     tags: ['WordPress', 'Comparativa', 'Guía'],
     sections: [
       {
         heading: '',
-        body: 'Wix y Squarespace venden simplicidad: te registrás, elegís una plantilla y en un día tenés un sitio publicado. WordPress vende control: podés construir cualquier cosa, pero requiere más decisiones. Ninguno es "el mejor" — la pregunta correcta es qué estás dispuesto a sacrificar a cambio de qué.',
+        body: 'Wix y Squarespace venden simplicidad: te registrás, elegís una plantilla y en un día tenés un sitio publicado. WordPress vende control: podés construir cualquier cosa, pero requiere más decisiones. Ninguno es "el mejor": la pregunta correcta es qué estás dispuesto a sacrificar a cambio de qué, sobre todo si tu sitio es una herramienta de negocio.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Elegí Wix o Squarespace si necesitás un sitio simple, rápido de lanzar, sin planes de crecer mucho y sin presupuesto para mantenimiento. Elegí WordPress si tu sitio va a crecer en contenido, productos o integraciones, si el posicionamiento en Google es importante para tu negocio, o si querés que el sitio sea tuyo y poder llevarlo a otro proveedor.',
+      },
+      {
+        heading: 'Comparativa',
+        body: 'Las diferencias que más pesan para una empresa.',
+        table: {
+          head: ['Criterio', 'WordPress', 'Wix', 'Squarespace'],
+          rows: [
+            ['Modelo', 'Software libre en tu hosting', 'Plataforma cerrada por suscripción', 'Plataforma cerrada por suscripción'],
+            ['Mantenimiento', 'A tu cargo o de quien contrates', 'Incluido', 'Incluido'],
+            ['Flexibilidad', 'Casi ilimitada (plugins, código)', 'Limitada a sus apps', 'Limitada a sus bloques'],
+            ['SEO técnico', 'Control total de URLs, datos estructurados y velocidad', 'Lo básico, con menos control', 'Lo básico, con menos control'],
+            ['Tienda online', 'WooCommerce, sin comisión de plataforma', 'Incluida en planes de pago', 'Incluida en planes de pago'],
+            ['Llevarte el sitio', 'Completo, a cualquier hosting', 'Muy limitado', 'Exportación parcial de contenido'],
+          ],
+        },
       },
       {
         heading: 'Simplicidad vs. control',
-        body: 'Wix y Squarespace resuelven el hosting, la seguridad y las actualizaciones por vos, dentro de un ecosistema cerrado. WordPress te da acceso al código y a miles de plugins, pero la responsabilidad de mantenerlo actualizado y seguro recae en vos o en quien contrates para eso.',
+        body: 'Wix y Squarespace resuelven el hosting, la seguridad y las actualizaciones dentro de un ecosistema cerrado: es cómodo, pero estás limitado a lo que la plataforma ofrece. WordPress te da acceso al código y a miles de plugins, y a cambio la responsabilidad de mantenerlo actualizado y seguro recae en vos o en quien contrates para eso.',
       },
       {
         heading: 'Qué pasa cuando tu negocio crece',
-        body: 'Un catálogo de productos que crece, una integración puntual con un sistema interno, o un blog pensado para SEO técnico son cosas que WordPress resuelve sin pelear con la plataforma. Los constructores todo-en-uno pueden empezar a quedarse cortos justo cuando el negocio empieza a necesitar más.',
+        body: 'Un catálogo que crece, una integración con un sistema interno, un área de clientes o un blog pensado para posicionar son cosas que WordPress resuelve sin pelear con la plataforma. Los constructores todo-en-uno suelen quedarse cortos justo cuando el negocio empieza a necesitar más, y ahí aparece el problema más serio: salir de ellos.',
+      },
+      {
+        heading: 'El costo de irse',
+        body: 'En WordPress, el sitio completo (archivos y base de datos) se puede llevar a cualquier hosting. En las plataformas cerradas, el diseño no se puede exportar y el contenido solo en parte, así que cambiarse suele significar rehacer el sitio y planificar redirecciones para no perder posiciones en Google. Conviene pensarlo antes de elegir, no cuando ya hay años de contenido adentro.',
       },
       {
         heading: 'SEO y velocidad',
-        body: 'Los tres pueden posicionar bien si están bien configurados, pero WordPress da más margen de ajuste fino — control sobre el hosting, caché, estructura de URLs y datos estructurados — que las plataformas cerradas no siempre permiten tocar.',
+        body: 'Los tres pueden posicionar si están bien configurados, pero WordPress da más margen de ajuste fino: control sobre el hosting, la caché, la estructura de URLs, los datos estructurados y la optimización de imágenes. En las plataformas cerradas, parte de eso no se puede tocar, y cuando algo frena el rendimiento no siempre hay forma de corregirlo.',
       },
       {
         heading: 'Cuál elegiría según el caso',
-        body: 'Si necesitás algo simple, sin plan de crecer mucho y sin presupuesto para mantenimiento, un constructor todo-en-uno reduce fricción. Si tu sitio es una herramienta de negocio que va a evolucionar — más productos, más contenido, más integraciones — WordPress da el margen que después vas a necesitar.',
+        body: 'Para una página personal o un emprendimiento que recién parte y necesita estar en línea esta semana, un constructor todo-en-uno reduce fricción. Para un sitio que es una herramienta de negocio y va a evolucionar (más servicios, más productos, más contenido, más integraciones), WordPress da el margen que después vas a necesitar, sin quedar atado a una plataforma.',
       },
     ],
   },
@@ -439,29 +487,52 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'Rediseño web: cuándo conviene y qué esperar',
     slug: { current: 'rediseno-web-cuando-conviene-y-que-esperar' },
     publishedAt: '2026-03-19',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/rediseno-web-cuando-conviene-y-que-esperar-del-proceso.webp',
     excerpt: 'No todo sitio que "se ve viejo" necesita rediseño, y no todo rediseño resuelve el problema de fondo. Esto es lo que conviene evaluar antes de empezar de nuevo.',
     tags: ['Guía', 'Rediseño', 'UX'],
     sections: [
       {
         heading: '',
-        body: 'Rediseñar un sitio por estética suele ser la razón equivocada. Vale la pena rediseñar cuando el sitio actual frena el negocio — no solo cuando ya no gusta cómo se ve.',
+        body: 'Rediseñar un sitio por estética suele ser la razón equivocada. Vale la pena rediseñar cuando el sitio actual frena el negocio, no solo cuando ya no gusta cómo se ve. Y bien hecho, un rediseño conserva lo que funciona, en especial las posiciones que ya ganaste en Google.',
+      },
+      {
+        heading: 'Respuesta corta',
+        body: 'Conviene rediseñar cuando el sitio no funciona bien en el celular, es lento, no refleja lo que vendés hoy, no genera consultas pese a recibir visitas, o es tan difícil de editar que nadie lo actualiza. Si el problema es solo el mensaje o un llamado a la acción, alcanza con ajustes, no hace falta rehacerlo.',
+      },
+      {
+        heading: 'Rediseñar o ajustar',
+        body: 'No todo problema necesita un sitio nuevo.',
+        table: {
+          head: ['Síntoma', 'Qué conviene', 'Por qué'],
+          rows: [
+            ['Se ve mal o se rompe en el celular', 'Rediseñar', 'Es un problema de estructura, no de colores'],
+            ['Carga lento', 'Primero optimizar; rediseñar si la base es el problema', 'Muchas veces se resuelve con imágenes, caché y hosting'],
+            ['No refleja tus servicios actuales', 'Reestructurar contenido', 'Depende de cuánto cambió el negocio'],
+            ['Recibe visitas pero no consultas', 'Ajustar mensaje y llamados a la acción', 'El diseño puede no ser la causa'],
+            ['Nadie puede editarlo sin un programador', 'Rediseñar sobre un CMS editable', 'Un sitio que no se actualiza envejece rápido'],
+          ],
+        },
       },
       {
         heading: 'Señales de que sí conviene',
-        body: 'El sitio no se ve bien en el celular, tarda demasiado en cargar, no refleja los servicios o productos actuales, o simplemente no genera consultas a pesar del tráfico que recibe. Estos son problemas estructurales que un ajuste visual menor no resuelve.',
+        body: 'El sitio no se ve bien en el celular, tarda en cargar, usa tecnología que ya no se mantiene, no refleja los servicios o productos actuales o no genera consultas a pesar del tráfico que recibe. Son problemas estructurales que un cambio visual menor no resuelve.',
       },
       {
         heading: 'Cuando el problema no es el diseño',
-        body: 'A veces el sitio se ve bien pero no convierte porque el mensaje no es claro, no hay un llamado a la acción visible, o el tráfico que llega no es el público correcto. Rediseñar sin resolver eso significa gastar en un sitio nuevo que repite el mismo problema con otro color.',
+        body: 'A veces el sitio se ve bien pero no convierte porque el mensaje no es claro, no hay un llamado a la acción visible o el tráfico que llega no es el público correcto. Rediseñar sin resolver eso significa gastar en un sitio nuevo que repite el mismo problema con otro color. Por eso un buen rediseño empieza mirando los datos: de dónde llegan las visitas, qué páginas ven y dónde se van.',
       },
       {
         heading: 'Qué conviene conservar',
-        body: 'Un rediseño no tiene por qué empezar de cero. El contenido que ya posiciona bien en Google, las URLs que ya tienen autoridad acumulada, y cualquier integración que funciona bien deberían mantenerse — tirar todo y reconstruir desde cero suele costar posiciones de SEO ganadas con tiempo.',
+        body: 'Un rediseño no tiene por qué empezar de cero. El contenido que ya posiciona, las URLs con autoridad acumulada y las integraciones que funcionan deberían mantenerse. Si alguna URL cambia, necesita un redirect 301 a su nueva dirección; tirar todo y reconstruir sin ese cuidado suele costar posiciones ganadas durante años.',
       },
       {
         heading: 'Qué esperar del proceso',
-        body: 'Un rediseño serio empieza con una auditoría del sitio actual (qué funciona, qué no, qué mueve tráfico), sigue con una propuesta de arquitectura y diseño, y solo después con desarrollo. Saltarse la auditoría inicial es la forma más común de repetir los mismos errores con una capa nueva de pintura.',
+        body: 'Un rediseño serio sigue estas etapas: auditoría del sitio actual (qué funciona, qué no, qué trae tráfico), propuesta de arquitectura y diseño, desarrollo en un entorno de pruebas, migración del contenido con su mapa de redirecciones, revisión y publicación, y monitoreo en Search Console las semanas siguientes. En plazos, se parece a construir un sitio nuevo: de 3 a 5 semanas para un sitio corporativo.',
+      },
+      {
+        heading: 'Cómo medir si el rediseño funcionó',
+        body: 'Antes de empezar, anotá cuántas consultas o ventas genera el sitio por mes, la velocidad en PageSpeed Insights y el tráfico orgánico en Search Console. Compará esos mismos números dos o tres meses después del lanzamiento. Un rediseño que se ve mejor pero genera menos contactos no funcionó.',
       },
     ],
   },
@@ -662,37 +733,65 @@ export const MOCK_POSTS: Post[] = [
     seoTitle: 'WordPress lento: causas comunes y cómo solucionarlo',
     slug: { current: 'wordpress-lento-causas-comunes-y-como-solucionarlo' },
     publishedAt: '2026-08-03',
+    updatedAt: '2026-10-01',
     coverUrl: '/images/blog/wordpress-lento-causas-comunes-y-como-solucionarlo.webp',
     excerpt: 'Un sitio lento pierde visitas y posiciones en Google. Las causas más comunes de lentitud en WordPress, en el orden en que conviene revisarlas.',
     tags: ['WordPress', 'Performance', 'Guía'],
     sections: [
       {
         heading: '',
-        body: 'Un WordPress lento casi nunca tiene una sola causa — es la suma de varias decisiones chicas: un hosting insuficiente, imágenes sin optimizar, demasiados plugins. La buena noticia es que la mayoría de las causas comunes tienen solución sin reconstruir el sitio desde cero.',
+        body: 'Un WordPress lento casi nunca tiene una sola causa: es la suma de varias decisiones chicas, como un hosting insuficiente, imágenes sin optimizar o demasiados plugins. La buena noticia es que la mayoría de las causas comunes tienen solución sin reconstruir el sitio. Esta guía las ordena según su impacto y cuánto cuesta resolverlas.',
       },
       {
-        heading: 'Hosting insuficiente para el tráfico real',
-        body: 'Un hosting compartido barato puede andar bien con poco tráfico y volverse el cuello de botella apenas el sitio crece. Si el sitio se siente lento incluso con caché y optimización aplicada, el hosting suele ser la causa raíz, no el síntoma.',
+        heading: 'Respuesta corta',
+        body: 'Las causas más comunes de un WordPress lento son imágenes pesadas, falta de caché, plugins de más o mal hechos, un tema pesado, scripts externos y un hosting insuficiente. Empezá por medir con PageSpeed Insights, después optimizá imágenes y activá caché (lo de mayor impacto por menor esfuerzo), y recién al final evaluá cambiar de tema o de hosting.',
+      },
+      {
+        heading: 'Qué medir primero',
+        body: 'Google evalúa la experiencia con tres métricas, las Core Web Vitals, medidas en usuarios reales. PageSpeed Insights las muestra para tu sitio (si tiene suficiente tráfico) y además da un diagnóstico de laboratorio con recomendaciones concretas.',
+        table: {
+          head: ['Métrica', 'Qué mide', 'Umbral bueno'],
+          rows: [
+            ['LCP (Largest Contentful Paint)', 'Cuánto tarda en verse el contenido principal', 'Menos de 2,5 s'],
+            ['INP (Interaction to Next Paint)', 'Qué tan rápido responde al tocar o hacer clic', 'Menos de 200 ms'],
+            ['CLS (Cumulative Layout Shift)', 'Cuánto se mueve la página mientras carga', 'Menos de 0,1'],
+          ],
+        },
+      },
+      {
+        heading: 'Las causas, de la más común a la menos',
+        body: 'Este orden también sirve como plan de trabajo: arriba lo que más impacto tiene con menos esfuerzo.',
+        table: {
+          head: ['Causa', 'Síntoma', 'Solución'],
+          rows: [
+            ['Imágenes sin optimizar', 'LCP alto, página pesada', 'Comprimir, servir WebP o AVIF y el tamaño correcto por pantalla'],
+            ['Sin caché', 'Todo el sitio responde lento', 'Plugin de caché de página y, si se puede, caché del servidor'],
+            ['Plugins de más o mal hechos', 'Lentitud general y en el administrador', 'Auditar, desactivar y eliminar los que no se usan o pesan mucho'],
+            ['Scripts externos', 'Interacción lenta (INP alto)', 'Cargar chat, píxeles y analítica de forma diferida'],
+            ['Tema pesado', 'Mucho CSS y JS sin usar', 'Tema liviano o desactivar módulos que no se usan'],
+            ['Hosting insuficiente', 'Lento incluso con lo anterior resuelto', 'Plan con más recursos, VPS o hosting administrado'],
+          ],
+        },
       },
       {
         heading: 'Imágenes sin optimizar',
-        body: 'Es la causa más común y la más fácil de resolver: imágenes pesadas, sin comprimir, sin formatos modernos (WebP o AVIF) y sin dimensiones definidas suman segundos de carga innecesarios. Comprimir y servir el tamaño correcto para cada pantalla suele ser la mejora de mayor impacto por menor esfuerzo.',
+        body: 'Es la causa más común y la más fácil de resolver: fotos subidas tal cual salen de la cámara, de varios megas cada una, sin formatos modernos ni dimensiones definidas. Comprimir, convertir a WebP o AVIF y servir el tamaño adecuado para cada pantalla suele ser la mejora de mayor impacto por menor esfuerzo. Definir ancho y alto de cada imagen además evita que la página salte mientras carga.',
       },
       {
-        heading: 'Demasiados plugins, o plugins mal hechos',
-        body: 'Cada plugin activo carga su propio código en cada visita, aunque solo se use en una sección del sitio. Un plugin mal optimizado puede pesar más que varios buenos juntos — el número de plugins importa menos que la calidad de cada uno.',
+        heading: 'Caché, plugins y base de datos',
+        body: 'Sin caché, WordPress reconstruye cada página desde la base de datos en cada visita. Configurarla es de las mejoras más baratas en relación a su impacto. Después, revisá los plugins: el número importa menos que la calidad, y uno mal hecho puede pesar más que varios buenos juntos. Con los años, la base de datos también acumula revisiones de páginas y datos temporales que conviene limpiar.',
       },
       {
-        heading: 'Sin caché configurada',
-        body: 'Sin un plugin de caché, WordPress reconstruye cada página desde la base de datos en cada visita, en vez de servir una versión ya generada. Configurar caché es de las mejoras más baratas de aplicar en relación al impacto que tiene en velocidad.',
+        heading: 'Scripts externos y tema',
+        body: 'Chats, píxeles de publicidad, mapas y widgets de redes sociales cargan código de otros servidores que compite con tu sitio, sobre todo en celulares. Cargarlos de forma diferida, cuando el navegador queda libre, mejora la respuesta de la página sin perder la medición. Algunos temas, a su vez, cargan estilos y scripts de funciones que el sitio ni siquiera usa.',
       },
       {
-        heading: 'Un tema pesado o mal codificado',
-        body: 'Algunos temas cargan estilos y scripts para funciones que el sitio ni siquiera usa. Un tema liviano, bien codificado, suele rendir mejor que uno cargado de opciones aunque el diseño final se vea parecido.',
+        heading: 'Cuándo el problema es el hosting',
+        body: 'Si el sitio sigue lento después de optimizar imágenes, caché y plugins, o se cae en horas de más tráfico, el hosting es la causa raíz. Una tienda WooCommerce en particular necesita más recursos que un sitio informativo, porque el carrito y el checkout no se pueden servir desde caché.',
       },
       {
         heading: 'Por dónde empezar',
-        body: 'Corré una prueba de velocidad (PageSpeed Insights o GTmetrix) para ver qué recomienda específicamente en tu caso, y priorizá imágenes y caché antes de pensar en cambiar de hosting o de tema — son los cambios más rápidos de aplicar y suelen dar la mejora más visible primero.',
+        body: 'Corré PageSpeed Insights en la página de inicio y en tu página más visitada, anotá las tres métricas y aplicá las mejoras en el orden de la tabla. Volvé a medir después de cada cambio: así sabés qué funcionó y evitás cambiar de hosting o de tema cuando el problema eran las imágenes.',
       },
     ],
   },
