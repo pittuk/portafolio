@@ -14,11 +14,11 @@ export const metadata: Metadata = {
     title: TITLE, description: DESCRIPTION, type: 'website',
     url: 'https://pittuk.net/diseno-web-wordpress',
     siteName: 'Luis Cruz', locale: 'es_CL',
-    images: [{ url: 'https://pittuk.net/images/logo/icono.svg', width: 512, height: 512 }],
+    images: [{ url: 'https://pittuk.net/images/og-default.jpg', width: 1200, height: 630, alt: 'Luis Cruz — Diseño web y tiendas WooCommerce' }],
   },
   twitter: {
     card: 'summary_large_image', title: TITLE, description: DESCRIPTION,
-    images: ['https://pittuk.net/images/logo/icono.svg'],
+    images: ['https://pittuk.net/images/og-default.jpg'],
   },
 }
 
