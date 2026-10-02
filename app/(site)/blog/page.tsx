@@ -90,7 +90,7 @@ export default async function BlogPage() {
                 )}
                 <div style={{ padding: 24 }}>
                   <p style={{ fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', color: 'var(--teal)', marginBottom: 10 }}>
-                    {new Date(post.publishedAt).toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    {new Date(post.publishedAt).toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}
                   </p>
                   <h2 style={{ fontFamily: 'var(--heading)', fontSize: 20, fontWeight: 700, color: 'var(--white)', letterSpacing: -0.3, marginBottom: 10, lineHeight: 1.2 }}>
                     {post.title}

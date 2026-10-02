@@ -3,6 +3,8 @@ import ProjectCard from '@/components/project/ProjectCard'
 import Contact from '@/components/sections/Contact'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import type { Project } from '@/types'
+import { MOCK_POSTS } from '@/lib/mock/posts'
+import { postsForService, type ServiceSlug } from '@/lib/blogClusters'
 
 const BUTTON_TICKET_CLIP_PATH = 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% 100%, calc(100% - 8px) 100%, 8px 100%, 0 100%, 0 0)'
 
@@ -16,26 +18,19 @@ interface ServicePageTemplateProps {
   eyebrow: string
   title: React.ReactNode
   name: string
-  slug: string
+  slug: ServiceSlug
   intro: string
   included: string[]
+  sections?: { heading: string; body: string }[]
   faq: ServiceFAQ[]
   projects: Project[]
   projectsHeading?: string
 }
 
 export default function ServicePageTemplate({
-  eyebrow, title, name, slug, intro, included, faq, projects, projectsHeading = 'Sitios que construí',
+  eyebrow, title, name, slug, intro, included, sections = [], faq, projects, projectsHeading = 'Sitios que construí',
 }: ServicePageTemplateProps) {
-  const faqLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faq.map(item => ({
-      '@type': 'Question',
-      name: item.q,
-      acceptedAnswer: { '@type': 'Answer', text: item.a },
-    })),
-  }
+  const guides = postsForService(slug, MOCK_POSTS)
 
   const serviceLd = {
     '@context': 'https://schema.org',
@@ -58,7 +53,6 @@ export default function ServicePageTemplate({
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
@@ -102,6 +96,17 @@ export default function ServicePageTemplate({
         </section>
       )}
 
+      {sections.map(s => (
+        <section key={s.heading} style={{ padding: '64px 20px 0', maxWidth: 900, margin: '0 auto' }}>
+          <h2 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(22px,3.4vw,30px)', letterSpacing: -1, marginBottom: 16 }}>
+            {s.heading}
+          </h2>
+          <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.8, maxWidth: 700, margin: 0, whiteSpace: 'pre-line' }}>
+            {s.body}
+          </p>
+        </section>
+      ))}
+
       {projects.length > 0 && (
         <section style={{ padding: '80px 20px 0', maxWidth: 900, margin: '0 auto' }}>
           <h2 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(24px,4vw,36px)', letterSpacing: -1, marginBottom: 24 }}>
@@ -142,6 +147,24 @@ export default function ServicePageTemplate({
               </AccordionItem>
             ))}
           </Accordion>
+        </section>
+      )}
+
+      {guides.length > 0 && (
+        <section style={{ padding: '80px 20px 0', maxWidth: 900, margin: '0 auto' }}>
+          <h2 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(24px,4vw,36px)', letterSpacing: -1, marginBottom: 24 }}>
+            Guías relacionadas
+          </h2>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: 16, margin: 0, padding: 0, listStyle: 'none' }}>
+            {guides.map(p => (
+              <li key={p.slug.current}>
+                <Link href={`/blog/${p.slug.current}`} style={{ fontSize: 15, fontWeight: 600, color: 'var(--teal)', textDecoration: 'none', borderBottom: '1px solid rgba(0,194,168,0.3)' }}>
+                  {p.title}
+                </Link>
+                <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.6, margin: '6px 0 0' }}>{p.excerpt}</p>
+              </li>
+            ))}
+          </ul>
         </section>
       )}
 

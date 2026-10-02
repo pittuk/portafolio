@@ -4,18 +4,23 @@ Informe completo: `docs/auditoria/pittuk-seo-geo-aeo-audit-2026-10-01.md` — sc
 
 **Ronda anterior (TC-01 a TC-12 de la auditoría de junio 2026):** implementada. robots.ts, sitemap.ts, canonical por página, grafo Organization + WebSite + Person, BreadcrumbList, OG/Twitter, AVIF/WebP en next.config, llms.txt y H1 oculto en la home. Siguen pendientes de esa ronda: Google Business Profile optimizado, citaciones externas y Knowledge Panel (ver TC-18 y TC-19).
 
-## Estado (actualizado 2026-10-01, rama `seo/fase-1-oct`)
+## Estado (actualizado 2026-10-01, ramas `seo/fase-1-oct` y `seo/fase-2-oct`)
 
-- **Hecho:** TC-02, TC-03, TC-04, TC-05, TC-07, TC-09, TC-10, TC-15.
+- **Hecho:** TC-02, TC-03, TC-04, TC-05, TC-07, TC-09, TC-10, TC-13, TC-14, TC-15.
+  - TC-13: byline "Por Luis Cruz · fecha · min de lectura" y caja de autor con avatar (`public/images/luis-cruz-autor.webp`) y LinkedIn.
+  - TC-14: los clusters se definen en `lib/blogClusters.ts`. **Al publicar un post nuevo, agregar su slug al cluster que corresponda.** Cada artículo enlaza a su servicio y a 2 relacionados; cada servicio lista 3 guías.
 - **Parcial:**
   - TC-01: el código ya carga el video recién al hacer scroll; falta comprimir el mp4 y el poster.
-  - TC-06: el hero quedó resuelto (altura y opacidad por CSS); faltan About, Services y Portfolio.
-  - TC-11: se agregaron GitHub e Instagram al `sameAs` de Person; falta ProfessionalService.
-  - TC-13: la imagen del Article ya es absoluta y `dateModified` sale de `updatedAt`; falta la byline.
-- **Medición local (Lighthouse, build de producción):**
-  - Móvil: 45 → 69; peso 12,9 MB → 1,1 MB; CLS 0,27 → 0,07; LCP real (sin throttling) 0,42 s, simulado 6,2 s (lo empuja el JS: GSAP + gtag).
+  - TC-06: el hero quedó resuelto (altura y opacidad por CSS). CLS móvil en 0,07 (< 0,1); About, Services y Portfolio solo si el dato de campo lo pide.
+  - TC-11: se agregaron GitHub e Instagram al `sameAs` de Person y un retrato (`luis-cruz-retrato.webp`) como `image`. Luis decidió **no publicar ubicación**, así que no se agrega el nodo ProfessionalService.
+  - TC-16: las 4 páginas de servicio pasaron de ~180 a ~500 palabras con la nueva prop `sections` del template (para quién, proceso, plazos, experiencia), sin precios por decisión de Luis. Los 5 artículos clave (cuánto cuesta, WooCommerce o Shopify, pasarelas, mantenimiento y hosting) pasaron de ~370 a 590-765 palabras, con un párrafo "Respuesta corta", una tabla comparativa (`PostSection.table`) y `updatedAt: 2026-10-01`. Para llegar a 1.000+ hacen falta datos propios (precios o casos).
+- **Decidido:** TC-12, quitar el JSON-LD FAQPage de los servicios. Hecho; las preguntas siguen visibles.
+- **Otros cambios:** Google Analytics carga con `lazyOnload`. Las fechas de los posts se formatean en UTC (antes mostraban un día menos).
+- **Medición local (Lighthouse móvil, build de producción):**
+  - Home: 45 → 76; peso 12,9 MB → 1,1 MB; CLS 0,27 → 0,07; TBT 170 ms; LCP simulado 5,4 s (real sin throttling ~0,4 s).
+  - Post: 80.
   - Desktop: 94.
-- **Próximo cuello de botella:** el JS en el hilo principal (~2,2 s en móvil simulado). Evaluar cargar gtag con `next/script strategy="lazyOnload"` y diferir GSAP fuera del hero.
+- **Próximo cuello de botella:** GSAP en el bundle de todas las páginas.
 
 Categorías: `autonoma` = Claude Code puede ejecutarla sin supervisión · `staging` = probar con `npm run build` + revisión visual antes de deploy · `pause` = requiere decisión o insumo de Luis.
 

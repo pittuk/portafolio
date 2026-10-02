@@ -36,6 +36,8 @@ export interface Project {
 export interface PostSection {
   heading: string
   body: string
+  // Tabla opcional bajo el párrafo: comparativas que Google y las IAs extraen bien
+  table?: { head: string[]; rows: string[][] }
 }
 
 export interface Post {

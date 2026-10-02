@@ -48,6 +48,24 @@ export default async function DisenoWebEmpresasPage() {
         'Sitio 100% responsive',
         'WordPress como base, para que tu equipo pueda editar contenido sin depender de un developer',
       ]}
+      sections={[
+        {
+          heading: 'Qué tiene que lograr un sitio corporativo',
+          body: 'Que un cliente potencial entienda en segundos qué hace tu empresa, confíe en ella y sepa cómo contactarte. Un sitio que solo "se ve bien" no cumple ese trabajo: cada página tiene que responder una pregunta concreta del cliente y llevarlo a una acción, ya sea escribir por WhatsApp, pedir una cotización o llamar.',
+        },
+        {
+          heading: 'Cómo se estructura',
+          body: 'Normalmente: una página por servicio (cada una es una puerta de entrada distinta desde Google), una sección de empresa o trayectoria, proyectos o clientes como prueba de confianza, preguntas frecuentes y contacto visible en todo el sitio. La estructura exacta se define al inicio, según cómo te buscan tus clientes y qué necesitan saber antes de contactarte.',
+        },
+        {
+          heading: 'Plazos reales',
+          body: 'Un sitio corporativo de varias páginas toma de 3 a 5 semanas. Si lo que necesitás es una sola página para una campaña o un servicio puntual, una landing page toma de 1 a 2 semanas y se puede ampliar después sin rehacer el trabajo.',
+        },
+        {
+          heading: 'Trato directo, sin intermediarios',
+          body: 'En una agencia, lo que pedís pasa por un ejecutivo antes de llegar a quien diseña o programa. Conmigo hablás directamente con quien construye el sitio, así que los cambios son más rápidos y no se pierde información en el camino. Más de 15 años y 125 proyectos para clientes de Chile, Latinoamérica, España y Estados Unidos.',
+        },
+      ]}
       projects={featured}
       faq={[
         {
@@ -64,7 +82,7 @@ export default async function DisenoWebEmpresasPage() {
         },
         {
           q: '¿Cuánto dura el proyecto?',
-          a: 'Depende del alcance y la cantidad de secciones. En la guía de precios del blog explico qué factores influyen en el tiempo y el costo de un proyecto.',
+          a: 'Un sitio corporativo de varias páginas toma de 3 a 5 semanas, y una landing page de 1 a 2. En la guía de precios del blog explico qué factores influyen en el tiempo y el costo de un proyecto.',
           link: { href: '/blog/cuanto-cuesta-una-pagina-web-en-chile', label: 'Ver la guía de precios' },
         },
       ]}

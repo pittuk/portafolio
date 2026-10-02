@@ -16,6 +16,7 @@ export default function Hero() {
   const descRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
   const eyebrowRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
@@ -62,17 +63,22 @@ export default function Hero() {
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
+        // clip-path recorta también a los hijos position:fixed (overflow no lo hace),
+        // así la foto fija solo se ve dentro del hero.
+        clipPath: 'inset(0)',
       }}
     >
-      {/* Foto de fondo */}
-      <Image
-        src="/images/luis-cruz-hero.webp"
-        alt="Luis Cruz"
-        fill
-        priority
-        sizes="100vw"
-        style={{ objectFit: 'cover', objectPosition: 'center 20%', zIndex: 0 }}
-      />
+      {/* Foto de fondo fija: queda quieta mientras el contenido scrollea encima */}
+      <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
+        <Image
+          src="/images/luis-cruz-hero.webp"
+          alt="Luis Cruz"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
+        />
+      </div>
       {/* Degradado de legibilidad */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
