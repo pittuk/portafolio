@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     siteName: 'Luis Cruz',
     locale: 'es_CL',
     type: 'website',
-    images: [{ url: 'https://pittuk.net/images/logo/icono.svg', width: 512, height: 512 }],
+    images: [{ url: 'https://pittuk.net/images/og-default.jpg', width: 1200, height: 630, alt: 'Luis Cruz — Diseño web y tiendas WooCommerce' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Luis Cruz — Diseñador Web & Desarrollador WordPress',
     description: 'Diseño de sitios WordPress y tiendas WooCommerce para empresas en Chile y Latinoamérica. Trato directo con quien diseña y programa, sin intermediarios.',
-    images: ['https://pittuk.net/images/logo/icono.svg'],
+    images: ['https://pittuk.net/images/og-default.jpg'],
   },
   icons: {
     icon: '/images/logo/favicon.png',
