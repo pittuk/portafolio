@@ -67,7 +67,7 @@ export default function ServicePageTemplate({
           {intro}
         </p>
         <Link
-          href="/#contacto"
+          href="#contacto"
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             background: 'var(--orange)', color: '#fff',

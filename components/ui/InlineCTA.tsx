@@ -15,7 +15,7 @@ export default function InlineCTA({ text }: InlineCTAProps) {
       }}>
         {text}
       </p>
-      <PrimaryButton href="/#contacto">Solicita una propuesta</PrimaryButton>
+      <PrimaryButton href="/contacto">Solicita una propuesta</PrimaryButton>
     </div>
   )
 }
