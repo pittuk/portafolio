@@ -17,7 +17,7 @@ const SERVICE_LINKS = [
 
 const LINKS = [
   { href: '/#servicios', label: 'Servicios', children: SERVICE_LINKS },
-  { href: '/#sobre-mi', label: 'Sobre mí' },
+  { href: '/sobre-mi', label: 'Sobre mí' },
   { href: '/proyectos', label: 'Proyectos' },
   { href: '/blog', label: 'Blog' },
 ]
@@ -161,7 +161,7 @@ export default function Nav() {
               )
             ))}
             <Link
-              href="/#contacto"
+              href="/contacto"
               style={{
                 background: 'var(--orange)', color: '#fff',
                 fontWeight: 700, borderRadius: 0,

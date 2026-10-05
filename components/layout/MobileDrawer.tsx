@@ -20,7 +20,7 @@ interface MobileDrawerProps {
 
 const ICONS: Record<string, LucideIcon> = {
   '/#servicios': Wrench,
-  '/#sobre-mi': User,
+  '/sobre-mi': User,
   '/proyectos': FolderKanban,
   '/blog': Newspaper,
 }
@@ -185,7 +185,7 @@ export default function MobileDrawer({ open, links, pathname, onClose }: MobileD
         </nav>
 
         <Link
-          href="/#contacto"
+          href="/contacto"
           onClick={onClose}
           tabIndex={open ? 0 : -1}
           style={{

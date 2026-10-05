@@ -179,7 +179,10 @@ export default async function BlogPostPage({ params }: Props) {
             <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.7, margin: '0 0 8px' }}>
               Diseñador y desarrollador web con más de 15 años de experiencia. Construye sitios en WordPress y tiendas WooCommerce para empresas de Chile, Latinoamérica, España y Estados Unidos.
             </p>
-            <a href="https://www.linkedin.com/in/pittuk/" rel="author noopener" target="_blank" style={{ fontSize: 12, color: 'var(--teal)', textDecoration: 'none', borderBottom: '1px solid rgba(0,194,168,0.3)' }}>
+            <Link href="/sobre-mi" rel="author" style={{ fontSize: 12, color: 'var(--teal)', textDecoration: 'none', borderBottom: '1px solid rgba(0,194,168,0.3)', marginRight: 16 }}>
+              Sobre mí →
+            </Link>
+            <a href="https://www.linkedin.com/in/pittuk/" rel="noopener" target="_blank" style={{ fontSize: 12, color: 'var(--teal)', textDecoration: 'none', borderBottom: '1px solid rgba(0,194,168,0.3)' }}>
               LinkedIn →
             </a>
           </div>
@@ -207,7 +210,7 @@ export default async function BlogPostPage({ params }: Props) {
             ¿Tenés un proyecto en mente?
           </p>
           <Link
-            href="/#contacto"
+            href="/contacto"
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               background: 'var(--orange)', color: '#fff',

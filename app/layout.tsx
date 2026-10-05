@@ -63,7 +63,7 @@ const jsonLd = {
       sameAs: [
         'https://www.linkedin.com/in/pittuk/',
         'https://www.behance.net/PITTUK',
-        'https://share.google/A9ASHwUpghOa34qSe',
+        'https://www.google.com/maps?cid=4049934109923776097',
       ],
       knowsAbout: ['WordPress', 'UI/UX Design', 'E-commerce', 'Diseño Gráfico'],
     },
@@ -81,7 +81,7 @@ const jsonLd = {
       '@id': 'https://pittuk.net/#person',
       name: 'Luis Cruz',
       jobTitle: 'Diseñador Web & Desarrollador WordPress',
-      url: 'https://pittuk.net',
+      url: 'https://pittuk.net/sobre-mi',
       image: 'https://pittuk.net/images/luis-cruz-retrato.webp',
       sameAs: [
         'https://www.linkedin.com/in/pittuk/',
@@ -89,7 +89,11 @@ const jsonLd = {
         'https://github.com/pittuk',
         'https://www.instagram.com/p1ttuk/',
       ],
-      knowsAbout: ['WordPress', 'UI/UX', 'E-commerce', 'Diseño Gráfico'],
+      knowsAbout: ['WordPress', 'WooCommerce', 'Elementor', 'UI/UX', 'E-commerce', 'Diseño Gráfico'],
+      alumniOf: [
+        { '@type': 'EducationalOrganization', name: 'Universidad Bicentenaria de Aragua' },
+        { '@type': 'EducationalOrganization', name: 'Instituto de Diseño de Valencia' },
+      ],
       worksFor: { '@id': 'https://pittuk.net/#organization' },
     },
   ],

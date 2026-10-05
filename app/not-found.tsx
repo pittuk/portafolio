@@ -13,7 +13,7 @@ const BUTTON_TICKET_CLIP_PATH = 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 
 const LINKS = [
   { href: '/proyectos', label: 'Ver proyectos' },
   { href: '/blog', label: 'Leer el blog' },
-  { href: '/#contacto', label: 'Hablemos de tu proyecto' },
+  { href: '/contacto', label: 'Hablemos de tu proyecto' },
 ]
 
 export default function NotFound() {

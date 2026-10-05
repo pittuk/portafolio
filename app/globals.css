@@ -47,6 +47,36 @@
   animation: tooltip-in 0.3s ease-out;
 }
 
+.social-btn {
+  width: 44px; height: 44px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.social-btn:hover, .social-btn:focus-visible {
+  color: var(--teal);
+  border-color: rgba(0,194,168,0.35);
+  background: rgba(0,194,168,0.06);
+}
+
+/* /sobre-mi: letras del nombre que entran desenfocadas, solo CSS (sin esperar a JS) */
+@keyframes blur-in {
+  from { opacity: 0; filter: blur(12px); transform: translateY(-24px); }
+  to { opacity: 1; filter: blur(0); transform: none; }
+}
+.blur-letter {
+  display: inline-block;
+  animation: blur-in 0.6s cubic-bezier(.2,.7,.2,1) both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .blur-letter { animation: none; }
+}
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;

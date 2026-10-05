@@ -5,14 +5,10 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { STATS } from '@/lib/stats'
 
 const SKILLS = ['WordPress', 'Elementor', 'Divi', 'HTML/CSS', 'JavaScript', 'WooCommerce', 'MySQL', 'cPanel', 'Photoshop', 'Illustrator', 'SQL']
-const STATS = [
-  { num: 15, suffix: '+', label: 'Años exp.' },
-  { num: 125, suffix: '+', label: 'Proyectos' },
-  { num: 47, suffix: '+', label: 'Tiendas WooCommerce' },
-  { num: 90, suffix: '%', label: 'Recomendación' },
-]
 
 export default function About() {
   const statsRefs = useRef<(HTMLSpanElement | null)[]>([])
@@ -86,6 +82,9 @@ export default function About() {
             </span>
           ))}
         </div>
+        <Link href="/sobre-mi" style={{ display: 'inline-block', marginTop: 28, fontSize: 12, color: 'var(--teal)', textDecoration: 'none', borderBottom: '1px solid rgba(0,194,168,0.3)' }}>
+          Conocé mi trayectoria →
+        </Link>
       </div>
 
       <div ref={photoRef} style={{ position: 'relative' }}>
