@@ -8,8 +8,7 @@ import PrimaryButton from '@/components/ui/PrimaryButton'
 import { animateCinematicSlam } from '@/lib/animations/splitText'
 import { useMediaQuery } from '@/lib/useMediaQuery'
 import Image from 'next/image'
-
-const GRAIN_SVG = "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")"
+import { GRAIN_SVG, GRID_BG } from '@/lib/effects'
 
 export default function Hero() {
   const isMobile = useMediaQuery('(max-width: 768px)')
@@ -111,7 +110,7 @@ export default function Hero() {
       {/* Retícula */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)',
+        backgroundImage: GRID_BG,
         backgroundSize: '48px 48px',
       }} />
       {/* Grano */}

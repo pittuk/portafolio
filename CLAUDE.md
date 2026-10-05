@@ -230,5 +230,6 @@ useEffect(() => {
 
 - **URL base:** `https://pittuk.net` (www y http redirigen con 308).
 - **Contenido:** posts y proyectos viven en `lib/mock/*.ts`; Sanity es opcional (si `NEXT_PUBLIC_SANITY_PROJECT_ID` está vacío, se usan los mocks).
+- **Dev local:** si un cambio en `app/globals.css` no aparece en `npm run dev` (Turbopack sigue sirviendo el CSS viejo, también después de un `npm run build`), detener el servidor, borrar `.next/dev` y volver a arrancarlo.
 - **Deploy:** push a `main` + clic manual en Easypanel. El build en el VPS tarda varios minutos; es normal.
 - **Medición:** repetir Lighthouse móvil tras la Fase 1. Cuando PageSpeed tenga cuota o haya datos CrUX, usar campo (p75) como métrica oficial.
