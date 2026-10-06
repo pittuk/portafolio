@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { ArrowUpRight } from 'lucide-react'
 import { getPosts } from '@/lib/sanity/queries'
 import { MOCK_POSTS } from '@/lib/mock/posts'
 import { urlFor } from '@/lib/sanity/image'
@@ -37,6 +38,8 @@ export default async function BlogPage() {
   if (!posts.length) posts = MOCK_POSTS
   // ponytail: mock array happens to be pre-sorted; sort explicitly so display order never depends on insertion order
   posts = [...posts].sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt))
+  // 4 destacados · 2 filas de 4 · 4 destacados invertidos · resto en filas de 4
+  const blocks = [posts.slice(0, 4), posts.slice(4, 12), posts.slice(12, 16), posts.slice(16)]
 
   const collectionLd = {
     '@context': 'https://schema.org',
@@ -63,47 +66,63 @@ export default async function BlogPage() {
         Blog<span style={{ color: 'var(--orange)' }}>.</span>
       </h1>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 20 }}>
-        {posts.map(post => {
-          const imageUrl = post.coverUrl
-            ?? (post.coverImage ? urlFor(post.coverImage).width(600).height(315).url() : null)
-          return (
-            <Link key={post._id} href={`/blog/${post.slug.current}`} style={{ textDecoration: 'none', display: 'block' }}>
-              <div style={{
-                background: 'rgba(255,255,255,0.02)',
-                border: '1px solid rgba(255,255,255,0.06)',
-                clipPath: TICKET_CLIP_PATH,
-                height: '100%',
-              }}>
-                {imageUrl && (
-                  <div style={{ position: 'relative', aspectRatio: '1200/630', overflow: 'hidden' }}>
-                    <Image
-                      src={imageUrl}
-                      alt={post.title}
-                      fill
-                      loading="lazy"
-                      unoptimized={post.coverUrl?.endsWith('.svg') ?? false}
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </div>
-                )}
-                <div style={{ padding: 24 }}>
-                  <p style={{ fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', color: 'var(--teal)', marginBottom: 10 }}>
-                    {new Date(post.publishedAt).toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}
-                  </p>
-                  <h2 style={{ fontFamily: 'var(--heading)', fontSize: 20, fontWeight: 700, color: 'var(--white)', letterSpacing: -0.3, marginBottom: 10, lineHeight: 1.2 }}>
-                    {post.title}
-                  </h2>
-                  <p style={{ fontSize: 12, color: 'var(--muted)', lineHeight: 1.7 }}>
-                    {post.excerpt}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          )
-        })}
-      </div>
+      {blocks.map((block, i) => !block.length ? null : i % 2 === 0 ? (
+        <Featured key={i} posts={block} reverse={i === 2} priority={i === 0} />
+      ) : (
+        <div key={i} className="blog-grid">
+          {block.map(post => <PostCard key={post._id} post={post} variant="grid" />)}
+        </div>
+      ))}
     </section>
+  )
+}
+
+function Featured({ posts: [main, ...side], reverse, priority }: { posts: Post[]; reverse: boolean; priority: boolean }) {
+  return (
+    <div className={`blog-featured${reverse ? ' blog-featured--reverse' : ''}`}>
+      <PostCard post={main} variant="hero" priority={priority} />
+      {side.length > 0 && (
+        <div className="blog-side">
+          {side.map(post => <PostCard key={post._id} post={post} variant="side" />)}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function PostCard({ post, variant, priority = false }: { post: Post; variant: 'hero' | 'side' | 'grid'; priority?: boolean }) {
+  const imageUrl = post.coverUrl
+    ?? (post.coverImage ? urlFor(post.coverImage).width(1200).height(630).url() : null)
+  const date = new Date(post.publishedAt).toLocaleDateString('es-CL', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
+  const Heading = variant === 'hero' ? 'h2' : 'h3'
+  return (
+    <Link href={`/blog/${post.slug.current}`} className={`blog-card blog-card--${variant}`}>
+      {imageUrl && (
+        <div className="blog-card__img" style={variant === 'hero' ? { clipPath: TICKET_CLIP_PATH } : undefined}>
+          <Image
+            src={imageUrl}
+            alt={post.title}
+            fill
+            priority={priority}
+            unoptimized={post.coverUrl?.endsWith('.svg') ?? false}
+            sizes={variant === 'hero' ? '(max-width: 900px) 100vw, 55vw' : variant === 'side' ? '(max-width: 900px) 40vw, 18vw' : '(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 25vw'}
+            style={{ objectFit: 'cover' }}
+          />
+        </div>
+      )}
+      <div className="blog-card__body">
+        <p className="blog-card__meta">Luis Cruz · {date}</p>
+        <Heading className="blog-card__title">
+          {post.title}
+          {variant === 'hero' && <ArrowUpRight size={22} aria-hidden style={{ flexShrink: 0, color: 'var(--orange)' }} />}
+        </Heading>
+        <p className="blog-card__excerpt">{post.excerpt}</p>
+        {!!post.tags?.length && (
+          <ul className="blog-card__tags">
+            {post.tags.slice(0, variant === 'hero' ? 3 : 2).map(t => <li key={t}>{t}</li>)}
+          </ul>
+        )}
+      </div>
+    </Link>
   )
 }

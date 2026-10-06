@@ -21,16 +21,21 @@ export async function POST(req: NextRequest) {
     const data = contactSchema.parse(body)
 
     await resend.emails.send({
-      from: 'Portfolio <onboarding@resend.dev>',
+      // ponytail: el remitente de prueba de Resend cae en spam; MAIL_FROM usa el dominio verificado (pittuk.net)
+      from: process.env.MAIL_FROM ?? 'Portfolio <onboarding@resend.dev>',
       to: 'pittuk@gmail.com',
-      subject: `Nuevo contacto: ${esc(data.projectType)} — ${esc(data.name)}`,
+      replyTo: data.email,
+      subject: `Nuevo contacto: ${data.projectType} — ${data.name}`,
+      text: `Nombre: ${data.name}\nEmail: ${data.email}\nTipo de proyecto: ${data.projectType}\n\n${data.message}`,
       html: `
+        <div lang="es">
         <h2>Nuevo mensaje desde el portafolio</h2>
         <p><strong>Nombre:</strong> ${esc(data.name)}</p>
         <p><strong>Email:</strong> ${esc(data.email)}</p>
         <p><strong>Tipo de proyecto:</strong> ${esc(data.projectType)}</p>
         <p><strong>Mensaje:</strong></p>
         <p>${esc(data.message)}</p>
+        </div>
       `,
     })
 

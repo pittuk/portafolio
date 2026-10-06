@@ -75,9 +75,10 @@ export async function POST(req: NextRequest) {
     const data = cuestionarioSchema.parse(body)
 
     await resend.emails.send({
-      from: 'Portfolio <onboarding@resend.dev>',
+      from: process.env.MAIL_FROM ?? 'Portfolio <onboarding@resend.dev>',
       to: 'pittuk@gmail.com',
-      subject: `Brief de proyecto — ${esc(data.name)}`,
+      replyTo: data.email,
+      subject: `Brief de proyecto — ${data.name}`,
       html: `
         <h2>Nuevo cuestionario de brief completado</h2>
         ${renderSections(data)}
