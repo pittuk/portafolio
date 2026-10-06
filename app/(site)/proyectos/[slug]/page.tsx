@@ -163,11 +163,11 @@ export default async function ProjectPage({ params }: Props) {
           {project.caseStudy ? (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 24 }}>
               <div>
-                <p style={{ fontSize: 9, color: 'var(--muted)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 6 }}>Problema</p>
+                <p style={{ fontSize: 9, color: 'var(--teal)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 6 }}>Problema</p>
                 <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.7 }}>{project.caseStudy.problem}</p>
               </div>
               <div>
-                <p style={{ fontSize: 9, color: 'var(--muted)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 6 }}>Objetivo</p>
+                <p style={{ fontSize: 9, color: 'var(--teal)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 6 }}>Objetivo</p>
                 <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.7 }}>{project.caseStudy.goal}</p>
               </div>
               <div>

@@ -10,6 +10,7 @@ const CATEGORIES = [
   { key: 'Empresas', label: 'Empresas' },
   { key: 'E-commerce', label: 'E-commerce' },
   { key: 'Turismo', label: 'Turismo' },
+  { key: 'Marca personal', label: 'Marca personal' },
   { key: 'Diseño Gráfico', label: 'Diseño Gráfico' },
 ]
 
