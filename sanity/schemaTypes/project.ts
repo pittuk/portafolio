@@ -13,7 +13,7 @@ export const project = defineType({
       title: 'Categorías',
       type: 'array',
       of: [{ type: 'string' }],
-      options: { list: ['Empresas', 'E-commerce', 'Turismo', 'Diseño Gráfico'] },
+      options: { list: ['Empresas', 'E-commerce', 'Turismo', 'Marca personal', 'Diseño Gráfico'] },
     }),
     defineField({ name: 'year', title: 'Año', type: 'number' }),
     defineField({ name: 'client', title: 'Cliente', type: 'string' }),
