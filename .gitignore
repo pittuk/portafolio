@@ -42,3 +42,12 @@ next-env.d.ts
 
 # graphify (internal knowledge graph, not project source)
 graphify-out/
+
+# herramientas locales de agentes (no son parte del sitio)
+.agents/
+.opencode/
+opencode.json
+
+# datos privados: exportes de Search Console y documentos de clientes
+docs/GSC/
+docs/*.docx
