@@ -72,9 +72,60 @@
   display: inline-block;
   animation: blur-in 0.6s cubic-bezier(.2,.7,.2,1) both;
   animation-delay: calc(var(--i) * 70ms);
+  /* la animación (fill both) deja cada letra en su propia capa, y su caja
+     inline-block sobresale del line-height 0.85 y tapaba los botones de abajo */
+  pointer-events: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .blur-letter { animation: none; }
+}
+
+/* /blog: destacado (1 grande + 3 laterales) y luego filas de 4 */
+.blog-featured { display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 72px; }
+.blog-side { display: flex; flex-direction: column; gap: 24px; }
+.blog-grid { display: grid; grid-template-columns: 1fr; gap: 40px 24px; padding: 48px 0; margin-bottom: 72px; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.blog-grid:last-child { margin-bottom: 0; border-bottom: 0; }
+@media (min-width: 600px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) {
+  .blog-featured { grid-template-columns: minmax(0, 11fr) minmax(0, 9fr); gap: 40px; }
+  .blog-featured--reverse { grid-template-columns: minmax(0, 9fr) minmax(0, 11fr); }
+  .blog-featured--reverse > .blog-card--hero { order: 2; }
+}
+@media (min-width: 1100px) { .blog-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.blog-card { display: flex; flex-direction: column; gap: 18px; text-decoration: none; color: inherit; }
+.blog-card__img { position: relative; aspect-ratio: 1200/630; overflow: hidden; background: rgba(255,255,255,0.03); }
+.blog-card__img img { transition: transform 0.6s cubic-bezier(.2,.7,.2,1); }
+.blog-card:hover .blog-card__img img, .blog-card:focus-visible .blog-card__img img { transform: scale(1.04); }
+.blog-card__meta { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin: 0 0 10px; }
+.blog-card__title {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+  font-family: var(--heading); font-weight: 700; font-size: 18px; line-height: 1.25; letter-spacing: -0.3px;
+  color: var(--white); margin: 0 0 10px; transition: color 0.2s;
+}
+.blog-card:hover .blog-card__title, .blog-card:focus-visible .blog-card__title { color: var(--teal); }
+.blog-card__excerpt {
+  font-size: 13px; line-height: 1.65; color: var(--muted); margin: 0;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.blog-card__tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 14px 0 0; padding: 0; }
+.blog-card__tags li {
+  font-size: 11px; font-weight: 600; color: var(--muted);
+  border: 1px solid rgba(0,194,168,0.3); border-radius: 9999px; padding: 3px 10px;
+}
+
+.blog-card--hero .blog-card__img { aspect-ratio: 4/3; }
+.blog-card--hero .blog-card__title { font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.6px; }
+.blog-card--hero .blog-card__excerpt { font-size: 15px; -webkit-line-clamp: 4; }
+
+.blog-card--side { flex-direction: row; gap: 20px; align-items: flex-start; }
+.blog-card--side .blog-card__img { flex: 0 0 42%; aspect-ratio: 4/3; }
+.blog-card--side .blog-card__body { min-width: 0; }
+.blog-card--side .blog-card__title { font-size: 16px; }
+.blog-card--side .blog-card__excerpt { -webkit-line-clamp: 2; }
+@media (max-width: 480px) {
+  .blog-card--side { flex-direction: column; }
+  .blog-card--side .blog-card__img { flex-basis: auto; width: 100%; aspect-ratio: 1200/630; }
 }
 
 /* /sobre-mi: "De la imprenta a la web" fijo mientras corre la trayectoria */
