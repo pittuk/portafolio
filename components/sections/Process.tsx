@@ -1,12 +1,12 @@
 'use client'
-import { Accordion05 } from '@/components/ui/accordion-05'
+import { InteractiveImageAccordion } from '@/components/ui/interactive-image-accordion'
 
 export default function Process() {
   return (
     <section
       id="proceso"
       style={{
-        padding: '140px 40px',
+        padding: 'clamp(80px, 12vw, 140px) clamp(20px, 4vw, 40px)',
         position: 'relative',
         overflow: 'hidden',
         background: 'var(--bg)',
@@ -15,23 +15,7 @@ export default function Process() {
         alignItems: 'center',
       }}
     >
-      <h2
-        style={{
-          fontFamily: 'var(--heading)',
-          fontWeight: 800,
-          fontSize: 'clamp(28px,7vw,68px)',
-          letterSpacing: -2,
-          lineHeight: 1,
-          marginBottom: 64,
-          textAlign: 'center',
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
-        Este es mi <span style={{ color: 'var(--teal)' }}>proceso</span><span style={{ color: 'var(--orange)' }}>.</span>
-      </h2>
-
-      <Accordion05 />
+      <InteractiveImageAccordion />
     </section>
   )
 }

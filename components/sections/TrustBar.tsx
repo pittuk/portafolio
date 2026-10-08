@@ -3,14 +3,15 @@ import Image from 'next/image'
 
 const LOGOS = [
   { file: 'logo-cablepar.png', alt: 'Cablepar' },
-  { file: 'Logo-cruiser-tech.svg', alt: 'Cruiser-Tech' },
+  { file: 'Logo-cruiser-tech.svg', alt: 'Cruiser-Tech', scale: 1.3 },
   { file: 'logo-varitylabs.png', alt: 'Varity Labs' },
   { file: 'logo aqualife pools.svg', alt: 'Aqua Life Pool' },
   { file: 'logo-publinsite.png', alt: 'Publinsite' },
-  { file: 'logo-educationusa.png', alt: 'EducationUSA' },
+  { file: 'logo-educationusa.png', alt: 'EducationUSA', scale: 1.3 },
   { file: 'Logo-Alvarandy.png', alt: 'Alvarandy' },
   { file: 'Logo ikon edition.svg', alt: 'Ikon Edition' },
   { file: 'logo-redana.png', alt: 'Red ANA' },
+  { file: 'Logo-Norka-rojas-maestra-charcutera.webp', alt: 'Norka Rojas, maestra charcutera', scale: 1.6 },
 ]
 
 // Duplicated so the track can loop seamlessly: translateX(-50%) lands exactly
@@ -35,7 +36,7 @@ export default function TrustBar() {
             <div
               key={`${logo.file}-${i}`}
               style={{
-                position: 'relative', width: 120, height: 40, flexShrink: 0,
+                position: 'relative', width: 120 * (logo.scale ?? 1), height: 40 * (logo.scale ?? 1), flexShrink: 0,
                 opacity: 0.55, filter: 'grayscale(1)',
                 transition: 'opacity 0.2s, filter 0.2s',
               }}
@@ -48,7 +49,7 @@ export default function TrustBar() {
                 fill
                 loading="lazy"
                 unoptimized={logo.file.endsWith('.svg')}
-                sizes="120px"
+                sizes={`${Math.round(120 * (logo.scale ?? 1))}px`}
                 style={{ objectFit: 'contain' }}
               />
             </div>
