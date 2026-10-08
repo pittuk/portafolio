@@ -32,7 +32,7 @@ export default async function ProyectosPage() {
   }
 
   return (
-    <section className="section-padding" style={{ padding: '100px 20px 60px', minHeight: '100vh' }}>
+    <section className="section-padding" style={{ padding: '100px clamp(20px, 4vw, 64px) 60px', minHeight: '100vh' }}>
       <ProjectFilter projects={projects} />
     </section>
   )
