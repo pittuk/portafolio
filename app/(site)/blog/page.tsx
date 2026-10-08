@@ -60,7 +60,7 @@ export default async function BlogPage() {
   }
 
   return (
-    <section className="section-padding" style={{ padding: '100px 20px 60px', minHeight: '100vh' }}>
+    <section className="section-padding" style={{ padding: '100px clamp(20px, 4vw, 64px) 60px', minHeight: '100vh' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
       <h1 style={{ fontFamily: 'var(--heading)', fontWeight: 800, fontSize: 'clamp(36px,10vw,96px)', letterSpacing: -3, lineHeight: 1, marginBottom: 48 }}>
         Blog<span style={{ color: 'var(--orange)' }}>.</span>

@@ -115,7 +115,7 @@ export default async function ProjectPage({ params }: Props) {
   }
 
   return (
-    <section className="section-padding" style={{ padding: '100px 20px 60px', minHeight: '100vh' }}>
+    <section className="section-padding" style={{ padding: '100px clamp(20px, 4vw, 64px) 60px', minHeight: '100vh' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <Link href="/proyectos" style={{ color: 'var(--muted)', fontSize: 11, letterSpacing: 1, textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.15)', paddingBottom: 2, display: 'inline-block', marginBottom: 24 }}>
         ← Todos los proyectos
